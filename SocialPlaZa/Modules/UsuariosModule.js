@@ -37,7 +37,7 @@ exports.insertaUsuarioNuevo = function insertaUsuarioNuevo (vNombreAcceso, vPass
 			//++++++++++++++++++++++++++++++++++
 
 			new_entidad2 = new ds.Entidades({
-				Nombre: "Empresa",
+				Nombre: "Empresa_"+new_usuario.ID,
 				Entorno: entorno
 			});
 			new_entidad2.save();	
@@ -46,6 +46,7 @@ exports.insertaUsuarioNuevo = function insertaUsuarioNuevo (vNombreAcceso, vPass
 			//++++++++++++++++++++++++++++++++++
 			new_empresa = new ds.Empresas();
 			new_empresa.Entidad = new_entidad2
+			new_empresa.Tipo = "Peluqueria";
 			new_empresa.save();
 			
 			//++++++++++++++++++++++++++++++++++
@@ -80,6 +81,7 @@ exports.insertaUsuarioNuevo = function insertaUsuarioNuevo (vNombreAcceso, vPass
 			new_usuario.TPVCaja = caja;
 			new_usuario.TPVAlmacen = almacen;
 			new_usuario.save();
+			
 			
 			
 			require("importacionModule").pegarArticulos(new_empresa);
