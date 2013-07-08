@@ -3,8 +3,12 @@
 ._*
 # Wakanda data
 *.waData
+# Wakanda BackUp
+*/Backups
+/Backups/lastBackup.json
 # Wakanda preferences
 *.waPreferences
+Settings.waSettings
 # Wakanda log
 *.waLog
 */Logs
