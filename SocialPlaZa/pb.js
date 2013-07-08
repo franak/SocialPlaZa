@@ -1,0 +1,1 @@
+﻿loginByPassword("manager","123");ds.Usuarios.borrar();

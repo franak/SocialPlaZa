@@ -1,0 +1,119 @@
+﻿2009-09-08 17:00:37.066 +0200	DesgloseMovistar.fp7	0	Import operations started
+2009-09-08 17:00:37.068 +0200	DesgloseMovistar.fp7	0	Import of script steps from clipboard started
+2009-09-08 17:00:37.433 +0200	Importar Detalle	0	script steps imported : 1
+2009-09-08 17:00:37.434 +0200	DesgloseMovistar.fp7	0	Import completed
+2009-09-08 17:00:55.641 +0200	DesgloseMovistar.fp7	0	Import operations committed
+2009-09-10 14:14:27.258 +0200	DesgloseMovistar.fp7	0	Import operations started
+2009-09-10 14:14:27.284 +0200	DesgloseMovistar.fp7	0	Import of script steps from clipboard started
+2009-09-10 14:14:27.300 +0200	Importar Detalle	0	script steps imported : 1
+2009-09-10 14:14:27.301 +0200	DesgloseMovistar.fp7	0	Import completed
+2009-09-10 14:22:30.649 +0200	DesgloseMovistar.fp7	0	Import of script steps from clipboard started
+2009-09-10 14:22:30.651 +0200	Importar Detalle	0	script steps imported : 2
+2009-09-10 14:22:30.652 +0200	DesgloseMovistar.fp7	0	Import completed
+2009-09-10 14:22:41.002 +0200	DesgloseMovistar.fp7	0	Import operations committed
+2009-09-10 14:26:28.652 +0200	DesgloseMovistar.fp7	0	Import operations started
+2009-09-10 14:26:28.655 +0200	DesgloseMovistar.fp7	0	Import of script steps from clipboard started
+2009-09-10 14:26:28.690 +0200	Importar Detalle::4::Set Field	102	Field “GFilepath” missing.
+2009-09-10 14:26:28.690 +0200	Importar Detalle::5::Insert File	102	Field “GFilepath” missing.
+2009-09-10 14:26:28.692 +0200	Importar Detalle::6::Set Variable	106	Table referred to in the calculation “GetAsText ( Secciones::GFilepath )” is missing.
+2009-09-10 14:26:28.693 +0200	Importar Detalle::7::Import Records	106	Table “Secciones” missing.
+2009-09-10 14:26:28.694 +0200	Importar Detalle::7::Import Records	102	Field “Reg_Sección” missing.
+2009-09-10 14:26:28.694 +0200	Importar Detalle::7::Import Records	102	Field “S_Num” missing.
+2009-09-10 14:26:28.695 +0200	Importar Detalle::7::Import Records	102	Field “S_Nombre” missing.
+2009-09-10 14:26:28.696 +0200	Importar Detalle::7::Import Records	102	Field “CupoTeorico” missing.
+2009-09-10 14:26:28.696 +0200	Importar Detalle::7::Import Records	102	Field “CupoPráctico” missing.
+2009-09-10 14:26:28.697 +0200	Importar Detalle::7::Import Records	102	Field “CupoEspecífico” missing.
+2009-09-10 14:26:28.698 +0200	Importar Detalle::7::Import Records	102	Field “CupoAMan” missing.
+2009-09-10 14:26:28.698 +0200	Importar Detalle::7::Import Records	102	Field “CupoACir” missing.
+2009-09-10 14:26:28.699 +0200	Importar Detalle::7::Import Records	102	Field “Logo” missing.
+2009-09-10 14:26:28.700 +0200	Importar Detalle::7::Import Records	102	Field “NombreAE” missing.
+2009-09-10 14:26:28.700 +0200	Importar Detalle::7::Import Records	102	Field “N_Provincial” missing.
+2009-09-10 14:26:28.701 +0200	Importar Detalle::7::Import Records	102	Field “Dirección” missing.
+2009-09-10 14:26:28.701 +0200	Importar Detalle::7::Import Records	102	Field “MembreteAE” missing.
+2009-09-10 14:26:28.702 +0200	Importar Detalle::7::Import Records	102	Field “NIF” missing.
+2009-09-10 14:26:28.703 +0200	Importar Detalle::7::Import Records	102	Field “TitularNombre” missing.
+2009-09-10 14:26:28.703 +0200	Importar Detalle::7::Import Records	102	Field “Localidad” missing.
+2009-09-10 14:26:28.704 +0200	Importar Detalle::7::Import Records	102	Field “CP” missing.
+2009-09-10 14:26:28.705 +0200	Importar Detalle::7::Import Records	102	Field “Database” missing.
+2009-09-10 14:26:28.705 +0200	Importar Detalle::7::Import Records	102	Field “S_DC” missing.
+2009-09-10 14:26:28.706 +0200	Importar Detalle::7::Import Records	102	Field “TARVigente” missing.
+2009-09-10 14:26:28.706 +0200	Importar Detalle::7::Import Records	102	Field “CentroExamen” missing.
+2009-09-10 14:26:28.707 +0200	Importar Detalle::7::Import Records	102	Field “Teléfono1” missing.
+2009-09-10 14:26:28.708 +0200	Importar Detalle::7::Import Records	102	Field “Teléfono2” missing.
+2009-09-10 14:26:28.708 +0200	Importar Detalle::7::Import Records	102	Field “EMail” missing.
+2009-09-10 14:26:28.709 +0200	Importar Detalle::7::Import Records	102	Field “GLERR” missing.
+2009-09-10 14:26:28.709 +0200	Importar Detalle::7::Import Records	102	Field “WindowName” missing.
+2009-09-10 14:26:28.710 +0200	Importar Detalle::7::Import Records	102	Field “Version” missing.
+2009-09-10 14:26:28.711 +0200	Importar Detalle::7::Import Records	102	Field “GNombreArchivo” missing.
+2009-09-10 14:26:28.711 +0200	Importar Detalle::7::Import Records	102	Field “SecciónPrincipal” missing.
+2009-09-10 14:26:28.712 +0200	Importar Detalle::7::Import Records	102	Field “VersionNueva” missing.
+2009-09-10 14:26:28.713 +0200	Importar Detalle::7::Import Records	102	Field “NuevaVersion” missing.
+2009-09-10 14:26:28.714 +0200	Importar Detalle::7::Import Records	102	Field “CentroExamenDomicilio” missing.
+2009-09-10 14:26:28.714 +0200	Importar Detalle::7::Import Records	102	Field “CentroExamenTeléfono” missing.
+2009-09-10 14:26:28.715 +0200	Importar Detalle::7::Import Records	102	Field “CentroExamenFax” missing.
+2009-09-10 14:26:28.715 +0200	Importar Detalle::7::Import Records	102	Field “CentroExamenCe” missing.
+2009-09-10 14:26:28.716 +0200	Importar Detalle::7::Import Records	102	Field “Reg_Absol” missing.
+2009-09-10 14:26:28.717 +0200	Importar Detalle::7::Import Records	102	Field “httpPanel” missing.
+2009-09-10 14:26:28.717 +0200	Importar Detalle::7::Import Records	102	Field “PáginaGestiónWeb” missing.
+2009-09-10 14:26:28.718 +0200	Importar Detalle::7::Import Records	102	Field “Web_Mail_Soporte” missing.
+2009-09-10 14:26:28.718 +0200	Importar Detalle::7::Import Records	102	Field “GFilepath” missing.
+2009-09-10 14:26:28.719 +0200	Importar Detalle::7::Import Records	102	Field “DNIRepresent” missing.
+2009-09-10 14:26:28.720 +0200	Importar Detalle::7::Import Records	102	Field “ConceptoRepresentante” missing.
+2009-09-10 14:26:28.720 +0200	Importar Detalle::7::Import Records	102	Field “TitularApellidos” missing.
+2009-09-10 14:26:28.721 +0200	Importar Detalle::7::Import Records	102	Field “TitularApellidosNombre” missing.
+2009-09-10 14:26:28.721 +0200	Importar Detalle::7::Import Records	102	Field “PáginaWeb” missing.
+2009-09-10 14:26:28.722 +0200	Importar Detalle::7::Import Records	102	Field “TARVigenteProf” missing.
+2009-09-10 14:26:28.723 +0200	Importar Detalle::7::Import Records	102	Field “Grupo” missing.
+2009-09-10 14:26:28.723 +0200	Importar Detalle::7::Import Records	102	Field “SVHorarioDescripcion” missing.
+2009-09-10 14:26:28.724 +0200	Importar Detalle::7::Import Records	102	Field “SVHorarioDesde” missing.
+2009-09-10 14:26:28.725 +0200	Importar Detalle::7::Import Records	102	Field “SVHorarioHasta” missing.
+2009-09-10 14:26:28.725 +0200	Importar Detalle::7::Import Records	102	Field “MembreteAEComercial” missing.
+2009-09-10 14:26:28.726 +0200	Importar Detalle::7::Import Records	102	Field “GNumero” missing.
+2009-09-10 14:26:28.726 +0200	Importar Detalle::7::Import Records	102	Field “TASAVigenteA” missing.
+2009-09-10 14:26:28.727 +0200	Importar Detalle::7::Import Records	102	Field “TASAVigenteBTP” missing.
+2009-09-10 14:26:28.728 +0200	Importar Detalle::7::Import Records	102	Field “TASAVigenteC_D” missing.
+2009-09-10 14:26:28.728 +0200	Importar Detalle::7::Import Records	102	Field “GDigitoControl” missing.
+2009-09-10 14:26:28.729 +0200	Importar Detalle::7::Import Records	102	Field “GSección” missing.
+2009-09-10 14:26:28.729 +0200	Importar Detalle::7::Import Records	102	Field “vTrasladoAE” missing.
+2009-09-10 14:26:28.730 +0200	Importar Detalle::7::Import Records	102	Field “vTrasladoNIF” missing.
+2009-09-10 14:26:28.731 +0200	Importar Detalle::7::Import Records	102	Field “vTrasladoNprov” missing.
+2009-09-10 14:26:28.731 +0200	Importar Detalle::7::Import Records	102	Field “vTrasladoNSecc” missing.
+2009-09-10 14:26:28.732 +0200	Importar Detalle::7::Import Records	102	Field “vTrasladoDC” missing.
+2009-09-10 14:26:28.732 +0200	Importar Detalle::7::Import Records	102	Field “testDoScript” missing.
+2009-09-10 14:26:28.733 +0200	Importar Detalle::7::Import Records	102	Field “RegistroAE_Seccion” missing.
+2009-09-10 14:26:28.734 +0200	Importar Detalle::7::Import Records	102	Field “Dirección_Numero” missing.
+2009-09-10 14:26:28.734 +0200	Importar Detalle::7::Import Records	102	Field “Cuenta_Domic” missing.
+2009-09-10 14:26:28.735 +0200	Importar Detalle::7::Import Records	102	Field “SVtitular” missing.
+2009-09-10 14:26:28.736 +0200	Importar Detalle::7::Import Records	102	Field “SVtitularNIF” missing.
+2009-09-10 14:26:28.736 +0200	Importar Detalle::7::Import Records	102	Field “SVSuplente” missing.
+2009-09-10 14:26:28.737 +0200	Importar Detalle::7::Import Records	102	Field “SVSuplenteNIF” missing.
+2009-09-10 14:26:28.737 +0200	Importar Detalle::7::Import Records	102	Field “Color” missing.
+2009-09-10 14:26:28.738 +0200	Importar Detalle::7::Import Records	102	Field “vTrasladoProvincia” missing.
+2009-09-10 14:26:28.739 +0200	Importar Detalle::7::Import Records	102	Field “N_Secuencial” missing.
+2009-09-10 14:26:28.739 +0200	Importar Detalle	0	script steps imported : 4
+2009-09-10 14:26:28.740 +0200	DesgloseMovistar.fp7	0	Import completed
+2009-09-10 14:30:50.907 +0200	DesgloseMovistar.fp7	0	Import of script steps from clipboard started
+2009-09-10 14:30:50.909 +0200	Importar Detalle	0	script steps imported : 1
+2009-09-10 14:30:50.910 +0200	DesgloseMovistar.fp7	0	Import completed
+2009-09-10 14:30:59.521 +0200	DesgloseMovistar.fp7	0	Import of script steps from clipboard started
+2009-09-10 14:30:59.523 +0200	Importar Detalle	0	script steps imported : 1
+2009-09-10 14:30:59.524 +0200	DesgloseMovistar.fp7	0	Import completed
+2009-09-10 14:31:04.744 +0200	DesgloseMovistar.fp7	0	Import operations committed
+2009-09-10 14:37:13.690 +0200	DesgloseMovistar.fp7	0	Import operations started
+2009-09-10 14:37:13.693 +0200	DesgloseMovistar.fp7	0	Import of script steps from clipboard started
+2009-09-10 14:37:13.695 +0200	Importar Detalle	0	script steps imported : 1
+2009-09-10 14:37:13.695 +0200	DesgloseMovistar.fp7	0	Import completed
+2009-09-10 14:37:16.530 +0200	DesgloseMovistar.fp7	0	Import operations committed
+2009-09-11 12:40:12.930 +0200	DesgloseMovistar.fp7	0	Import operations started
+2009-09-11 12:40:12.933 +0200	DesgloseMovistar.fp7	0	Import of script steps from clipboard started
+2009-09-11 12:40:12.980 +0200	New Script	0	script steps imported : 19
+2009-09-11 12:40:12.980 +0200	DesgloseMovistar.fp7	0	Import completed
+2009-09-11 12:40:15.896 +0200	DesgloseMovistar.fp7	0	Import operations committed
+2009-09-11 12:43:03.523 +0200	DesgloseMovistar.fp7	0	Import operations started
+2009-09-11 12:43:03.526 +0200	DesgloseMovistar.fp7	0	Import of script steps from clipboard started
+2009-09-11 12:43:03.530 +0200	Cruzar Agenda	0	script steps imported : 5
+2009-09-11 12:43:03.531 +0200	DesgloseMovistar.fp7	0	Import completed
+2009-09-11 12:43:13.114 +0200	DesgloseMovistar.fp7	0	Import of script steps from clipboard started
+2009-09-11 12:43:13.117 +0200	Cruzar Agenda	0	script steps imported : 2
+2009-09-11 12:43:13.117 +0200	DesgloseMovistar.fp7	0	Import completed
+2009-09-11 12:43:29.046 +0200	DesgloseMovistar.fp7	0	Import operations committed

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project><folder path="./DataFolder/"><tag name="dataFolder"/></folder><folder path="./WebFolder/"><tag name="webFolder"/></folder><file path="./startup.js"><tag name="bootStrap"/></file><file path="./scripts/required.js"><tag name="bootStrap"/></file><file path="./scripts/launch.js"><tag name="bootStrap"/></file></project>

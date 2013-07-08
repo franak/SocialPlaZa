@@ -1,0 +1,19 @@
+/***** fc Consideraciones genéricas ******/
+
+- Todas las Class tienen "scope = Public On Server"
+
+- Todas las Class tiene un Extend Public con Restrictic query sobre Entorno. Se nombran "NombreclassExtend"
+
+- Cada Class tiene sus propios métodos:
+	Métodos en la propia class
+	Métodos en la class que llaman a módulos (ficheros.js)
+	
+- Desde el cliente se llaman a los métodos públicos que están en los Extend
+
+- Los métodos más amplios se crean en class sin datos, sólo con métodos, estos a su vez pueden llamar a métodos en otras class o módulos
+
+
+
+/***************/
+
+

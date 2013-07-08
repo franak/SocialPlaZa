@@ -1,0 +1,4 @@
+Bebidas	1	Coca-Cola	2
+Bebidas	2	Fanta Naranja	2
+Comidas	3	Bocadillo Lomo	5
+Comidas	4	Bocadillo Queso	6
