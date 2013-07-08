@@ -23,7 +23,7 @@ $(printContinuar).printPage({
 //Desactivo el doble click de los botones de TPV
 $('.matrix_a').dblclick(function(e){ 
     e.preventDefault();
-})
+});
 
 //Evito que se seleccione el texto de los botones
 
@@ -356,6 +356,16 @@ $.getJSON( ruta, function(data) {
 			$("#"+id+"_dialog3").css("left",200);
 	};// @lock
 
+	richText3.touchend = function richText3_touchend (event)// @startlock
+	{// @endlock
+		alert("adios");
+	};// @lock
+
+	richText3.touchstart = function richText3_touchstart (event)// @startlock
+	{// @endlock
+		// Add your code here
+	};// @lock
+
 	richText3.mousedown = function richText3_mousedown (event)// @startlock
 	{// @endlock
 		vTime = 0;
@@ -385,6 +395,8 @@ $.getJSON( ruta, function(data) {
 			//anadir linea
 			var esteObjeto = this;//fc para pasarle el objeto dónde pulso
 			appds.anadirLinea($comp,esteObjeto);
+			
+			
 		}
 	};// @lock
 
@@ -465,16 +477,22 @@ $.getJSON( ruta, function(data) {
 
 	richText9.click = function richText9_click (event)// @startlock
 	{// @endlock
-		$comp.sources.lineasCollection.save();
-		$comp.sources.docComercial.serverRefresh({
+		$comp.sources.lineasCollection.save({
+			onSuccess:function (event){
+				$comp.sources.docComercial.serverRefresh();
+				
+				$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
+			}
+		});
+		/*$comp.sources.docComercial.serverRefresh({
 			onSuccess: function (event){
 				var docID = $comp.sources.docComercial.ID;
 				if(docID){	
 					fcBrain.sumarLineas(id,docID)
 				}
-				$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
+				$(getHtmlId("dialog2")).closeDialog(); //Guardar button
 			}
-		});
+		});*/
 		
 	};// @lock
 
@@ -572,6 +590,8 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText3", "touchend", richText3.touchend, "WAF");
+	WAF.addListener(this.id + "_richText3", "touchstart", richText3.touchstart, "WAF");
 	WAF.addListener(this.id + "_imageButton1", "click", imageButton1.click, "WAF");
 	WAF.addListener(this.id + "_imageButton14", "click", imageButton14.click, "WAF");
 	WAF.addListener(this.id + "_imageButton9", "click", imageButton9.click, "WAF");
@@ -657,7 +677,7 @@ var vSumaR =  Math.round(vSuma*100)/100
 vSumaR = vSumaR.toFixed(2);
 //$("#input_EF").val(vSumaR);
 
-$(fpEfectivoObj).select();//Para que apareza seleccionado todo el contenido
+//$(fpEfectivoObj).select();//Para que apareza seleccionado todo el contenido
 		
  //INICIALIZACIÓN DE LOS CAMPOS Y EVENTOS
  
@@ -690,7 +710,7 @@ $(".entrada").focus( function(event) {
 		diferencia = parseFloat(diferencia);//ds pasar a numero la variable
 		diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
 		$(this).val(diferencia);
-		
+		$(this).select();
 	}
 
 });	

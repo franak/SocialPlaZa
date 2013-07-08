@@ -279,6 +279,9 @@ li.accordion-menu .nav-list a {
   color: #fff !important;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.29);
   -webkit-font-smoothing: antialiased;
+  user-select: none;
+-webkit-user-select: none;
+-moz-user-select: -moz-none;
 }
 .btn-maniadmin-5 {
   background-color: #3e0f16 !important;
