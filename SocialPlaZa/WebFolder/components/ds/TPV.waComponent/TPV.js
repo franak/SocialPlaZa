@@ -77,6 +77,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 		//DS DECLARACION DE LA VARIABLE POS A LA QUE SE REFIERE A LAS POSICIONES DE LAS LINEAS
 		pos = 0;
+		vPosRestada = null;
 		//DS DECLARACION DE qString PARA SABER EN QUE MOMENTO EN QUE FAMILIA ESTAMOS
 		qString = null;
 	
@@ -176,10 +177,9 @@ $.getJSON( ruta, function(data) {
 	{// @endlock
 	
 	
-		var aMediosPagos = [$("#input_EF").val(),$("#input_TJ").val(),$("#input_RG").val()]
+		var aMediosPagos = [$("#input_EF").val(),$("#input_TJ").val()]
 		
 		for (var i =0; i < aMediosPagos.length; i++){
-			
 			
 			if(aMediosPagos[i] != "" && aMediosPagos[i] != 0){
 				$comp.sources.cajasMovimientos.newEntity();
@@ -740,6 +740,7 @@ function modificarLinea(){
 		$("BODY").append($(jqdialogo));
 		$$(dialogo).displayDialog();
 		$(jqdialogo).css("top",100);
+		$(jqdialogo).css("left",100);
 }	
  //Menú para el botón Toolbar
  

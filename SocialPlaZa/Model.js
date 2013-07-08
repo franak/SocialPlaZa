@@ -3,6 +3,24 @@ guidedModel =// @startlock
 {
 	MedioPago :
 	{
+		events :
+		{
+			onRestrictingQuery:function()
+			{// @endlock
+				var myClass = ds.MedioPago;
+				return require("dsModule").restrincionEntorno(myClass);
+			},// @startlock
+			onValidate:function()
+			{// @endlock
+				var myClass = ds.MedioPago;
+				return require("dsModule").onvalidate(this, myClass);
+			},// @startlock
+			onInit:function()
+			{// @endlock
+				var myClass = ds.MedioPago;
+				return require("dsModule").oninit(this, myClass);
+			}// @startlock
+		},
 		methods :
 		{// @endlock
 			asignarMedioPago:function(medio)

@@ -65,6 +65,18 @@ exports.insertaUsuarioNuevo = function insertaUsuarioNuevo (vNombreAcceso, vPass
 			almacen.Empresa = new_empresa;
 			almacen.save();
 			
+			var medio1 = new ds.MedioPago();
+			medio1.Codigo = "EF";
+			medio1.Descripcion = "Efectivo";
+			medio1.Empresa = new_empresa;
+			medio1.save();
+			
+			var medio2 = new ds.MedioPago();
+			medio2.Codigo = "TJ";
+			medio2.Descripcion = "Tarjeta";
+			medio2.Empresa = new_empresa;
+			medio2.save();
+			
 			new_usuario.TPVCaja = caja;
 			new_usuario.TPVAlmacen = almacen;
 			new_usuario.save();
@@ -94,6 +106,7 @@ exports.eliminarDemo = function eliminarDemo () {
 		ds.DocComercial.remove();
 		ds.Empresas.remove();
 		ds.Entidades.remove();
+		ds.MedioPago.remove();
 		
 		// EN ESTE PUNTO HABRA QUE COGER EL ENTORNO ID DEL USUARIO DEMO PARA QUE EL MANAGER LO ELIMINE
 		
