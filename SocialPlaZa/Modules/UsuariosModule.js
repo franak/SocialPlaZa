@@ -104,9 +104,10 @@ exports.eliminarDemo = function eliminarDemo () {
 		ds.Almacenes.remove();
 		ds.Lineas.remove();
 		ds.DocComercial.remove();
+		ds.MedioPago.remove();
 		ds.Empresas.remove();
 		ds.Entidades.remove();
-		ds.MedioPago.remove();
+		
 		
 		// EN ESTE PUNTO HABRA QUE COGER EL ENTORNO ID DEL USUARIO DEMO PARA QUE EL MANAGER LO ELIMINE
 		
