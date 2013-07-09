@@ -206,10 +206,13 @@ appdsObj = function () {
 		$$(esteObjeto.id).setState('disabled');
 		
 		/*JUEGO DE COLORES*/	
-		$('.matrix_a').removeClass('tpv-btn');
-		esteObjeto.addClass('tpv-btn');
-		
-			var articuloCodigo = $comp.sources.articulos.Codigo;
+		//$('.matrix_a').removeClass('tpv-btn');
+		//esteObjeto.addClass('tpv-btn');
+			//console.log($comp.sources.articulos.getCurrentElement().Codigo.value);
+			//console.log(esteObjeto);
+			var art = ds.Articulos.devolverArticulo(esteObjeto._value);
+			console.log(art);
+			var articuloCodigo = art.Codigo.value;
 			var docComercialID = $comp.sources.docComercial.ID;
 			
 		var lin = ds.Lineas.getLinea(articuloCodigo,docComercialID); //en el servidor.
@@ -236,9 +239,9 @@ appdsObj = function () {
 
 				
 				$comp.sources.lineas.newEntity();
-				$comp.sources.lineas.Codigo = $comp.sources.articulos.Codigo;
-				$comp.sources.lineas.Descripcion = $comp.sources.articulos.Descripcion;
-				$comp.sources.lineas.PrecioUnitario = $comp.sources.articulos.Precio;
+				$comp.sources.lineas.Codigo = art.Codigo.value;
+				$comp.sources.lineas.Descripcion = art.Descripcion.value;
+				$comp.sources.lineas.PrecioUnitario = art.Precio.value;
 				$comp.sources.lineas.Cantidad = 1;
 				$comp.sources.lineas.Documento.set($comp.sources.docComercial);
 				$comp.sources.lineas.Almacen.set($comp.sources.almacenes);
@@ -272,7 +275,7 @@ appdsObj = function () {
 		}
 	}
 	
-	this.estadoInicial = function ($comp,estado){
+	this.estadoInicial = function ($comp,estado,objeto){
 		
 		if(estado == "crear"){
 			$$($comp.id+"_richText12").hide();
@@ -304,9 +307,9 @@ appdsObj = function () {
 			$$($comp.id+"_richText4").show();
 			
 			$$($comp.id+"_richText14").setValue("Guardar");
-			var articuloCodigo = $comp.sources.articulos.Codigo;
-			$comp.sources.articulos1.query("Codigo =:1",articuloCodigo);
-			var vFamilia = ds.Articulos.getFamilia(articuloCodigo);
+			console.log(objeto);
+			$comp.sources.articulos1.query("Descripcion =:1",objeto._value);
+			var vFamilia = ds.Articulos.getFamilia($comp.sources.articulos1.Codigo);
 			$$($comp.id+"_combobox2").setValue(vFamilia);//Ponermos los respectivos datos elegidos
 			$$($comp.id+"_richText4").show();//Mostrar el boton eliminar
 		}
