@@ -82,7 +82,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		qString = null;
 	
 	// @region namespaceDeclaration// @startlock
-	var imageButton16 = {};	// @buttonImage
+	var btnAll = {};	// @buttonImage
 	var imageButton15 = {};	// @buttonImage
 	var richText3 = {};	// @richText
 	var imageButton1 = {};	// @buttonImage
@@ -112,12 +112,14 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	// eventHandlers// @lock
 
-	imageButton16.click = function imageButton16_click (event)// @startlock
+	btnAll.click = function btnAll_click (event)// @startlock
 	{// @endlock
 		qString = null;
 		$comp.sources.articulos.resolveSource();
-			$('.solapa').removeClass('btn-maniadmin-4');
+		$('.solapa').removeClass('btn-maniadmin-4');
 		$('.matrix_a').removeClass('tpv-btn');
+		this.addClass('disabled');
+		this.removeClass('btn-warning');
 	};// @lock
 
 	imageButton15.click = function imageButton15_click (event)// @startlock
@@ -328,6 +330,9 @@ $.getJSON( ruta, function(data) {
 		$('.solapa').removeClass('btn-maniadmin-4');
 				this.addClass('btn-maniadmin-4');
 
+$('.disabled').addClass('btn-warning');
+		$('.disabled').removeClass('disabled');
+
 
 	};// @lock
 
@@ -478,7 +483,7 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_imageButton16", "click", imageButton16.click, "WAF");
+	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_imageButton15", "click", imageButton15.click, "WAF");
 	WAF.addListener(this.id + "_richText6", "click", richText6.click, "WAF");
 	WAF.addListener(this.id + "_richText3", "mousedown", richText3.mousedown, "WAF");
