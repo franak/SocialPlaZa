@@ -34,8 +34,8 @@ $('#mlateralComp').hide();
  UI.alert(ip);
 });*/
 
-
-
+//Inicialización Modales de la página //
+initModal('Usuarios');
 
 	 var user = WAF.directory.currentUser();
 	if(user){
@@ -78,8 +78,9 @@ $('#mlateralComp').hide();
 
 	richText5.click = function richText5_click (event)// @startlock
 	{// @endlock
-		$(botonera1).slideToggle();
-		$(botonera2).css('top','24px').slideToggle();
+		/*$(botonera1).slideToggle();
+		$(botonera2).css('top','24px').slideToggle();*/
+		SPL.showModal();
 
 	};// @lock
 
@@ -149,8 +150,9 @@ UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para 
 	 //Menú para el botón Toolbar
  
  var menuBoton2 = ' <ul id="toolbar-options" role="menu" aria-labelledby="dLabel" style="display:none">'
-+'<li><a class="tool" href="#" id="opcion1" ><i class=" icon-remove"></i> opcion1</a></li>'
-+'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="opcion2"><i class="icon-screenshot"></i> opcion2</a></li>'
++'<li><a class="tool" href="#" id="serpMenu" ><i class=" icon-remove"></i> Social ERP Telegestion</a></li>'
++'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="clientes"><i class="icon-screenshot"></i> Nuestros Clientes</a></li>'
++'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="estamos"><i class="icon-screenshot"></i> Dónde estamos</a></li>'
 +'<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'
 +'<li>hola</li>'
 +'</ul>'
