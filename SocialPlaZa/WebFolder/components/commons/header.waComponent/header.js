@@ -14,6 +14,7 @@ function constructor (id) {
 		$$('mlateralComp').loadComponent('/components/commons/menulateral.waComponent');
 $('#mlateralComp').hide();
 	// @region namespaceDeclaration// @startlock
+	var foto_usuario = {};	// @image
 	var openMenu = {};	// @richText
 	var richText3 = {};	// @richText
 	var richText4 = {};	// @richText
@@ -35,7 +36,8 @@ $('#mlateralComp').hide();
 });*/
 
 //Inicialización Modales de la página //
-initModal('Usuarios');
+initModal('Usuarios',$comp);
+
 
 	 var user = WAF.directory.currentUser();
 	if(user){
@@ -48,6 +50,11 @@ initModal('Usuarios');
 			
 
 	// eventHandlers// @lock
+
+	foto_usuario.click = function foto_usuario_click (event)// @startlock
+	{// @endlock
+		$('#myModal').modal('show');
+	};// @lock
 
 	openMenu.click = function openMenu_click (event)// @startlock
 	{// @endlock
@@ -182,6 +189,7 @@ modificarLinea();
 
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
 	WAF.addListener(this.id + "_openMenu", "click", openMenu.click, "WAF");
 	WAF.addListener(this.id + "_richText3", "click", richText3.click, "WAF");
 	WAF.addListener(this.id + "_richText4", "click", richText4.click, "WAF");

@@ -82,19 +82,20 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		qString = null;
 	
 	// @region namespaceDeclaration// @startlock
+	var imageButton16 = {};	// @buttonImage
+	var imageButton15 = {};	// @buttonImage
+	var richText3 = {};	// @richText
 	var imageButton1 = {};	// @buttonImage
 	var imageButton14 = {};	// @buttonImage
 	var imageButton9 = {};	// @buttonImage
 	var containerFamilias = {};	// @container
 	var bContinuarDispensar = {};	// @richText
 	var bCancelDispensar = {};	// @richText
-	var imageButton12 = {};	// @buttonImage
 	var imageButton4 = {};	// @buttonImage
 	var imageButton10 = {};	// @buttonImage
 	var imageButton6 = {};	// @buttonImage
 	var imageButton5 = {};	// @buttonImage
 	var richText23 = {};	// @richText
-	var richText3 = {};	// @richText
 	var richText6 = {};	// @richText
 	var richText19 = {};	// @richText
 	var richText18 = {};	// @richText
@@ -106,11 +107,52 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	var richText15 = {};	// @richText
 	var lineasCollectionEvent = {};	// @dataSource
 	var dataGrid1 = {};	// @dataGrid
-	var image1 = {};	// @image
 	// @endregion// @endlock
 
 
 	// eventHandlers// @lock
+
+	imageButton16.click = function imageButton16_click (event)// @startlock
+	{// @endlock
+		qString = null;
+		$comp.sources.articulos.resolveSource();
+			$('.solapa').removeClass('btn-maniadmin-4');
+		$('.matrix_a').removeClass('tpv-btn');
+	};// @lock
+
+	imageButton15.click = function imageButton15_click (event)// @startlock
+	{// @endlock
+				anadirArticulo_btn();
+
+	};// @lock
+
+	richText3.mousedown = function richText3_mousedown (event)// @startlock
+	{// @endlock
+		vTime = 0;
+		vTime = new Date();
+	};// @lock
+
+	richText3.mouseup = function richText3_mouseup (event)// @startlock
+	{// @endlock
+			articulo_btn(this);
+			
+			$('.matrix_a').removeClass('btn-maniadmin-4');
+			this.addClass('btn-maniadmin-4');
+
+
+	};// @lock
+
+	richText3.touchstart = function richText3_touchstart (event)// @startlock
+	{// @endlock
+		vTime = 0;
+		vTime = new Date();
+		
+	};// @lock
+
+	richText3.touchend = function richText3_touchend (event)// @startlock
+	{// @endlock
+		articulo_btn(this);
+	};// @lock
 
 	imageButton1.click = function imageButton1_click (event)// @startlock
 	{// @endlock
@@ -206,16 +248,6 @@ $.getJSON( ruta, function(data) {
 		$$(getHtmlId("dialog1")).closeDialog(); //Cancelar button
 	};// @lock
 
-	imageButton12.touchend = function imageButton12_touchend (event)// @startlock
-	{// @endlock
-		anadirArticulo_btn();
-	};// @lock
-
-	imageButton12.click = function imageButton12_click (event)// @startlock
-	{// @endlock
-		anadirArticulo_btn();
-	};// @lock
-
 	imageButton4.touchend = function imageButton4_touchend (event)// @startlock
 	{// @endlock
 		cargarMovimientoCaja_btn();
@@ -286,27 +318,17 @@ $.getJSON( ruta, function(data) {
 			$("#"+id+"_dialog3").css("left",200);
 	};// @lock
 
-	richText3.touchend = function richText3_touchend (event)// @startlock
+	richText6.click = function richText6_click (event)// @startlock
 	{// @endlock
-		articulo_btn(this);
-	};// @lock
-
-	richText3.touchstart = function richText3_touchstart (event)// @startlock
-	{// @endlock
-		vTime = 0;
-		vTime = new Date();
+			var familiaselec = this.getValue();
+		$comp.sources.articulos.query("Familia.Nombre=:1",familiaselec);
+		qString = familiaselec;
 		
-	};// @lock
 
-	richText3.mousedown = function richText3_mousedown (event)// @startlock
-	{// @endlock
-		vTime = 0;
-		vTime = new Date();
-	};// @lock
+		$('.solapa').removeClass('btn-maniadmin-4');
+				this.addClass('btn-maniadmin-4');
 
-	richText3.mouseup = function richText3_mouseup (event)// @startlock
-	{// @endlock
-			articulo_btn(this);
+
 	};// @lock
 
 	richText6.touchend = function richText6_touchend (event)// @startlock
@@ -317,25 +339,6 @@ $.getJSON( ruta, function(data) {
 		
 		$('.solapa').addClass('tpv-btn');
 		this.removeClass('tpv-btn');
-	};// @lock
-
-	richText6.click = function richText6_click (event)// @startlock
-	{// @endlock
-		//DS DECLARACION DEL OBJETO DE SONIDO:
-//		var mySound = new buzz.sound( "/sounds/Invitation", {
-//		    formats: [ "wav", "mp3" ]
-//		});	
-		
-	//	mySound.play();
-	
-		var familiaselec = this.getValue();
-		$comp.sources.articulos.query("Familia.Nombre=:1",familiaselec);
-		qString = familiaselec;
-		
-		$('.solapa').addClass('tpv-btn');
-		this.removeClass('tpv-btn');
-		
-
 	};// @lock
 
 	richText19.touchend = function richText19_touchend (event)// @startlock
@@ -471,27 +474,17 @@ $.getJSON( ruta, function(data) {
 		
 
 	};// @lock
-
-	image1.touchend = function image1_touchend (event)// @startlock
-	{// @endlock
-		qString = null;
-		$comp.sources.articulos.resolveSource();
-		$('.solapa').addClass('tpv-btn');
-		$('.matrix_a').removeClass('tpv-btn');
-	};// @lock
-
-	image1.click = function image1_click (event)// @startlock
-	{// @endlock
-		qString = null;
-		$comp.sources.articulos.resolveSource();
-		$('.solapa').addClass('tpv-btn');
-		$('.matrix_a').removeClass('tpv-btn');
-
-	};// @lock
 	
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_imageButton16", "click", imageButton16.click, "WAF");
+	WAF.addListener(this.id + "_imageButton15", "click", imageButton15.click, "WAF");
+	WAF.addListener(this.id + "_richText6", "click", richText6.click, "WAF");
+	WAF.addListener(this.id + "_richText3", "mousedown", richText3.mousedown, "WAF");
+	WAF.addListener(this.id + "_richText3", "mouseup", richText3.mouseup, "WAF");
+	WAF.addListener(this.id + "_richText3", "touchstart", richText3.touchstart, "WAF");
+	WAF.addListener(this.id + "_richText3", "touchend", richText3.touchend, "WAF");
 	WAF.addListener(this.id + "_imageButton14", "touchend", imageButton14.touchend, "WAF");
 	WAF.addListener(this.id + "_richText21", "touchend", richText21.touchend, "WAF");
 	WAF.addListener(this.id + "_richText9", "touchend", richText9.touchend, "WAF");
@@ -499,8 +492,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_bCancelDispensar", "touchend", bCancelDispensar.touchend, "WAF");
 	WAF.addListener(this.id + "_bContinuarDispensar", "touchend", bContinuarDispensar.touchend, "WAF");
 	WAF.addListener(this.id + "_richText23", "touchend", richText23.touchend, "WAF");
-	WAF.addListener(this.id + "_image1", "touchend", image1.touchend, "WAF");
-	WAF.addListener(this.id + "_imageButton12", "touchend", imageButton12.touchend, "WAF");
 	WAF.addListener(this.id + "_richText6", "touchend", richText6.touchend, "WAF");
 	WAF.addListener(this.id + "_richText19", "touchend", richText19.touchend, "WAF");
 	WAF.addListener(this.id + "_richText18", "touchend", richText18.touchend, "WAF");
@@ -511,23 +502,17 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_imageButton4", "touchend", imageButton4.touchend, "WAF");
 	WAF.addListener(this.id + "_imageButton10", "touchend", imageButton10.touchend, "WAF");
 	WAF.addListener(this.id + "_imageButton5", "touchend", imageButton5.touchend, "WAF");
-	WAF.addListener(this.id + "_richText3", "touchend", richText3.touchend, "WAF");
-	WAF.addListener(this.id + "_richText3", "touchstart", richText3.touchstart, "WAF");
 	WAF.addListener(this.id + "_imageButton1", "click", imageButton1.click, "WAF");
 	WAF.addListener(this.id + "_imageButton14", "click", imageButton14.click, "WAF");
 	WAF.addListener(this.id + "_imageButton9", "click", imageButton9.click, "WAF");
 	WAF.addListener(this.id + "_containerFamilias", "click", containerFamilias.click, "WAF");
 	WAF.addListener(this.id + "_bContinuarDispensar", "click", bContinuarDispensar.click, "WAF");
 	WAF.addListener(this.id + "_bCancelDispensar", "click", bCancelDispensar.click, "WAF");
-	WAF.addListener(this.id + "_imageButton12", "click", imageButton12.click, "WAF");
 	WAF.addListener(this.id + "_imageButton4", "click", imageButton4.click, "WAF");
 	WAF.addListener(this.id + "_imageButton10", "click", imageButton10.click, "WAF");
 	WAF.addListener(this.id + "_imageButton6", "click", imageButton6.click, "WAF");
 	WAF.addListener(this.id + "_imageButton5", "click", imageButton5.click, "WAF");
 	WAF.addListener(this.id + "_richText23", "click", richText23.click, "WAF");
-	WAF.addListener(this.id + "_richText3", "mousedown", richText3.mousedown, "WAF");
-	WAF.addListener(this.id + "_richText3", "mouseup", richText3.mouseup, "WAF");
-	WAF.addListener(this.id + "_richText6", "click", richText6.click, "WAF");
 	WAF.addListener(this.id + "_richText19", "click", richText19.click, "WAF");
 	WAF.addListener(this.id + "_richText18", "click", richText18.click, "WAF");
 	WAF.addListener(this.id + "_richText4", "click", richText4.click, "WAF");
@@ -539,7 +524,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_lineasCollection", "onElementSaved", lineasCollectionEvent.onElementSaved, "WAF");
 	WAF.addListener(this.id + "_lineasCollection", "onCollectionChange", lineasCollectionEvent.onCollectionChange, "WAF");
 	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
-	WAF.addListener(this.id + "_image1", "click", image1.click, "WAF");
 	// @endregion// @endlock
 
 	

@@ -261,7 +261,7 @@ functions.openWelcome = function () {
 	
 		var parametros = ds.Metodos.getParam(window.location.href);
 
-	
+
 		if (parametros.origin){
 		//Si procede de una página que necesitaba hacer "login", se lo enseño
 		$$(components.main).loadComponent(components.defaults.login.compPath);
