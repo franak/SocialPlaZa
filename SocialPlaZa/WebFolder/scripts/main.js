@@ -31,6 +31,69 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
 		
+		function isTouchDevice(){
+		    try{
+		        document.createEvent("TouchEvent");
+		        return true;
+		    }catch(e){
+		        return false;
+		    }
+		}
+
+		function touchScroll(){
+		    if(isTouchDevice()){ //if touch events exist...
+		        var el=document;
+		        var scrollStartPos=0;
+
+		        document.addEventListener("touchstart", function(event) {
+		            scrollStartPos=this.scrollTop+event.touches[0].pageY;
+		            event.preventDefault();
+		        },false);
+
+		        document.addEventListener("touchmove", function(event) {
+		            this.scrollTop=scrollStartPos-event.touches[0].pageY;
+		            event.preventDefault();
+		        },false);
+		    }
+		}
+		function isMouseDevice(){
+		    try{
+		        document.createEvent("MouseEvents");
+		        return true;
+		    }catch(e){
+		        return false;
+		    }
+		}
+
+		function mouseScroll(){
+		    if(isTouchDevice()){ //if touch events exist...
+		        var el=document;
+		        var scrollStartPos=0;
+
+		        document.addEventListener("click", function(event) {
+		            scrollStartPos=this.scrollTop+event.touches[0].pageY;
+		            event.preventDefault();
+		        },false);
+
+		        document.addEventListener("mousemove", function(event) {
+		        	console.log(event);
+		            this.scrollTop=scrollStartPos-event.touches[0].pageY;
+		            event.preventDefault();
+		        },false);
+		    }
+		}
+		function unloadScrollBars() {
+		    document.documentElement.style.overflow = 'hidden';  // firefox, chrome
+		    document.body.scroll = "no"; // ie only
+		}
+		
+		$(":input").bind('touchstart', function(event){//iPad
+			$(this).focus();
+		});
+		
+		unloadScrollBars();
+		touchScroll();
+		
 		//Desactivar la capitalizacion en los input
 		jQuery('input').attr('autocapitalize', 'off');
 		//$$('MainComp').hide();

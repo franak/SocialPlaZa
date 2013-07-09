@@ -156,6 +156,11 @@ guidedModel =// @startlock
 	{
 		methods :
 		{// @endlock
+			devolverArticulo:function(desc)
+			{// @lock
+				var art = ds.Articulos.find("Descripcion =:1",desc);
+				return art;
+			},// @lock
 			getFamilia:function(vCodigo)
 			{// @lock
 				var familia = ds.Articulos.find("Codigo =:1",vCodigo).Familia.Nombre;
