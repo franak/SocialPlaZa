@@ -84,7 +84,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	// @region namespaceDeclaration// @startlock
 	var btnAll = {};	// @buttonImage
 	var imageButton15 = {};	// @buttonImage
-	var richText3 = {};	// @richText
+	var btnArticulo = {};	// @richText
 	var imageButton1 = {};	// @buttonImage
 	var imageButton14 = {};	// @buttonImage
 	var imageButton9 = {};	// @buttonImage
@@ -128,30 +128,37 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	};// @lock
 
-	richText3.mousedown = function richText3_mousedown (event)// @startlock
-	{// @endlock
-		vTime = 0;
-		vTime = new Date();
-	};// @lock
-
-	richText3.mouseup = function richText3_mouseup (event)// @startlock
-	{// @endlock
-			articulo_btn(this);
-			
-			$('.matrix_a').removeClass('btn-maniadmin-4');
-			this.addClass('btn-maniadmin-4');
-
-
-	};// @lock
-
-	richText3.touchstart = function richText3_touchstart (event)// @startlock
+	btnArticulo.mousedown = function btnArticulo_mousedown (event)// @startlock
 	{// @endlock
 		vTime = 0;
 		vTime = new Date();
 		
 	};// @lock
 
-	richText3.touchend = function richText3_touchend (event)// @startlock
+	btnArticulo.mouseup = function btnArticulo_mouseup (event)// @startlock
+	{// @endlock
+			
+			var cobrado = $comp.sources.docComercial.Cobrado;
+			botonArticulo = getHtmlId('btnArticulo');
+			if(cobrado == true){
+			$$(botonArticulo).setState('disabled');
+			UI.alert('Ya está Cobrado','Atención');
+			}else{
+			
+			articulo_btn(this);
+			
+		}
+
+	};// @lock
+
+	btnArticulo.touchstart = function btnArticulo_touchstart (event)// @startlock
+	{// @endlock
+		vTime = 0;
+		vTime = new Date();
+		
+	};// @lock
+
+	btnArticulo.touchend = function btnArticulo_touchend (event)// @startlock
 	{// @endlock
 		articulo_btn(this);
 	};// @lock
@@ -486,10 +493,10 @@ $('.disabled').addClass('btn-warning');
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_imageButton15", "click", imageButton15.click, "WAF");
 	WAF.addListener(this.id + "_richText6", "click", richText6.click, "WAF");
-	WAF.addListener(this.id + "_richText3", "mousedown", richText3.mousedown, "WAF");
-	WAF.addListener(this.id + "_richText3", "mouseup", richText3.mouseup, "WAF");
-	WAF.addListener(this.id + "_richText3", "touchstart", richText3.touchstart, "WAF");
-	WAF.addListener(this.id + "_richText3", "touchend", richText3.touchend, "WAF");
+	WAF.addListener(this.id + "_btnArticulo", "mousedown", btnArticulo.mousedown, "WAF");
+	WAF.addListener(this.id + "_btnArticulo", "mouseup", btnArticulo.mouseup, "WAF");
+	WAF.addListener(this.id + "_btnArticulo", "touchstart", btnArticulo.touchstart, "WAF");
+	WAF.addListener(this.id + "_btnArticulo", "touchend", btnArticulo.touchend, "WAF");
 	WAF.addListener(this.id + "_imageButton14", "touchend", imageButton14.touchend, "WAF");
 	WAF.addListener(this.id + "_richText21", "touchend", richText21.touchend, "WAF");
 	WAF.addListener(this.id + "_richText9", "touchend", richText9.touchend, "WAF");
@@ -956,6 +963,8 @@ function dispensar(){
 						if(cambio > 0){
 							localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
 							//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
+					 	UI.alert(localStorage.cambio,'Devolución' ,'success');
+
 						}else{
 							localStorage.cambio= null;
 						}
@@ -970,10 +979,11 @@ function dispensar(){
 			$comp.sources.cajasMovimientos.save({
 				onSuccess: function(){
 					$comp.sources.cajasMovimientos.serverRefresh();
+					
 				}
 			});
 		}
-		
+
 	}
 	
 	var docActual = $comp.sources.docComercial.ID;
@@ -982,7 +992,15 @@ function dispensar(){
 	$comp.sources.docComercial.Cobrado = true;
 	$comp.sources.docComercial.save();
 
-	$$(getHtmlId("dialog1")).closeDialog(); //Guardar button
+	$$(getHtmlId("dialog1")).closeDialog({
+				onSuccess: function(){
+					if(localStorage.cambio  > 0){
+				UI.alert(localStorage.cambio,'Devolución' ,'success');
+				}					
+			}
+			}); //Guardar button
+	
+	
 	
 	//Se ejecuta la impresión. El botón está activado desde el "load".
 }
