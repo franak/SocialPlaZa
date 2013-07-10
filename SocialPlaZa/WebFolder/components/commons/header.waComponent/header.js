@@ -35,8 +35,7 @@ $('#mlateralComp').hide();
  UI.alert(ip);
 });*/
 
-//Inicialización Modales de la página //
-initModal('Usuarios',$comp);
+
 
 
 	 var user = WAF.directory.currentUser();
@@ -51,15 +50,19 @@ initModal('Usuarios',$comp);
 
 	// eventHandlers// @lock
 
+	foto_usuario.touchend = function foto_usuario_touchend (event)// @startlock
+	{// @endlock
+		$('#myModal').modal('show');
+	};// @lock
 
 	foto_usuario.click = function foto_usuario_click (event)// @startlock
 	{// @endlock
 		$('#myModal').modal('show');
+	};// @lock
 
 	openMenu.touchend = function openMenu_touchend (event)// @startlock
 	{// @endlock
 			UI.openCloseMenu();
-
 	};// @lock
 
 	openMenu.click = function openMenu_click (event)// @startlock
@@ -91,9 +94,8 @@ initModal('Usuarios',$comp);
 
 	richText5.click = function richText5_click (event)// @startlock
 	{// @endlock
-		/*$(botonera1).slideToggle();
-		$(botonera2).css('top','24px').slideToggle();*/
-		SPL.showModal();
+		$(botonera1).slideToggle();
+		$(botonera2).css('top','24px').slideToggle();
 
 	};// @lock
 
@@ -208,9 +210,8 @@ UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para 
 	 //Menú para el botón Toolbar
  
  var menuBoton2 = ' <ul id="toolbar-options" role="menu" aria-labelledby="dLabel" style="display:none">'
-+'<li><a class="tool" href="#" id="serpMenu" ><i class=" icon-remove"></i> Social ERP Telegestion</a></li>'
-+'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="clientes"><i class="icon-screenshot"></i> Nuestros Clientes</a></li>'
-+'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="estamos"><i class="icon-screenshot"></i> Dónde estamos</a></li>'
++'<li><a class="tool" href="#" id="opcion1" ><i class=" icon-remove"></i> opcion1</a></li>'
++'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="opcion2"><i class="icon-screenshot"></i> opcion2</a></li>'
 +'<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'
 +'<li>hola</li>'
 +'</ul>'
@@ -240,13 +241,11 @@ modificarLinea();
 
 
 	// @region eventManager// @startlock
-<<<<<<< HEAD
+	WAF.addListener(this.id + "_foto_usuario", "touchend", foto_usuario.touchend, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
-=======
 	WAF.addListener(this.id + "_richText7", "touchend", richText7.touchend, "WAF");
 	WAF.addListener(this.id + "_openMenu", "touchend", openMenu.touchend, "WAF");
 	WAF.addListener(this.id + "_richText2", "touchend", richText2.touchend, "WAF");
->>>>>>> ds
 	WAF.addListener(this.id + "_openMenu", "click", openMenu.click, "WAF");
 	WAF.addListener(this.id + "_richText3", "click", richText3.click, "WAF");
 	WAF.addListener(this.id + "_richText4", "click", richText4.click, "WAF");
