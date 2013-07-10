@@ -51,9 +51,15 @@ initModal('Usuarios',$comp);
 
 	// eventHandlers// @lock
 
+
 	foto_usuario.click = function foto_usuario_click (event)// @startlock
 	{// @endlock
 		$('#myModal').modal('show');
+
+	openMenu.touchend = function openMenu_touchend (event)// @startlock
+	{// @endlock
+			UI.openCloseMenu();
+
 	};// @lock
 
 	openMenu.click = function openMenu_click (event)// @startlock
@@ -89,6 +95,46 @@ initModal('Usuarios',$comp);
 		$(botonera2).css('top','24px').slideToggle();*/
 		SPL.showModal();
 
+	};// @lock
+
+	richText2.touchend = function richText2_touchend (event)// @startlock
+	{// @endlock
+		var user = WAF.directory.currentUser();
+		
+		if(user){
+		//ds Si le da al usuario demo al boton desconectar se elimina sus datos y logout();
+		
+		
+			
+			if( ds.Metodos.getGrupo() == "Prueba"){
+				
+				ds.Metodos.eliminarDemo();
+			
+				sessionStorage.clear();
+				
+				
+			}
+		
+			WAF.directory.logout({
+		        onSuccess: function(event) {
+		         	location.href = '/main.html';
+		         	self.location.search = 'origin=demo';
+			
+		           // fcBrain.openLoginForm();
+		          
+		        
+		           
+		        },
+		        onError: function(error) {
+		        	UI.getMensaje("Logout error");
+		          //  alert ("Logout error"); 
+		        }
+		    });       
+		
+		}else{
+			
+			fcBrain.openLoginForm();
+		}
 	};// @lock
 
 	richText2.click = function richText2_click (event)// @startlock
@@ -131,9 +177,14 @@ initModal('Usuarios',$comp);
 		}
 	};// @lock
 
+	richText7.touchend = function richText7_touchend (event)// @startlock
+	{// @endlock
+		fcBrain.openAltaUsuario();
+	};// @lock
+
 	richText7.click = function richText7_click (event)// @startlock
 	{// @endlock
-		//	fcBrain.openAltaUsuario();
+		fcBrain.openAltaUsuario();
 	};// @lock
 
 	login2.login = function login2_login (event)// @startlock
@@ -189,7 +240,13 @@ modificarLinea();
 
 
 	// @region eventManager// @startlock
+<<<<<<< HEAD
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
+=======
+	WAF.addListener(this.id + "_richText7", "touchend", richText7.touchend, "WAF");
+	WAF.addListener(this.id + "_openMenu", "touchend", openMenu.touchend, "WAF");
+	WAF.addListener(this.id + "_richText2", "touchend", richText2.touchend, "WAF");
+>>>>>>> ds
 	WAF.addListener(this.id + "_openMenu", "click", openMenu.click, "WAF");
 	WAF.addListener(this.id + "_richText3", "click", richText3.click, "WAF");
 	WAF.addListener(this.id + "_richText4", "click", richText4.click, "WAF");
