@@ -206,37 +206,7 @@ UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para 
 		fcBrain.mostrarError('',error);
 		getHtmlObj('image2').tooltip('toggle')*/
 	};// @lock
-	
-	 //Menú para el botón Toolbar
- 
- var menuBoton2 = ' <ul id="toolbar-options" role="menu" aria-labelledby="dLabel" style="display:none">'
-+'<li><a class="tool" href="#" id="opcion1" ><i class=" icon-remove"></i> opcion1</a></li>'
-+'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="opcion2"><i class="icon-screenshot"></i> opcion2</a></li>'
-+'<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'
-+'<li>hola</li>'
-+'</ul>'
-+'<li><a class="tool" href="#" id="opcion3"><i class="icon-screenshot"></i> opcion3</a></li>'
-+'<li><a class="tool" href="#" id="opcion4"><i class="icon-screenshot"></i> opcion4</a></li>'
-+'<li><a class="tool" href="#" id="opcion5"><i class="icon-screenshot"></i> opcion5</a></li>'
-+'</ul>';
-$('body').append(menuBoton2);
-
-//Comportamiento de los botones de la toolbar:
-$('#opcion1').click(function() {
-eliminaLinea();
-});
-
-$('#opcion2').click(function() {
-modificarLinea();
-});
- 	
- //Botón con menú
- var bToolbar = getHtmlObj('richText7');
- $(bToolbar).toolbar({
-	content: '#toolbar-options', 
-	position: 'bottom',
-	hideOnClick: true
-});			
+		
 
 
 

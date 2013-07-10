@@ -168,20 +168,9 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		appds.openAgenda();
 	};// @lock
 
-	imageButton14.touchend = function imageButton14_touchend (event)// @startlock
-	{// @endlock
-		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
-	};// @lock
-
 	imageButton14.click = function imageButton14_click (event)// @startlock
 	{// @endlock
 		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
-	};// @lock
-
-	imageButton9.touchend = function imageButton9_touchend (event)// @startlock
-	{// @endlock
-		$$(id+"_richText14").setValue("Guardar");
-		$$(getHtmlId("dialog3")).closeDialog();
 	};// @lock
 
 	imageButton9.click = function imageButton9_click (event)// @startlock
@@ -235,20 +224,10 @@ $.getJSON( ruta, function(data) {
 
 	};// @lock
 
-	bContinuarDispensar.touchend = function bContinuarDispensar_touchend (event)// @startlock
-	{// @endlock
-		dispensar();
-	};// @lock
-
 	bContinuarDispensar.click = function bContinuarDispensar_click (event)// @startlock
 	{// @endlock
 	
 		dispensar();
-	};// @lock
-
-	bCancelDispensar.touchend = function bCancelDispensar_touchend (event)// @startlock
-	{// @endlock
-		$$(getHtmlId("dialog1")).closeDialog(); //Cancelar button
 	};// @lock
 
 	bCancelDispensar.click = function bCancelDispensar_click (event)// @startlock
@@ -257,20 +236,10 @@ $.getJSON( ruta, function(data) {
 		$$(getHtmlId("dialog1")).closeDialog(); //Cancelar button
 	};// @lock
 
-	imageButton4.touchend = function imageButton4_touchend (event)// @startlock
-	{// @endlock
-		cargarMovimientoCaja_btn();
-	};// @lock
-
 	imageButton4.click = function imageButton4_click (event)// @startlock
 	{// @endlock
 		cargarMovimientoCaja_btn();
 
-	};// @lock
-
-	imageButton10.touchend = function imageButton10_touchend (event)// @startlock
-	{// @endlock
-		borrarDocComercial_btn();
 	};// @lock
 
 	imageButton10.click = function imageButton10_click (event)// @startlock
@@ -278,20 +247,9 @@ $.getJSON( ruta, function(data) {
 		borrarDocComercial_btn();
 	};// @lock
 
-	imageButton6.touchend = function imageButton6_touchend (event)// @startlock
-	{// @endlock
-		UI.alert('Guardado');
-	};// @lock
-
 	imageButton6.click = function imageButton6_click (event)// @startlock
 	{// @endlock
 			UI.alert('Guardado');
-	};// @lock
-
-	imageButton5.touchend = function imageButton5_touchend (event)// @startlock
-	{// @endlock
-		var tipoDoc = 1;
-		fcBrain.crearDocComercial($comp,tipoDoc);	
 	};// @lock
 
 	imageButton5.click = function imageButton5_click (event)// @startlock
@@ -353,18 +311,6 @@ $('.disabled').addClass('btn-warning');
 		this.removeClass('tpv-btn');
 	};// @lock
 
-	richText19.touchend = function richText19_touchend (event)// @startlock
-	{// @endlock
-		var dialogo = getHtmlId("dialog3");
-		var estado = $$(dialogo).getState();
-		$$(id+"_richText14").setState("default");
-		if(estado == "crear"){
-			appds.estadoCancelar($comp, "crear");
-		}else if(estado == "modificar"){
-			appds.estadoCancelar($comp, "modificar");
-		}
-	};// @lock
-
 	richText19.click = function richText19_click (event)// @startlock
 	{// @endlock
 		var dialogo = getHtmlId("dialog3");
@@ -377,19 +323,9 @@ $('.disabled').addClass('btn-warning');
 		}
 	};// @lock
 
-	richText18.touchend = function richText18_touchend (event)// @startlock
-	{// @endlock
-		okArticulo_btn();
-	};// @lock
-
 	richText18.click = function richText18_click (event)// @startlock
 	{// @endlock
 		okArticulo_btn();
-	};// @lock
-
-	richText4.touchend = function richText4_touchend (event)// @startlock
-	{// @endlock
-		appds.estadoConfirmacion($comp, "modificar");
 	};// @lock
 
 	richText4.click = function richText4_click (event)// @startlock
@@ -397,26 +333,9 @@ $('.disabled').addClass('btn-warning');
 		appds.estadoConfirmacion($comp, "modificar");
 	};// @lock
 
-	richText21.touchend = function richText21_touchend (event)// @startlock
-	{// @endlock
-		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
-	};// @lock
-
 	richText21.click = function richText21_click (event)// @startlock
 	{// @endlock
 		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
-	};// @lock
-
-	richText9.touchend = function richText9_touchend (event)// @startlock
-	{// @endlock
-		$comp.sources.lineasCollection.Codigo = $("#"+id+"_textField11").val();
-		$comp.sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val(); 
-		$comp.sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val(); 
-		$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
-		$comp.sources.lineasCollection.save();
-		$comp.sources.docComercial.serverRefresh();
-		$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
-			
 	};// @lock
 
 	richText9.click = function richText9_click (event)// @startlock
@@ -432,20 +351,9 @@ $('.disabled').addClass('btn-warning');
 		$$(getHtmlId("dialog2")).closeDialog();
 	};// @lock
 
-	richText14.touchend = function richText14_touchend (event)// @startlock
-	{// @endlock
-		guardarArticulo_btn();
-	};// @lock
-
 	richText14.click = function richText14_click (event)// @startlock
 	{// @endlock
 		guardarArticulo_btn();
-	};// @lock
-
-	richText15.touchend = function richText15_touchend (event)// @startlock
-	{// @endlock
-		$$(id+"_richText14").setValue("Guardar");
-		$$(getHtmlId("dialog3")).closeDialog();
 	};// @lock
 
 	richText15.click = function richText15_click (event)// @startlock
@@ -497,23 +405,8 @@ $('.disabled').addClass('btn-warning');
 	WAF.addListener(this.id + "_btnArticulo", "mouseup", btnArticulo.mouseup, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "touchstart", btnArticulo.touchstart, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "touchend", btnArticulo.touchend, "WAF");
-	WAF.addListener(this.id + "_imageButton14", "touchend", imageButton14.touchend, "WAF");
-	WAF.addListener(this.id + "_richText21", "touchend", richText21.touchend, "WAF");
-	WAF.addListener(this.id + "_richText9", "touchend", richText9.touchend, "WAF");
-	WAF.addListener(this.id + "_imageButton6", "touchend", imageButton6.touchend, "WAF");
-	WAF.addListener(this.id + "_bCancelDispensar", "touchend", bCancelDispensar.touchend, "WAF");
-	WAF.addListener(this.id + "_bContinuarDispensar", "touchend", bContinuarDispensar.touchend, "WAF");
 	WAF.addListener(this.id + "_richText23", "touchend", richText23.touchend, "WAF");
 	WAF.addListener(this.id + "_richText6", "touchend", richText6.touchend, "WAF");
-	WAF.addListener(this.id + "_richText19", "touchend", richText19.touchend, "WAF");
-	WAF.addListener(this.id + "_richText18", "touchend", richText18.touchend, "WAF");
-	WAF.addListener(this.id + "_richText4", "touchend", richText4.touchend, "WAF");
-	WAF.addListener(this.id + "_imageButton9", "touchend", imageButton9.touchend, "WAF");
-	WAF.addListener(this.id + "_richText15", "touchend", richText15.touchend, "WAF");
-	WAF.addListener(this.id + "_richText14", "touchend", richText14.touchend, "WAF");
-	WAF.addListener(this.id + "_imageButton4", "touchend", imageButton4.touchend, "WAF");
-	WAF.addListener(this.id + "_imageButton10", "touchend", imageButton10.touchend, "WAF");
-	WAF.addListener(this.id + "_imageButton5", "touchend", imageButton5.touchend, "WAF");
 	WAF.addListener(this.id + "_imageButton1", "click", imageButton1.click, "WAF");
 	WAF.addListener(this.id + "_imageButton14", "click", imageButton14.click, "WAF");
 	WAF.addListener(this.id + "_imageButton9", "click", imageButton9.click, "WAF");
@@ -718,37 +611,32 @@ $('#modifica').bind('touchend', function(event){ //iPad
 	hideOnClick: true
 });
 
-var bToolbar = getHtmlObj('bOpciones');
- $(bToolbar).toolbar2({
-	content: '#format-toolbar-options', 
-	position: 'right',
-	hideOntouchend: true
-});
 
-/*
---------------Funcion para iPad => para entrar en el input-------------------
-*/
 
-$(":input").bind('touchstart', function(event){//iPad
-	$(this).focus();
-});
 
 /*
 --------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------
 */
 var currentscroll = 0;
 
-$(':input').bind('focus',function() {
+$('input').bind('focus',function() {
     currentscroll = $(window).scrollTop();
+ 
 });
 
-$(':input').bind('blur',function() {
+$('input').bind('blur',function() {
     if(currentscroll != $(window).scrollTop()){
 
     $(window).scrollTop(currentscroll);
 
     }
 });
+
+var botonArticulo = getHtmlId('btnArticulo');
+$('.matrix_articulos').live("touchstart", function(e){
+    e.preventDefault();
+});
+//btnArticulo
 
 /*
 --------------Funcion Repetidas a causa de los eventos click y touchEnd-------------------

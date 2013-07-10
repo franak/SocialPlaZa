@@ -53,9 +53,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		        var scrollStartPos=0;
 
 		        document.addEventListener("touchstart", function(event) {
-		            scrollStartPos=this.scrollTop+event.touches[0].pageY;
-		            event.preventDefault();
+		            scrollStartPos=this.scrollTop+event.touches[0].pageY;      
 		        },false);
+		     
 
 		        document.addEventListener("touchmove", function(event) {
 		            this.scrollTop=scrollStartPos-event.touches[0].pageY;
@@ -77,11 +77,18 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		}
 		
 		
-		// llamadas a las funciones declaradas anteriormente
 		
+		// llamadas a las funciones declaradas anteriormente
 		unloadScrollBars();
 		touchScroll();
+		// -------------------------------------------------------
 		
+		/*
+			--- Funcion para quitar los 300ms de espera del dobleClick del iPad ---
+		*/
+		window.addEventListener('load', function() {
+		    FastClick.attach(document.body);
+		}, false);
 		// -------------------------------------------------------
 		
 		//Desactivar la capitalizacion en los input
