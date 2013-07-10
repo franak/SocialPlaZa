@@ -2,9 +2,16 @@
 body {
 min-width: 1024px;
 /*No hay scroll*/
-overflow:hidden; 
-overflow:auto;
+-webkit-overflow-scrolling: touch;
+
+
+
 }
+
+body > * {
+    -webkit-transform: translateZ(0px);
+}
+
 
 #headComp{
 	background-color:#262626;
@@ -24,13 +31,10 @@ overflow:auto;
 	min-width: 900px;
 	margin:0px auto;
 	margin-top:0px;
-<<<<<<< HEAD
 
 	}
-=======
-	
+
 }
->>>>>>> 54ad862a8fd88f2f7d8add12fad0ce4522b619d1
 
 #bannerPrincipal{
 	min-width:1024px;
