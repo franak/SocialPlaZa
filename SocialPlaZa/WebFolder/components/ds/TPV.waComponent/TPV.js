@@ -82,6 +82,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		qString = null;
 	
 	// @region namespaceDeclaration// @startlock
+	var docComercialEvent = {};	// @dataSource
 	var btnAll = {};	// @buttonImage
 	var imageButton15 = {};	// @buttonImage
 	var btnArticulo = {};	// @richText
@@ -112,6 +113,18 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	// eventHandlers// @lock
 
+	docComercialEvent.onCurrentElementChange = function docComercialEvent_onCurrentElementChange (event)// @startlock
+	{// @endlock
+		if($comp.sources.docComercial.Cobrado == true){
+			$$(id+"_richText17").setValue("Cambio: "+formato_numero($comp.sources.docComercial.Cambio,2,".",",")+"€");
+			$$(id+"_richText17").show();
+			$$(id+"_richText3").show();
+		}else{
+			$$(id+"_richText17").hide();
+			$$(id+"_richText3").hide();
+		}
+	};// @lock
+
 	btnAll.click = function btnAll_click (event)// @startlock
 	{// @endlock
 		qString = null;
@@ -141,8 +154,8 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 			var cobrado = $comp.sources.docComercial.Cobrado;
 			botonArticulo = getHtmlId('btnArticulo');
 			if(cobrado == true){
-			$$(botonArticulo).setState('disabled');
-			UI.alert('Ya está Cobrado','Atención');
+				$$(botonArticulo).setState('disabled');
+				UI.alert('Ya está Cobrado','Atención');
 			}else{
 			
 			articulo_btn(this);
@@ -386,14 +399,18 @@ $('.disabled').addClass('btn-warning');
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
-		var dialogo = getHtmlId("dialog2");
-		var jqdialogo = getHtmlObj("dialog2");
-	
-		$("BODY").append($(jqdialogo));
-		$(jqdialogo).css("top",100);
-		$(jqdialogo).css("left",100);
-		$(jqdialogo).css("position","fixed");
-		$$(dialogo).displayDialog();
+		if($comp.sources.docComercial.Cobrado != true){
+			var dialogo = getHtmlId("dialog2");
+			var jqdialogo = getHtmlObj("dialog2");
+		
+			$("BODY").append($(jqdialogo));
+			$(jqdialogo).css("top",100);
+			$(jqdialogo).css("left",100);
+			$(jqdialogo).css("position","fixed");
+			$$(dialogo).displayDialog();
+		}else{
+			UI.alert("Ya esta cobrado este Ticket","Atencion");
+		}
 		
 		
 
@@ -402,6 +419,7 @@ $('.disabled').addClass('btn-warning');
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_imageButton15", "click", imageButton15.click, "WAF");
 	WAF.addListener(this.id + "_richText6", "click", richText6.click, "WAF");
@@ -593,18 +611,31 @@ $('body').append(menuBoton);
 
 //Comportamiento de los botones de la toolbar:
 $('#elimina').click(function() {
-	eliminaLinea();
+	
+	
+	var cobrado = $comp.sources.docComercial.Cobrado;
+	if(cobrado != true){
+		eliminaLinea();
+	}else{
+		UI.alert("Ya esta cobrado este Ticket","Atencion");
+	} 
 });
 
 
 $('#modifica').click(function() {
-	modificarLinea();
+	var cobrado = $comp.sources.docComercial.Cobrado;
+	if(cobrado != true){
+		modificarLinea();
+	}else{
+		UI.alert("Ya esta cobrado este Ticket","Atencion");
+	} 
 });
 
 
  	
  //Botón con menú
  var bToolbar = getHtmlObj('bOpciones');
+ 
  $(bToolbar).toolbar({
 	content: '#format-toolbar-options', 
 	position: 'right',
@@ -852,13 +883,14 @@ function dispensar(){
 				case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo"); 
 						$comp.sources.cajasMovimientos.MedioPago.set(m);
 						var cambio = aMediosPagos[i] - diferenciaCambio;
+						$comp.sources.docComercial.Cambio = cambio;
 						if(cambio > 0){
 							localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
 							//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
-					 	UI.alert(localStorage.cambio,'Devolución' ,'success');
+					 		UI.alert(localStorage.cambio,'Devolución');
 
 						}else{
-							localStorage.cambio= null;
+							localStorage.cambio= 0;
 						}
 						break;
 				case 1: var m = ds.MedioPago.asignarMedioPago("Tarjeta"); 
@@ -883,11 +915,10 @@ function dispensar(){
 	localStorage.Total = vSuma.toFixed(2);
 	$comp.sources.docComercial.Cobrado = true;
 	$comp.sources.docComercial.save();
-	$$(id+"_matrix_articulos").setState("disabled");
 	console.log(localStorage.cambio);
-	$$(id+"_richText17").setValue("Cambio: "+localStorage.cambio);
-	$$(id+"_richText17").show();
-	$$(id+"_richText3").show();
+
+	
+	
 	$$(getHtmlId("dialog1")).closeDialog({
 				onSuccess: function(){
 					if(localStorage.cambio  > 0){

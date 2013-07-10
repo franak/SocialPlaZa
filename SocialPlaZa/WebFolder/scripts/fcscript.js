@@ -135,6 +135,7 @@ this.crearDocComercial = function ($comp,tipo){
 		$comp.sources.docComercial.Tipo = tipo;
 		$comp.sources.docComercial.Fecha = new Date();
 		$comp.sources.docComercial.Cobrado = false;
+		$comp.sources.docComercial.Cambio = 0;
 		$comp.sources.docComercial.CajaTpv.set($comp.sources.cajasTPV); 
 	        // employer is a relation attribute of the datasource; it has the set method
 	        // we assign a datasource to it, hence its current element
