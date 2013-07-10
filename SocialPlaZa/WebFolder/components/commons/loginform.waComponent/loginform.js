@@ -86,13 +86,8 @@ function constructor (id) {
 		fcBrain.verLabel("richText6",id);
 	};// @lock
 	
-/*
---------------Funcion para iPad => para entrar en el input-------------------
-*/
 
-$(":input").bind('touchstart', function(event){//iPad
-	$(this).focus();
-});
+
 
 /*
 --------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------

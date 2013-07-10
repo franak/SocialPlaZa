@@ -86,9 +86,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		/*
 			--- Funcion para quitar los 300ms de espera del dobleClick del iPad ---
 		*/
-		window.addEventListener('load', function() {
+		
 		    FastClick.attach(document.body);
-		}, false);
+		
 		// -------------------------------------------------------
 		
 		//Desactivar la capitalizacion en los input

@@ -340,6 +340,10 @@ $('.disabled').addClass('btn-warning');
 
 	richText9.click = function richText9_click (event)// @startlock
 	{// @endlock
+		$comp.sources.lineasCollection.Codigo = $("#"+id+"_textField11").val();
+		$comp.sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val();
+		$comp.sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
+		$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
 		$comp.sources.lineasCollection.save();
 		$comp.sources.docComercial.serverRefresh();
 		$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
@@ -591,16 +595,12 @@ $('body').append(menuBoton);
 $('#elimina').click(function() {
 	eliminaLinea();
 });
-$('#elimina').bind('touchend', function(event){//iPad
-	eliminaLinea();
-});
+
 
 $('#modifica').click(function() {
 	modificarLinea();
 });
-$('#modifica').bind('touchend', function(event){ //iPad
-	modificarLinea();
-});
+
 
  	
  //Botón con menú

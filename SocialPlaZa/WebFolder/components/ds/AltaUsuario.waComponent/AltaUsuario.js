@@ -90,13 +90,7 @@ function constructor (id) {
 		}
 	});
 	
-/*
---------------Funcion para iPad => para entrar en el input-------------------
-*/
 
-$(":input").bind('touchstart', function(event){//iPad
-	$(this).focus();
-});
 
 /*
 --------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------
