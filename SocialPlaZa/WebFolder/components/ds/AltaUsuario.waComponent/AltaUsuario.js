@@ -59,6 +59,11 @@ function constructor (id) {
 
 	};// @lock
 
+	richText2.touchend = function richText2_touchend (event)// @startlock
+	{// @endlock
+		registrarse(id);
+	};// @lock
+
 	richText2.click = function richText2_click (event)// @startlock
 	{// @endlock
 		registrarse(id);
@@ -84,8 +89,33 @@ function constructor (id) {
 			registrarse(id);
 		}
 	});
+	
+/*
+--------------Funcion para iPad => para entrar en el input-------------------
+*/
 
+$(":input").bind('touchstart', function(event){//iPad
+	$(this).focus();
+});
+
+/*
+--------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------
+*/
+var currentscroll = 0;
+
+$(':input').bind('focus',function() {
+    currentscroll = $(window).scrollTop();
+});
+
+$(':input').bind('blur',function() {
+    if(currentscroll != $(window).scrollTop()){
+
+    $(window).scrollTop(currentscroll);
+
+    }
+});
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText2", "touchend", richText2.touchend, "WAF");
 	WAF.addListener(this.id + "_authorize_button", "click", authorize_button.click, "WAF");
 	WAF.addListener(this.id + "_inputUsuario", "focus", inputUsuario.focus, "WAF");
 	WAF.addListener(this.id + "_inputUsuario", "blur", inputUsuario.blur, "WAF");

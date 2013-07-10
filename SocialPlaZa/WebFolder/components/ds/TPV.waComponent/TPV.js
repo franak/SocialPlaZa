@@ -732,6 +732,10 @@ var bToolbar = getHtmlObj('bOpciones');
 $(":input").bind('touchstart', function(event){//iPad
 	$(this).focus();
 });
+
+/*
+--------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------
+*/
 var currentscroll = 0;
 
 $(':input').bind('focus',function() {

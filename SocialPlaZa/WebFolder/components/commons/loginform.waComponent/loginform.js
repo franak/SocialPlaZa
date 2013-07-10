@@ -37,6 +37,11 @@ function constructor (id) {
 		}
 	});	
 	
+	richText10.touchend = function richText10_touchend (event)// @startlock
+	{// @endlock
+		fcBrain.openAltaUsuario();
+	};// @lock
+
 	richText10.click = function richText10_click (event)// @startlock
 	{// @endlock
 		fcBrain.openAltaUsuario();
@@ -61,6 +66,11 @@ function constructor (id) {
 		fcBrain.verLabel("richText5",id);
 	};// @lock
 
+	richText3.touchend = function richText3_touchend (event)// @startlock
+	{// @endlock
+		fcBrain.login(id);
+	};// @lock
+
 	richText3.click = function richText3_click (event)// @startlock
 	{// @endlock
 		fcBrain.login(id);
@@ -76,9 +86,36 @@ function constructor (id) {
 		fcBrain.verLabel("richText6",id);
 	};// @lock
 	
+/*
+--------------Funcion para iPad => para entrar en el input-------------------
+*/
+
+$(":input").bind('touchstart', function(event){//iPad
+	$(this).focus();
+});
+
+/*
+--------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------
+*/
+var currentscroll = 0;
+
+$(':input').bind('focus',function() {
+    currentscroll = $(window).scrollTop();
+});
+
+$(':input').bind('blur',function() {
+    if(currentscroll != $(window).scrollTop()){
+
+    $(window).scrollTop(currentscroll);
+
+    }
+});
+	
 
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText3", "touchend", richText3.touchend, "WAF");
+	WAF.addListener(this.id + "_richText10", "touchend", richText10.touchend, "WAF");
 	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
 	WAF.addListener(this.id + "_richText10", "click", richText10.click, "WAF");
 	WAF.addListener(this.id + "_checkbox2", "change", checkbox2.change, "WAF");
