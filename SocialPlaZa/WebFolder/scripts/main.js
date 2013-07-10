@@ -87,7 +87,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			--- Funcion para quitar los 300ms de espera del dobleClick del iPad ---
 		*/
 		
-		    FastClick.attach(document.body);
+		   // FastClick.attach(document.body);
 		
 		// -------------------------------------------------------
 		

@@ -883,11 +883,15 @@ function dispensar(){
 	localStorage.Total = vSuma.toFixed(2);
 	$comp.sources.docComercial.Cobrado = true;
 	$comp.sources.docComercial.save();
-
+	$$(id+"_matrix_articulos").setState("disabled");
+	console.log(localStorage.cambio);
+	$$(id+"_richText17").setValue("Cambio: "+localStorage.cambio);
+	$$(id+"_richText17").show();
+	$$(id+"_richText3").show();
 	$$(getHtmlId("dialog1")).closeDialog({
 				onSuccess: function(){
 					if(localStorage.cambio  > 0){
-				UI.alert(localStorage.cambio,'Devolución' ,'success');
+				UI.alert(localStorage.cambio,'Devolución');
 				}					
 			}
 			}); //Guardar button

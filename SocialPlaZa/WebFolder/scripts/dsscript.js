@@ -211,7 +211,7 @@ appdsObj = function () {
 			//console.log($comp.sources.articulos.getCurrentElement().Codigo.value);
 			//console.log(esteObjeto);
 			var art = ds.Articulos.devolverArticulo(esteObjeto._value);
-			console.log(art);
+			
 			var articuloCodigo = art.Codigo.value;
 			var docComercialID = $comp.sources.docComercial.ID;
 			
