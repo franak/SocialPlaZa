@@ -14,6 +14,7 @@ function constructor (id) {
 		$$('mlateralComp').loadComponent('/components/commons/menulateral.waComponent');
 $('#mlateralComp').hide();
 	// @region namespaceDeclaration// @startlock
+	var richText14 = {};	// @richText
 	var foto_usuario = {};	// @image
 	var openMenu = {};	// @richText
 	var richText3 = {};	// @richText
@@ -33,8 +34,8 @@ $('#mlateralComp').hide();
  UI.alert(ip);
 });*/
 
-
-
+//INICIALIZACIÓN DE MODALES.
+btmodales.initModal('Usuarios',$comp);
 
 	 var user = WAF.directory.currentUser();
 	if(user){
@@ -47,6 +48,11 @@ $('#mlateralComp').hide();
 			
 
 	// eventHandlers// @lock
+
+	richText14.click = function richText14_click (event)// @startlock
+	{// @endlock
+		fcBrain.openAltaUsuario();
+	};// @lock
 
 	foto_usuario.touchend = function foto_usuario_touchend (event)// @startlock
 	{// @endlock
@@ -185,15 +191,14 @@ $('#mlateralComp').hide();
 		
 UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para que le imponga la penitencia más adecuada');
 
-		/*error = 'Esto es un mensaje';
-		fcBrain.mostrarError('',error);
-		getHtmlObj('image2').tooltip('toggle')*/
+		
 	};// @lock
 		
 
 
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "touchend", foto_usuario.touchend, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
 	WAF.addListener(this.id + "_openMenu", "touchend", openMenu.touchend, "WAF");

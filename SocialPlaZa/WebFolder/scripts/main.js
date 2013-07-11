@@ -142,15 +142,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		
 		fcBrain.welcomeHead();
 
-/*
-*	Para cargar información del tamaño de la ventana y del usario
 
-
-UI.mostrarSizeVentana();
-$(window).resize(function() {	
-UI.mostrarSizeVentana();
-});
-*/
 	};// @lock
 
 // @region eventManager// @startlock

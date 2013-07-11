@@ -506,7 +506,7 @@ function comprobarAbierto(titulo){
 			return true;
 		}
 	}
-	
+	 
 	return false;
 	
 }
