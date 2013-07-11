@@ -137,7 +137,17 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton15.click = function imageButton15_click (event)// @startlock
 	{// @endlock
-				anadirArticulo_btn();
+		var dialogo = getHtmlId("dialog3");//Coger el dialogo widget
+		var jqdialogo = getHtmlId("dialog3");
+		
+		$$(dialogo).setState("crear");//Estado del dialogo pasa a crear
+		
+		appds.estadoInicial($comp,"crear");
+		
+		$("BODY").append($("#"+id+"_dialog3"));
+		$$(dialogo).displayDialog();
+		$("#"+id+"_dialog3").css("top",100);
+		$("#"+id+"_dialog3").css("left",200);
 
 	};// @lock
 
@@ -240,7 +250,71 @@ $.getJSON( ruta, function(data) {
 	bContinuarDispensar.click = function bContinuarDispensar_click (event)// @startlock
 	{// @endlock
 	
-		dispensar();
+		var aMediosPagos = [$("#input_EF").val(),$("#input_TJ").val()]
+		
+		for (var i =0; i < aMediosPagos.length; i++){
+			
+			if(aMediosPagos[i] != "" && aMediosPagos[i] != 0){
+				$comp.sources.cajasMovimientos.newEntity();
+				$comp.sources.cajasMovimientos.importeVenta = vSuma;
+				$comp.sources.cajasMovimientos.entregado = aMediosPagos[i];
+				$comp.sources.cajasMovimientos.fecha = new Date();
+				$comp.sources.cajasMovimientos.Documento.set($comp.sources.docComercial);
+				$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
+				switch(i){
+					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo"); 
+							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							var cambio = aMediosPagos[i] - diferenciaCambio;
+							$comp.sources.docComercial.Cambio = cambio;
+							if(cambio > 0){
+								localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
+								//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
+						 		UI.alert(localStorage.cambio,'Devolución');
+
+							}else{
+								localStorage.cambio= 0;
+							}
+							break;
+					case 1: var m = ds.MedioPago.asignarMedioPago("Tarjeta"); 
+							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							break;
+					case 2: var m = ds.MedioPago.asignarMedioPago("Regalo"); 
+							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							break;
+				}
+				$comp.sources.cajasMovimientos.save({
+					onSuccess: function(){
+						$comp.sources.cajasMovimientos.serverRefresh();
+						
+					}
+				});
+			}
+
+		}
+		
+		var docActual = $comp.sources.docComercial.ID;
+		localStorage.docActual = docActual;
+		localStorage.Total = vSuma.toFixed(2);
+		$comp.sources.docComercial.Cobrado = true;
+		$comp.sources.docComercial.save();
+		console.log(localStorage.cambio);
+
+		
+		
+		$$(getHtmlId("dialog1")).closeDialog({
+					onSuccess: function(){
+						if(localStorage.cambio  > 0){
+					UI.alert(localStorage.cambio,'Devolución');
+					}					
+				}
+				}); //Guardar button
+		
+		
+		
+		//Se ejecuta la impresión. El botón está activado desde el "load".
+	}
+	
+
 	};// @lock
 
 	bCancelDispensar.click = function bCancelDispensar_click (event)// @startlock
@@ -257,7 +331,44 @@ $.getJSON( ruta, function(data) {
 
 	imageButton10.click = function imageButton10_click (event)// @startlock
 	{// @endlock
-		borrarDocComercial_btn();
+		UI.confirm('¿Desea borrar este ticket?', 'Confirmacion', function(r) {
+
+	    if (r == true) {
+	    	
+	        $comp.sources.docComercial.removeCurrent();
+
+	        $comp.sources.docComercial.all({
+
+	            onSuccess: function(event) {
+
+	                if ($comp.sources.docComercial.length == 0) {
+	                    //ds.DocComercial.crearPrincipio
+	                    fcBrain.crearDocComercial($comp, 1, {
+	                        onSuccess: function(event) {
+
+	                            $comp.sources.docComercial.all({
+	                                onSuccess: function(event) {
+	                                    tamanio = $comp.sources.docComercial.length;
+	                                    if (tamanio == 0) {
+	                                        fcBrain.crearDocComercial($comp, 1);
+	                                        tamanio = 1;
+	                                    }
+	                                    setTimeout(function() { //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
+	                                        $comp.sources.docComercial.select(tamanio - 1);
+
+	                                    }, 300);
+
+	                                } // Fin de On Success de All
+	                            });// Fin de All
+
+	                        }
+
+	                    });
+	                }
+	            }
+	        });
+	    }
+	});
 	};// @lock
 
 	imageButton6.click = function imageButton6_click (event)// @startlock
@@ -338,7 +449,34 @@ $('.disabled').addClass('btn-warning');
 
 	richText18.click = function richText18_click (event)// @startlock
 	{// @endlock
-		okArticulo_btn();
+		var dialogo = getHtmlId("dialog3");
+		var estado = $$(dialogo).getState();
+		if(estado == "crear"){
+			
+			var codigo = $$($comp.id+"_textField2").getValue();
+			var precio = $$($comp.id+"_textField6").getValue();
+			var descripcion = $$($comp.id+"_textField7").getValue();
+			$comp.sources.articulos.addNewElement();
+			$comp.sources.articulos.Codigo = codigo;
+			$comp.sources.articulos.Precio = precio;
+			$comp.sources.articulos.Descripcion = descripcion;
+			$comp.sources.articulos.Familia.set($comp.sources.familias2);
+			$comp.sources.articulos.save();
+			$comp.sources.articulos.serverRefresh();
+			if(WAF.directory.currentUser().fullName == "TG"){
+				ds.PreArticulos.creaPreArticulo(codigo,precio,descripcion,$comp.sources.familias2.Nombre);
+			}
+			$$(id+"_richText14").setState("default");
+			$$(id+"_dialog3").closeDialog();
+		}else{
+			$comp.sources.articulos.removeCurrent();
+			$comp.sources.articulos.serverRefresh({
+				onSuccess:function (event){
+					$$(id+"_richText4").hide();
+					$$(id+"_dialog3").closeDialog();
+				}
+			});
+		}
 	};// @lock
 
 	richText4.click = function richText4_click (event)// @startlock
@@ -370,7 +508,40 @@ $('.disabled').addClass('btn-warning');
 
 	richText14.click = function richText14_click (event)// @startlock
 	{// @endlock
-		guardarArticulo_btn();
+		if($$(id+"_richText14").getState() != "disabled"){
+		$$(id+"_richText14").setState("disabled");
+		var dialogo = getHtmlId("dialog3");
+		var estado = $$(dialogo).getState();
+		//Si el usuario va modificar o borrar el articulos
+		if(estado == "modificar"){
+			
+			//appds.modificarArticulo($comp); DA FALLO
+			
+			var codigo = $$($comp.id+"_textField2").getValue();
+			var precio = $$($comp.id+"_textField6").getValue();
+			var descripcion = $$($comp.id+"_textField7").getValue();
+			var familia = ds.Familias.getFamilia($$($comp.id+"_combobox2").getValue());
+		
+			$comp.sources.articulos.Codigo = codigo;
+			$comp.sources.articulos.Precio = precio;
+			$comp.sources.articulos.Descripcion = descripcion;
+			$comp.sources.articulos.Familia.set(familia);
+			$comp.sources.articulos.save({
+				onSuccess:function(event){
+					$comp.sources.articulos.serverRefresh();
+					if(qString != null){
+						$comp.sources.articulos.query("Familia.Nombre =:1",qString);
+					}
+					$$($comp.id+"_richText14").setState("default");
+					$$($comp.id+'_dialog3').closeDialog();
+				}
+			});
+			
+		}else if (estado == "crear"){
+			appds.estadoConfirmacion($comp, "crear");
+			
+		}
+	}
 	};// @lock
 
 	richText15.click = function richText15_click (event)// @startlock
@@ -655,6 +826,8 @@ $('.matrix_articulos').live("touchstart", function(e){
 });
 //btnArticulo
 
+// Dos funciones para que cuando se esconda el teclado la pantalla vuelva a su posicion incial...¡¡
+
 var currentscroll = 0;
 
 $(':input').bind('focus',function() {
@@ -670,52 +843,6 @@ $(':input').bind('blur',function() {
     }
 });
 
-/*
---------------Funcion Repetidas a causa de los eventos click y touchEnd-------------------
-*/
-
-//Funcion de borrar ticket
-
-function borrarDocComercial_btn(){
-	UI.confirm('¿Desea borrar este ticket?', 'Confirmacion', function(r) {
-
-	    if (r == true) {
-	    	
-	        $comp.sources.docComercial.removeCurrent();
-
-	        $comp.sources.docComercial.all({
-
-	            onSuccess: function(event) {
-
-	                if ($comp.sources.docComercial.length == 0) {
-	                    //ds.DocComercial.crearPrincipio
-	                    fcBrain.crearDocComercial($comp, 1, {
-	                        onSuccess: function(event) {
-
-	                            $comp.sources.docComercial.all({
-	                                onSuccess: function(event) {
-	                                    tamanio = $comp.sources.docComercial.length;
-	                                    if (tamanio == 0) {
-	                                        fcBrain.crearDocComercial($comp, 1);
-	                                        tamanio = 1;
-	                                    }
-	                                    setTimeout(function() { //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
-	                                        $comp.sources.docComercial.select(tamanio - 1);
-
-	                                    }, 300);
-
-	                                } // Fin de On Success de All
-	                            });// Fin de All
-
-	                        }
-
-	                    });
-	                }
-	            }
-	        });
-	    }
-	});
-}
 
 //Funcion de cargar los movimientos de caja e imprimir
 
@@ -771,163 +898,6 @@ function articulo_btn(esteObjeto){
 		
 		
 	}
-}
-
-//Funcion guardar dentro del dialogo articulo
-
-function guardarArticulo_btn(){
-	
-	//Hasta que no termine la accion de guardar anterior no se permite guardar mas
-	if($$(id+"_richText14").getState() != "disabled"){
-		$$(id+"_richText14").setState("disabled");
-		var dialogo = getHtmlId("dialog3");
-		var estado = $$(dialogo).getState();
-		//Si el usuario va modificar o borrar el articulos
-		if(estado == "modificar"){
-			
-			//appds.modificarArticulo($comp); DA FALLO
-			
-			var codigo = $$($comp.id+"_textField2").getValue();
-			var precio = $$($comp.id+"_textField6").getValue();
-			var descripcion = $$($comp.id+"_textField7").getValue();
-			var familia = ds.Familias.getFamilia($$($comp.id+"_combobox2").getValue());
-		
-			$comp.sources.articulos.Codigo = codigo;
-			$comp.sources.articulos.Precio = precio;
-			$comp.sources.articulos.Descripcion = descripcion;
-			$comp.sources.articulos.Familia.set(familia);
-			$comp.sources.articulos.save({
-				onSuccess:function(event){
-					$comp.sources.articulos.serverRefresh();
-					if(qString != null){
-						$comp.sources.articulos.query("Familia.Nombre =:1",qString);
-					}
-					$$($comp.id+"_richText14").setState("default");
-					$$($comp.id+'_dialog3').closeDialog();
-				}
-			});
-			
-		}else if (estado == "crear"){
-			appds.estadoConfirmacion($comp, "crear");
-			
-		}
-	}
-}
-
-//Funcion del boton OK dentro del dialogo articulo
-
-function okArticulo_btn(){
-	var dialogo = getHtmlId("dialog3");
-	var estado = $$(dialogo).getState();
-	if(estado == "crear"){
-		
-		var codigo = $$($comp.id+"_textField2").getValue();
-		var precio = $$($comp.id+"_textField6").getValue();
-		var descripcion = $$($comp.id+"_textField7").getValue();
-		$comp.sources.articulos.addNewElement();
-		$comp.sources.articulos.Codigo = codigo;
-		$comp.sources.articulos.Precio = precio;
-		$comp.sources.articulos.Descripcion = descripcion;
-		$comp.sources.articulos.Familia.set($comp.sources.familias2);
-		$comp.sources.articulos.save();
-		$comp.sources.articulos.serverRefresh();
-		if(WAF.directory.currentUser().fullName == "TG"){
-			ds.PreArticulos.creaPreArticulo(codigo,precio,descripcion,$comp.sources.familias2.Nombre);
-		}
-		$$(id+"_richText14").setState("default");
-		$$(id+"_dialog3").closeDialog();
-	}else{
-		$comp.sources.articulos.removeCurrent();
-		$comp.sources.articulos.serverRefresh({
-			onSuccess:function (event){
-				$$(id+"_richText4").hide();
-				$$(id+"_dialog3").closeDialog();
-			}
-		});
-	}
-}
-
-//Funcion del boton añadir articulo
-
-function anadirArticulo_btn(){
-	var dialogo = getHtmlId("dialog3");//Coger el dialogo widget
-	var jqdialogo = getHtmlId("dialog3");
-	
-	$$(dialogo).setState("crear");//Estado del dialogo pasa a crear
-	
-	appds.estadoInicial($comp,"crear");
-	
-	$("BODY").append($("#"+id+"_dialog3"));
-	$$(dialogo).displayDialog();
-	$("#"+id+"_dialog3").css("top",100);
-	$("#"+id+"_dialog3").css("left",200);
-}
-
-//Funcion dispensar el movimiento de caja
-
-function dispensar(){
-	var aMediosPagos = [$("#input_EF").val(),$("#input_TJ").val()]
-		
-	for (var i =0; i < aMediosPagos.length; i++){
-		
-		if(aMediosPagos[i] != "" && aMediosPagos[i] != 0){
-			$comp.sources.cajasMovimientos.newEntity();
-			$comp.sources.cajasMovimientos.importeVenta = vSuma;
-			$comp.sources.cajasMovimientos.entregado = aMediosPagos[i];
-			$comp.sources.cajasMovimientos.fecha = new Date();
-			$comp.sources.cajasMovimientos.Documento.set($comp.sources.docComercial);
-			$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
-			switch(i){
-				case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo"); 
-						$comp.sources.cajasMovimientos.MedioPago.set(m);
-						var cambio = aMediosPagos[i] - diferenciaCambio;
-						$comp.sources.docComercial.Cambio = cambio;
-						if(cambio > 0){
-							localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
-							//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
-					 		UI.alert(localStorage.cambio,'Devolución');
-
-						}else{
-							localStorage.cambio= 0;
-						}
-						break;
-				case 1: var m = ds.MedioPago.asignarMedioPago("Tarjeta"); 
-						$comp.sources.cajasMovimientos.MedioPago.set(m);
-						break;
-				case 2: var m = ds.MedioPago.asignarMedioPago("Regalo"); 
-						$comp.sources.cajasMovimientos.MedioPago.set(m);
-						break;
-			}
-			$comp.sources.cajasMovimientos.save({
-				onSuccess: function(){
-					$comp.sources.cajasMovimientos.serverRefresh();
-					
-				}
-			});
-		}
-
-	}
-	
-	var docActual = $comp.sources.docComercial.ID;
-	localStorage.docActual = docActual;
-	localStorage.Total = vSuma.toFixed(2);
-	$comp.sources.docComercial.Cobrado = true;
-	$comp.sources.docComercial.save();
-	console.log(localStorage.cambio);
-
-	
-	
-	$$(getHtmlId("dialog1")).closeDialog({
-				onSuccess: function(){
-					if(localStorage.cambio  > 0){
-				UI.alert(localStorage.cambio,'Devolución');
-				}					
-			}
-			}); //Guardar button
-	
-	
-	
-	//Se ejecuta la impresión. El botón está activado desde el "load".
 }
 
 

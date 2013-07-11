@@ -77,20 +77,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		unloadScrollBars();
 		touchScroll();
 		
-		var currentscroll = 0;
-
-		$(':input').bind('focus',function() {
-
-		    currentscroll = $(window).scrollTop();
-		 
-		});
-
-		$(':input').bind('blur',function() {
-			
-		    if(currentscroll != $(window).scrollTop()){
-		    	$(window).scrollTop(currentscroll);
-		    }
-		});
+		
 		// -------------------------------------------------------
 		
 		/*
