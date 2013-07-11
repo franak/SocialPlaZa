@@ -53,9 +53,14 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		        var el=document;
 		        var scrollStartPos=0;
 
+		        document.addEventListener("touchstart", function(event) {
+		            scrollStartPos=this.scrollTop+event.touches[0].pageY;      
+		        },false);
+		     
+
 		        document.addEventListener("touchmove", function(event) {
-		           this.scrollTop=scrollStartPos-event.touches[0].pageY;
-		           event.preventDefault();
+		            this.scrollTop=scrollStartPos-event.touches[0].pageY;
+		            event.preventDefault();
 		        },false);
 		    }
 		}
@@ -68,7 +73,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 		
 		function unloadScrollBars() {
-		    document.documentElement.style.overflow = 'hidden';  // firefox, chrome
+		 //   document.documentElement.style.overflow = 'hidden';  // firefox, chrome
 		    document.body.scroll = "no"; // ie only
 		}
 		
@@ -77,17 +82,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		// llamadas a las funciones declaradas anteriormente
 		unloadScrollBars();
 		touchScroll();
-		
-		
 		// -------------------------------------------------------
 		
 		/*
 			--- Funcion para quitar los 300ms de espera del dobleClick del iPad ---
 		*/
 		
-		$(function() {
-		    FastClick.attach(document.body);
-		});
+		   // FastClick.attach(document.body);
 		
 		// -------------------------------------------------------
 		
@@ -119,7 +120,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		if(lasesion && !user){		
 			sessionStorage.clear();
 		}
-		debugger;
 		//DS SI EL USUARIO NO ESTA LOGUEADO
 		if(!user){
 			//DS SI LA VARIABLES DE LA URL NO EXISTE

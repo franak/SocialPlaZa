@@ -41,7 +41,8 @@ excludedFiles = [
 "recovery.js",
 "recovery.html",
 "recovery.js",
-"buzz.js"
+"buzz.js",
+"fastclick.js"
 ];
 
 
