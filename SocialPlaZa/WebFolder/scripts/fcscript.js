@@ -270,19 +270,17 @@ functions.openWelcome = function () {
 
 
 		}else{
+			console.log(WAF.directory.currentUser().fullName);
 			var user = WAF.directory.currentUser();
 			if (!user){
-			WAF.directory.loginByPassword('demo', '123');
-			
-		$('#'+components.header+'_conectText').text('DESCONECTAR');
+				//WAF.directory.loginByPassword('demo', '123');
+				$('#'+components.header+'_conectText').text('DESCONECTAR');
+				$$(components.banner).loadComponent('/components/commons/bannerlog.waComponent');
 			}
-			if (user){
+			else{
 				functions.CargarUI();	
 				$('#'+components.header+'_conectText').text('DESCONECTAR');
 		
-			}else{
-
-				$$(components.banner).loadComponent('/components/commons/bannerlog.waComponent');
 			}
 		}
 	

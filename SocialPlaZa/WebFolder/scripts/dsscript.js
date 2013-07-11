@@ -307,11 +307,16 @@ appdsObj = function () {
 			$$($comp.id+"_richText4").show();
 			
 			$$($comp.id+"_richText14").setValue("Guardar");
-			console.log(objeto);
+			
 			$comp.sources.articulos1.query("Descripcion =:1",objeto._value);
 			var vFamilia = ds.Articulos.getFamilia($comp.sources.articulos1.Codigo);
 			$$($comp.id+"_combobox2").setValue(vFamilia);//Ponermos los respectivos datos elegidos
 			$$($comp.id+"_richText4").show();//Mostrar el boton eliminar
+			
+			$("BODY").append($("#"+$comp.id+"_dialog3"));
+			$$($comp.id+"_dialog3").displayDialog();
+			$("#"+$comp.id+"_dialog3").css("top",100);
+			$("#"+$comp.id+"_dialog3").css("left",200);
 		}
 		
 	}

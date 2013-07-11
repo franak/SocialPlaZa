@@ -648,26 +648,27 @@ $('#modifica').click(function() {
 /*
 --------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------
 */
-var currentscroll = 0;
-
-$('input').bind('focus',function() {
-    currentscroll = $(window).scrollTop();
- 
-});
-
-$('input').bind('blur',function() {
-    if(currentscroll != $(window).scrollTop()){
-
-    $(window).scrollTop(currentscroll);
-
-    }
-});
 
 var botonArticulo = getHtmlId('btnArticulo');
 $('.matrix_articulos').live("touchstart", function(e){
     e.preventDefault();
 });
 //btnArticulo
+
+var currentscroll = 0;
+
+$(':input').bind('focus',function() {
+
+    currentscroll = $(window).scrollTop();
+ 
+});
+
+$(':input').bind('blur',function() {
+	
+    if(currentscroll != $(window).scrollTop()){
+    	$(window).scrollTop(currentscroll);
+    }
+});
 
 /*
 --------------Funcion Repetidas a causa de los eventos click y touchEnd-------------------
@@ -762,10 +763,7 @@ function articulo_btn(esteObjeto){
 		
 		appds.estadoInicial($comp, "modificar",esteObjeto);
 		
-		$("BODY").append($("#"+id+"_dialog3"));
-		$$(dialogo).displayDialog();
-		$("#"+id+"_dialog3").css("top",100);
-		$("#"+id+"_dialog3").css("left",200);
+		
 		
 	}else{
 		//anadir linea

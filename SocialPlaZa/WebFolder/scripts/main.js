@@ -52,14 +52,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		        var el=document;
 		        var scrollStartPos=0;
 
-		        document.addEventListener("touchstart", function(event) {
-		            scrollStartPos=this.scrollTop+event.touches[0].pageY;      
-		        },false);
-		     
-
 		        document.addEventListener("touchmove", function(event) {
-		            this.scrollTop=scrollStartPos-event.touches[0].pageY;
-		            event.preventDefault();
+		           this.scrollTop=scrollStartPos-event.touches[0].pageY;
+		           event.preventDefault();
 		        },false);
 		    }
 		}
@@ -72,7 +67,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 		
 		function unloadScrollBars() {
-		 //   document.documentElement.style.overflow = 'hidden';  // firefox, chrome
+		    document.documentElement.style.overflow = 'hidden';  // firefox, chrome
 		    document.body.scroll = "no"; // ie only
 		}
 		
@@ -81,13 +76,30 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		// llamadas a las funciones declaradas anteriormente
 		unloadScrollBars();
 		touchScroll();
+		
+		var currentscroll = 0;
+
+		$(':input').bind('focus',function() {
+
+		    currentscroll = $(window).scrollTop();
+		 
+		});
+
+		$(':input').bind('blur',function() {
+			
+		    if(currentscroll != $(window).scrollTop()){
+		    	$(window).scrollTop(currentscroll);
+		    }
+		});
 		// -------------------------------------------------------
 		
 		/*
 			--- Funcion para quitar los 300ms de espera del dobleClick del iPad ---
 		*/
 		
-		   // FastClick.attach(document.body);
+		$(function() {
+		    FastClick.attach(document.body);
+		});
 		
 		// -------------------------------------------------------
 		
