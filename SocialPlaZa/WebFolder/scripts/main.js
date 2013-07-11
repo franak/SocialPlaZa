@@ -33,7 +33,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		
 	/*
 		--- Funcion si existe en el sistema los eventos touch (iPad) ---
-	*/	
+	*/			
+
 		function isTouchDevice(){
 		    try{
 		        document.createEvent("TouchEvent");
@@ -118,7 +119,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		if(lasesion && !user){		
 			sessionStorage.clear();
 		}
-		
+		debugger;
 		//DS SI EL USUARIO NO ESTA LOGUEADO
 		if(!user){
 			//DS SI LA VARIABLES DE LA URL NO EXISTE

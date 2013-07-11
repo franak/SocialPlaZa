@@ -260,7 +260,6 @@ var $comp = components.main;
 functions.openWelcome = function () {
 	
 	
-	
 		var parametros = ds.Metodos.getParam(window.location.href);
 
 
@@ -289,6 +288,8 @@ functions.openWelcome = function () {
 
 
 functions.openWelcomeHead = function () {
+	
+
 	$$(components.header).loadComponent(components.defaults.header.compPath);
 	
 	//var parametros = ds.Metodos.getParam(window.location.href);

@@ -18,11 +18,9 @@ $('#mlateralComp').hide();
 	var openMenu = {};	// @richText
 	var richText3 = {};	// @richText
 	var richText4 = {};	// @richText
-	var richText14 = {};	// @richText
 	var conectText = {};	// @richText
 	var richText5 = {};	// @richText
 	var richText2 = {};	// @richText
-	var richText7 = {};	// @richText
 	var login2 = {};	// @login
 	var image2 = {};	// @image
 	// @endregion// @endlock
@@ -78,11 +76,6 @@ $('#mlateralComp').hide();
 	};// @lock
 
 	richText4.click = function richText4_click (event)// @startlock
-	{// @endlock
-			fcBrain.openAltaUsuario();
-	};// @lock
-
-	richText14.click = function richText14_click (event)// @startlock
 	{// @endlock
 			fcBrain.openAltaUsuario();
 	};// @lock
@@ -179,16 +172,6 @@ $('#mlateralComp').hide();
 		}
 	};// @lock
 
-	richText7.touchend = function richText7_touchend (event)// @startlock
-	{// @endlock
-		fcBrain.openAltaUsuario();
-	};// @lock
-
-	richText7.click = function richText7_click (event)// @startlock
-	{// @endlock
-		fcBrain.openAltaUsuario();
-	};// @lock
-
 	login2.login = function login2_login (event)// @startlock
 	{// @endlock
 		var paramsString = document.location.search.substr(1);
@@ -213,17 +196,14 @@ UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para 
 	// @region eventManager// @startlock
 	WAF.addListener(this.id + "_foto_usuario", "touchend", foto_usuario.touchend, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
-	WAF.addListener(this.id + "_richText7", "touchend", richText7.touchend, "WAF");
 	WAF.addListener(this.id + "_openMenu", "touchend", openMenu.touchend, "WAF");
 	WAF.addListener(this.id + "_richText2", "touchend", richText2.touchend, "WAF");
 	WAF.addListener(this.id + "_openMenu", "click", openMenu.click, "WAF");
 	WAF.addListener(this.id + "_richText3", "click", richText3.click, "WAF");
 	WAF.addListener(this.id + "_richText4", "click", richText4.click, "WAF");
-	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
 	WAF.addListener(this.id + "_conectText", "click", conectText.click, "WAF");
 	WAF.addListener(this.id + "_richText5", "click", richText5.click, "WAF");
 	WAF.addListener(this.id + "_richText2", "click", richText2.click, "WAF");
-	WAF.addListener(this.id + "_richText7", "click", richText7.click, "WAF");
 	WAF.addListener(this.id + "_login2", "login", login2.login, "WAF");
 	WAF.addListener(this.id + "_image2", "click", image2.click, "WAF");
 	// @endregion// @endlock
