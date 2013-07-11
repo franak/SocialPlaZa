@@ -115,6 +115,7 @@ this.openAltaUsuario = function() {
      	$$(components.banner).removeComponent();
      	$$('socialComponent').removeComponent();
      	$('#headComp_botonera1').fadeOut();
+     	$$(components.main).removeComponent();
      	$$(components.main).loadComponent(components.defaults.AltaUsuario.compPath);
     	$('#'+components.main).attr('z-index','999');
     	
@@ -300,7 +301,7 @@ functions.openWelcomeHead = function () {
 		//$('#'+components.main).hide('fast');
 		if (origin){
 			     
-			     $$('headComp_botonera1').hide();
+			     $('#headComp_botonera1').hide();
 			     	//UI.alert(origin);
 			}
 
