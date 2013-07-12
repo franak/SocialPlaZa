@@ -642,7 +642,7 @@ $.getJSON( ruta, function(data) {
 	//INPUTS DE BOOTSTRAP
 	
       $(tabla).append('<label class="control-label" for="input_'+ medio.Codigo +'">'+ medio.Descripcion +'</label>');
-      $(tabla).append('<input  format="###.###.###,00" type="number"  id="input_'+ medio.Codigo +'" class="entrada" placeholder='+ medio.Descripcion +' >');
+      $(tabla).append('<input  format="###.###.###,00" type="number"  id="input_'+ medio.Codigo +'" class="entrada cobro" placeholder='+ medio.Descripcion +' >');
     //  $(tabla).append(' <span class="help-block">Indique el importe en '+ medio.Descripcion +'</span>');     
    
 
@@ -686,23 +686,25 @@ var total={};
 var valorActual={};
 var diferencia = {};
 total = 0;  
-$(".entrada").blur( function(event) {
+$(".cobro").blur( function(event) {
 	
 	total = 0;   
-	$(".entrada").each( function(){
-		total += parseFloat($(this).val());
+	$(".cobro").each( function(){
+
+		//total += parseFloat($(this).val());
+		total += $(this).val();
 		console.log("total1: "+total);
+
 	});
 
 });
 
-$(".entrada").focus( function(event) {
-	
-	
+$(".cobro").focus( function(event) {
 	
 	total += $(this).val() * 1;
 	console.log("total2: "+total);
 	diferencia = vSumaR - total;
+
 	
 	if (total < vSuma){
 		
