@@ -425,23 +425,24 @@ guidedModel =// @startlock
 		},
 		methods :
 		{// @endlock
-			insertarLineasAbonadas:function(docCobrado,docAbonado,almacenID)
+			insertarLineasNegativas:function(docCobrado,docNegativo,almacenID)
 			{// @lock
 				var documentoCobrado = ds.DocComercial.find("ID =:1",docCobrado);
-				var documentoAbonado = ds.DocComercial.find("ID =:1",docAbonado);
+				var documentoNegativo = ds.DocComercial.find("ID =:1",docNegativo);
 				var almacen = ds.Almacenes.find("ID =:1",almacenID);
 				var collecionLineas = ds.Lineas.query("Documento.ID =:1", documentoCobrado.ID);
 				for (var i = 0; i < collecionLineas.length; i++){
 					
-					var newLineaAbonada = new ds.Lineas();
-					newLineaAbonada.Codigo = collecionLineas[i].Codigo;
-					newLineaAbonada.Descripcion = collecionLineas[i].Descripcion;
-					newLineaAbonada.PrecioUnitario = collecionLineas[i].PrecioUnitario;
-					newLineaAbonada.Cantidad = collecionLineas[i].Cantidad * -1;
-					newLineaAbonada.Documento = documentoAbonado;
-					newLineaAbonada.Almacen = almacen;
+					var newLineaNegativa = new ds.Lineas();
+					newLineaNegativa.Codigo = collecionLineas[i].Codigo;
+					newLineaNegativa.Descripcion = collecionLineas[i].Descripcion;
+					newLineaNegativa.PrecioUnitario = collecionLineas[i].PrecioUnitario;
+					newLineaNegativa.Cantidad = collecionLineas[i].Cantidad * -1;
+					newLineaNegativa.Posicion = collecionLineas[i].Posicion;
+					newLineaNegativa.Documento = documentoNegativo;
+					newLineaNegativa.Almacen = almacen;
 					
-					newLineaAbonada.save();
+					newLineaNegativa.save();
 					
 				}
 			},// @lock
