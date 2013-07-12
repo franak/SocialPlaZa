@@ -1,10 +1,6 @@
 /*Desde aqu’ para hacer la barra superior fija*/
 body {
-<<<<<<< HEAD
 min-width:1024px;
-=======
-min-width: 1024px;
->>>>>>> 7cea1c88ae9db798342bdbdb71a5589265301010
 /*No hay scroll*/
 /*overflow:hidden;*/
 }
