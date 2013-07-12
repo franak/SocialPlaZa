@@ -265,8 +265,8 @@ $.getJSON( ruta, function(data) {
 					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo"); 
 							$comp.sources.cajasMovimientos.MedioPago.set(m);
 							var cambio = aMediosPagos[i] - diferenciaCambio;
-							$comp.sources.docComercial.Cambio = cambio;
 							if(cambio > 0){
+								$comp.sources.docComercial.Cambio = cambio;
 								localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
 								//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
 						 		UI.alert(localStorage.cambio,'Devolución');
@@ -668,8 +668,7 @@ $.getJSON( ruta, function(data) {
 setTimeout(function(){ //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
 		   
 
-var fpEfectivo = getHtmlId("input_EF");
-var fpEfectivoObj = getHtmlObj("input_EF");
+
 
 console.log("vSuma: "+vSuma);
 var vSumaR =  Math.round(vSuma*100)/100;
@@ -690,11 +689,7 @@ $(".cobro").blur( function(event) {
 	
 	total = 0;   
 	$(".cobro").each( function(){
-
-		//total += parseFloat($(this).val());
-		total += $(this).val();
-		console.log("total1: "+total);
-
+		total += $(this).val() * 1;
 	});
 
 });
@@ -702,7 +697,6 @@ $(".cobro").blur( function(event) {
 $(".cobro").focus( function(event) {
 	
 	total += $(this).val() * 1;
-	console.log("total2: "+total);
 	diferencia = vSumaR - total;
 
 	
