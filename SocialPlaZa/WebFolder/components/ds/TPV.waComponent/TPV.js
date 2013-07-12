@@ -117,7 +117,12 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	{// @endlock
 		if($comp.sources.docComercial.Cobrado == true){
 			$$(id+"_richText17").setValue("Cambio: "+formato_numero($comp.sources.docComercial.Cambio,2,".",",")+"€");
+			$$(id+"_richText3").setValue("Cobrado");
 			$$(id+"_richText17").show();
+			$$(id+"_richText3").show();
+		}else if($comp.sources.docComercial.Referencia != null){
+			$$(id+"_richText17").hide();
+			$$(id+"_richText3").setValue("Abonado");
 			$$(id+"_richText3").show();
 		}else{
 			$$(id+"_richText17").hide();
@@ -160,17 +165,8 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	btnArticulo.mouseup = function btnArticulo_mouseup (event)// @startlock
 	{// @endlock
-			
-			var cobrado = $comp.sources.docComercial.Cobrado;
-			botonArticulo = getHtmlId('btnArticulo');
-			if(cobrado == true){
-				$$(botonArticulo).setState('disabled');
-				UI.alert('Ya está Cobrado','Atención');
-			}else{
-			
-			articulo_btn(this);
-			
-		}
+		
+		articulo_btn(this);
 
 	};// @lock
 
@@ -183,7 +179,9 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	btnArticulo.touchend = function btnArticulo_touchend (event)// @startlock
 	{// @endlock
+
 		articulo_btn(this);
+		
 	};// @lock
 
 	imageButton1.click = function imageButton1_click (event)// @startlock
@@ -331,37 +329,7 @@ $.getJSON( ruta, function(data) {
 
 	imageButton10.click = function imageButton10_click (event)// @startlock
 	{// @endlock
-		UI.confirm('¿Desea borrar este ticket?', 'Confirmacion', function(r) {
-
-		    if (r == true) {
-		    	
-		        $comp.sources.docComercial.removeCurrent();
-		        $comp.sources.docComercial.all({
-		            onSuccess: function(event) {
-		                if ($comp.sources.docComercial.length == 0) {
-		                    //ds.DocComercial.crearPrincipio
-		                    fcBrain.crearDocComercial($comp, 1, {
-		                        onSuccess: function(event) {
-		                            $comp.sources.docComercial.all({
-		                                onSuccess: function(event) {
-		                                    tamanio = $comp.sources.docComercial.length;
-		                                    if (tamanio == 0) {
-		                                        fcBrain.crearDocComercial($comp, 1);
-		                                        tamanio = 1;
-		                                    }
-		                                    setTimeout(function() { //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
-		                                        $comp.sources.docComercial.select(tamanio - 1);
-
-		                                    }, 300);
-		                                } // Fin de On Success de All
-		                            });// Fin de All
-		                        }
-		                    });
-		                }
-		            }
-		        });
-		    }
-		});
+		btn_borrar();
 	};// @lock
 
 	imageButton6.click = function imageButton6_click (event)// @startlock
@@ -773,23 +741,40 @@ $('body').append(menuBoton);
 //Comportamiento de los botones de la toolbar:
 $('#elimina').click(function() {
 	
-	
 	var cobrado = $comp.sources.docComercial.Cobrado;
-	if(cobrado != true){
+	var referencia = $comp.sources.docComercial.Referencia;
+	if(referencia == null && cobrado != true){
+		
 		eliminaLinea();
-	}else{
-		UI.alert("Ya esta cobrado este Ticket","Atencion");
-	} 
+		
+	}else if(cobrado == true){
+		
+		UI.alert('Ya está Cobrado','Atención');
+		
+	}else if(referencia != null){
+		
+		UI.alert('Ya está Abonado','Atención');
+	}
+	
 });
 
 
 $('#modifica').click(function() {
+	
 	var cobrado = $comp.sources.docComercial.Cobrado;
-	if(cobrado != true){
-		modificarLinea();
-	}else{
-		UI.alert("Ya esta cobrado este Ticket","Atencion");
-	} 
+	var referencia = $comp.sources.docComercial.Referencia;
+	if(referencia == null && cobrado != true){
+		
+		eliminaLinea();
+		
+	}else if(cobrado == true){
+		
+		UI.alert('Ya está Cobrado','Atención');
+		
+	}else if(referencia != null){
+		
+		UI.alert('Ya está Abonado','Atención');
+	}
 });
 
 
@@ -837,34 +822,40 @@ $(':input').bind('blur',function() {
 //Funcion de cargar los movimientos de caja e imprimir
 
 function cargarMovimientoCaja_btn(){
+	
 	var cobrado = $comp.sources.docComercial.Cobrado;
-		console.log(cobrado+" Numero "+$comp.sources.docComercial.Numero);
-		if(cobrado != true){
-			//UI.mostrarAdvertencia('Atención','Está función no está todavía disponible');
-			
-			UI.gifCargando(); //el chirimbolo de "carga"
-
-							
-			var dialogo = getHtmlId("dialog1");
-			var jqdialogo = getHtmlObj("dialog1");		
+	var referencia = $comp.sources.docComercial.Referencia;
+	botonDispensar = getHtmlId('imageButton4');
+	if(referencia == null && cobrado != true){
 		
-			$("BODY").append($(jqdialogo));	
+		UI.gifCargando(); //el chirimbolo de "carga"
 			
-			$(jqdialogo).css("left",300);
-			setTimeout(function(){ //Espero a abrir el diálogo para que de tiempo a que se carguen los eventos
-			$$(dialogo).displayDialog();
-			},600);
-			
+		var dialogo = getHtmlId("dialog1");
+		var jqdialogo = getHtmlObj("dialog1");		
+	
+		$("BODY").append($(jqdialogo));	
+		
+		$(jqdialogo).css("left",300);
+		setTimeout(function(){ //Espero a abrir el diálogo para que de tiempo a que se carguen los eventos
+		$$(dialogo).displayDialog();
+		},600);
 
-			
-			var donde = getHtmlObj('container6');
-			//En funciones de la página:
-			cargarMedioPago(donde); //Le paso el contenedor dónde tiene que cargarlo
-			
-		}else{
-			UI.alert("Este Ticket ya esta cobrado");
-			$$(getHtmlId("dialog1")).closeDialog(); //Guardar button
-		}
+		var donde = getHtmlObj('container6');
+		//En funciones de la página:
+		cargarMedioPago(donde); //Le paso el contenedor dónde tiene que cargarlo
+		
+	}else if(cobrado == true){
+		
+		$$(botonDispensar).setState('disabled');
+		UI.alert('Ya está Cobrado','Atención');
+		
+	}else if(referencia != null){
+		
+		$$(botonDispensar).setState('disabled');
+		UI.alert('Ya está Abonado','Atención');
+	}
+	
+	
 }
 
 //Funcion cuando hacemos un click o mantenemos pulsado un articulo
@@ -883,13 +874,85 @@ function articulo_btn(esteObjeto){
 		
 		
 	}else{
-		//anadir linea
-		appds.anadirLinea($comp,esteObjeto);
 		
-		
+		var cobrado = $comp.sources.docComercial.Cobrado;
+		var referencia = $comp.sources.docComercial.Referencia;
+		botonArticulo = getHtmlId('btnArticulo');
+		if(referencia == null && cobrado != true){
+			
+			appds.anadirLinea($comp,esteObjeto);
+			
+		}else if(cobrado == true){
+			
+			$$(botonArticulo).setState('disabled');
+			UI.alert('Ya está Cobrado','Atención');
+			
+		}else if(referencia != null){
+			
+			$$(botonArticulo).setState('disabled');
+			UI.alert('Ya está Abonado','Atención');
+		}
+
 	}
 }
 
+function btn_borrar(){
+	var cobrado =  $comp.sources.docComercial.Cobrado;
+	var referencia = $comp.sources.docComercial.Referencia;
+	if(cobrado == true){
+		abonarTicket();
+	}else if (referencia != null){
+		UI.alert('Ya está Abonado','Atención');
+	}else{
+		borrarTicket();
+	}
+}
+
+function borrarTicket(){
+	
+	UI.confirm('¿Desea borrar este ticket?', 'Confirmacion', function(r) {
+	    if (r == true) {
+	    	
+	        $comp.sources.docComercial.removeCurrent();
+	        $comp.sources.docComercial.all({
+	            onSuccess: function(event) {
+	                if ($comp.sources.docComercial.length == 0) {
+	                    //ds.DocComercial.crearPrincipio
+	                    fcBrain.crearDocComercial($comp, 1, {
+	                        onSuccess: function(event) {
+	                            $comp.sources.docComercial.all({
+	                                onSuccess: function(event) {
+	                                    tamanio = $comp.sources.docComercial.length;
+	                                    if (tamanio == 0) {
+	                                        fcBrain.crearDocComercial($comp, 1);
+	                                        tamanio = 1;
+	                                    }
+	                                    setTimeout(function() { //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
+	                                        $comp.sources.docComercial.select(tamanio - 1);
+
+	                                    }, 300);
+	                                } // Fin de On Success de All
+	                            });// Fin de All
+	                        }
+	                    });
+	                }
+	            }
+	        });
+	    }
+	});
+}
+
+function abonarTicket(){
+	UI.confirm('¿Desea abonar este ticket?', 'Confirmacion', function(r) {
+	    if (r == true) {
+	    	
+	    	var tipoDoc = 1;
+			fcBrain.crearDocComercial($comp,tipoDoc,true);	
+	    	
+	    }
+	    	
+	 });
+}
 
 
 }// @startlock

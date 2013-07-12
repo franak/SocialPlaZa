@@ -121,8 +121,12 @@ fcBrainObj = function() {
         functions.sumarLineas(id, docID);
     }
 
-    this.crearDocComercial = function($comp, tipo) {
-
+    this.crearDocComercial = function($comp, tipo, abonado) {
+		
+		var docCobrado = $comp.sources.docComercial.ID;
+		var docReferencia = $comp.sources.docComercial.Numero+" "+$comp.sources.docComercial.Fecha
+		
+		
         // DS CREO EL DOCUMENTO
         var n = ds.DocComercial.getNumero();
         $comp.sources.docComercial.addNewElement();
@@ -132,6 +136,9 @@ fcBrainObj = function() {
         $comp.sources.docComercial.Cobrado = false;
         $comp.sources.docComercial.Cambio = 0;
         $comp.sources.docComercial.CajaTpv.set($comp.sources.cajasTPV);
+        if(abonado == true){
+           $comp.sources.docComercial.Referencia = docReferencia;
+        }
         // employer is a relation attribute of the datasource; it has the set method
         // we assign a datasource to it, hence its current element
         //$comp.sources.docComercial.save();
@@ -140,11 +147,21 @@ fcBrainObj = function() {
         $comp.sources.docComercial.save({
             onSuccess: function(event) {
                 $comp.sources.docComercial.serverRefresh();
+                var almacen = $comp.sources.almacenes.ID;
+                if(abonado == true){
+                	abonar($comp,docCobrado,almacen);
+                }
+                
             }
         });
-
-
-
+    }
+    
+    function abonar($comp,docCobrado,almacen){
+    	
+    	var docAbonado = $comp.sources.docComercial.ID;
+    	ds.Lineas.insertarLineasAbonadas(docCobrado,docAbonado,almacen);
+    	$comp.sources.docComercial.serverRefresh();
+  
     }
 
     this.desconectar = function(id) {
