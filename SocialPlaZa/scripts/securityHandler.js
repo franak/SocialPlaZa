@@ -50,10 +50,6 @@ excludedFiles = [
 "jquery.printPage.js"
 ];
 
-
-
-
-
 var serverIP = application.httpServer.ipAddress;
 var urlPath = getURLPath(serverIP); 
 /**
@@ -63,6 +59,7 @@ var urlPath = getURLPath(serverIP);
 */
 function handleSecurityFilter(request, response) {
     "use strict";
+
     var
         fileContent,
         targettedFileName,
@@ -81,45 +78,57 @@ function handleSecurityFilter(request, response) {
 	}
 
 	user = currentUser();
-	tempArray = request.urlPath.split("/");
+	var $urlpath = request.urlPath;
+	if($urlpath[$urlpath.length-1] == '/') $urlpath = $urlpath.substr(0, $urlpath.length-1);
+	tempArray = $urlpath.split("/");
 	targettedFileName = tempArray[tempArray.length - 1]; // Getting the name of the targettedFile
 	contentType = "application/octet-stream";
 	
-	if (user.name !== defaultUser
-		|| excludedFiles.indexOf(targettedFileName.toLowerCase()) !== -1) {
+	if (user.name !== defaultUser || excludedFiles.indexOf(targettedFileName.toLowerCase()) !== -1) {
 		// If the user is connected or this file can be delivered to a not connected user.
 		// Note that we only handle files within the WebFolder subfolder. 
-		fileContent = new File(application.getFolder().path+"WebFolder" + request.urlPath);
-		// We handle the fileType to set the response contentType.
-		if (fileContent != null) {
-			if (fileContent.extension == "html") {
-				contentType = "text/html; charset=UTF-8";
-			} else if (fileContent.extension == "js") {
-				contentType = "application/javascript";
-			} else if (fileContent.extension == "css") {
-				contentType = "text/css";
-			} else if (fileContent.extension == "gif") {
-				contentType = "image/gif";
-			} else if (fileContent.extension == "png") {
-				contentType = "image/png";
-			} else if (fileContent.extension == "jpg") {
-				contentType = "image/jpg";
+		var $path = application.getFolder().path+"WebFolder" + $urlpath;
+		var $myfile = File($path);
+		var $fexists = false;
+		if(!$myfile.exists && File.isFile($path+'/index.html')) {
+			$path+='/index.html';
+			$fexists = true;
+		} else if($myfile.exists) {
+			$fexists = true;
+		}
+		if(!$fexists) {
+			contentType = "text/html; charset=UTF-8";
+			response.statusCode = 404;
+			response.headers["Location"] = "/main.html?app=demo"; // Redirect to the login.
+		} else {
+			fileContent = new File($path);
+			// We handle the fileType to set the response contentType.
+			if (fileContent != null) {
+				if (fileContent.extension == "html") {
+					contentType = "text/html; charset=UTF-8";
+					//response.headers['Cache-Control'] = 'no-cache, must revalidate;';
+					//response.headers['Expires'] = 'Sat, 26 Jul 1997 05:00:00 GMT';
+				} else if (fileContent.extension == "js") {
+					contentType = "application/javascript";
+				} else if (fileContent.extension == "css") {
+					contentType = "text/css";
+				} else if (fileContent.extension == "gif") {
+					contentType = "image/gif";
+				} else if (fileContent.extension == "png") {
+					contentType = "image/png";
+				} else if (fileContent.extension == "jpg") {
+					contentType = "image/jpg";
+				}
 			}
-			
-			
 		}
 	} else {
 		contentType = "text/html; charset=UTF-8";
-		response.statusCode = 301;
-		//response.headers["Location"] = "/login.html?origin="+request.url; // Redirect to the login.
-		//user = 'demo';
-		response.headers["Location"] = "/main.html" // Redirect to the login.
-		
-		
+		response.statusCode = 307;
+		response.headers["Location"] = "/main.html"; // Redirect to the login.
 	}
 	
 	// Getting the file as a Blob since HttpResponse body accepts Blob, Image or String.
-	if (fileContent != null && fileContent.name !="undefined") {
+	if (fileContent != null) {
 		fileContent = fileContent.toBuffer();
 		if (fileContent != null) {
 			fileContent = fileContent.toBlob();
@@ -129,4 +138,3 @@ function handleSecurityFilter(request, response) {
 	response.contentType = contentType;
 	return fileContent || null;
 }
-
