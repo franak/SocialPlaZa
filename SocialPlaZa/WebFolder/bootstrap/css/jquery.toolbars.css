@@ -33,7 +33,6 @@ white-space: nowrap;
 
 .tool-items {
 	height: 100%;	
-	font-weight:bold;
 }
 
 .tool-top .tool-item, .tool-bottom .tool-item {
@@ -51,7 +50,6 @@ white-space: nowrap;
  	font-weight:normal;
 	font-family:droid sans;
 	line-height:24px;
-	font-weight:bold;
 }
 
 
