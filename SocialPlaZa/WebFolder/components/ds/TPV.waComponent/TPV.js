@@ -120,10 +120,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 			$$(id+"_richText3").setValue("Cobrado");
 			$$(id+"_richText17").show();
 			$$(id+"_richText3").show();
-		}else if($comp.sources.docComercial.Referencia != null){
-			$$(id+"_richText17").hide();
-			$$(id+"_richText3").setValue("Abonado");
-			$$(id+"_richText3").show();
 		}else{
 			$$(id+"_richText17").hide();
 			$$(id+"_richText3").hide();
