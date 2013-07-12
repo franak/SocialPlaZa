@@ -563,12 +563,13 @@ $.getJSON( ruta, function(data) {
 		$(this).focus();
      });
 	 $(":input").bind('keypress', function(e) {
-	if(e.keyCode==13){
-			dispensar();
+		if(e.keyCode==13){
+			var printContinuar = getHtmlObj('bContinuarDispensar');
+			$(printContinuar).click();
 		}
-	});
+	  });
 	
- });
+});
 		
 
 
