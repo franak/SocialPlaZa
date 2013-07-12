@@ -700,7 +700,7 @@ $('#modifica').click(function() {
 	var cobrado = $comp.sources.docComercial.Cobrado;
 	if(cobrado != true){
 		
-		eliminaLinea();
+		modificarLinea();
 		
 	}else{
 		
