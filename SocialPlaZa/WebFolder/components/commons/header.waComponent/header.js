@@ -32,6 +32,9 @@ $('#mlateralComp').hide();
  UI.alert(ip);
 });*/
 
+
+
+
 //INICIALIZACIÓN DE MODALES.
 btmodales.initModal('Usuarios',$comp);
 

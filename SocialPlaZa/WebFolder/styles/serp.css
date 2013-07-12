@@ -1,6 +1,6 @@
 /*Desde aqu’ para hacer la barra superior fija*/
 body {
-min-width: 1024px;
+min-width: 950px;
 /*No hay scroll*/
 -webkit-overflow-scrolling: touch;
 

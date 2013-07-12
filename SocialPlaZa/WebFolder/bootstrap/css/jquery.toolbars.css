@@ -10,9 +10,9 @@
 /*	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0cbcb', endColorstr='white',GradientType=0 );*/
 /*	border-radius: 5px;*/
 	box-shadow: 0px 0px 10px #000;
-position: absolute;				
-clear: both;
-white-space: nowrap;
+	position: absolute;				
+	clear: both;
+		white-space: nowrap;
   float: left;
   min-width: 130px;
   padding: 5px 0;
@@ -33,7 +33,7 @@ white-space: nowrap;
 
 .tool-items {
 	height: 100%;	
-	font-weight:bold;
+/*	font-weight:bold;*/
 }
 
 .tool-top .tool-item, .tool-bottom .tool-item {
@@ -51,7 +51,7 @@ white-space: nowrap;
  	font-weight:normal;
 	font-family:droid sans;
 	line-height:24px;
-	font-weight:bold;
+/*	font-weight:bold;*/
 }
 
 
