@@ -100,13 +100,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		var cod = UI.getUrlVars()["cod"];
 		if(cod){
 			if(ds.Metodos.activarUser(cod)==true){
-				alert("Cuenta Activada");
+				UI.alert("Cuenta Activada");
 				var usuario = ds.Metodos.primerLog(cod);
 				WAF.directory.loginByPassword(usuario.NombreAcceso.getValue(),usuario.Password.getValue());
 			}else if(ds.Metodos.activarUser(cod)==false){
-				alert("La cuenta ya a sido activada");
+				UI.alert("La cuenta ya a sido activada");
 			}else{
-				alert("Fallo de activacion");
+				UI.alert("Fallo de activacion");
 			}
 		}
 		

@@ -11,6 +11,7 @@ excludedFiles = [
 "main.html",
 "main.js", 
 "bootstrap.js",
+"bootstrap.min.js",
 "fcscript.js",
 "jmscript.js",
 "dsscript.js",
@@ -47,7 +48,8 @@ excludedFiles = [
 "jquery.toolbar.min.js",
 "jquery.vticker.js",
 "jquery.zrssfeed.js",
-"jquery.printPage.js"
+"alerts.js",
+"jquery.printpage.js"
 ];
 
 var serverIP = application.httpServer.ipAddress;
