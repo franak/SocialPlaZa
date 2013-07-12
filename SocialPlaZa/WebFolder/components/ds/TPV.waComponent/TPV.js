@@ -576,10 +576,9 @@ setTimeout(function(){ //Le pongo un tiempo de espera porque al cargar, lineasCo
 
 
 
-console.log("vSuma: "+vSuma);
+
 var vSumaR =  Math.round(vSuma*100)/100;
 vSumaR = vSumaR.toFixed(2);
-console.log("vSumaR: "+vSumaR);
 //$("#input_EF").val(vSumaR);
 
 //$(fpEfectivoObj).select();//Para que apareza seleccionado todo el contenido
@@ -601,21 +600,16 @@ $(".cobro").blur( function(event) {
 });
 
 $(".cobro").focus( function(event) {
-	
-	console.log("total-focus: "+total);
+
 	total += $(this).val() * 1;
 	diferencia = vSumaR - total;
 	
+	diferenciaCambio = diferencia;
+	diferencia = parseFloat(diferencia);//ds pasar a numero la variable
+	diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
+	$(this).val(diferencia);
+	$(this).select();
 
-	
-	
-		
-		diferenciaCambio = diferencia;
-		diferencia = parseFloat(diferencia);//ds pasar a numero la variable
-		diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
-		$(this).val(diferencia);
-		$(this).select();
-    
 
 });	
 
