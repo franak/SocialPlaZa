@@ -15,6 +15,7 @@ function constructor (id) {
 
 //Activación del botón para imprimir		
 var printContinuar = getHtmlObj('bContinuarDispensar');
+
 $(printContinuar).printPage({
       url: "impPages/ticket.html",
       message:"Imprimiendo Ticket..."
@@ -929,6 +930,10 @@ function dispensar(){
 				}					
 			}
 		}); //Guardar button
+		
+		
+		
+
 		
 }
 
