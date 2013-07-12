@@ -158,8 +158,8 @@ fcBrainObj = function() {
     
     function abonar($comp,docCobrado,almacen){
     	
-    	var docAbonado = $comp.sources.docComercial.ID;
-    	ds.Lineas.insertarLineasAbonadas(docCobrado,docAbonado,almacen);
+    	var docNegativo = $comp.sources.docComercial.ID;
+    	ds.Lineas.insertarLineasNegativas(docCobrado,docNegativo,almacen);
     	$comp.sources.docComercial.serverRefresh();
   
     }

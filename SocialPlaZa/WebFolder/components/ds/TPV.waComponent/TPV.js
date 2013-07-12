@@ -244,70 +244,7 @@ $.getJSON( ruta, function(data) {
 	bContinuarDispensar.click = function bContinuarDispensar_click (event)// @startlock
 	{// @endlock
 	
-		var aMediosPagos = [$("#input_EF").val(),$("#input_TJ").val()]
-		
-		for (var i =0; i < aMediosPagos.length; i++){
-			
-			if(aMediosPagos[i] != "" && aMediosPagos[i] != 0){
-				$comp.sources.cajasMovimientos.newEntity();
-				$comp.sources.cajasMovimientos.importeVenta = vSuma;
-				$comp.sources.cajasMovimientos.entregado = aMediosPagos[i];
-				$comp.sources.cajasMovimientos.fecha = new Date();
-				$comp.sources.cajasMovimientos.Documento.set($comp.sources.docComercial);
-				$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
-				switch(i){
-					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo"); 
-							$comp.sources.cajasMovimientos.MedioPago.set(m);
-							var cambio = aMediosPagos[i] - diferenciaCambio;
-							if(cambio > 0){
-								$comp.sources.docComercial.Cambio = cambio;
-								localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
-								//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
-						 		UI.alert(localStorage.cambio,'Devolución');
-
-							}else{
-								localStorage.cambio= 0;
-							}
-							break;
-					case 1: var m = ds.MedioPago.asignarMedioPago("Tarjeta"); 
-							$comp.sources.cajasMovimientos.MedioPago.set(m);
-							break;
-					case 2: var m = ds.MedioPago.asignarMedioPago("Regalo"); 
-							$comp.sources.cajasMovimientos.MedioPago.set(m);
-							break;
-				}
-				$comp.sources.cajasMovimientos.save({
-					onSuccess: function(){
-						$comp.sources.cajasMovimientos.serverRefresh();
-						
-					}
-				});
-			}
-
-		}
-		
-		var docActual = $comp.sources.docComercial.ID;
-		localStorage.docActual = docActual;
-		localStorage.Total = vSuma.toFixed(2);
-		$comp.sources.docComercial.Cobrado = true;
-		$comp.sources.docComercial.save();
-		console.log(localStorage.cambio);
-
-		
-		
-		$$(getHtmlId("dialog1")).closeDialog({
-			onSuccess: function(){
-				if(localStorage.cambio  > 0){
-					UI.alert(localStorage.cambio,'Devolución');
-				}					
-			}
-		}); //Guardar button
-		
-		
-		
-		//Se ejecuta la impresión. El botón está activado desde el "load".
-	
-	
+		dispensar();
 
 	};// @lock
 
@@ -623,8 +560,13 @@ $.getJSON( ruta, function(data) {
 	 $('#input_EF').attr("autofocus","autofocus"); 
 	 $(":input").bind('touchstart', function(event){//iPad
 		$(this).focus();
+     });
+	 $(":input").bind('keypress', function(e) {
+	if(e.keyCode==13){
+			dispensar();
+		}
 	});
-
+	
  });
 		
 
@@ -738,18 +680,14 @@ $('body').append(menuBoton);
 $('#elimina').click(function() {
 	
 	var cobrado = $comp.sources.docComercial.Cobrado;
-	var referencia = $comp.sources.docComercial.Referencia;
-	if(referencia == null && cobrado != true){
+	if(cobrado != true){
 		
 		eliminaLinea();
 		
-	}else if(cobrado == true){
+	}else{
 		
 		UI.alert('Ya está Cobrado','Atención');
 		
-	}else if(referencia != null){
-		
-		UI.alert('Ya está Abonado','Atención');
 	}
 	
 });
@@ -758,18 +696,14 @@ $('#elimina').click(function() {
 $('#modifica').click(function() {
 	
 	var cobrado = $comp.sources.docComercial.Cobrado;
-	var referencia = $comp.sources.docComercial.Referencia;
-	if(referencia == null && cobrado != true){
+	if(cobrado != true){
 		
 		eliminaLinea();
 		
-	}else if(cobrado == true){
+	}else{
 		
 		UI.alert('Ya está Cobrado','Atención');
 		
-	}else if(referencia != null){
-		
-		UI.alert('Ya está Abonado','Atención');
 	}
 });
 
@@ -820,9 +754,8 @@ $(':input').bind('blur',function() {
 function cargarMovimientoCaja_btn(){
 	
 	var cobrado = $comp.sources.docComercial.Cobrado;
-	var referencia = $comp.sources.docComercial.Referencia;
 	botonDispensar = getHtmlId('imageButton4');
-	if(referencia == null && cobrado != true){
+	if(cobrado != true){
 		
 		UI.gifCargando(); //el chirimbolo de "carga"
 			
@@ -840,15 +773,11 @@ function cargarMovimientoCaja_btn(){
 		//En funciones de la página:
 		cargarMedioPago(donde); //Le paso el contenedor dónde tiene que cargarlo
 		
-	}else if(cobrado == true){
+	}else{
 		
 		$$(botonDispensar).setState('disabled');
 		UI.alert('Ya está Cobrado','Atención');
 		
-	}else if(referencia != null){
-		
-		$$(botonDispensar).setState('disabled');
-		UI.alert('Ya está Abonado','Atención');
 	}
 	
 	
@@ -872,21 +801,16 @@ function articulo_btn(esteObjeto){
 	}else{
 		
 		var cobrado = $comp.sources.docComercial.Cobrado;
-		var referencia = $comp.sources.docComercial.Referencia;
 		botonArticulo = getHtmlId('btnArticulo');
-		if(referencia == null && cobrado != true){
+		if(cobrado != true){
 			
 			appds.anadirLinea($comp,esteObjeto);
 			
-		}else if(cobrado == true){
+		}else{
 			
 			$$(botonArticulo).setState('disabled');
 			UI.alert('Ya está Cobrado','Atención');
 			
-		}else if(referencia != null){
-			
-			$$(botonArticulo).setState('disabled');
-			UI.alert('Ya está Abonado','Atención');
 		}
 
 	}
@@ -896,7 +820,7 @@ function btn_borrar(){
 	var cobrado =  $comp.sources.docComercial.Cobrado;
 	var referencia = $comp.sources.docComercial.Referencia;
 	if(cobrado == true){
-		abonarTicket();
+		NegativoTicket();
 	}else if (referencia != null){
 		UI.alert('Ya está Abonado','Atención');
 	}else{
@@ -938,7 +862,7 @@ function borrarTicket(){
 	});
 }
 
-function abonarTicket(){
+function NegativoTicket(){
 	UI.confirm('¿Desea abonar este ticket?', 'Confirmacion', function(r) {
 	    if (r == true) {
 	    	
@@ -948,6 +872,68 @@ function abonarTicket(){
 	    }
 	    	
 	 });
+}
+
+function dispensar(){
+	var aMediosPagos = [$("#input_EF").val(),$("#input_TJ").val()]
+		
+		for (var i =0; i < aMediosPagos.length; i++){
+			
+			if(aMediosPagos[i] != "" && aMediosPagos[i] != 0){
+				$comp.sources.cajasMovimientos.newEntity();
+				$comp.sources.cajasMovimientos.importeVenta = vSuma;
+				$comp.sources.cajasMovimientos.entregado = aMediosPagos[i];
+				$comp.sources.cajasMovimientos.fecha = new Date();
+				$comp.sources.cajasMovimientos.Documento.set($comp.sources.docComercial);
+				$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
+				switch(i){
+					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo"); 
+							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							var cambio = aMediosPagos[i] - diferenciaCambio;
+							if(cambio > 0){
+								$comp.sources.docComercial.Cambio = cambio;
+								localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
+								//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
+						 		UI.alert(localStorage.cambio,'Devolución');
+
+							}else{
+								localStorage.cambio= 0;
+							}
+							break;
+					case 1: var m = ds.MedioPago.asignarMedioPago("Tarjeta"); 
+							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							break;
+					case 2: var m = ds.MedioPago.asignarMedioPago("Regalo"); 
+							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							break;
+				}
+				$comp.sources.cajasMovimientos.save({
+					onSuccess: function(){
+						$comp.sources.cajasMovimientos.serverRefresh();
+						
+					}
+				});
+			}
+
+		}
+		
+		var docActual = $comp.sources.docComercial.ID;
+		localStorage.docActual = docActual;
+		localStorage.Total = vSuma.toFixed(2);
+		$comp.sources.docComercial.Cobrado = true;
+		$comp.sources.docComercial.save();
+		console.log(localStorage.cambio);
+
+		
+		
+		$$(getHtmlId("dialog1")).closeDialog({
+			onSuccess: function(){
+				if(localStorage.cambio  > 0){
+					UI.alert(localStorage.cambio,'Devolución');
+				}					
+			}
+		}); //Guardar button
+		
 }
 
 
