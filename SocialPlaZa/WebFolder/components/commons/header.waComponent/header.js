@@ -20,8 +20,6 @@ $('#mlateralComp').hide();
 	var richText3 = {};	// @richText
 	var richText4 = {};	// @richText
 	var conectText = {};	// @richText
-	var richText5 = {};	// @richText
-	var richText2 = {};	// @richText
 	var login2 = {};	// @login
 	var image2 = {};	// @image
 	// @endregion// @endlock
@@ -91,93 +89,6 @@ btmodales.initModal('Usuarios',$comp);
 		fcBrain.desconectar(id);
 	};// @lock
 
-	richText5.click = function richText5_click (event)// @startlock
-	{// @endlock
-		$(botonera1).slideToggle();
-		$(botonera2).css('top','24px').slideToggle();
-
-	};// @lock
-
-	richText2.touchend = function richText2_touchend (event)// @startlock
-	{// @endlock
-		var user = WAF.directory.currentUser();
-		
-		if(user){
-		//ds Si le da al usuario demo al boton desconectar se elimina sus datos y logout();
-		
-		
-			
-			if( ds.Metodos.getGrupo() == "Prueba"){
-				
-				ds.Metodos.eliminarDemo();
-			
-				sessionStorage.clear();
-				
-				
-			}
-		
-			WAF.directory.logout({
-		        onSuccess: function(event) {
-		         	location.href = '/main.html';
-		         	self.location.search = 'origin=demo';
-			
-		           // fcBrain.openLoginForm();
-		          
-		        
-		           
-		        },
-		        onError: function(error) {
-		        	UI.getMensaje("Logout error");
-		          //  alert ("Logout error"); 
-		        }
-		    });       
-		
-		}else{
-			
-			fcBrain.openLoginForm();
-		}
-	};// @lock
-
-	richText2.click = function richText2_click (event)// @startlock
-	{// @endlock
-		var user = WAF.directory.currentUser();
-		
-		if(user){
-		//ds Si le da al usuario demo al boton desconectar se elimina sus datos y logout();
-		
-		
-			
-			if( ds.Metodos.getGrupo() == "Prueba"){
-				
-				ds.Metodos.eliminarDemo();
-			
-				sessionStorage.clear();
-				
-				
-			}
-		
-			WAF.directory.logout({
-		        onSuccess: function(event) {
-		         	location.href = '/main.html';
-		         	self.location.search = 'origin=demo';
-			
-		           // fcBrain.openLoginForm();
-		          
-		        
-		           
-		        },
-		        onError: function(error) {
-		        	UI.getMensaje("Logout error");
-		          //  alert ("Logout error"); 
-		        }
-		    });       
-		
-		}else{
-			
-			fcBrain.openLoginForm();
-		}
-	};// @lock
-
 	login2.login = function login2_login (event)// @startlock
 	{// @endlock
 		var paramsString = document.location.search.substr(1);
@@ -194,6 +105,73 @@ UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para 
 		
 	};// @lock
 		
+	 //Menú para el botón Toolbar
+	 
+ //EMPRESA
+ 
+ var menuBoton2 = ' <ul id="toolbar-options-emp" role="menu" aria-labelledby="dLabel" style="display:none">'
++'<li><a class="tool" href="#" id="mEmpresa" > Empresa</a></li>'
++'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="mDonde">Dónde estamos</a></li>'
++'<li><a class="tool" href="#" id="mClientes"> Nuestros Clientes</a></li>'
++'</ul>';
+$('body').append(menuBoton2);
+
+//Comportamiento de los botones de la toolbar:
+$('#mEmpresa').click(function() {
+// Codigo sin no es un enlace
+});
+
+$('#mDonde').click(function() {
+// Codigo sin no es un enlace
+});
+ 	$('#mClientes').click(function() {
+// Codigo sin no es un enlace
+});
+ 	
+ //Botón con menú
+ var bToolbar = getHtmlObj('richText7');
+ $(bToolbar).toolbar({
+	content: '#toolbar-options-emp', 
+	position: 'bottom',
+	hideOnClick: true
+});			
+
+
+//RECURSOS
+ var menuRecursos = ' <ul id="toolbar-options-rec" role="menu" aria-labelledby="dLabel" style="display:none">'
++'<li><a class="tool" href="#" id="mRecursosEmpresa" > Usuarios</a></li>'
++'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="mRecursosDistribuidores"> Distribuidores</a></li>'
++'<li><a class="tool" href="#" id="mRecursosPrensa"> Prensa</a></li>'
++'</ul>';
+$('body').append(menuRecursos);
+
+
+ var bToolbarRecursos = getHtmlObj('richText2');
+ $(bToolbarRecursos).toolbar({
+	content: '#toolbar-options-rec', 
+	position: 'bottom',
+	hideOnClick: true
+});			
+
+
+//SERVICIOS
+ var menuServicios = ' <ul id="toolbar-options-serv" role="menu" aria-labelledby="dLabel" style="display:none">'
++'<li><a class="tool" href="#" id="mRecursosEmpresa" > Usuarios</a></li>'
++'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="mRecursosDistribuidores"> Distribuidores</a></li>'
++'<li><a class="tool" href="#" id="mRecursosPrensa"> Prensa</a></li>'
++'</ul>';
+$('body').append(menuServicios);
+
+
+ var bToolbarServicios = getHtmlObj('richText5');
+ $(bToolbarServicios).toolbar({
+	content: '#toolbar-options-serv', 
+	position: 'bottom',
+	hideOnClick: true
+});			
+
+
+
 
 
 
@@ -202,13 +180,10 @@ UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para 
 	WAF.addListener(this.id + "_foto_usuario", "touchend", foto_usuario.touchend, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
 	WAF.addListener(this.id + "_openMenu", "touchend", openMenu.touchend, "WAF");
-	WAF.addListener(this.id + "_richText2", "touchend", richText2.touchend, "WAF");
 	WAF.addListener(this.id + "_openMenu", "click", openMenu.click, "WAF");
 	WAF.addListener(this.id + "_richText3", "click", richText3.click, "WAF");
 	WAF.addListener(this.id + "_richText4", "click", richText4.click, "WAF");
 	WAF.addListener(this.id + "_conectText", "click", conectText.click, "WAF");
-	WAF.addListener(this.id + "_richText5", "click", richText5.click, "WAF");
-	WAF.addListener(this.id + "_richText2", "click", richText2.click, "WAF");
 	WAF.addListener(this.id + "_login2", "login", login2.login, "WAF");
 	WAF.addListener(this.id + "_image2", "click", image2.click, "WAF");
 	// @endregion// @endlock
