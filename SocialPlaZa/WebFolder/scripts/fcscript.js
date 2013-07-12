@@ -236,7 +236,7 @@ fcBrainObj = function() {
             $$(components.main).loadComponent(components.defaults.login.compPath);
         }
         else {
-            console.log(WAF.directory.currentUser().fullName);
+            
             var user = WAF.directory.currentUser();
             if (!user) {
                 //WAF.directory.loginByPassword('demo', '123');

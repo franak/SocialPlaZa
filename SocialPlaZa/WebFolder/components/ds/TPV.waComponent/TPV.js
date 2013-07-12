@@ -302,17 +302,17 @@ $.getJSON( ruta, function(data) {
 		
 		
 		$$(getHtmlId("dialog1")).closeDialog({
-					onSuccess: function(){
-						if(localStorage.cambio  > 0){
+			onSuccess: function(){
+				if(localStorage.cambio  > 0){
 					UI.alert(localStorage.cambio,'Devolución');
-					}					
-				}
-				}); //Guardar button
+				}					
+			}
+		}); //Guardar button
 		
 		
 		
 		//Se ejecuta la impresión. El botón está activado desde el "load".
-	}
+	
 	
 
 	};// @lock
@@ -333,42 +333,35 @@ $.getJSON( ruta, function(data) {
 	{// @endlock
 		UI.confirm('¿Desea borrar este ticket?', 'Confirmacion', function(r) {
 
-	    if (r == true) {
-	    	
-	        $comp.sources.docComercial.removeCurrent();
+		    if (r == true) {
+		    	
+		        $comp.sources.docComercial.removeCurrent();
+		        $comp.sources.docComercial.all({
+		            onSuccess: function(event) {
+		                if ($comp.sources.docComercial.length == 0) {
+		                    //ds.DocComercial.crearPrincipio
+		                    fcBrain.crearDocComercial($comp, 1, {
+		                        onSuccess: function(event) {
+		                            $comp.sources.docComercial.all({
+		                                onSuccess: function(event) {
+		                                    tamanio = $comp.sources.docComercial.length;
+		                                    if (tamanio == 0) {
+		                                        fcBrain.crearDocComercial($comp, 1);
+		                                        tamanio = 1;
+		                                    }
+		                                    setTimeout(function() { //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
+		                                        $comp.sources.docComercial.select(tamanio - 1);
 
-	        $comp.sources.docComercial.all({
-
-	            onSuccess: function(event) {
-
-	                if ($comp.sources.docComercial.length == 0) {
-	                    //ds.DocComercial.crearPrincipio
-	                    fcBrain.crearDocComercial($comp, 1, {
-	                        onSuccess: function(event) {
-
-	                            $comp.sources.docComercial.all({
-	                                onSuccess: function(event) {
-	                                    tamanio = $comp.sources.docComercial.length;
-	                                    if (tamanio == 0) {
-	                                        fcBrain.crearDocComercial($comp, 1);
-	                                        tamanio = 1;
-	                                    }
-	                                    setTimeout(function() { //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
-	                                        $comp.sources.docComercial.select(tamanio - 1);
-
-	                                    }, 300);
-
-	                                } // Fin de On Success de All
-	                            });// Fin de All
-
-	                        }
-
-	                    });
-	                }
-	            }
-	        });
-	    }
-	});
+		                                    }, 300);
+		                                } // Fin de On Success de All
+		                            });// Fin de All
+		                        }
+		                    });
+		                }
+		            }
+		        });
+		    }
+		});
 	};// @lock
 
 	imageButton6.click = function imageButton6_click (event)// @startlock
@@ -411,15 +404,15 @@ $.getJSON( ruta, function(data) {
 
 	richText6.click = function richText6_click (event)// @startlock
 	{// @endlock
-			var familiaselec = this.getValue();
+		var familiaselec = this.getValue();
 		$comp.sources.articulos.query("Familia.Nombre=:1",familiaselec);
 		qString = familiaselec;
 		
 
 		$('.solapa').removeClass('btn-maniadmin-4');
-				this.addClass('btn-maniadmin-4');
+		this.addClass('btn-maniadmin-4');
 
-$('.disabled').addClass('btn-warning');
+		$('.disabled').addClass('btn-warning');
 		$('.disabled').removeClass('disabled');
 
 
@@ -509,39 +502,39 @@ $('.disabled').addClass('btn-warning');
 	richText14.click = function richText14_click (event)// @startlock
 	{// @endlock
 		if($$(id+"_richText14").getState() != "disabled"){
-		$$(id+"_richText14").setState("disabled");
-		var dialogo = getHtmlId("dialog3");
-		var estado = $$(dialogo).getState();
-		//Si el usuario va modificar o borrar el articulos
-		if(estado == "modificar"){
+			$$(id+"_richText14").setState("disabled");
+			var dialogo = getHtmlId("dialog3");
+			var estado = $$(dialogo).getState();
+			//Si el usuario va modificar o borrar el articulos
+			if(estado == "modificar"){
+				
+				//appds.modificarArticulo($comp); DA FALLO
+				
+				var codigo = $$($comp.id+"_textField2").getValue();
+				var precio = $$($comp.id+"_textField6").getValue();
+				var descripcion = $$($comp.id+"_textField7").getValue();
+				var familia = ds.Familias.getFamilia($$($comp.id+"_combobox2").getValue());
 			
-			//appds.modificarArticulo($comp); DA FALLO
-			
-			var codigo = $$($comp.id+"_textField2").getValue();
-			var precio = $$($comp.id+"_textField6").getValue();
-			var descripcion = $$($comp.id+"_textField7").getValue();
-			var familia = ds.Familias.getFamilia($$($comp.id+"_combobox2").getValue());
-		
-			$comp.sources.articulos.Codigo = codigo;
-			$comp.sources.articulos.Precio = precio;
-			$comp.sources.articulos.Descripcion = descripcion;
-			$comp.sources.articulos.Familia.set(familia);
-			$comp.sources.articulos.save({
-				onSuccess:function(event){
-					$comp.sources.articulos.serverRefresh();
-					if(qString != null){
-						$comp.sources.articulos.query("Familia.Nombre =:1",qString);
+				$comp.sources.articulos.Codigo = codigo;
+				$comp.sources.articulos.Precio = precio;
+				$comp.sources.articulos.Descripcion = descripcion;
+				$comp.sources.articulos.Familia.set(familia);
+				$comp.sources.articulos.save({
+					onSuccess:function(event){
+						$comp.sources.articulos.serverRefresh();
+						if(qString != null){
+							$comp.sources.articulos.query("Familia.Nombre =:1",qString);
+						}
+						$$($comp.id+"_richText14").setState("default");
+						$$($comp.id+'_dialog3').closeDialog();
 					}
-					$$($comp.id+"_richText14").setState("default");
-					$$($comp.id+'_dialog3').closeDialog();
-				}
-			});
-			
-		}else if (estado == "crear"){
-			appds.estadoConfirmacion($comp, "crear");
-			
+				});
+				
+			}else if (estado == "crear"){
+				appds.estadoConfirmacion($comp, "crear");
+				
+			}
 		}
-	}
 	};// @lock
 
 	richText15.click = function richText15_click (event)// @startlock
@@ -679,8 +672,9 @@ var fpEfectivo = getHtmlId("input_EF");
 var fpEfectivoObj = getHtmlObj("input_EF");
 
 console.log("vSuma: "+vSuma);
-var vSumaR =  Math.round(vSuma*100)/100
+var vSumaR =  Math.round(vSuma*100)/100;
 vSumaR = vSumaR.toFixed(2);
+console.log("vSumaR: "+vSumaR);
 //$("#input_EF").val(vSumaR);
 
 //$(fpEfectivoObj).select();//Para que apareza seleccionado todo el contenido
@@ -696,7 +690,7 @@ $(".entrada").blur( function(event) {
 	
 	total = 0;   
 	$(".entrada").each( function(){
-		total += $(this).val() * 1;
+		total += parseFloat($(this).val());
 		console.log("total1: "+total);
 	});
 
@@ -742,9 +736,9 @@ function eliminaLinea(){
 			UI.alert("No hay Líneas")
 		}else{
 	
-UI.confirm('¿Desea borrar <b>'+$comp.sources.lineasCollection.Descripcion+'</b> del ticket?', 'Confirmacion', function(r) {
+		UI.confirm('¿Desea borrar <b>'+$comp.sources.lineasCollection.Descripcion+'</b> del ticket?', 'Confirmacion', function(r) {
 			
-	if(r == true){
+			if(r == true){
 
 			ds.Lineas.borrarLinea(linea);
 			//DS resto las posiciones a todas las lineas a partir de la borrada

@@ -42,7 +42,12 @@ excludedFiles = [
 "recovery.html",
 "recovery.js",
 "buzz.js",
-"fastclick.js"
+"fastclick.js",
+"fullcalendar.min.js",
+"jquery.toolbar.min.js",
+"jquery.vticker.js",
+"jquery.zrssfeed.js",
+"jquery.printPage.js"
 ];
 
 
