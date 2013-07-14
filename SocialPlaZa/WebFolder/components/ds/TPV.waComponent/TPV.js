@@ -13,6 +13,8 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 
+
+
 //Activación del botón para imprimir		
 var printContinuar = getHtmlObj('bContinuarDispensar');
 
@@ -83,6 +85,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		qString = null;
 	
 	// @region namespaceDeclaration// @startlock
+	var button2 = {};	// @button
 	var docComercialEvent = {};	// @dataSource
 	var btnAll = {};	// @buttonImage
 	var imageButton15 = {};	// @buttonImage
@@ -113,6 +116,29 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 
 	// eventHandlers// @lock
+
+	button2.click = function button2_click (event)// @startlock
+	{// @endlock
+		var myEmp = findTicket("false");
+
+
+var tichetsFalse  = $comp.sources.docComercial.getEntityCollection();
+var pendientes = tichetsFalse.query("Cobrado = false");
+console.log(pendientes);
+
+var resultado="";
+pendientes.forEach(// on each of the entity collection
+         function(event)
+        {
+            var entity = event.entityCollection; // get the entity from event.entity
+            resultado += event.position +"<br/>";
+                 // event.position contains the position of the entity in the entity collection
+                 // you get the attribute value with entity.attribute.getValue()
+   		});
+			console.log(resultado);
+
+
+	};// @lock
 
 	docComercialEvent.onCurrentElementChange = function docComercialEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
@@ -485,6 +511,7 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_imageButton15", "click", imageButton15.click, "WAF");
@@ -932,10 +959,11 @@ function dispensar(){
 			}
 		}); //Guardar button
 		
-		
-		
-
-		
+	
+		 dataGrid1Lineas = getHtmlObj('dataGrid1');		
+		$('#dataGrid2 .waf-dataGrid-body').scrollLeft(10);
+   
+ 
 }
 
 
