@@ -37,6 +37,7 @@ $('#mlateralComp').hide();
 //INICIALIZACIÓN DE MODALES.
 btmodales.initModal('Usuarios',$comp);
 
+
 	 var user = WAF.directory.currentUser();
 	if(user){
 		$(getHtmlObj('conectText')).text('DESCONECTAR');

@@ -83,7 +83,7 @@ font-size: 13px;
 
 
 .bar-btn:hover{
-	color :orange;
+	color :#dd4814;
 		-webkit-filter: brightness(0%);
 }
 
@@ -873,7 +873,7 @@ line-height:28px;
 }
 
 a.tool:hover{
-background-color:orange;
+background-color:#dd4814; /*Naranja del tema*/
 text-decoration:none;
 color:white;
 
@@ -914,3 +914,5 @@ color:white;
 		font-size: 12px;
 	font-weight: bold;
 }
+
+.one-sided-shadow {-webkit-box-shadow: 0 8px 6px -6px black}
