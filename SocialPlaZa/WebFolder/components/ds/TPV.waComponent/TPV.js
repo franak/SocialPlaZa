@@ -23,6 +23,15 @@ $(printContinuar).printPage({
       message:"Imprimiendo Ticket..."
 });
 
+var bPrint = getHtmlObj('bPrint');
+
+$(bPrint).printPage({
+      url: "impPages/ticket.html",
+      message:"Imprimiendo Duplicado..."
+});
+
+
+
 //Desactivo el doble click de los botones de TPV
 $('.matrix_a').dblclick(function(e){ 
     e.preventDefault();
@@ -31,6 +40,12 @@ $('.matrix_a').dblclick(function(e){
 //Evito que se seleccione el texto de los botones
 
 UI.disableSelection(document.body);
+
+//Se crean los modales de Bootstrap
+
+
+  btmodales.modalListaRegistros();
+  
 
 var bNuevo = getHtmlObj('imageButton1');	
 //bNuevo.popover({'placement':'top', 'trigger' : 'hover', 'content' : 'Nuevo Artículo'});
@@ -84,10 +99,16 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		//DS DECLARACION DE qString PARA SABER EN QUE MOMENTO EN QUE FAMILIA ESTAMOS
 		qString = null;
 	
+
+	
+	
+	
+	
 	// @region namespaceDeclaration// @startlock
+	var textField3 = {};	// @textField
+	var imageButton11 = {};	// @buttonImage
 	var button11 = {};	// @button
 	var docComercial1Event = {};	// @dataSource
-	var button2 = {};	// @button
 	var docComercialEvent = {};	// @dataSource
 	var btnAll = {};	// @buttonImage
 	var imageButton15 = {};	// @buttonImage
@@ -100,7 +121,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	var bCancelDispensar = {};	// @richText
 	var imageButton4 = {};	// @buttonImage
 	var imageButton10 = {};	// @buttonImage
-	var imageButton6 = {};	// @buttonImage
 	var imageButton5 = {};	// @buttonImage
 	var richText23 = {};	// @richText
 	var richText6 = {};	// @richText
@@ -119,6 +139,23 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	// eventHandlers// @lock
 
+	textField3.change = function textField3_change (event)// @startlock
+	{// @endlock
+					$comp.sources.docComercial.save();
+
+	};// @lock
+
+	imageButton11.click = function imageButton11_click (event)// @startlock
+	{// @endlock
+		listarDocComercial();
+		/*$("BODY").append($("#"+id+"_dialog5"));         	
+		$(id+"_dialog5").displayDialog(); //cancel button
+		$("#"+id+"_dialog5").css("top",20);
+		$("#"+id+"_dialog5").css("left",300);*/
+		
+		$('#modalLista').modal('show');
+	};// @lock
+
 	button11.click = function button11_click (event)// @startlock
 	{// @endlock
 		$("#"+id+"_container16").text("");
@@ -129,17 +166,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	docComercial1Event.onCollectionChange = function docComercial1Event_onCollectionChange (event)// @startlock
 	{// @endlock
 		// Add your code here
-	};// @lock
-
-	button2.click = function button2_click (event)// @startlock
-	{// @endlock
-		
-		listarDocComercial();
-		$("BODY").append($("#"+id+"_dialog5"));         	
-		$$(id+"_dialog5").displayDialog(); //cancel button
-		$("#"+id+"_dialog5").css("top",20);
-		$("#"+id+"_dialog5").css("left",300);
-		
 	};// @lock
 
 	docComercialEvent.onCurrentElementChange = function docComercialEvent_onCurrentElementChange (event)// @startlock
@@ -292,11 +318,6 @@ $.getJSON( ruta, function(data) {
 	imageButton10.click = function imageButton10_click (event)// @startlock
 	{// @endlock
 		btn_borrar();
-	};// @lock
-
-	imageButton6.click = function imageButton6_click (event)// @startlock
-	{// @endlock
-			UI.alert('Guardado');
 	};// @lock
 
 	imageButton5.click = function imageButton5_click (event)// @startlock
@@ -513,9 +534,10 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_textField3", "change", textField3.change, "WAF");
+	WAF.addListener(this.id + "_imageButton11", "click", imageButton11.click, "WAF");
 	WAF.addListener(this.id + "_button11", "click", button11.click, "WAF");
 	WAF.addListener(this.id + "_docComercial1", "onCollectionChange", docComercial1Event.onCollectionChange, "WAF");
-	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_imageButton15", "click", imageButton15.click, "WAF");
@@ -534,7 +556,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_bCancelDispensar", "click", bCancelDispensar.click, "WAF");
 	WAF.addListener(this.id + "_imageButton4", "click", imageButton4.click, "WAF");
 	WAF.addListener(this.id + "_imageButton10", "click", imageButton10.click, "WAF");
-	WAF.addListener(this.id + "_imageButton6", "click", imageButton6.click, "WAF");
 	WAF.addListener(this.id + "_imageButton5", "click", imageButton5.click, "WAF");
 	WAF.addListener(this.id + "_richText23", "click", richText23.click, "WAF");
 	WAF.addListener(this.id + "_richText19", "click", richText19.click, "WAF");
@@ -892,7 +913,7 @@ function borrarTicket(){
 }
 
 function NegativoTicket(){
-	UI.confirm('¿Desea abonar este ticket?', 'Confirmacion', function(r) {
+	UI.confirm('Ya está cobrado, no se puede eliminar ¿Desea abonar este ticket?', 'Confirmacion', function(r) {
 	    if (r == true) {
 	    	
 	    	var tipoDoc = 1;
@@ -972,31 +993,48 @@ function dispensar(){
 
 function listarDocComercial(){
 	   
+	
+	   
 	var resultado = $comp.sources.docComercial;
 	
 		
-	var html = "<table class='table' id='tabla_tickets'>";
+	//var html = "<table class='table' id='tabla_tickets'>";
+var html="";
+var html = '<ul class="nav nav-tabs nav-stacked">';
 
+console.log(resultado);
 	for (var i = 0; i < resultado.length; i++){
 		resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
         {
         	var entity = event.element;
+        	
+				if (entity.Denom){
+				var denominacion =" - Ref: "+ entity.Denom;
+				}else{
+				var denominacion = "";
+				}
 			
 	        if(entity.Cobrado == false){
 	       		
-	       		html += "<tr><td><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +"</h5></a><td/></tr>";
+	       	//	html += "<tr><td><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +"</h5></a><td/></tr>";
+				html += "<li><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +" "+ denominacion +" </h5></a></li>";
+
+	       
 	       }
        }
 	   });
 	}
-	html += "</table>";
+	//html += "</table>";
+	html += '</ul>';
 	
-	$("#"+id+"_container16").append(html);
+	//$("#"+id+"_container16").append(html);
+	$('#modalListaBody').html(html);
 	
   	$('.linkDoc').click(function(){ 
     	$comp.sources.docComercial.select(this.id);
-    	$("#"+id+"_container16").text("");
-    	$$(getHtmlId("dialog5")).closeDialog(); //cancel button
+    	$('#modalLista').modal('hide')
+    	/*$("#"+id+"_container16").text("");
+    	$(getHtmlId("dialog5")).closeDialog(); //cancel button*/
    	});
    	
   
