@@ -105,6 +105,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	
 	
 	// @region namespaceDeclaration// @startlock
+	var bPrint = {};	// @buttonImage
 	var textField3 = {};	// @textField
 	var imageButton11 = {};	// @buttonImage
 	var button11 = {};	// @button
@@ -138,6 +139,12 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 
 	// eventHandlers// @lock
+
+	bPrint.click = function bPrint_click (event)// @startlock
+	{// @endlock
+		var docActual = $comp.sources.docComercial.ID;
+		localStorage.docActual = docActual;
+	};// @lock
 
 	textField3.change = function textField3_change (event)// @startlock
 	{// @endlock
@@ -534,6 +541,7 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_bPrint", "click", bPrint.click, "WAF");
 	WAF.addListener(this.id + "_textField3", "change", textField3.change, "WAF");
 	WAF.addListener(this.id + "_imageButton11", "click", imageButton11.click, "WAF");
 	WAF.addListener(this.id + "_button11", "click", button11.click, "WAF");
