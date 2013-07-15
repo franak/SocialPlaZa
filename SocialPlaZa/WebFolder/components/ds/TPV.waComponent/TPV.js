@@ -85,6 +85,8 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		qString = null;
 	
 	// @region namespaceDeclaration// @startlock
+	var button11 = {};	// @button
+	var docComercial1Event = {};	// @dataSource
 	var button2 = {};	// @button
 	var docComercialEvent = {};	// @dataSource
 	var btnAll = {};	// @buttonImage
@@ -117,15 +119,22 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	// eventHandlers// @lock
 
+	button11.click = function button11_click (event)// @startlock
+	{// @endlock
+		$("#"+id+"_container16").text("");
+    	$$(getHtmlId("dialog5")).closeDialog(); //cancel button
+    			
+	};// @lock
+
+	docComercial1Event.onCollectionChange = function docComercial1Event_onCollectionChange (event)// @startlock
+	{// @endlock
+		// Add your code here
+	};// @lock
+
 	button2.click = function button2_click (event)// @startlock
 	{// @endlock
 
 		listarDocComercial(event);
-	};// @lock
-
-	docComercialEvent.onCollectionChange = function docComercialEvent_onCollectionChange (event)// @startlock
-	{// @endlock
-		console.log(event);
 	};// @lock
 
 	docComercialEvent.onCurrentElementChange = function docComercialEvent_onCurrentElementChange (event)// @startlock
@@ -499,7 +508,8 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_docComercial", "onCollectionChange", docComercialEvent.onCollectionChange, "WAF");
+	WAF.addListener(this.id + "_button11", "click", button11.click, "WAF");
+	WAF.addListener(this.id + "_docComercial1", "onCollectionChange", docComercial1Event.onCollectionChange, "WAF");
 	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
@@ -957,25 +967,23 @@ function dispensar(){
 
 function listarDocComercial(event) 
 {   
-    
-    var myset = $comp.sources.docComercial.getEntityCollection();
-    console.log("myset: "+myset);
-  
-     // initialization
-     
-    var html="";
-    myset.forEach({  // on each of the entity collection
+	$("BODY").append($("#"+id+"_dialog5"));         	
+	$$(id+"_dialog5").displayDialog(); //cancel button
+	$("#"+id+"_dialog5").css("top",20);
+	$("#"+id+"_dialog5").css("left",300);
+	var resultado = $comp.sources.docComercial.getEntityCollection();
+		
+		
+	var html = "<table class='table' id='tabla_tickets'>"
+    resultado.forEach({  
         onSuccess: function(event)
         {
-            var entity = event.entity; // get the entity from event.entity
-            
-            if(entity.Cobrado.getValue() == false){
-            	
-            	 html += event.position + " : Numero de Ticket  =>" + entity.Numero.getValue()+"<br/>";
-            }
-           
-                 // event.position contains the position of the entity in the entity collection
-                 // you get the attribute value with entity.attribute.getValue()
+            var entity = event.entity; 
+           	if(entity.Cobrado.getValue() == false){
+           		
+           		html += "<tr><td><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero.getValue() +"</h5></a><td/></tr>";
+           	}
+           	
         },
         onError: function(event)
         {
@@ -983,10 +991,22 @@ function listarDocComercial(event)
         },
         atTheEnd: function(event)
         {
-            UI.alert(html); // display of the final result
+			
+			html += "</table>";
+			$("#"+id+"_container16").append(html);
         }
     });
+    
+    $('.linkDoc').click(function(){ 
+    	$comp.sources.docComercial.select(this.id);
+    	$("#"+id+"_container16").text("");
+    	$$(getHtmlId("dialog5")).closeDialog(); //cancel button
+    });
+    
+   
 }
+
+
 
 
 }// @startlock
