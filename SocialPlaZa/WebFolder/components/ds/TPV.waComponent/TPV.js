@@ -119,25 +119,13 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	button2.click = function button2_click (event)// @startlock
 	{// @endlock
-		var myEmp = findTicket("false");
 
+		listarDocComercial(event);
+	};// @lock
 
-var tichetsFalse  = $comp.sources.docComercial.getEntityCollection();
-var pendientes = tichetsFalse.query("Cobrado = false");
-console.log(pendientes);
-
-var resultado="";
-pendientes.forEach(// on each of the entity collection
-         function(event)
-        {
-            var entity = event.entityCollection; // get the entity from event.entity
-            resultado += event.position +"<br/>";
-                 // event.position contains the position of the entity in the entity collection
-                 // you get the attribute value with entity.attribute.getValue()
-   		});
-			console.log(resultado);
-
-
+	docComercialEvent.onCollectionChange = function docComercialEvent_onCollectionChange (event)// @startlock
+	{// @endlock
+		console.log(event);
 	};// @lock
 
 	docComercialEvent.onCurrentElementChange = function docComercialEvent_onCurrentElementChange (event)// @startlock
@@ -511,6 +499,7 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_docComercial", "onCollectionChange", docComercialEvent.onCollectionChange, "WAF");
 	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
@@ -964,6 +953,39 @@ function dispensar(){
 		$('#dataGrid2 .waf-dataGrid-body').scrollLeft(10);
    
  
+}
+
+function listarDocComercial(event) 
+{   
+    
+    var myset = $comp.sources.docComercial.getEntityCollection();
+    console.log("myset: "+myset);
+  
+     // initialization
+     
+    var html="";
+    myset.forEach({  // on each of the entity collection
+        onSuccess: function(event)
+        {
+            var entity = event.entity; // get the entity from event.entity
+            
+            if(entity.Cobrado.getValue() == false){
+            	
+            	 html += event.position + " : Numero de Ticket  =>" + entity.Numero.getValue()+"<br/>";
+            }
+           
+                 // event.position contains the position of the entity in the entity collection
+                 // you get the attribute value with entity.attribute.getValue()
+        },
+        onError: function(event)
+        {
+            UI.alert("Ha ocurrido un error");
+        },
+        atTheEnd: function(event)
+        {
+            UI.alert(html); // display of the final result
+        }
+    });
 }
 
 
