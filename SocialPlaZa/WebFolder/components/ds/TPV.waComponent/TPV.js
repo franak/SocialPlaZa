@@ -133,8 +133,13 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	button2.click = function button2_click (event)// @startlock
 	{// @endlock
-
-		listarDocComercial(event);
+		
+		listarDocComercial();
+		$("BODY").append($("#"+id+"_dialog5"));         	
+		$$(id+"_dialog5").displayDialog(); //cancel button
+		$("#"+id+"_dialog5").css("top",20);
+		$("#"+id+"_dialog5").css("left",300);
+		
 	};// @lock
 
 	docComercialEvent.onCurrentElementChange = function docComercialEvent_onCurrentElementChange (event)// @startlock
@@ -965,43 +970,36 @@ function dispensar(){
  
 }
 
-function listarDocComercial(event) 
-{   
-	$("BODY").append($("#"+id+"_dialog5"));         	
-	$$(id+"_dialog5").displayDialog(); //cancel button
-	$("#"+id+"_dialog5").css("top",20);
-	$("#"+id+"_dialog5").css("left",300);
-	var resultado = $comp.sources.docComercial.getEntityCollection();
+function listarDocComercial(){
+	   
+	var resultado = $comp.sources.docComercial;
+	
 		
-		
-	var html = "<table class='table' id='tabla_tickets'>"
-    resultado.forEach({  
-        onSuccess: function(event)
+	var html = "<table class='table' id='tabla_tickets'>";
+
+	for (var i = 0; i < resultado.length; i++){
+		resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
         {
-            var entity = event.entity; 
-           	if(entity.Cobrado.getValue() == false){
-           		
-           		html += "<tr><td><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero.getValue() +"</h5></a><td/></tr>";
-           	}
-           	
-        },
-        onError: function(event)
-        {
-            UI.alert("Ha ocurrido un error");
-        },
-        atTheEnd: function(event)
-        {
+        	var entity = event.element;
 			
-			html += "</table>";
-			$("#"+id+"_container16").append(html);
-        }
-    });
-    
-    $('.linkDoc').click(function(){ 
+	        if(entity.Cobrado == false){
+	       		
+	       		html += "<tr><td><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +"</h5></a><td/></tr>";
+	       }
+       }
+	   });
+	}
+	html += "</table>";
+	
+	$("#"+id+"_container16").append(html);
+	
+  	$('.linkDoc').click(function(){ 
     	$comp.sources.docComercial.select(this.id);
     	$("#"+id+"_container16").text("");
     	$$(getHtmlId("dialog5")).closeDialog(); //cancel button
-    });
+   	});
+   	
+  
     
    
 }
