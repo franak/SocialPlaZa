@@ -275,6 +275,81 @@ appdsObj = function () {
 		}
 	}
 	
+	
+	 this.anadirLineaPorCodigo = function($comp,botonCodigo){
+     	
+		var id = $comp.id; //FC Traemos el id mendiante el $comp. Siempre enviar $comp en lugar de id
+
+		//DS CONDICIONO AL BOTON QUE LA ACCION ANTERIOR SE HA TERMINADO ¡¡
+		if($$(botonCodigo).getState() != "disabled"){
+			
+		
+		//DS PONGO EL ESTADO DISABLED AL BOTON
+		$$(botonCodigo).setState('disabled');
+		
+		var articuloCodigo = $comp.sources.articulos1.Codigo;
+		var docComercialID = $comp.sources.docComercial.ID;
+		var art = ds.Articulos.devolverArticuloCodigo(articuloCodigo);
+		console.log(art);
+		var lin = ds.Lineas.getLinea(articuloCodigo,docComercialID); //en el servidor.
+			
+		//	var lin = $comp.sources.lineas.query("Documento.ID=:1 AND Codigo =:2",docComercialID,articuloCodigo);
+			
+				
+			if(lin != null){
+				lin.Cantidad.setValue(lin.Cantidad.getValue() + 1);
+				pos = lin.Posicion.getValue();
+				lin.save({
+					onSuccess:function (event){
+						//mySound.play();
+						$comp.sources.docComercial.serverRefresh();
+
+						//DS PONGO EL ESTADO DEFAULT AL BOTON
+						$$(botonCodigo).setState('default');
+					}
+				});
+				
+			}else{
+				var aPos = ds.Lineas.getPosiciones(docComercialID);
+			
+				$comp.sources.lineas.newEntity();
+				$comp.sources.lineas.Codigo = art.Codigo.value;
+				$comp.sources.lineas.Descripcion = art.Descripcion.value;
+				$comp.sources.lineas.PrecioUnitario = art.Precio.value;
+				$comp.sources.lineas.Cantidad = 1;
+				$comp.sources.lineas.Documento.set($comp.sources.docComercial);
+				$comp.sources.lineas.Almacen.set($comp.sources.almacenes);
+				//DS si ha habido algun borrado previamente se le asigna automaticamente su posicion antigua
+				if(vPosRestada != null){
+					
+					//DS se le incrementa en 1 a todas las lineas cuyas posiciones son mayores que la borrada 
+					ds.Lineas.sumarPosiciones($comp.sources.docComercial.ID, vPosRestada);
+					//$comp.sources.lineas.Posicion=vPosRestada;
+					pos = vPosRestada;
+					vPosRestada = null;
+					
+				//DS si es la primera linea, se le da la posicion 0
+				}else if(aPos.length == 0){
+					$comp.sources.lineas.Posicion=0;
+					pos = 0;
+					 
+				}else{
+					var n = aPos[0] + 1;
+					$comp.sources.lineas.Posicion = n;
+					pos = n;
+				}
+				
+				$comp.sources.lineas.save({
+					onSuccess:function (event){
+						$comp.sources.docComercial.serverRefresh();
+						$$(botonCodigo).setState('default');
+					}
+				});	
+			}
+		}
+	}
+	
+	
 	this.estadoInicial = function ($comp,estado,objeto){
 		
 		if(estado == "crear"){

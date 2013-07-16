@@ -105,6 +105,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	
 	
 	// @region namespaceDeclaration// @startlock
+	var button1 = {};	// @button
 	var bPrint = {};	// @buttonImage
 	var textField3 = {};	// @textField
 	var imageButton11 = {};	// @buttonImage
@@ -139,6 +140,22 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 
 	// eventHandlers// @lock
+
+	button1.click = function button1_click (event)// @startlock
+	{// @endlock
+		var cobrado = $comp.sources.docComercial.Cobrado;
+		botonCodigo = getHtmlId('button1');
+		if(cobrado != true){
+			
+			appds.anadirLineaPorCodigo($comp,botonCodigo);
+			
+		}else{
+			
+			$$(botonCodigo).setState('disabled');
+			UI.alert('Ya está Cobrado','Atención');
+			
+		}
+	};// @lock
 
 	bPrint.click = function bPrint_click (event)// @startlock
 	{// @endlock
@@ -541,6 +558,7 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_bPrint", "click", bPrint.click, "WAF");
 	WAF.addListener(this.id + "_textField3", "change", textField3.change, "WAF");
 	WAF.addListener(this.id + "_imageButton11", "click", imageButton11.click, "WAF");
