@@ -25,7 +25,7 @@ enfocar();
 function enfocar (){
 	
 	
-	$comp.sources.articulos2.all({
+	$comp.sources.articulos1.all({
 		onSuccess: function (event){
 			$$(id+"_textField4").setValue("");	
 		}
