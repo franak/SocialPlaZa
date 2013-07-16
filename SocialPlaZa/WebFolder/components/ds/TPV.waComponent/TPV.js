@@ -33,8 +33,8 @@ function enfocar (){
 	$("#"+id+"_textField4").focus();
 	
 	$("input").blur(function (){
-		if(this.id == id+"_textField4"){
-			console.log("fuera text4");
+		if(this.id == id+"_textField4" || this.id == id+"_textField5" || this.id == id+"_textField10"){
+			
 		}else{
 			$("#"+id+"_textField4").focus();
 		}
@@ -140,6 +140,9 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	
 	
 	// @region namespaceDeclaration// @startlock
+	var richText30 = {};	// @richText
+	var richText29 = {};	// @richText
+	var fileUpload1 = {};	// @fileUpload
 	var bOpciones = {};	// @buttonImage
 	var imageButton12 = {};	// @buttonImage
 	var imageButton7 = {};	// @buttonImage
@@ -181,6 +184,27 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 
 	// eventHandlers// @lock
+
+	richText30.click = function richText30_click (event)// @startlock
+	{// @endlock
+		$$(id+"_dialog4").closeDialog();
+	};// @lock
+
+	richText29.click = function richText29_click (event)// @startlock
+	{// @endlock
+		$comp.sources.entidades.save({
+			onSuccess:function (){
+				$$(id+"_dialog4").closeDialog();
+			}
+		});
+	};// @lock
+
+	fileUpload1.filesUploaded = function fileUpload1_filesUploaded (event)// @startlock
+	{// @endlock
+		$("#"+id+"_fileUpload1").hide();
+		$("#"+id+"_image2").show(500);
+		
+	};// @lock
 
 	bOpciones.click = function bOpciones_click (event)// @startlock
 	{// @endlock
@@ -346,7 +370,27 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton1.click = function imageButton1_click (event)// @startlock
 	{// @endlock
-		appds.openAgenda();
+		//appds.openAgenda();
+		
+		var nombre = $$(id+"_richText25").getValue();
+		$comp.sources.entidades.query("Nombre =:1",nombre);
+		if($comp.sources.entidades.Logotipo == null){
+			$("#"+id+"_fileUpload1").show();
+			$("#"+id+"_image2").hide();
+		}else{
+			$("#"+id+"_fileUpload1").hide();
+			$("#"+id+"_image2").show();
+		}
+		$("BODY").append($("#"+id+"_dialog4"));
+		$$(id+"_dialog4").displayDialog();
+		$("#"+id+"_dialog4").css("top",100);
+		$("#"+id+"_dialog4").css("left",200);
+			
+		
+		
+		
+
+		
 	};// @lock
 
 	imageButton14.click = function imageButton14_click (event)// @startlock
@@ -663,6 +707,9 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText30", "click", richText30.click, "WAF");
+	WAF.addListener(this.id + "_richText29", "click", richText29.click, "WAF");
+	WAF.addListener(this.id + "_fileUpload1", "filesUploaded", fileUpload1.filesUploaded, "WAF");
 	WAF.addListener(this.id + "_textField4", "focus", textField4.focus, "WAF");
 	WAF.addListener(this.id + "_bOpciones", "click", bOpciones.click, "WAF");
 	WAF.addListener(this.id + "_imageButton12", "click", imageButton12.click, "WAF");
