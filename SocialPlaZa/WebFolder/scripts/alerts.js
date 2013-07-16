@@ -110,10 +110,6 @@
 						$.alerts._hide();
 						callback(true);
 					});
-					$("#popup_ok").bind('touchend', function(event){//iPad
-						$.alerts._hide();
-						callback(true);
-					});
 					$("#popup_ok").focus().keypress( function(e) {
 						if( e.keyCode == 13 || e.keyCode == 27 ) $("#popup_ok").trigger('click');
 					});
@@ -124,15 +120,7 @@
 						$.alerts._hide();
 						if( callback ) callback(true);
 					});
-					$("#popup_ok").bind('touchend', function(event){//iPad
-						$.alerts._hide();
-						if( callback ) callback(true);
-					});
 					$("#popup_cancel").click( function() {
-						$.alerts._hide();
-						if( callback ) callback(false);
-					});
-					$("#popup_cancel").bind('touchend', function(event){//iPad
 						$.alerts._hide();
 						if( callback ) callback(false);
 					});
@@ -150,16 +138,7 @@
 						$.alerts._hide();
 						if( callback ) callback( val );
 					});
-					$("#popup_ok").bind('touchend', function(event){//iPad
-						var val = $("#popup_prompt").val();
-						$.alerts._hide();
-						if( callback ) callback( val );
-					});
 					$("#popup_cancel").click( function() {
-						$.alerts._hide();
-						if( callback ) callback( null );
-					});
-					$("#popup_cancel").bind('touchend', function(event){//iPad
 						$.alerts._hide();
 						if( callback ) callback( null );
 					});

@@ -215,7 +215,7 @@ appdsObj = function () {
 			var articuloCodigo = art.Codigo.value;
 			var docComercialID = $comp.sources.docComercial.ID;
 			
-		var lin = ds.Lineas.getLinea(articuloCodigo,docComercialID); //en el servidor.
+			var lin = ds.Lineas.getLinea(articuloCodigo,docComercialID); //en el servidor.
 			
 		//	var lin = $comp.sources.lineas.query("Documento.ID=:1 AND Codigo =:2",docComercialID,articuloCodigo);
 			
@@ -276,36 +276,25 @@ appdsObj = function () {
 	}
 	
 	
-	 this.anadirLineaPorCodigo = function($comp,botonCodigo){
+	 this.anadirLineaPorCodigo = function($comp){
      	
 		var id = $comp.id; //FC Traemos el id mendiante el $comp. Siempre enviar $comp en lugar de id
 
 		//DS CONDICIONO AL BOTON QUE LA ACCION ANTERIOR SE HA TERMINADO ¡¡
-		if($$(botonCodigo).getState() != "disabled"){
-			
 		
-		//DS PONGO EL ESTADO DISABLED AL BOTON
-		$$(botonCodigo).setState('disabled');
 		
-		var articuloCodigo = $comp.sources.articulos1.Codigo;
+		var articuloCodigo = $comp.sources.articulos2.Codigo;
 		var docComercialID = $comp.sources.docComercial.ID;
 		var art = ds.Articulos.devolverArticuloCodigo(articuloCodigo);
-		console.log(art);
+		if(art != null){
 		var lin = ds.Lineas.getLinea(articuloCodigo,docComercialID); //en el servidor.
-			
-		//	var lin = $comp.sources.lineas.query("Documento.ID=:1 AND Codigo =:2",docComercialID,articuloCodigo);
-			
 				
 			if(lin != null){
 				lin.Cantidad.setValue(lin.Cantidad.getValue() + 1);
 				pos = lin.Posicion.getValue();
 				lin.save({
 					onSuccess:function (event){
-						//mySound.play();
 						$comp.sources.docComercial.serverRefresh();
-
-						//DS PONGO EL ESTADO DEFAULT AL BOTON
-						$$(botonCodigo).setState('default');
 					}
 				});
 				
@@ -342,10 +331,14 @@ appdsObj = function () {
 				$comp.sources.lineas.save({
 					onSuccess:function (event){
 						$comp.sources.docComercial.serverRefresh();
-						$$(botonCodigo).setState('default');
 					}
 				});	
+			
 			}
+			
+		}else{
+			UI.alert("Codigo de Articulo no encontrado","AVISO");
+			
 		}
 	}
 	

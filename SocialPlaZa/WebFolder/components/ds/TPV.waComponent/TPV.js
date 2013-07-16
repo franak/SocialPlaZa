@@ -12,6 +12,41 @@ function constructor (id) {
 
 
 	this.load = function (data) {// @lock
+		
+
+
+
+//Tener el campo de busqueda de codigo enfocado y vacio a la vez;
+	
+
+
+enfocar();
+
+function enfocar (){
+	
+	
+	$comp.sources.articulos2.all({
+		onSuccess: function (event){
+			$$(id+"_textField4").setValue("");	
+		}
+	});
+	$("#"+id+"_textField4").focus();
+	
+	$("input").blur(function (){
+		if(this.id == id+"_textField4"){
+			console.log("fuera text4");
+		}else{
+			$("#"+id+"_textField4").focus();
+		}
+	});
+	
+}
+
+
+
+
+	
+	
 
 
 
@@ -105,7 +140,13 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	
 	
 	// @region namespaceDeclaration// @startlock
-	var button1 = {};	// @button
+	var bOpciones = {};	// @buttonImage
+	var imageButton12 = {};	// @buttonImage
+	var imageButton7 = {};	// @buttonImage
+	var imageButton3 = {};	// @buttonImage
+	var imageButton2 = {};	// @buttonImage
+	var imageButton8 = {};	// @buttonImage
+	var textField4 = {};	// @textField
 	var bPrint = {};	// @buttonImage
 	var textField3 = {};	// @textField
 	var imageButton11 = {};	// @buttonImage
@@ -141,26 +182,65 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	// eventHandlers// @lock
 
-	button1.click = function button1_click (event)// @startlock
+	bOpciones.click = function bOpciones_click (event)// @startlock
 	{// @endlock
-		var cobrado = $comp.sources.docComercial.Cobrado;
-		botonCodigo = getHtmlId('button1');
-		if(cobrado != true){
-			
-			appds.anadirLineaPorCodigo($comp,botonCodigo);
-			
-		}else{
-			
-			$$(botonCodigo).setState('disabled');
-			UI.alert('Ya está Cobrado','Atención');
-			
+		$("#"+id+"_textField4").focus();
+	};// @lock
+
+	imageButton12.click = function imageButton12_click (event)// @startlock
+	{// @endlock
+		$("#"+id+"_textField4").focus();
+	};// @lock
+
+	imageButton7.click = function imageButton7_click (event)// @startlock
+	{// @endlock
+		$("#"+id+"_textField4").focus();
+	};// @lock
+
+	imageButton3.click = function imageButton3_click (event)// @startlock
+	{// @endlock
+		$("#"+id+"_textField4").focus();
+	};// @lock
+
+	imageButton2.click = function imageButton2_click (event)// @startlock
+	{// @endlock
+		$("#"+id+"_textField4").focus();
+	};// @lock
+
+	imageButton8.click = function imageButton8_click (event)// @startlock
+	{// @endlock
+		$("#"+id+"_textField4").focus();
+	};// @lock
+
+	textField4.focus = function textField4_focus (event)// @startlock
+	{// @endlock
+		
+		$$(id+"_textField4").setValue("");	
+	
+	};// @lock
+
+	textField4.blur = function textField4_blur (event)// @startlock
+	{// @endlock
+		if($$(id+"_textField4").getValue() != ""){
+			var cobrado = $comp.sources.docComercial.Cobrado;
+			if(cobrado != true){
+				
+				appds.anadirLineaPorCodigo($comp);
+				$$(id+"_textField4").setValue("");
+				
+			}else{
+				
+				UI.alert('Ya está Cobrado','Atención');
+			}
 		}
+		
 	};// @lock
 
 	bPrint.click = function bPrint_click (event)// @startlock
 	{// @endlock
 		var docActual = $comp.sources.docComercial.ID;
 		localStorage.docActual = docActual;
+		$("#"+id+"_textField4").focus();
 	};// @lock
 
 	textField3.change = function textField3_change (event)// @startlock
@@ -178,6 +258,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		$("#"+id+"_dialog5").css("left",300);*/
 		
 		$('#modalLista').modal('show');
+		$("#"+id+"_textField4").focus();
 	};// @lock
 
 	button11.click = function button11_click (event)// @startlock
@@ -213,6 +294,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		$('.matrix_a').removeClass('tpv-btn');
 		this.addClass('disabled');
 		this.removeClass('btn-warning');
+		$("#"+id+"_textField4").focus();
 	};// @lock
 
 	imageButton15.click = function imageButton15_click (event)// @startlock
@@ -242,6 +324,8 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	{// @endlock
 		
 		articulo_btn(this);
+		$("#"+id+"_textField4").focus();
+		
 
 	};// @lock
 
@@ -256,6 +340,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	{// @endlock
 
 		articulo_btn(this);
+		$("#"+id+"_textField4").focus();
 		
 	};// @lock
 
@@ -266,12 +351,14 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton14.click = function imageButton14_click (event)// @startlock
 	{// @endlock
+		$("#"+id+"_textField4").focus();
 		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
 	};// @lock
 
 	imageButton9.click = function imageButton9_click (event)// @startlock
 	{// @endlock
 		$$(id+"_richText14").setValue("Guardar");
+		$("#"+id+"_textField4").focus();
 		$$(getHtmlId("dialog3")).closeDialog();
 	};// @lock
 
@@ -324,6 +411,7 @@ $.getJSON( ruta, function(data) {
 	{// @endlock
 	
 		dispensar();
+		
 
 	};// @lock
 
@@ -331,23 +419,29 @@ $.getJSON( ruta, function(data) {
 	{// @endlock
 
 		$$(getHtmlId("dialog1")).closeDialog(); //Cancelar button
+		
 	};// @lock
 
 	imageButton4.click = function imageButton4_click (event)// @startlock
 	{// @endlock
 		cargarMovimientoCaja_btn();
+		$("#"+id+"_textField4").focus();
 
 	};// @lock
 
 	imageButton10.click = function imageButton10_click (event)// @startlock
 	{// @endlock
 		btn_borrar();
+		$("#"+id+"_textField4").focus();
+		
 	};// @lock
 
 	imageButton5.click = function imageButton5_click (event)// @startlock
 	{// @endlock
 		var tipoDoc = 1;
-		fcBrain.crearDocComercial($comp,tipoDoc);		
+		fcBrain.crearDocComercial($comp,tipoDoc);
+		$("#"+id+"_textField4").focus();
+		
 	};// @lock
 
 	richText23.touchend = function richText23_touchend (event)// @startlock
@@ -389,6 +483,8 @@ $.getJSON( ruta, function(data) {
 
 		$('.disabled').addClass('btn-warning');
 		$('.disabled').removeClass('disabled');
+		
+		$("#"+id+"_textField4").focus();
 
 
 	};// @lock
@@ -435,12 +531,14 @@ $.getJSON( ruta, function(data) {
 				ds.PreArticulos.creaPreArticulo(codigo,precio,descripcion,$comp.sources.familias2.Nombre);
 			}
 			$$(id+"_richText14").setState("default");
+			$("#"+id+"_textField4").focus();
 			$$(id+"_dialog3").closeDialog();
 		}else{
 			$comp.sources.articulos.removeCurrent();
 			$comp.sources.articulos.serverRefresh({
 				onSuccess:function (event){
 					$$(id+"_richText4").hide();
+					$("#"+id+"_textField4").focus();
 					$$(id+"_dialog3").closeDialog();
 				}
 			});
@@ -454,6 +552,7 @@ $.getJSON( ruta, function(data) {
 
 	richText21.click = function richText21_click (event)// @startlock
 	{// @endlock
+		$("#"+id+"_textField4").focus();		
 		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
 	};// @lock
 
@@ -465,6 +564,7 @@ $.getJSON( ruta, function(data) {
 		$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
 		$comp.sources.lineasCollection.save();
 		$comp.sources.docComercial.serverRefresh();
+		$("#"+id+"_textField4").focus();
 		$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
 
 	};// @lock
@@ -501,6 +601,7 @@ $.getJSON( ruta, function(data) {
 							$comp.sources.articulos.query("Familia.Nombre =:1",qString);
 						}
 						$$($comp.id+"_richText14").setState("default");
+						$("#"+id+"_textField4").focus();
 						$$($comp.id+'_dialog3').closeDialog();
 					}
 				});
@@ -515,6 +616,7 @@ $.getJSON( ruta, function(data) {
 	richText15.click = function richText15_click (event)// @startlock
 	{// @endlock
 		$$(id+"_richText14").setValue("Guardar");
+		$("#"+id+"_textField4").focus();
 		$$(getHtmlId("dialog3")).closeDialog();
 	};// @lock
 
@@ -532,6 +634,9 @@ $.getJSON( ruta, function(data) {
 		}
 		
 		$$(id+"_dataGrid1").setSelectedRows([pos]);
+		
+		$$(id+"_textField4").focus();	
+	
 		
 	};// @lock
 	
@@ -558,7 +663,14 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
+	WAF.addListener(this.id + "_textField4", "focus", textField4.focus, "WAF");
+	WAF.addListener(this.id + "_bOpciones", "click", bOpciones.click, "WAF");
+	WAF.addListener(this.id + "_imageButton12", "click", imageButton12.click, "WAF");
+	WAF.addListener(this.id + "_imageButton7", "click", imageButton7.click, "WAF");
+	WAF.addListener(this.id + "_imageButton3", "click", imageButton3.click, "WAF");
+	WAF.addListener(this.id + "_imageButton2", "click", imageButton2.click, "WAF");
+	WAF.addListener(this.id + "_imageButton8", "click", imageButton8.click, "WAF");
+	WAF.addListener(this.id + "_textField4", "blur", textField4.blur, "WAF");
 	WAF.addListener(this.id + "_bPrint", "click", bPrint.click, "WAF");
 	WAF.addListener(this.id + "_textField3", "change", textField3.change, "WAF");
 	WAF.addListener(this.id + "_imageButton11", "click", imageButton11.click, "WAF");
@@ -1058,6 +1170,7 @@ console.log(resultado);
 	
   	$('.linkDoc').click(function(){ 
     	$comp.sources.docComercial.select(this.id);
+    	$("#"+id+"_textField4").focus();
     	$('#modalLista').modal('hide')
     	/*$("#"+id+"_container16").text("");
     	$(getHtmlId("dialog5")).closeDialog(); //cancel button*/
