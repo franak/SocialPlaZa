@@ -140,6 +140,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	
 	
 	// @region namespaceDeclaration// @startlock
+	var btnAll = {};	// @buttonImage
 	var richText30 = {};	// @richText
 	var richText29 = {};	// @richText
 	var fileUpload1 = {};	// @fileUpload
@@ -156,7 +157,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	var button11 = {};	// @button
 	var docComercial1Event = {};	// @dataSource
 	var docComercialEvent = {};	// @dataSource
-	var btnAll = {};	// @buttonImage
 	var imageButton15 = {};	// @buttonImage
 	var btnArticulo = {};	// @richText
 	var imageButton1 = {};	// @buttonImage
@@ -184,6 +184,21 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 
 	// eventHandlers// @lock
+
+	btnAll.click = function btnAll_click (event)// @startlock
+	{// @endlock
+		UI.gifCargando();
+		qString = null;
+		$comp.sources.articulos.resolveSource();
+		$('.solapa').removeClass('btn-maniadmin-4');
+		$('.matrix_a').removeClass('tpv-btn');
+		//this.addClass('disabled');
+		botonTodos = getHtmlId('btnAll');
+		$$(botonTodos).setState('disabled');
+
+		///this.removeClass('btn-warning');
+		$("#"+id+"_textField4").focus();
+	};// @lock
 
 	richText30.click = function richText30_click (event)// @startlock
 	{// @endlock
@@ -308,17 +323,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 			$$(id+"_richText17").hide();
 			$$(id+"_richText3").hide();
 		}
-	};// @lock
-
-	btnAll.click = function btnAll_click (event)// @startlock
-	{// @endlock
-		qString = null;
-		$comp.sources.articulos.resolveSource();
-		$('.solapa').removeClass('btn-maniadmin-4');
-		$('.matrix_a').removeClass('tpv-btn');
-		this.addClass('disabled');
-		this.removeClass('btn-warning');
-		$("#"+id+"_textField4").focus();
 	};// @lock
 
 	imageButton15.click = function imageButton15_click (event)// @startlock
@@ -525,22 +529,15 @@ $.getJSON( ruta, function(data) {
 		$('.solapa').removeClass('btn-maniadmin-4');
 		this.addClass('btn-maniadmin-4');
 
-		$('.disabled').addClass('btn-warning');
-		$('.disabled').removeClass('disabled');
+		botonTodos = getHtmlId('btnAll');
+
+		$$(botonTodos).setState('active');
+		//$('.allArticulos').removeClass('disabled');
 		
 		$("#"+id+"_textField4").focus();
 
 
-	};// @lock
 
-	richText6.touchend = function richText6_touchend (event)// @startlock
-	{// @endlock
-		var familiaselec = this.getValue();
-		$comp.sources.articulos.query("Familia.Nombre=:1",familiaselec);
-		qString = familiaselec;
-		
-		$('.solapa').addClass('tpv-btn');
-		this.removeClass('tpv-btn');
 	};// @lock
 
 	richText19.click = function richText19_click (event)// @startlock
@@ -707,6 +704,7 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_richText30", "click", richText30.click, "WAF");
 	WAF.addListener(this.id + "_richText29", "click", richText29.click, "WAF");
 	WAF.addListener(this.id + "_fileUpload1", "filesUploaded", fileUpload1.filesUploaded, "WAF");
@@ -724,7 +722,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_button11", "click", button11.click, "WAF");
 	WAF.addListener(this.id + "_docComercial1", "onCollectionChange", docComercial1Event.onCollectionChange, "WAF");
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
-	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_imageButton15", "click", imageButton15.click, "WAF");
 	WAF.addListener(this.id + "_richText6", "click", richText6.click, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "mousedown", btnArticulo.mousedown, "WAF");
@@ -732,7 +729,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_btnArticulo", "touchstart", btnArticulo.touchstart, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "touchend", btnArticulo.touchend, "WAF");
 	WAF.addListener(this.id + "_richText23", "touchend", richText23.touchend, "WAF");
-	WAF.addListener(this.id + "_richText6", "touchend", richText6.touchend, "WAF");
 	WAF.addListener(this.id + "_imageButton1", "click", imageButton1.click, "WAF");
 	WAF.addListener(this.id + "_imageButton14", "click", imageButton14.click, "WAF");
 	WAF.addListener(this.id + "_imageButton9", "click", imageButton9.click, "WAF");
@@ -1181,12 +1177,18 @@ function listarDocComercial(){
 	
 	   
 	var resultado = $comp.sources.docComercial;
-	
+	var caja = $comp.sources.cajasTPV.Codigo;
 		
-	//var html = "<table class='table' id='tabla_tickets'>";
 var html="";
-var html = '<ul class="nav nav-tabs nav-stacked">';
+//var html = '<ul class="nav nav-tabs nav-stacked">';
+var html = "<table class='table table-hover ' id='tabla_tickets'>";
 
+html += '<thead>'
++'<tr> <th>#Caja</th>'
++'<th>Venta Nº</th>'
++'<th>Descripción</th>'
++'<th>Importe</th>'
++'</thead><tbody>';
 console.log(resultado);
 	for (var i = 0; i < resultado.length; i++){
 		resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
@@ -1194,31 +1196,32 @@ console.log(resultado);
         	var entity = event.element;
         	
 				if (entity.Denom){
-				var denominacion =" - Ref: "+ entity.Denom;
+				var denominacion = entity.Denom;
 				}else{
 				var denominacion = "";
 				}
 			
 	        if(entity.Cobrado == false){
 	       		
-	       	//	html += "<tr><td><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +"</h5></a><td/></tr>";
-				html += "<li><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +" "+ denominacion +" </h5></a></li>";
+	       		html += "<tr class='linkDoc lead' id='"+event.position+"'><td><h6><code>"+caja+"</code></h6></td><td><h6>"+entity.Numero +"</h6></td><td><h6 class='label label-success'>"+ denominacion +"</h6></td><td><h6>0,00 €</h6></td></tr>";
+			//	html += "<li><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +" "+ denominacion +" </h5></a></li>";
 
 	       
 	       }
        }
 	   });
 	}
-	//html += "</table>";
-	html += '</ul>';
+	html += "</tbody></table>";
+	//html += '</ul>';
 	
 	//$("#"+id+"_container16").append(html);
 	$('#modalListaBody').html(html);
 	
   	$('.linkDoc').click(function(){ 
+  	UI.gifCargando();
     	$comp.sources.docComercial.select(this.id);
     	$("#"+id+"_textField4").focus();
-    	$('#modalLista').modal('hide')
+    	$('#modalLista').modal('hide');
     	/*$("#"+id+"_container16").text("");
     	$(getHtmlId("dialog5")).closeDialog(); //cancel button*/
    	});
