@@ -96,7 +96,7 @@ UI.disableSelection(document.body);
 
   btmodales.modalListaRegistros();
   
-  btmodales.obtenerRest($comp,"Entidades");
+  btmodales.modalEmpresa($comp);
   
 
 var bNuevo = getHtmlObj('imageButton1');	
