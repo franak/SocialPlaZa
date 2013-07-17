@@ -541,6 +541,14 @@ guidedModel =// @startlock
 	},
 	Empresas :
 	{
+		methods :
+		{// @endlock
+			devolverEntidad:function()
+			{// @lock
+				var entidadID = this.find("ID > 0").Entidad.ID;
+				return entidadID;
+			}// @startlock
+		},
 		events :
 		{
 			onRestrictingQuery:function()
@@ -563,19 +571,6 @@ guidedModel =// @startlock
 				//Le paso como parametro la clase entera;
 				//La funcion oninit() esta en Modules/dsModule.js
 				return require("dsModule").oninit(this, myClass);
-			}// @startlock
-		},
-		entityMethods :
-		{// @endlock
-			getEntidadEmpresa:function()
-			{// @lock
-				var pais = this.Entidad.Pais;
-				var datos = {};
-				
-				datos.entidad = this.Entidad.ID;
-				datos.pais = pais.ID;
-				
-				return datos;
 			}// @startlock
 		}
 	},

@@ -96,6 +96,8 @@ UI.disableSelection(document.body);
 
   btmodales.modalListaRegistros();
   
+  btmodales.obtenerRest($comp,"Entidades");
+  
 
 var bNuevo = getHtmlObj('imageButton1');	
 //bNuevo.popover({'placement':'top', 'trigger' : 'hover', 'content' : 'Nuevo Artículo'});
@@ -275,18 +277,18 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	textField4.blur = function textField4_blur (event)// @startlock
 	{// @endlock
-		if($$(id+"_textField4").getValue() != ""){
+		/*if($(id+"_textField4").getValue() != ""){
 			var cobrado = $comp.sources.docComercial.Cobrado;
 			if(cobrado != true){
 				
 				appds.anadirLineaPorCodigo($comp);
-				$$(id+"_textField4").setValue("");
+				$(id+"_textField4").setValue("");
 				
 			}else{
 				
 				UI.alert('Ya está Cobrado','Atención');
 			}
-		}
+		}*/
 		
 	};// @lock
 
@@ -391,7 +393,8 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	{// @endlock
 		//appds.openAgenda();
 		
-		var nombre = $$(id+"_richText25").getValue();
+		$('#modal_empresa').modal('show');
+		/*var nombre = $(id+"_richText25").getValue();
 		$comp.sources.entidades.query("Nombre =:1",nombre);
 		if($comp.sources.entidades.Logotipo == null){
 			$("#"+id+"_fileUpload1").show();
@@ -401,9 +404,9 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 			$("#"+id+"_image2").show();
 		}
 		$("BODY").append($("#"+id+"_dialog4"));
-		$$(id+"_dialog4").displayDialog();
+		$(id+"_dialog4").displayDialog();
 		$("#"+id+"_dialog4").css("top",100);
-		$("#"+id+"_dialog4").css("left",200);
+		$("#"+id+"_dialog4").css("left",200);*/
 			
 		
 		
