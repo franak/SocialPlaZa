@@ -27,17 +27,32 @@ function enfocar (){
 	
 	$comp.sources.articulos1.all({
 		onSuccess: function (event){
-			$$(id+"_textField4").setValue("");	
-		}
-	});
-	$("#"+id+"_textField4").focus();
-	
-	$("input").blur(function (){
-		if(this.id == id+"_textField4" || this.id == id+"_textField5" || this.id == id+"_textField10"){
-			
-		}else{
+			$$(id+"_textField4").setValue("");
 			$("#"+id+"_textField4").focus();
 		}
+	});
+	
+	
+	$("input").blur(function (){
+		
+		
+		switch (this.id){
+			
+			case id+"_textField4": break;
+			case id+"_textField5": break;
+			case id+"_textField10": break;
+			case id+"_textField2": break;
+			case id+"_textField7": break;
+			case id+"_textField6": break;
+			case id+"_textField11": break;
+			case id+"_textField12": break;
+			case id+"_textField14": break;
+			case id+"_textField9": break;
+			default : $("#"+id+"_textField4").focus();
+			
+		}
+		
+		
 	});
 	
 }
