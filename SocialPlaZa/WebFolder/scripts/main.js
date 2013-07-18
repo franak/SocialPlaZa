@@ -34,7 +34,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	/*
 		--- Funcion si existe en el sistema los eventos touch (iPad) ---
 	*/			
-
+		
 		function isTouchDevice(){
 		    try{
 		        document.createEvent("TouchEvent");

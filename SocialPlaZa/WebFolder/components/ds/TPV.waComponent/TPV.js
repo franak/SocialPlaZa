@@ -160,7 +160,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	var btnAll = {};	// @buttonImage
 	var richText30 = {};	// @richText
 	var richText29 = {};	// @richText
-	var fileUpload1 = {};	// @fileUpload
 	var bOpciones = {};	// @buttonImage
 	var imageButton12 = {};	// @buttonImage
 	var imageButton7 = {};	// @buttonImage
@@ -229,13 +228,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 				$$(id+"_dialog4").closeDialog();
 			}
 		});
-	};// @lock
-
-	fileUpload1.filesUploaded = function fileUpload1_filesUploaded (event)// @startlock
-	{// @endlock
-		$("#"+id+"_fileUpload1").hide();
-		$("#"+id+"_image2").show(500);
-		
 	};// @lock
 
 	bOpciones.click = function bOpciones_click (event)// @startlock
@@ -725,7 +717,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_richText30", "click", richText30.click, "WAF");
 	WAF.addListener(this.id + "_richText29", "click", richText29.click, "WAF");
-	WAF.addListener(this.id + "_fileUpload1", "filesUploaded", fileUpload1.filesUploaded, "WAF");
 	WAF.addListener(this.id + "_textField4", "focus", textField4.focus, "WAF");
 	WAF.addListener(this.id + "_bOpciones", "click", bOpciones.click, "WAF");
 	WAF.addListener(this.id + "_imageButton12", "click", imageButton12.click, "WAF");

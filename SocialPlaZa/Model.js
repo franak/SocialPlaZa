@@ -1,6 +1,23 @@
 
 guidedModel =// @startlock
 {
+	PaisesISO :
+	{
+		methods :
+		{// @endlock
+			devolverPos:function(entidadID)
+			{// @lock
+				var entidad = ds.Entidades.find("ID =:1",entidadID);
+				try{
+					var paisID = entidad.Pais.ID;
+					paisID = paisID - 1;
+					return paisID;
+				}catch(e){
+					return false;
+				}
+			}// @startlock
+		}
+	},
 	MedioPago :
 	{
 		events :
@@ -576,6 +593,16 @@ guidedModel =// @startlock
 	},
 	Entidades :
 	{
+		methods :
+		{// @endlock
+			asignarPais:function(vEntidadID,vPais)
+			{// @lock
+				var pais = ds.PaisesISO.find("Name =:1",vPais);
+				var entidad = this.find("ID =:1",vEntidadID);
+				entidad.Pais = pais;
+				entidad.save();
+			}// @startlock
+		},
 		events :
 		{
 			onRestrictingQuery:function()
@@ -605,14 +632,6 @@ guidedModel =// @startlock
 			onGet:function()
 			{// @endlock
 				return this.Nombre+" "+this.Apellido1+" "+this.Apellido2;
-			}// @startlock
-		},
-		methods :
-		{// @endlock
-			borraEntidad:function(nombre)
-			{// @lock
-				var entidad = ds.Entidades.find("Nombre ='"+nombre+"'");
-				entidad.remove();
 			}// @startlock
 		}
 	},
