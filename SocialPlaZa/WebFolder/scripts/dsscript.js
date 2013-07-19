@@ -37,10 +37,14 @@ appdsObj = function () {
         },
         Agenda : {
             path:"/components/ds/Agenda.waComponent"
+        },
+        Dialog : {
+            path:"/components/ds/Dialog.waComponent"
         }
     };
         
      components.main = 'MainComp';
+     components.dialog = 'dialogComp';
      components.sub1 = 'compEntorno';
      components.dsComp = 'compds';
    
@@ -139,6 +143,29 @@ appdsObj = function () {
      	
      }
      
+     this.openDialogEmpresa = function() {
+     	
+     	$$(components.dialog).loadComponent({path: components.Dialog.path,userData: { myParameter: "Empresa"}});
+    
+     }
+	
+	this.closeDialogEmpresa = function() {
+     	
+     	$$(components.dialog).removeComponent();
+     	
+     }
+     this.openDialogUsuario = function() {
+     	
+     	$$(components.dialog).loadComponent({path: components.Dialog.path,userData: { myParameter: "Usuario"}});
+    
+     }
+	
+	this.closeDialogUsuario = function() {
+     	
+     	$$(components.dialog).removeComponent();
+     	
+     }
+	     
      this.openAltaUsuario = function() {
      	
      	$$(components.main).loadComponent(components.AltaUsuario.path);

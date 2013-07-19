@@ -34,6 +34,8 @@ $('#mlateralComp').hide();
 
 
 
+
+
 //INICIALIZACIÓN DE MODALES.
 btmodales.initModal('Usuarios',$comp);
 
@@ -62,7 +64,8 @@ btmodales.initModal('Usuarios',$comp);
 
 	foto_usuario.click = function foto_usuario_click (event)// @startlock
 	{// @endlock
-		$('#myModal').modal('show');
+		//$('#myModal').modal('show');
+		appds.openDialogUsuario();
 	};// @lock
 
 	openMenu.touchend = function openMenu_touchend (event)// @startlock

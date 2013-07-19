@@ -2,35 +2,17 @@
 WAF.onAfterInit = function onAfterInit() {// @lock
 
 // @region namespaceDeclaration// @startlock
-	var button5 = {};	// @button
-	var button1 = {};	// @button
 	
-	var richText3 = {};	// @richText
 	var documentEvent = {};	// @document
 // @endregion// @endlock
 
 // eventHandlers// @lock
 
 
-	button5.click = function button5_click (event)// @startlock
-	{// @endlock
-		$$('dialog1').closeDialog(); //ok button
-		$('errorMsg').html("");
-	};// @lock
-
-	button1.click = function button1_click (event)// @startlock
-	{// @endlock
-		$$('rightComp').loadComponent('/components/commons/bannerright.waComponent');
-	};// @lock
-
-	richText3.click = function richText3_click (event)// @startlock
-	{// @endlock
-		//loguearse(id);
-	};// @lock
-
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
-		
+	
+
 	/*
 		--- Funcion si existe en el sistema los eventos touch (iPad) ---
 	*/			
@@ -146,9 +128,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
-	WAF.addListener("button5", "click", button5.click, "WAF");
-	WAF.addListener("button1", "click", button1.click, "WAF");
-	WAF.addListener("richText3", "click", richText3.click, "WAF");
 	WAF.addListener("document", "onLoad", documentEvent.onLoad, "WAF");
 // @endregion
 };// @endlock

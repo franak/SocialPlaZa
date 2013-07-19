@@ -48,6 +48,11 @@ function enfocar (){
 			case id+"_textField12": break;
 			case id+"_textField14": break;
 			case id+"_textField9": break;
+			case "textField1": break;
+			case "textField4": break;
+			case "textField7": break;
+			case "textField6": break;
+			case "textField9": break;
 			default : $("#"+id+"_textField4").focus();
 			
 		}
@@ -96,7 +101,7 @@ UI.disableSelection(document.body);
 
   btmodales.modalListaRegistros();
   
-  btmodales.modalEmpresa($comp);
+ 
   
 
 var bNuevo = getHtmlObj('imageButton1');	
@@ -260,28 +265,28 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		$("#"+id+"_textField4").focus();
 	};// @lock
 
-	textField4.focus = function textField4_focus (event)// @startlock
-	{// @endlock
-		
-		$$(id+"_textField4").setValue("");	
-	
-	};// @lock
-
 	textField4.blur = function textField4_blur (event)// @startlock
 	{// @endlock
-		/*if($(id+"_textField4").getValue() != ""){
+
+		if($$(id+"_textField4").getValue() != ""){
 			var cobrado = $comp.sources.docComercial.Cobrado;
 			if(cobrado != true){
 				
 				appds.anadirLineaPorCodigo($comp);
-				$(id+"_textField4").setValue("");
+				$$(id+"_textField4").setValue("");
 				
 			}else{
 				
 				UI.alert('Ya está Cobrado','Atención');
 			}
-		}*/
+		}
+	};// @lock
+
+	textField4.focus = function textField4_focus (event)// @startlock
+	{// @endlock
 		
+		$$(id+"_textField4").setValue("");	
+	
 	};// @lock
 
 	bPrint.click = function bPrint_click (event)// @startlock
@@ -383,28 +388,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton1.click = function imageButton1_click (event)// @startlock
 	{// @endlock
-		//appds.openAgenda();
-		
-		$('#modal_empresa').modal('show');
-		/*var nombre = $(id+"_richText25").getValue();
-		$comp.sources.entidades.query("Nombre =:1",nombre);
-		if($comp.sources.entidades.Logotipo == null){
-			$("#"+id+"_fileUpload1").show();
-			$("#"+id+"_image2").hide();
-		}else{
-			$("#"+id+"_fileUpload1").hide();
-			$("#"+id+"_image2").show();
-		}
-		$("BODY").append($("#"+id+"_dialog4"));
-		$(id+"_dialog4").displayDialog();
-		$("#"+id+"_dialog4").css("top",100);
-		$("#"+id+"_dialog4").css("left",200);*/
-			
-		
-		
-		
-
-		
+		appds.openDialogEmpresa();
 	};// @lock
 
 	imageButton14.click = function imageButton14_click (event)// @startlock
@@ -714,6 +698,7 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_textField4", "blur", textField4.blur, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_richText30", "click", richText30.click, "WAF");
 	WAF.addListener(this.id + "_richText29", "click", richText29.click, "WAF");
@@ -724,7 +709,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_imageButton3", "click", imageButton3.click, "WAF");
 	WAF.addListener(this.id + "_imageButton2", "click", imageButton2.click, "WAF");
 	WAF.addListener(this.id + "_imageButton8", "click", imageButton8.click, "WAF");
-	WAF.addListener(this.id + "_textField4", "blur", textField4.blur, "WAF");
 	WAF.addListener(this.id + "_bPrint", "click", bPrint.click, "WAF");
 	WAF.addListener(this.id + "_textField3", "change", textField3.change, "WAF");
 	WAF.addListener(this.id + "_imageButton11", "click", imageButton11.click, "WAF");

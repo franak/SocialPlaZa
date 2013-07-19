@@ -593,6 +593,16 @@ guidedModel =// @startlock
 	},
 	Entidades :
 	{
+		entityMethods :
+		{// @endlock
+			subirImagen:function(ruta)
+			{// @lock
+				var myPict = loadImage (ruta); // load the image from file
+				myPict.setPath(ruta);
+			    this.Logotipo = myPict;  
+			    this.save(); 
+			}// @startlock
+		},
 		methods :
 		{// @endlock
 			asignarPais:function(vEntidadID,vPais)
