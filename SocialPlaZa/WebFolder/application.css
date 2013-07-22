@@ -1,5 +1,7 @@
 #overlay {
     /* stretch the overlay by attaching all four corners */
+  
+   
     position: absolute;
     left: 0;
     top: 0;

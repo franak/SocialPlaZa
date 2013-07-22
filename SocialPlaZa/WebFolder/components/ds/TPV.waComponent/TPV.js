@@ -17,7 +17,7 @@ function constructor (id) {
 
 
 //Tener el campo de busqueda de codigo enfocado y vacio a la vez;
-	
+
 
 
 enfocar();
@@ -28,8 +28,11 @@ function enfocar (){
 	$comp.sources.articulos1.resolveSource({
 		onSuccess: function (event){
 			$$(id+"_textField4").setValue("");
-			$("#"+id+"_textField4").show();
 			$("#"+id+"_textField4").focus();
+			
+			//-- Se elimina el preLoader de carga (overlay) --\\
+			
+			$('#overlay').remove();
 		}
 	});
 	

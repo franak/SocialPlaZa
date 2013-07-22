@@ -233,9 +233,12 @@ fcBrainObj = function() {
             id: components.main,
             path: components.defaults.principal.compPath,
             onSuccess: function() {
-                setTimeout(function() {
+            	
+            	//Lo quito por si tarda mas de 2000ms de carga;
+            	
+                /*setTimeout(function() {
 		         $('#overlay').remove();
-                }, 2000);
+                }, 2000);*/
             }
         });
         
