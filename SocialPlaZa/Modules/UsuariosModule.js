@@ -7,14 +7,17 @@ exports.insertaUsuarioNuevo = function insertaUsuarioNuevo (vNombreAcceso, vPass
 			entorno.save();
 			var tipoAcceso = 2;
 			var var1 = generateUUID();
+			var myFoto = loadImage ("/Users/dsantiago/Documents/SocialPlaZa/SocialPlaZa/onebit_18.png");
 			//++++++++++++++++++++++++++++++++++
 			//NUEVO USUARIO
 			//++++++++++++++++++++++++++++++++++
+			
 			new_usuario = new ds.Usuarios({
 				NombreAcceso: vNombreAcceso,
 				Password: vPass,
 				Activado: false,
 				accessType: tipoAcceso,
+				Foto: myFoto,
 				UserID: var1,
 				Entorno: entorno
 			});
