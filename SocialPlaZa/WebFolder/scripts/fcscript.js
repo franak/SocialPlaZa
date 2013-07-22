@@ -297,16 +297,18 @@ fcBrainObj = function() {
                 //Para ense√±ar el nombre de usuario una vez logueado:	
                 $("#" + id + "_richText4").show();
                 $("#" + id + "_richText4").html(WAF.directory.currentUser().fullName);
+                
+                
+                if ($$(id + '_checkbox2').getValue()) {
+                    localStorage.user = acceso;
+                }else{
+                    localStorage.removeItem("user");
+                }
                 appds.cerraWelcome();
 
                 //No le llevo a dónde viene. Cada vez que se loguea aparece en el menú principal
                 functions.CargarUI();
-                if ($$(id + '_checkbox2').getValue()) {
-                    localStorage.user = acceso;
-                }
-                else {
-                    localStorage.removeItem("user");
-                }
+                
 
             }
             else {

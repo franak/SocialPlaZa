@@ -124,7 +124,7 @@ $('body').append(menuBoton2);
 
 //Comportamiento de los botones de la toolbar:
 $('#mEmpresa').click(function() {
-// Codigo sin no es un enlace
+	appds.openDialogEmpresa();
 });
 
 $('#mDonde').click(function() {
