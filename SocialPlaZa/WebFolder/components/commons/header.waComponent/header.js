@@ -57,15 +57,10 @@ btmodales.initModal('Usuarios',$comp);
 		fcBrain.openAltaUsuario();
 	};// @lock
 
-	foto_usuario.touchend = function foto_usuario_touchend (event)// @startlock
-	{// @endlock
-		$('#myModal').modal('show');
-	};// @lock
-
 	foto_usuario.click = function foto_usuario_click (event)// @startlock
 	{// @endlock
 		//$('#myModal').modal('show');
-		appds.openDialogUsuario();
+		appds.openDialogUsuario($comp);
 	};// @lock
 
 	openMenu.touchend = function openMenu_touchend (event)// @startlock
@@ -183,7 +178,6 @@ $('body').append(menuServicios);
 
 	// @region eventManager// @startlock
 	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
-	WAF.addListener(this.id + "_foto_usuario", "touchend", foto_usuario.touchend, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
 	WAF.addListener(this.id + "_openMenu", "touchend", openMenu.touchend, "WAF");
 	WAF.addListener(this.id + "_openMenu", "click", openMenu.click, "WAF");

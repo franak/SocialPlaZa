@@ -36,7 +36,9 @@ function constructor (id) {
 	richText5.click = function richText5_click (event)// @startlock
 	{// @endlock
 		$("#"+id+"_dialog2").css("top",200);
+		$(window).scrollTop(0);
 		$$(id+"_dialog2").hide();
+		objComponent.sources.usuarios.serverRefresh();
 		appds.closeDialogEmpresa();		
 	};// @lock
 	
@@ -50,6 +52,8 @@ function constructor (id) {
 		$("#"+id+"_dialog2").css("top",100);
 		$$(id+"_dialog2").show();
 	}
+	
+	var objComponent = data.userData.myParameter2;
 
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
@@ -84,6 +88,7 @@ function constructor (id) {
 			onSuccess:function() {
 				ds.Entidades.asignarPais($comp.sources.entidades.ID,$$(id+"_textField5").getValue());
 				var dialogo = getHtmlId("dialog1");//Obtengo el dialogo widget
+				$(window).scrollTop(0);
 				$$(id+"_dialog1").hide();
 				appds.closeDialogEmpresa();	
 			}
@@ -93,6 +98,7 @@ function constructor (id) {
 
 	richText2.click = function richText2_click (event)// @startlock
 	{// @endlock
+		$(window).scrollTop(0);
 		$$(id+"_dialog1").hide();
 		appds.closeDialogEmpresa();		
 	};// @lock

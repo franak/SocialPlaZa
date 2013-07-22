@@ -28,7 +28,7 @@ function enfocar (){
 	$comp.sources.articulos1.resolveSource({
 		onSuccess: function (event){
 			$$(id+"_textField4").setValue("");
-			$("#"+id+"_textField4").focus();
+			mantenerFoco();
 			
 			//-- Se elimina el preLoader de carga (overlay) --\\
 			
@@ -57,7 +57,7 @@ function enfocar (){
 			case "textField7": break;
 			case "textField6": break;
 			case "textField9": break;
-			default : $("#"+id+"_textField4").focus();
+			default : mantenerFoco();
 			
 		}
 		
@@ -222,7 +222,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		$$(botonTodos).setState('disabled');
 
 		///this.removeClass('btn-warning');
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 	};// @lock
 
 	richText30.click = function richText30_click (event)// @startlock
@@ -241,32 +241,32 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	bOpciones.click = function bOpciones_click (event)// @startlock
 	{// @endlock
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 	};// @lock
 
 	imageButton12.click = function imageButton12_click (event)// @startlock
 	{// @endlock
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 	};// @lock
 
 	imageButton7.click = function imageButton7_click (event)// @startlock
 	{// @endlock
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 	};// @lock
 
 	imageButton3.click = function imageButton3_click (event)// @startlock
 	{// @endlock
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 	};// @lock
 
 	imageButton2.click = function imageButton2_click (event)// @startlock
 	{// @endlock
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 	};// @lock
 
 	imageButton8.click = function imageButton8_click (event)// @startlock
 	{// @endlock
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 	};// @lock
 
 	textField4.blur = function textField4_blur (event)// @startlock
@@ -298,12 +298,12 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	{// @endlock
 		var docActual = $comp.sources.docComercial.ID;
 		localStorage.docActual = docActual;
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 	};// @lock
 
 	textField3.change = function textField3_change (event)// @startlock
 	{// @endlock
-					$comp.sources.docComercial.save();
+		$comp.sources.docComercial.save();
 
 	};// @lock
 
@@ -316,7 +316,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		$("#"+id+"_dialog5").css("left",300);*/
 		
 		$('#modalLista').modal('show');
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 	};// @lock
 
 	button11.click = function button11_click (event)// @startlock
@@ -355,8 +355,9 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		
 		$("BODY").append($("#"+id+"_dialog3"));
 		$$(dialogo).displayDialog();
-		$("#"+id+"_dialog3").css("top",100);
+		$("#"+id+"_dialog3").css("top",20);
 		$("#"+id+"_dialog3").css("left",200);
+		$("#"+$comp.id+"_textField2").focus();
 
 	};// @lock
 
@@ -371,7 +372,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	{// @endlock
 		
 		articulo_btn(this);
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 		
 
 	};// @lock
@@ -398,14 +399,16 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton14.click = function imageButton14_click (event)// @startlock
 	{// @endlock
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
+		$(window).scrollTop(0);
 		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
 	};// @lock
 
 	imageButton9.click = function imageButton9_click (event)// @startlock
 	{// @endlock
 		$$(id+"_richText14").setValue("Guardar");
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
+		$(window).scrollTop(0);
 		$$(getHtmlId("dialog3")).closeDialog();
 	};// @lock
 
@@ -472,7 +475,7 @@ $.getJSON( ruta, function(data) {
 	imageButton4.click = function imageButton4_click (event)// @startlock
 	{// @endlock
 		cargarMovimientoCaja_btn();
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 
 	};// @lock
 
@@ -487,7 +490,7 @@ $.getJSON( ruta, function(data) {
 	{// @endlock
 		var tipoDoc = 1;
 		fcBrain.crearDocComercial($comp,tipoDoc);
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 		
 	};// @lock
 
@@ -516,6 +519,7 @@ $.getJSON( ruta, function(data) {
 			$$(dialogo).displayDialog();
 			$("#"+id+"_dialog3").css("top",100);
 			$("#"+id+"_dialog3").css("left",200);
+			$("#"+$comp.id+"_textField2").focus();
 	};// @lock
 
 	richText6.click = function richText6_click (event)// @startlock
@@ -533,7 +537,7 @@ $.getJSON( ruta, function(data) {
 		$$(botonTodos).setState('active');
 		//$('.allArticulos').removeClass('disabled');
 		
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 
 
 
@@ -571,14 +575,16 @@ $.getJSON( ruta, function(data) {
 				ds.PreArticulos.creaPreArticulo(codigo,precio,descripcion,$comp.sources.familias2.Nombre);
 			}
 			$$(id+"_richText14").setState("default");
-			$("#"+id+"_textField4").focus();
+			mantenerFoco();
+			$(window).scrollTop(0);
 			$$(id+"_dialog3").closeDialog();
 		}else{
 			$comp.sources.articulos.removeCurrent();
 			$comp.sources.articulos.serverRefresh({
 				onSuccess:function (event){
 					$$(id+"_richText4").hide();
-					$("#"+id+"_textField4").focus();
+					mantenerFoco();
+					$(window).scrollTop(0);
 					$$(id+"_dialog3").closeDialog();
 				}
 			});
@@ -592,7 +598,8 @@ $.getJSON( ruta, function(data) {
 
 	richText21.click = function richText21_click (event)// @startlock
 	{// @endlock
-		$("#"+id+"_textField4").focus();		
+		mantenerFoco();
+		$(window).scrollTop(0);
 		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
 	};// @lock
 
@@ -604,7 +611,8 @@ $.getJSON( ruta, function(data) {
 		$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
 		$comp.sources.lineasCollection.save();
 		$comp.sources.docComercial.serverRefresh();
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
+		$(window).scrollTop(0);
 		$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
 
 	};// @lock
@@ -616,6 +624,7 @@ $.getJSON( ruta, function(data) {
 
 	richText14.click = function richText14_click (event)// @startlock
 	{// @endlock
+		
 		if($$(id+"_richText14").getState() != "disabled"){
 			$$(id+"_richText14").setState("disabled");
 			var dialogo = getHtmlId("dialog3");
@@ -624,7 +633,7 @@ $.getJSON( ruta, function(data) {
 			if(estado == "modificar"){
 				
 				//appds.modificarArticulo($comp); DA FALLO
-				
+				$("#"+id+"_textField2").blur();
 				var codigo = $$($comp.id+"_textField2").getValue();
 				var precio = $$($comp.id+"_textField6").getValue();
 				var descripcion = $$($comp.id+"_textField7").getValue();
@@ -641,7 +650,8 @@ $.getJSON( ruta, function(data) {
 							$comp.sources.articulos.query("Familia.Nombre =:1",qString);
 						}
 						$$($comp.id+"_richText14").setState("default");
-						$("#"+id+"_textField4").focus();
+						mantenerFoco();
+						$(window).scrollTop(0);
 						$$($comp.id+'_dialog3').closeDialog();
 					}
 				});
@@ -656,7 +666,8 @@ $.getJSON( ruta, function(data) {
 	richText15.click = function richText15_click (event)// @startlock
 	{// @endlock
 		$$(id+"_richText14").setValue("Guardar");
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
+		$(window).scrollTop(0);
 		$$(getHtmlId("dialog3")).closeDialog();
 	};// @lock
 
@@ -675,7 +686,7 @@ $.getJSON( ruta, function(data) {
 		
 		$$(id+"_dataGrid1").setSelectedRows([pos]);
 		
-		$$(id+"_textField4").focus();	
+		mantenerFoco();
 	
 		
 	};// @lock
@@ -692,6 +703,7 @@ $.getJSON( ruta, function(data) {
 			$(jqdialogo).css("left",100);
 			$(jqdialogo).css("position","fixed");
 			$$(dialogo).displayDialog();
+			$("#"+$comp.id+"_textField11").focus();
 		}else{
 			UI.alert("Ya esta cobrado este Ticket","Atencion");
 		}
@@ -898,6 +910,7 @@ function modificarLinea(){
 	
 	$(jqdialogo).css("top",20);
 	$(jqdialogo).css("left",300);
+	$("#"+$comp.id+"_textField11").focus();
 		
 		
 }	
@@ -969,7 +982,7 @@ $('.matrix_articulos').live("touchstart", function(e){
 var currentscroll = 0;
 
 $(':input').bind('focus',function() {
-
+	
     currentscroll = $(window).scrollTop();
  
 });
@@ -1224,15 +1237,20 @@ console.log(lineas);
   	$('.linkDoc').click(function(){ 
   	UI.gifCargando();
     	$comp.sources.docComercial.select(this.id);
-    	$("#"+id+"_textField4").focus();
+    	mantenerFoco();
     	$('#modalLista').modal('hide');
     	/*$("#"+id+"_container16").text("");
     	$(getHtmlId("dialog5")).closeDialog(); //cancel button*/
    	});
    	
-  
-    
-   
+}
+
+function mantenerFoco(){
+	
+	if(window.navigator.platform != "iPad"){
+		$("#"+id+"_textField4").focus();
+	}
+	
 }
 
 

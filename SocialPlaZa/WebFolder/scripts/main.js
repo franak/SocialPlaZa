@@ -52,7 +52,21 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		/*
 		--- Funcion para quitar el scroll del PC ---
 		*/
+		var currentscroll = 0;
+		$(window).scrollTop(currentscroll);
+		$(':input').bind('focus',function() {
+			
+		    currentscroll = $(window).scrollTop();
+		 
+		});
 
+		$(':input').bind('blur',function() {
+			
+			
+		   // if(currentscroll != $(window).scrollTop()){
+		    	$(window).scrollTop(currentscroll);
+		   // }
+		});
 		
 		function unloadScrollBars() {
 		 //   document.documentElement.style.overflow = 'hidden';  // firefox, chrome

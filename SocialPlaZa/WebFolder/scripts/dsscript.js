@@ -154,9 +154,9 @@ appdsObj = function () {
      	$$(components.dialog).removeComponent();
      	
      }
-     this.openDialogUsuario = function() {
+     this.openDialogUsuario = function($comp) {
      	
-     	$$(components.dialog).loadComponent({path: components.Dialog.path,userData: { myParameter: "Usuario"}});
+     	$$(components.dialog).loadComponent({path: components.Dialog.path,userData: { myParameter: "Usuario", myParameter2: $comp}});
     
      }
 	
@@ -391,6 +391,7 @@ appdsObj = function () {
 			$$($comp.id+"_textField7").setValue("");
 			
 			
+			
 		}else if(estado == "modificar"){
 			
 			$$($comp.id+"_richText12").hide();
@@ -409,11 +410,12 @@ appdsObj = function () {
 					var vFamilia = ds.Articulos.getFamilia($comp.sources.articulos1.Codigo);
 					$$($comp.id+"_combobox2").setValue(vFamilia);//Ponermos los respectivos datos elegidos
 					$$($comp.id+"_richText4").show();//Mostrar el boton eliminar
-					
+	
 					$("BODY").append($("#"+$comp.id+"_dialog3"));
 					$$($comp.id+"_dialog3").displayDialog();
-					$("#"+$comp.id+"_dialog3").css("top",100);
+					$("#"+$comp.id+"_dialog3").css("top",20);
 					$("#"+$comp.id+"_dialog3").css("left",200);
+					$("#"+$comp.id+"_textField2").focus();
 				}
 			
 			});
@@ -573,7 +575,7 @@ this.crearContainerGeneral = function ($comp){
 							
 							$("BODY").append($("#"+$comp.id+"_dialog3"));
 							$$($comp.id+"_dialog3").displayDialog();
-							$("#"+$comp.id+"_dialog3").css("top",100);
+							$("#"+$comp.id+"_dialog3").css("top",20);
 							$("#"+$comp.id+"_dialog3").css("left",200);
 							
 						}else{
