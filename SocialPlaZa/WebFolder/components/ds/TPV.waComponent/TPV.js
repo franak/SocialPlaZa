@@ -1179,6 +1179,7 @@ function listarDocComercial(){
 	
 	   
 	var resultado = $comp.sources.docComercial;
+	var lineas = $comp.sources.lineasCollection;
 	var caja = $comp.sources.cajasTPV.Codigo;
 		
 var html="";
@@ -1191,7 +1192,7 @@ html += '<thead>'
 +'<th>Descripción</th>'
 +'<th>Importe</th>'
 +'</thead><tbody>';
-console.log(resultado);
+console.log(lineas);
 	for (var i = 0; i < resultado.length; i++){
 		resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
         {
@@ -1204,8 +1205,9 @@ console.log(resultado);
 				}
 			
 	        if(entity.Cobrado == false){
-	       		
-	       		html += "<tr class='linkDoc lead' id='"+event.position+"'><td><h6><code>"+caja+"</code></h6></td><td><h6>"+entity.Numero +"</h6></td><td><h6 class='label label-success'>"+ denominacion +"</h6></td><td><h6>0,00 €</h6></td></tr>";
+	       		var total = ds.Lineas.devolverTotal(entity.ID);
+	       		total = total.toFixed(2);
+	       		html += "<tr class='linkDoc lead' id='"+event.position+"'><td><h6><code>"+caja+"</code></h6></td><td><h6>"+entity.Numero +"</h6></td><td><h6 class='label label-success'>"+ denominacion +"</h6></td><td><h6>"+total+"€</h6></td></tr>";
 			//	html += "<li><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +" "+ denominacion +" </h5></a></li>";
 
 	       

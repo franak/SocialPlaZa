@@ -447,6 +447,22 @@ guidedModel =// @startlock
 		},
 		methods :
 		{// @endlock
+			devolverTotal:function(docID)
+			{// @lock
+				var documento = ds.DocComercial.find("ID =:1",docID);
+				
+				var lineasCol = ds.Lineas.query("Documento.ID =:1",documento.ID);
+				
+				var total=0;
+				
+				for (var i = 0; i < lineasCol.length; i++){
+						total += lineasCol[i].Importe;
+				}
+				
+				return total;
+				
+				
+			},// @lock
 			insertarLineasNegativas:function(docCobrado,docNegativo,almacenID)
 			{// @lock
 				var documentoCobrado = ds.DocComercial.find("ID =:1",docCobrado);
