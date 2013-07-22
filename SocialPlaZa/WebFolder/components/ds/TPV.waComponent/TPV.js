@@ -462,12 +462,11 @@ $.getJSON( ruta, function(data) {
 	
 		dispensar();
 		
-
 	};// @lock
 
 	bCancelDispensar.click = function bCancelDispensar_click (event)// @startlock
 	{// @endlock
-
+		$$(id+"_dialog1").disable();
 		$$(getHtmlId("dialog1")).closeDialog(); //Cancelar button
 		
 	};// @lock
@@ -769,6 +768,8 @@ $.getJSON( ruta, function(data) {
 
 //Cargar el pago (Dispensar)
 function cargarMedioPago(donde){
+	
+$$(id+"_dialog1").enable();
  		
 var ruta = '/rest/MedioPago';
 $.getJSON( ruta, function(data) {
@@ -805,12 +806,20 @@ $.getJSON( ruta, function(data) {
 	 $(":input").bind('touchstart', function(event){//iPad
 		$(this).focus();
      });
+	 
+	 
 	 $(":input").bind('keypress', function(e) {
 		if(e.keyCode==13){
-			var printContinuar = getHtmlObj('bContinuarDispensar');
-			$(printContinuar).click();
+			var activo = $$(id+"_dialog1").isDisabled();
+			console.log($$(id+"_dialog1").isDisabled());
+			if(activo == false){
+				var printContinuar = getHtmlObj('bContinuarDispensar');
+				$(printContinuar).click();
+			}
+			
 		}
 	  });
+  
 	
 });
 		
@@ -829,6 +838,7 @@ vSumaR = vSumaR.toFixed(2);
 //$(fpEfectivoObj).select();//Para que apareza seleccionado todo el contenido
 		
  //INICIALIZACIÓN DE LOS CAMPOS Y EVENTOS
+ 
  
 
 var total={};
@@ -1168,8 +1178,9 @@ function dispensar(){
 		localStorage.Total = vSuma.toFixed(2);
 		$comp.sources.docComercial.Cobrado = true;
 		$comp.sources.docComercial.save();
-		console.log(localStorage.cambio);
-
+		
+		$$(id+"_dialog1").disable();
+		
 		
 		
 		$$(getHtmlId("dialog1")).closeDialog({
