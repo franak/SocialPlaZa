@@ -216,12 +216,7 @@ appdsObj = function () {
      
      this.anadirLinea = function($comp,esteObjeto){
      	
- 		//DS DECLARACION DEL OBJETO DE SONIDO:
-//		var mySound = new buzz.sound( "/sounds/clickElegante", {
-//		    formats: [ "wav", "mp3" ]
-//		});	
-//		
-//		mySound.play();
+
 
 		var id = $comp.id; //FC Traemos el id mendiante el $comp. Siempre enviar $comp en lugar de id
 
@@ -246,14 +241,14 @@ appdsObj = function () {
 			
 		//	var lin = $comp.sources.lineas.query("Documento.ID=:1 AND Codigo =:2",docComercialID,articuloCodigo);
 			
-				
 			if(lin != null){
 				lin.Cantidad.setValue(lin.Cantidad.getValue() + 1);
 				pos = lin.Posicion.getValue();
 				lin.save({
 					onSuccess:function (event){
 						//mySound.play();
-						$comp.sources.docComercial.serverRefresh();
+						
+						$comp.sources.docComercial.collectionRefresh();
 
 						//DS PONGO EL ESTADO DEFAULT AL BOTON
 						$$(esteObjeto.id).setState('default');
@@ -294,7 +289,7 @@ appdsObj = function () {
 				
 				$comp.sources.lineas.save({
 					onSuccess:function (event){
-						$comp.sources.docComercial.serverRefresh();
+						$comp.sources.docComercial.collectionRefresh();
 						$$(esteObjeto.id).setState('default');
 					}
 				});	

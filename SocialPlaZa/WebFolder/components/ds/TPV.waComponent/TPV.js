@@ -20,7 +20,7 @@ function constructor (id) {
 
 
 
-enfocar();
+
 
 function enfocar (){
 	
@@ -163,7 +163,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	
 	
-	
+	enfocar();
 	
 	// @region namespaceDeclaration// @startlock
 	var btnAll = {};	// @buttonImage
@@ -246,6 +246,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton12.click = function imageButton12_click (event)// @startlock
 	{// @endlock
+		$(window).scrollTop(0);
 		mantenerFoco();
 	};// @lock
 
@@ -301,10 +302,15 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		mantenerFoco();
 	};// @lock
 
-	textField3.change = function textField3_change (event)// @startlock
+	textField3.blur = function textField3_blur (event)// @startlock
 	{// @endlock
-		$comp.sources.docComercial.save();
-
+		$comp.sources.docComercial.Denom = $(this).val();
+		$comp.sources.docComercial.save({
+			onSuccess: function (){
+				$comp.sources.docComercial.serverRefresh();
+				$(window).scrollTop(0);
+			}
+		});
 	};// @lock
 
 	imageButton11.click = function imageButton11_click (event)// @startlock
@@ -481,7 +487,7 @@ $.getJSON( ruta, function(data) {
 	imageButton10.click = function imageButton10_click (event)// @startlock
 	{// @endlock
 		btn_borrar();
-		$("#"+id+"_textField4").focus();
+		mantenerFoco();
 		
 	};// @lock
 
@@ -714,6 +720,7 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_textField3", "blur", textField3.blur, "WAF");
 	WAF.addListener(this.id + "_textField4", "blur", textField4.blur, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_richText30", "click", richText30.click, "WAF");
@@ -726,7 +733,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_imageButton2", "click", imageButton2.click, "WAF");
 	WAF.addListener(this.id + "_imageButton8", "click", imageButton8.click, "WAF");
 	WAF.addListener(this.id + "_bPrint", "click", bPrint.click, "WAF");
-	WAF.addListener(this.id + "_textField3", "change", textField3.change, "WAF");
 	WAF.addListener(this.id + "_imageButton11", "click", imageButton11.click, "WAF");
 	WAF.addListener(this.id + "_button11", "click", button11.click, "WAF");
 	WAF.addListener(this.id + "_docComercial1", "onCollectionChange", docComercial1Event.onCollectionChange, "WAF");
@@ -1042,6 +1048,7 @@ function cargarMovimientoCaja_btn(){
 //Funcion cuando hacemos un click o mantenemos pulsado un articulo
 
 function articulo_btn(esteObjeto){
+	
 	var vTimeResta = new Date();
 	vTimeResta = vTimeResta - vTime;
 	

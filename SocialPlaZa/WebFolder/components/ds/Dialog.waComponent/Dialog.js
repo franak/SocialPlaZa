@@ -86,7 +86,7 @@ function constructor (id) {
 		
 		$comp.sources.entidades.save({
 			onSuccess:function() {
-				ds.Entidades.asignarPais($comp.sources.entidades.ID,$$(id+"_textField5").getValue());
+				ds.Entidades.asignarPais($comp.sources.entidades.ID,$$(id+"_combobox1").getValue());
 				var dialogo = getHtmlId("dialog1");//Obtengo el dialogo widget
 				$(window).scrollTop(0);
 				$$(id+"_dialog1").hide();
