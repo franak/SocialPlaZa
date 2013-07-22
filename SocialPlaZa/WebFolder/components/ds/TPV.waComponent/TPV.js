@@ -25,9 +25,10 @@ enfocar();
 function enfocar (){
 	
 	
-	$comp.sources.articulos1.all({
+	$comp.sources.articulos1.resolveSource({
 		onSuccess: function (event){
 			$$(id+"_textField4").setValue("");
+			$("#"+id+"_textField4").show();
 			$("#"+id+"_textField4").focus();
 		}
 	});
@@ -273,13 +274,14 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 			if(cobrado != true){
 				
 				appds.anadirLineaPorCodigo($comp);
-				$$(id+"_textField4").setValue("");
+				
 				
 			}else{
 				
 				UI.alert('Ya está Cobrado','Atención');
 			}
 		}
+		$$(id+"_textField4").setValue("");
 	};// @lock
 
 	textField4.focus = function textField4_focus (event)// @startlock
@@ -832,11 +834,15 @@ $(".cobro").focus( function(event) {
 	total += $(this).val() * 1;
 	diferencia = vSumaR - total;
 	
-	diferenciaCambio = diferencia;
-	diferencia = parseFloat(diferencia);//ds pasar a numero la variable
-	diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
-	$(this).val(diferencia);
-	$(this).select();
+	if(diferencia >= 0){
+		
+		diferenciaCambio = diferencia;
+		diferencia = parseFloat(diferencia);//ds pasar a numero la variable
+		diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
+		$(this).val(diferencia);
+		$(this).select();
+	}
+	
 
 
 });	
