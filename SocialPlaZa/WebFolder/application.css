@@ -395,10 +395,12 @@ ul.dropdown
 
 .matrix_a
 {
-	padding:1px;
+
 	text-indent:inherit;
-	
 }
+
+
+
 
 .matrix_reduce
 {
@@ -461,8 +463,7 @@ color:white;
 		font-size: 12px;
 	font-weight: bold;
 }
-=======
-﻿#overlay {
+#overlay {
     /* stretch the overlay by attaching all four corners */
     position: absolute;
     left: 0;
@@ -855,12 +856,7 @@ ul.dropdown
 
 
 
-.matrix_a
-{
-	padding:1px;
-	text-indent:inherit;
-	
-}
+
 
 a.tool{
 
