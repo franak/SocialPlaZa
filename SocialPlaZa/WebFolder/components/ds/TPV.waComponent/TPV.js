@@ -401,6 +401,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton1.click = function imageButton1_click (event)// @startlock
 	{// @endlock
+			UI.gifCargando(); //el chirimbolo de "carga"
 		appds.openDialogEmpresa();
 	};// @lock
 
