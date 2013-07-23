@@ -165,6 +165,18 @@ appdsObj = function () {
      	$$(components.dialog).removeComponent();
      	
      }
+     
+     this.openDialogMovimiento = function($comp) {
+     	
+     	$$(components.dialog).loadComponent({path: components.Dialog.path,userData: { myParameter: "Movimiento", myParameter2: $comp}});
+    
+     }
+	
+	this.closeDialogMovimiento = function() {
+     	
+     	$$(components.dialog).removeComponent();
+     	
+     }
 	     
      this.openAltaUsuario = function() {
      	

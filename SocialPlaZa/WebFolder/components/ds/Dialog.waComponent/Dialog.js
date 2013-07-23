@@ -13,6 +13,8 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		
 	
+		
+	
 	//-- Append del select de paises --\\
 	function pintarSelectPaises(vDefecto){
 	
@@ -80,6 +82,7 @@ function constructor (id) {
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
+	var richText8 = {};	// @richText
 	var fileUpload1 = {};	// @fileUpload
 	var richText5 = {};	// @richText
 	var button1 = {};	// @button
@@ -88,6 +91,14 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	richText8.click = function richText8_click (event)// @startlock
+	{// @endlock
+		$("#"+id+"_dialog2").css("top",200);
+		$(window).scrollTop(0);
+		$$(id+"_dialog3").hide();
+		appds.closeDialogMovimiento();		
+	};// @lock
 
 	fileUpload1.filesUploaded = function fileUpload1_filesUploaded (event)// @startlock
 	{// @endlock
@@ -110,14 +121,21 @@ function constructor (id) {
 	if(data.userData.myParameter == "Empresa"){
 		
 		cargarFichaEmpresa();
+		$$(id+"_dialog3").hide()
 		$$(id+"_dialog2").hide({
 			onSuccess:function(){
 				$$(id+"_dialog1").show();
 			}
 		});
 		
+	}else if(data.userData.myParameter == "Movimiento"){
+		$$(id+"_dialog1").hide();
+		$$(id+"_dialog2").hide();
+		$("#"+id+"_dialog3").css("top",100);
+		$$(id+"_dialog3").show();
 	}else{
 		$$(id+"_dialog1").hide();
+		$$(id+"_dialog3").hide();
 		$("#"+id+"_dialog2").css("top",100);
 		$$(id+"_dialog2").show();
 	}
@@ -164,6 +182,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText8", "click", richText8.click, "WAF");
 	WAF.addListener(this.id + "_fileUpload1", "filesUploaded", fileUpload1.filesUploaded, "WAF");
 	WAF.addListener(this.id + "_richText5", "click", richText5.click, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");

@@ -246,7 +246,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton12.click = function imageButton12_click (event)// @startlock
 	{// @endlock
-		$(window).scrollTop(0);
+		appds.openDialogMovimiento($comp);
 		mantenerFoco();
 	};// @lock
 
