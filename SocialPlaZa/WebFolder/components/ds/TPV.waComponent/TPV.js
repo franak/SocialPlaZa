@@ -473,6 +473,7 @@ $.getJSON( ruta, function(data) {
 	bCancelDispensar.click = function bCancelDispensar_click (event)// @startlock
 	{// @endlock
 		$$(id+"_dialog1").disable();
+		$(window).scrollTop(0);
 		$$(getHtmlId("dialog1")).closeDialog(); //Cancelar button
 		
 	};// @lock
@@ -794,7 +795,7 @@ $.getJSON( ruta, function(data) {
 	//INPUTS DE BOOTSTRAP
 	
       $(tabla).append('<label class="control-label" for="input_'+ medio.Codigo +'">'+ medio.Descripcion +'</label>');
-      $(tabla).append('<input  type="number" format="###.###.###,00" id="input_'+ medio.Codigo +'" class="entrada cobro" placeholder='+ medio.Descripcion +' >');
+      $(tabla).append('<input  type="text"  id="input_'+ medio.Codigo +'" class="entrada cobro" placeholder='+ medio.Descripcion +' >');
     //  $(tabla).append(' <span class="help-block">Indique el importe en '+ medio.Descripcion +'</span>');     
    
 
@@ -809,9 +810,7 @@ $.getJSON( ruta, function(data) {
  	 $(tabla).append('</fieldset></form>'); 
  	 $(tabla).fadeIn();
 	 $('#input_EF').attr("autofocus","autofocus"); 
-	 $(":input").bind('touchstart', function(event){//iPad
-		$(this).focus();
-     });
+	 
 	 
 	 
 	 $(":input").bind('keypress', function(e) {
@@ -864,7 +863,8 @@ $(".cobro").focus( function(event) {
 
 	total += $(this).val() * 1;
 	diferencia = vSumaR - total;
-	
+	console.log("total: "+total);
+	console.log("diferencia: "+diferencia);
 	if(diferencia >= 0){
 		
 		diferenciaCambio = diferencia;
@@ -1188,8 +1188,7 @@ function dispensar(){
 		
 		$$(id+"_dialog1").disable();
 		
-		
-		
+		$(window).scrollTop(0);
 		$$(getHtmlId("dialog1")).closeDialog({
 			onSuccess: function(){
 				if(localStorage.cambio  > 0){
