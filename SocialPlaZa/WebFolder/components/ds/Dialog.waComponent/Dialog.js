@@ -11,6 +11,72 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		
+	
+	//-- Append del select de paises --\\
+	function pintarSelectPaises(vDefecto){
+	
+		
+		var selectElement = document.createElement('select');
+		selectElement.setAttribute('id','select-paises');
+	    $('#'+id+'_container2').append(selectElement);
+	    $('#select-paises').css('position','absolute');
+	    $('#select-paises').css('top','218px');
+	    $('#select-paises').css('left','61px');
+	    var etiqueta = '<label id="etiqueta-paises">Paises</label>';
+	    $('#'+id+'_container2').append(etiqueta);
+	    $('#etiqueta-paises').css('position','absolute');
+	    $('#etiqueta-paises').css('top','197px');
+	    $('#etiqueta-paises').css('left','65px');
+	  
+	    $comp.sources.paisesISO.allEntities({
+	    	onSuccess:function(){
+	    		 var paises = $comp.sources.paisesISO;
+	    		 
+	    		 for (var i = 0; i < paises.length; i++){
+	    		 	
+	    		 	paises.getElement(i, { 
+	    		 	
+	    		 		onSuccess: function(event) {
+	    		 			
+			        		var entity = event.element;
+			        		var optionHTML;
+			        		
+			        		var alphaPais = entity.Alpha;
+			        		alphaPais = alphaPais.toLowerCase();
+			        		
+			        		if(vDefecto == entity.Name){
+			 
+			        			optionHTML += '<option value="'+entity.Number+'" selected >'+entity.Name+'</option>';
+			        		}else{
+			        			optionHTML = '<option value="'+entity.Number+'">'+entity.Name+'</option>';
+			        		}
+			        		$('#select-paises').append(optionHTML);
+			      
+			       		}
+				   });
+	    		 
+	    		 }
+	    	}
+	    });
+	   
+	}
+	
+	function cargarFichaEmpresa(){
+		
+		$comp.sources.entidades.all({
+			onSuccess:function (){
+				$comp.sources.entidades.select(1);
+				var pais = ds.PaisesISO.devolverPais($comp.sources.entidades.ID);
+				pintarSelectPaises(pais);
+			}
+		});
+		
+	}
+	
+	cargarFichaEmpresa();
+	
+	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
 	var fileUpload2 = {};	// @fileUpload
@@ -44,7 +110,7 @@ function constructor (id) {
 	
 	if(data.userData.myParameter == "Empresa"){
 		
-		cargarFichaEmpresa();
+		
 		$$(id+"_dialog2").hide();
 		$$(id+"_dialog1").show();
 	}else{
@@ -86,7 +152,7 @@ function constructor (id) {
 		
 		$comp.sources.entidades.save({
 			onSuccess:function() {
-				ds.Entidades.asignarPais($comp.sources.entidades.ID,$$(id+"_combobox1").getValue());
+				ds.Entidades.asignarPais($comp.sources.entidades.ID,$('#select-paises').val());
 				var dialogo = getHtmlId("dialog1");//Obtengo el dialogo widget
 				$(window).scrollTop(0);
 				$$(id+"_dialog1").hide();
@@ -114,20 +180,7 @@ function constructor (id) {
 
 	};// @lock
 	
-	function cargarFichaEmpresa(){
-		
-		$comp.sources.entidades.all({
-			onSuccess:function (){
-				$comp.sources.entidades.select(1);
-				var posicionPais = ds.PaisesISO.devolverPos($comp.sources.entidades.ID);
-				if(posicionPais != false){
-					$comp.sources.paisesISO.select(posicionPais);
-				}
-			}
-		});
-		
-		
-	}
+	
 
 
 }// @startlock

@@ -5,15 +5,14 @@ guidedModel =// @startlock
 	{
 		methods :
 		{// @endlock
-			devolverPos:function(entidadID)
+			devolverPais:function(entidadID)
 			{// @lock
 				var entidad = ds.Entidades.find("ID =:1",entidadID);
 				try{
-					var paisID = entidad.Pais.ID;
-					paisID = paisID - 1;
-					return paisID;
+					var pais = entidad.Pais.Name;
+					return pais;
 				}catch(e){
-					return false;
+					return "SPAIN";
 				}
 			}// @startlock
 		}
@@ -609,21 +608,11 @@ guidedModel =// @startlock
 	},
 	Entidades :
 	{
-		entityMethods :
-		{// @endlock
-			subirImagen:function(ruta)
-			{// @lock
-				var myPict = loadImage (ruta); // load the image from file
-				myPict.setPath(ruta);
-			    this.Logotipo = myPict;  
-			    this.save(); 
-			}// @startlock
-		},
 		methods :
 		{// @endlock
 			asignarPais:function(vEntidadID,vPais)
 			{// @lock
-				var pais = ds.PaisesISO.find("Name =:1",vPais);
+				var pais = ds.PaisesISO.find("Number =:1",vPais);
 				var entidad = this.find("ID =:1",vEntidadID);
 				entidad.Pais = pais;
 				entidad.save();

@@ -316,7 +316,7 @@ appdsObj = function () {
 				pos = lin.Posicion.getValue();
 				lin.save({
 					onSuccess:function (event){
-						$comp.sources.docComercial.serverRefresh();
+						$comp.sources.docComercial.collectionRefresh();
 					}
 				});
 				
@@ -352,7 +352,7 @@ appdsObj = function () {
 				
 				$comp.sources.lineas.save({
 					onSuccess:function (event){
-						$comp.sources.docComercial.serverRefresh();
+						$comp.sources.docComercial.collectionRefresh();
 					}
 				});	
 			
