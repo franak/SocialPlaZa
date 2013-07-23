@@ -74,7 +74,7 @@ function constructor (id) {
 		
 	}
 	
-	cargarFichaEmpresa();
+	//cargarFichaEmpresa();
 	
 	//---------------------------------\\
 
@@ -110,9 +110,13 @@ function constructor (id) {
 	
 	if(data.userData.myParameter == "Empresa"){
 		
+		cargarFichaEmpresa();
+		$$(id+"_dialog2").hide({
+			onSuccess:function(){
+				$$(id+"_dialog1").show();
+			}
+		});
 		
-		$$(id+"_dialog2").hide();
-		$$(id+"_dialog1").show();
 	}else{
 		$$(id+"_dialog1").hide();
 		$("#"+id+"_dialog2").css("top",100);
