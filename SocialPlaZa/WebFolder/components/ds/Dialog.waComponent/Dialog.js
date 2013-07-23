@@ -69,6 +69,7 @@ function constructor (id) {
 				$comp.sources.entidades.select(1);
 				var pais = ds.PaisesISO.devolverPais($comp.sources.entidades.ID);
 				pintarSelectPaises(pais);
+				
 			}
 		});
 		
@@ -79,24 +80,22 @@ function constructor (id) {
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
-	var fileUpload2 = {};	// @fileUpload
+	var fileUpload1 = {};	// @fileUpload
 	var richText5 = {};	// @richText
 	var button1 = {};	// @button
-	var fileUpload1 = {};	// @fileUpload
 	var richText3 = {};	// @richText
 	var richText2 = {};	// @richText
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
 
-	fileUpload2.filesUploaded = function fileUpload2_filesUploaded (event)// @startlock
+	fileUpload1.filesUploaded = function fileUpload1_filesUploaded (event)// @startlock
 	{// @endlock
 		$comp.sources.entidades.save({
-			onSuccess: function(){
-				cargarFichaEmpresa();
+			onSuccess:function (){
+				$comp.sources.entidades.serverRefresh();
 			}
 		});
-		
 	};// @lock
 
 	richText5.click = function richText5_click (event)// @startlock
@@ -128,20 +127,10 @@ function constructor (id) {
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
 		$comp.sources.entidades.save({
-			onSuccess: function(){
-				cargarFichaEmpresa();
+			onSuccess:function (){
+				$comp.sources.entidades.serverRefresh();
 			}
 		});
-	};// @lock
-
-	fileUpload1.filesUploaded = function fileUpload1_filesUploaded (event)// @startlock
-	{// @endlock
-		$comp.sources.entidades.save({
-			onSuccess: function(){
-				cargarFichaEmpresa();
-			}
-		});
-		
 	};// @lock
 
 	
@@ -155,14 +144,15 @@ function constructor (id) {
 		$comp.sources.entidades.CodigoPostal = $$(id+"_textField4").getValue();
 		
 		$comp.sources.entidades.save({
-			onSuccess:function() {
+			onSuccess:function(){
 				ds.Entidades.asignarPais($comp.sources.entidades.ID,$('#select-paises').val());
-				var dialogo = getHtmlId("dialog1");//Obtengo el dialogo widget
 				$(window).scrollTop(0);
 				$$(id+"_dialog1").hide();
-				appds.closeDialogEmpresa();	
+				appds.closeDialogEmpresa();
 			}
 		});
+					
+			
 		
 	};// @lock
 
@@ -174,10 +164,9 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_fileUpload2", "filesUploaded", fileUpload2.filesUploaded, "WAF");
+	WAF.addListener(this.id + "_fileUpload1", "filesUploaded", fileUpload1.filesUploaded, "WAF");
 	WAF.addListener(this.id + "_richText5", "click", richText5.click, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
-	WAF.addListener(this.id + "_fileUpload1", "filesUploaded", fileUpload1.filesUploaded, "WAF");
 	WAF.addListener(this.id + "_richText3", "click", richText3.click, "WAF");
 	WAF.addListener(this.id + "_richText2", "click", richText2.click, "WAF");
 	// @endregion// @endlock

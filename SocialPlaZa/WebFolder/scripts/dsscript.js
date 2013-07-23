@@ -353,6 +353,7 @@ appdsObj = function () {
 				$comp.sources.lineas.save({
 					onSuccess:function (event){
 						$comp.sources.docComercial.collectionRefresh();
+						
 					}
 				});	
 			
@@ -460,135 +461,7 @@ appdsObj = function () {
 		
 	}
 	
-this.crearContainerGeneral = function ($comp){
-		
-		var tamanio=0;
-		
-		 WAF.dataSource.create({
-          'id': 'articulos', // id
-          'binding': 'Articulos' // name of the datastore class
-        });
 
-		sources.articulos.resolveSource({
-			onSuccess:function (event){
-				tamanio = sources.articulos.length;
-			
-
-				for (var i=0;i<tamanio;i++){
-					var div = document.createElement("div");
-					div.setAttribute('id', 'contanierArticulo'+i);
-					div.style.width = "86px";
-					div.style.height = "84px";
-									
-					div.style.marginTop ="7px";
-					div.style.marginLeft = "9px";
-					div.style.cssFloat = "left";
-					
-					div.style.background = "blue";
-					div.style.border = "solid 1px black";
-					div.style.zIndex = "3";
-					
-					var divGeneral = document.getElementById($comp.id+"_containerGeneral");
-					divGeneral.appendChild(div);
-					
-					myContainer2 = new WAF.widget.Container({ 
-					'id': 'contanierArticulo'+i,
-					'data-type': 'container',
-					'data-lib': 'WAF',
-					'data-constraint-top': 'true',
-					'data-constraint-left': 'true' 
-					});
-					
-					$$($comp.id+"_containerGeneral").addChild($$(myContainer2));
-					
-					
-					
-					 sources.articulos.select(i);
-				     var descrip = sources.articulos.Descripcion;
-				     var codigo = sources.articulos.Codigo;
-				     var precio = sources.articulos.Precio;
-					
-					 var buttonRenderer = document.createElement('button'); //Step1
-				     buttonRenderer.setAttribute('id', 'myButton'+i); //Step 2
-				     buttonRenderer.setAttribute('value', sources.articulos.Codigo); //Step 2
-				     buttonRenderer.style.width = "75px";
-				     buttonRenderer.style.height = "60px";
-					 buttonRenderer.style.marginTop ="5px";
-					 buttonRenderer.style.marginLeft = "5px";
-					 
-					 
-				     div.appendChild(buttonRenderer); 
-				    
-				     
-				     
-				     var buttonWidget = new WAF.widget.Button({
-				          'id': 'myButton'+i,
-				          'data-lib': 'WAF',
-				          'data-type': 'button',
-				          'data-text': sources.articulos.Descripcion,
-				          'class': 'tpv-btn',
-				          'data-action': 'simple', // action
-          				  'data-binding': 'articulos' // datasource ID
-				     });
-				     
-				     $$($comp.id+"_containerGeneral").addChild($$(buttonWidget))
-				     
-				     var textRenderer = document.createElement('div'); //Step1
-				     textRenderer.setAttribute('id', 'myRich'+i); //Step 2
-				     textRenderer.style.width = "75px";
-				     textRenderer.style.height = "15px";
-				     buttonRenderer.style.marginTop ="5px";
-					 textRenderer.style.marginLeft = "5px";
-					 textRenderer.style.background = "yellow";
-					 textRenderer.style.cssFloat = "left";
-					 textRenderer.innerHTML = precio;
-					 
-					 div.appendChild(textRenderer);
-					 
-					 myContainer3 = new WAF.widget.Container({ 
-						'id': 'myRich'+i,
-						'data-type': 'richText',
-						'data-lib': 'WAF',
-						'data-constraint-top': 'true',
-						'data-constraint-left': 'true'	
-					});
-					
-					$('#myButton'+i).mousedown(function(){
-						vTime = 0;
-						vTime = new Date();
-					});
-					
-					$('#myButton'+i).mouseup(function(){
-						var vTimeResta = new Date();
-						vTimeResta = vTimeResta - vTime;
-						
-						if (vTimeResta >= 650) {
-							
-							$$($comp.id+"_dialog3").setState("modificar");//El dialogo pasa a estado modificar
-							
-							appds.estadoInicial($comp, "modificar",$(this).val());
-							
-							$("BODY").append($("#"+$comp.id+"_dialog3"));
-							$$($comp.id+"_dialog3").displayDialog();
-							$("#"+$comp.id+"_dialog3").css("top",20);
-							$("#"+$comp.id+"_dialog3").css("left",200);
-							
-						}else{
-							//anadir linea
-							//alert($(this).val());
-							var esteObjeto = $(this);//fc para pasarle el objeto d—de pulso
-							appds.anadirLinea($comp,esteObjeto);
-						}
-					});
-					
-					
-					 
-				}
-				
-			}
-		});
-			
-	}
 
     	
 }

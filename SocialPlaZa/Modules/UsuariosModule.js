@@ -7,7 +7,7 @@ exports.insertaUsuarioNuevo = function insertaUsuarioNuevo (vNombreAcceso, vPass
 			entorno.save();
 			var tipoAcceso = 2;
 			var var1 = generateUUID();
-			var myFoto = loadImage ("/Users/dsantiago/Documents/SocialPlaZa/SocialPlaZa/onebit_18.png");
+			var myFoto = loadImage ("/Users/dsantiago/Documents/SocialPlaZa/SocialPlaZa/WebFolder/images/onebit_18.png");
 			//++++++++++++++++++++++++++++++++++
 			//NUEVO USUARIO
 			//++++++++++++++++++++++++++++++++++

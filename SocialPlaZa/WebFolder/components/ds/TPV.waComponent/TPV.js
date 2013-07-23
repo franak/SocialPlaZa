@@ -304,7 +304,8 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	textField3.blur = function textField3_blur (event)// @startlock
 	{// @endlock
-		$comp.sources.docComercial.Denom = $(this).val();
+		$comp.sources.docComercial.getCurrentElement();
+		$comp.sources.docComercial.Denom = $("#"+id+"_textField3").val();
 		$comp.sources.docComercial.save({
 			onSuccess: function (){
 				$comp.sources.docComercial.serverRefresh();
@@ -678,11 +679,6 @@ $.getJSON( ruta, function(data) {
 	};// @lock
 
 
-	lineasCollectionEvent.onElementSaved = function lineasCollectionEvent_onElementSaved (event)// @startlock
-	{// @endlock
-		$$(id+"_dataGrid1").setSelectedRows([pos]);
-	};// @lock
-
 	lineasCollectionEvent.onCollectionChange = function lineasCollectionEvent_onCollectionChange (event)// @startlock
 	{// @endlock
 		var docID = $comp.sources.docComercial.ID;
@@ -691,9 +687,6 @@ $.getJSON( ruta, function(data) {
 		}
 		
 		$$(id+"_dataGrid1").setSelectedRows([pos]);
-		
-		mantenerFoco();
-	
 		
 	};// @lock
 	
@@ -763,7 +756,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_imageButton13", "click", imageButton13.click, "WAF");
 	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
 	WAF.addListener(this.id + "_richText15", "click", richText15.click, "WAF");
-	WAF.addListener(this.id + "_lineasCollection", "onElementSaved", lineasCollectionEvent.onElementSaved, "WAF");
 	WAF.addListener(this.id + "_lineasCollection", "onCollectionChange", lineasCollectionEvent.onCollectionChange, "WAF");
 	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
 	// @endregion// @endlock
@@ -795,7 +787,7 @@ $.getJSON( ruta, function(data) {
 	//INPUTS DE BOOTSTRAP
 	
       $(tabla).append('<label class="control-label" for="input_'+ medio.Codigo +'">'+ medio.Descripcion +'</label>');
-      $(tabla).append('<input  type="text"  id="input_'+ medio.Codigo +'" class="entrada cobro" placeholder='+ medio.Descripcion +' >');
+      $(tabla).append('<input  type="number"  id="input_'+ medio.Codigo +'" class="entrada cobro" placeholder='+ medio.Descripcion +' >');
     //  $(tabla).append(' <span class="help-block">Indique el importe en '+ medio.Descripcion +'</span>');     
    
 
@@ -810,7 +802,7 @@ $.getJSON( ruta, function(data) {
  	 $(tabla).append('</fieldset></form>'); 
  	 $(tabla).fadeIn();
 	 $('#input_EF').attr("autofocus","autofocus"); 
-	 
+
 	 
 	 
 	 $(":input").bind('keypress', function(e) {
@@ -865,9 +857,9 @@ $(".cobro").focus( function(event) {
 	diferencia = vSumaR - total;
 	console.log("total: "+total);
 	console.log("diferencia: "+diferencia);
+	diferenciaCambio = diferencia;
 	if(diferencia >= 0){
 		
-		diferenciaCambio = diferencia;
 		diferencia = parseFloat(diferencia);//ds pasar a numero la variable
 		diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
 		$(this).val(diferencia);
