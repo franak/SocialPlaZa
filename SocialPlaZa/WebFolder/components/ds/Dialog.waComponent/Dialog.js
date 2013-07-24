@@ -12,6 +12,20 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
+	$$($comp.id+"_richText17").setValue("Anadir"); // Ponemos un valor al boton
+	$comp.sources.medioPago.all();
+	$comp.sources.cajasTPV.all();
+	$comp.sources.docComercial.all();
+	$comp.sources.cajasMovimientos.all({
+		onSuccess:function(){
+			var total = calculaTotalCaja();
+			total = total.toFixed(2);
+			$$(id+"_richText19").setValue("TOTAL en caja "+total+"€");
+			
+		}
+	});
+	
+		
 	
 		
 	
@@ -77,11 +91,45 @@ function constructor (id) {
 		
 	}
 	
-	//cargarFichaEmpresa();
+	//-- Calcular TOTAL CAJA --\\
+	
+	function calculaTotalCaja(){
+		
+		 var movimientos = $comp.sources.cajasMovimientos;
+		 var documentos = $comp.sources.docComercial;
+		 var entregado = 0;
+		 var cambio = 0;
+		 
+		 for (var i = 0; i < movimientos.length; i++){
+		 	movimientos.getElement(i, { 
+		 		onSuccess: function(event) {
+		 			
+	        		var entity = event.element;
+	        		
+					entregado += entity.entregado;
+	       		}
+		   });
+		 }
+		 for (var i = 0; i < documentos.length; i++){
+		 	documentos.getElement(i, { 
+		 		onSuccess: function(event) {
+		 			
+	        		var entity = event.element;
+					cambio += entity.Cambio;
+	       		}
+		   });
+		 }
+		 console.log(entregado);
+		 console.log(cambio);
+		 return (entregado - cambio);
+	    
+	}
 	
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
+	var cajasMovimientosEvent = {};	// @dataSource
+	var richText17 = {};	// @richText
 	var richText8 = {};	// @richText
 	var fileUpload1 = {};	// @fileUpload
 	var richText5 = {};	// @richText
@@ -91,6 +139,40 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	cajasMovimientosEvent.onElementSaved = function cajasMovimientosEvent_onElementSaved (event)// @startlock
+	{// @endlock
+		var total = calculaTotalCaja();
+		total = total.toFixed(2);
+		$$(id+"_richText19").setValue("TOTAL en caja "+total+"€");
+	};// @lock
+
+	richText17.click = function richText17_click (event)// @startlock
+	{// @endlock
+		
+		if($$($comp.id+"_richText17").getValue() == "Anadir"){
+			$("#"+$comp.id+"_textField5").fadeIn(1000); 
+			$$($comp.id+"_richText17").setValue("Guardar");
+			$("#"+$comp.id+"_textField5").focus();
+			
+		}else if($$($comp.id+"_richText17").getValue() == "Guardar"){
+			
+			$comp.sources.cajasMovimientos.addNewElement();
+			$comp.sources.cajasMovimientos.entregado = $$(id+"_textField5").getValue();
+			$comp.sources.cajasMovimientos.concepto = "Anadido Manualmente";
+			$comp.sources.cajasMovimientos.fecha = new Date();
+			$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
+			$comp.sources.cajasMovimientos.MedioPago.set($comp.sources.medioPago);
+			$comp.sources.cajasMovimientos.save({
+				onSuccess:function (){
+					$$(id+"_textField5").setValue("");
+					$("#"+$comp.id+"_textField5").fadeOut(1000); 
+					$$($comp.id+"_richText17").setValue("Anadir");
+					$(window).scrollTop(0);
+				}
+			});
+		}
+	};// @lock
 
 	richText8.click = function richText8_click (event)// @startlock
 	{// @endlock
@@ -102,11 +184,7 @@ function constructor (id) {
 
 	fileUpload1.filesUploaded = function fileUpload1_filesUploaded (event)// @startlock
 	{// @endlock
-		$comp.sources.entidades.save({
-			onSuccess:function (){
-				$comp.sources.entidades.serverRefresh();
-			}
-		});
+		$comp.sources.entidades.save();
 	};// @lock
 
 	richText5.click = function richText5_click (event)// @startlock
@@ -144,22 +222,13 @@ function constructor (id) {
 
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
-		$comp.sources.entidades.save({
-			onSuccess:function (){
-				$comp.sources.entidades.serverRefresh();
-			}
-		});
+		$comp.sources.entidades.save();
 	};// @lock
 
 	
 
 	richText3.click = function richText3_click (event)// @startlock
 	{// @endlock
-		
-		$comp.sources.entidades.Nombre = $$(id+"_textField1").getValue();
-		$comp.sources.entidades.Direccion = $$(id+"_textField2").getValue();
-		$comp.sources.entidades.NIF = $$(id+"_textField3").getValue();
-		$comp.sources.entidades.CodigoPostal = $$(id+"_textField4").getValue();
 		
 		$comp.sources.entidades.save({
 			onSuccess:function(){
@@ -182,6 +251,8 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_cajasMovimientos", "onElementSaved", cajasMovimientosEvent.onElementSaved, "WAF");
+	WAF.addListener(this.id + "_richText17", "click", richText17.click, "WAF");
 	WAF.addListener(this.id + "_richText8", "click", richText8.click, "WAF");
 	WAF.addListener(this.id + "_fileUpload1", "filesUploaded", fileUpload1.filesUploaded, "WAF");
 	WAF.addListener(this.id + "_richText5", "click", richText5.click, "WAF");

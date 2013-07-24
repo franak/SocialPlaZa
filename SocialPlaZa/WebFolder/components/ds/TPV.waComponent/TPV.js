@@ -858,9 +858,9 @@ $(".cobro").focus( function(event) {
 	diferencia = vSumaR - total;
 	console.log("total: "+total);
 	console.log("diferencia: "+diferencia);
-	diferenciaCambio = diferencia;
+	
 	if(diferencia >= 0){
-		
+		diferenciaCambio = diferencia;
 		diferencia = parseFloat(diferencia);//ds pasar a numero la variable
 		diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
 		$(this).val(diferencia);
@@ -1146,6 +1146,7 @@ function dispensar(){
 					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo"); 
 							$comp.sources.cajasMovimientos.MedioPago.set(m);
 							var cambio = aMediosPagos[i] - diferenciaCambio;
+							diferenciaCambio = 0;
 							if(cambio > 0){
 								$comp.sources.docComercial.Cambio = cambio;
 								localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
