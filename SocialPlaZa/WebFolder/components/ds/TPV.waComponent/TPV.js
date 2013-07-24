@@ -166,6 +166,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	enfocar();
 	
 	// @region namespaceDeclaration// @startlock
+	var richText25 = {};	// @richText
 	var dataGrid1 = {};	// @dataGrid
 	var btnAll = {};	// @buttonImage
 	var richText30 = {};	// @richText
@@ -184,7 +185,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	var docComercial1Event = {};	// @dataSource
 	var docComercialEvent = {};	// @dataSource
 	var imageButton15 = {};	// @buttonImage
-	var btnArticulo = {};	// @richText
 	var imageButton1 = {};	// @buttonImage
 	var imageButton14 = {};	// @buttonImage
 	var imageButton9 = {};	// @buttonImage
@@ -194,7 +194,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	var imageButton4 = {};	// @buttonImage
 	var imageButton10 = {};	// @buttonImage
 	var imageButton5 = {};	// @buttonImage
-	var richText23 = {};	// @richText
 	var richText6 = {};	// @richText
 	var richText19 = {};	// @richText
 	var richText18 = {};	// @richText
@@ -209,6 +208,30 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 
 	// eventHandlers// @lock
+
+	richText25.mousedown = function richText25_mousedown (event)// @startlock
+	{// @endlock
+		vTime = 0;
+		vTime = new Date();
+	};// @lock
+
+	richText25.mouseup = function richText25_mouseup (event)// @startlock
+	{// @endlock
+		articulo_btn(this);
+		mantenerFoco();
+	};// @lock
+
+	richText25.touchstart = function richText25_touchstart (event)// @startlock
+	{// @endlock
+		vTime = 0;
+		vTime = new Date();
+	};// @lock
+
+	richText25.touchend = function richText25_touchend (event)// @startlock
+	{// @endlock
+		articulo_btn(this);
+		mantenerFoco();
+	};// @lock
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
@@ -385,37 +408,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	};// @lock
 
-	btnArticulo.mousedown = function btnArticulo_mousedown (event)// @startlock
-	{// @endlock
-		vTime = 0;
-		vTime = new Date();
-		
-	};// @lock
-
-	btnArticulo.mouseup = function btnArticulo_mouseup (event)// @startlock
-	{// @endlock
-		
-		articulo_btn(this);
-		mantenerFoco();
-		
-
-	};// @lock
-
-	btnArticulo.touchstart = function btnArticulo_touchstart (event)// @startlock
-	{// @endlock
-		vTime = 0;
-		vTime = new Date();
-		
-	};// @lock
-
-	btnArticulo.touchend = function btnArticulo_touchend (event)// @startlock
-	{// @endlock
-
-		articulo_btn(this);
-		$("#"+id+"_textField4").focus();
-		
-	};// @lock
-
 	imageButton1.click = function imageButton1_click (event)// @startlock
 	{// @endlock
 			UI.gifCargando(); //el chirimbolo de "carga"
@@ -517,34 +509,6 @@ $.getJSON( ruta, function(data) {
 		fcBrain.crearDocComercial($comp,tipoDoc);
 		mantenerFoco();
 		
-	};// @lock
-
-	richText23.touchend = function richText23_touchend (event)// @startlock
-	{// @endlock
-		var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
-		$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
-		
-		appds.estadoInicial($comp, "modificar");
-		
-		$("BODY").append($("#"+id+"_dialog3"));
-		$$(dialogo).displayDialog();
-		$("#"+id+"_dialog3").css("top",100);
-		$("#"+id+"_dialog3").css("left",200);
-	};// @lock
-
-	richText23.click = function richText23_click (event)// @startlock
-	{// @endlock
-		
-			var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
-			$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
-			
-			appds.estadoInicial($comp, "modificar");
-			
-			$("BODY").append($("#"+id+"_dialog3"));
-			$$(dialogo).displayDialog();
-			$("#"+id+"_dialog3").css("top",100);
-			$("#"+id+"_dialog3").css("left",200);
-			$("#"+$comp.id+"_textField2").focus();
 	};// @lock
 
 	richText6.click = function richText6_click (event)// @startlock
@@ -712,6 +676,10 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
+	WAF.addListener(this.id + "_richText25", "mouseup", richText25.mouseup, "WAF");
+	WAF.addListener(this.id + "_richText25", "touchstart", richText25.touchstart, "WAF");
+	WAF.addListener(this.id + "_richText25", "touchend", richText25.touchend, "WAF");
 	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_textField3", "blur", textField3.blur, "WAF");
 	WAF.addListener(this.id + "_textField4", "blur", textField4.blur, "WAF");
@@ -732,11 +700,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_imageButton15", "click", imageButton15.click, "WAF");
 	WAF.addListener(this.id + "_richText6", "click", richText6.click, "WAF");
-	WAF.addListener(this.id + "_btnArticulo", "mousedown", btnArticulo.mousedown, "WAF");
-	WAF.addListener(this.id + "_btnArticulo", "mouseup", btnArticulo.mouseup, "WAF");
-	WAF.addListener(this.id + "_btnArticulo", "touchstart", btnArticulo.touchstart, "WAF");
-	WAF.addListener(this.id + "_btnArticulo", "touchend", btnArticulo.touchend, "WAF");
-	WAF.addListener(this.id + "_richText23", "touchend", richText23.touchend, "WAF");
 	WAF.addListener(this.id + "_imageButton1", "click", imageButton1.click, "WAF");
 	WAF.addListener(this.id + "_imageButton14", "click", imageButton14.click, "WAF");
 	WAF.addListener(this.id + "_imageButton9", "click", imageButton9.click, "WAF");
@@ -746,7 +709,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_imageButton4", "click", imageButton4.click, "WAF");
 	WAF.addListener(this.id + "_imageButton10", "click", imageButton10.click, "WAF");
 	WAF.addListener(this.id + "_imageButton5", "click", imageButton5.click, "WAF");
-	WAF.addListener(this.id + "_richText23", "click", richText23.click, "WAF");
 	WAF.addListener(this.id + "_richText19", "click", richText19.click, "WAF");
 	WAF.addListener(this.id + "_richText18", "click", richText18.click, "WAF");
 	WAF.addListener(this.id + "_richText4", "click", richText4.click, "WAF");
@@ -977,7 +939,7 @@ $('#modifica').click(function() {
 --------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------
 */
 
-var botonArticulo = getHtmlId('btnArticulo');
+var botonArticulo = getHtmlId('richText25');
 $('.matrix_articulos').live("touchstart", function(e){
     e.preventDefault();
 });
@@ -1054,7 +1016,7 @@ function articulo_btn(esteObjeto){
 	}else{
 		
 		var cobrado = $comp.sources.docComercial.Cobrado;
-		botonArticulo = getHtmlId('btnArticulo');
+		botonArticulo = getHtmlId('richText25');
 		if(cobrado != true){
 			
 			appds.anadirLinea($comp,esteObjeto);
