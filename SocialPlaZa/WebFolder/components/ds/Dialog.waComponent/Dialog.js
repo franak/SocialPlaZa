@@ -12,18 +12,11 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
-	$$($comp.id+"_richText17").setValue("Anadir"); // Ponemos un valor al boton
+	$$($comp.id+"_richText7").setValue("Anadir"); // Ponemos un valor al boton
 	$comp.sources.medioPago.all();
 	$comp.sources.cajasTPV.all();
 	$comp.sources.docComercial.all();
-	$comp.sources.cajasMovimientos.all({
-		onSuccess:function(){
-			var total = calculaTotalCaja();
-			total = total.toFixed(2);
-			$$(id+"_richText19").setValue("TOTAL en caja "+total+"€");
-			
-		}
-	});
+	$comp.sources.cajasMovimientos.all();
 	
 		
 	
@@ -96,9 +89,7 @@ function constructor (id) {
 	function calculaTotalCaja(){
 		
 		 var movimientos = $comp.sources.cajasMovimientos;
-		 var documentos = $comp.sources.docComercial;
-		 var entregado = 0;
-		 var cambio = 0;
+		 var importe = 0;
 		 
 		 for (var i = 0; i < movimientos.length; i++){
 		 	movimientos.getElement(i, { 
@@ -106,29 +97,22 @@ function constructor (id) {
 		 			
 	        		var entity = event.element;
 	        		
-					entregado += entity.entregado;
-	       		}
-		   });
-		 }
-		 for (var i = 0; i < documentos.length; i++){
-		 	documentos.getElement(i, { 
-		 		onSuccess: function(event) {
-		 			
-	        		var entity = event.element;
-					cambio += entity.Cambio;
+					importe += entity.importeVenta;
 	       		}
 		   });
 		 }
 		 
-		 return (entregado - cambio);
+		 
+		 return (importe);
 	    
 	}
 	
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
-	var cajasMovimientosEvent = {};	// @dataSource
 	var richText17 = {};	// @richText
+	var cajasMovimientosEvent = {};	// @dataSource
+	var richText7 = {};	// @richText
 	var richText8 = {};	// @richText
 	var fileUpload1 = {};	// @fileUpload
 	var richText5 = {};	// @richText
@@ -139,34 +123,42 @@ function constructor (id) {
 
 	// eventHandlers// @lock
 
-	cajasMovimientosEvent.onElementSaved = function cajasMovimientosEvent_onElementSaved (event)// @startlock
+	richText17.click = function richText17_click (event)// @startlock
+	{// @endlock
+		$comp.sources.cajasMovimientos.removeCurrent();
+	};// @lock
+
+	cajasMovimientosEvent.onCurrentElementChange = function cajasMovimientosEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
 		var total = calculaTotalCaja();
 		total = total.toFixed(2);
 		$$(id+"_richText19").setValue("TOTAL en caja "+total+"€");
 	};// @lock
 
-	richText17.click = function richText17_click (event)// @startlock
+	richText7.click = function richText7_click (event)// @startlock
 	{// @endlock
 		
-		if($$($comp.id+"_richText17").getValue() == "Anadir"){
-			$("#"+$comp.id+"_textField5").fadeIn(1000); 
-			$$($comp.id+"_richText17").setValue("Guardar");
+		if($$($comp.id+"_richText7").getValue() == "Anadir"){
+			$("#"+$comp.id+"_textField5").fadeIn(1000);
+			$("#"+$comp.id+"_textField8").fadeIn(1000);
+			$$($comp.id+"_richText7").setValue("Guardar");
 			$("#"+$comp.id+"_textField5").focus();
 			
-		}else if($$($comp.id+"_richText17").getValue() == "Guardar"){
+		}else if($$($comp.id+"_richText7").getValue() == "Guardar"){
 			
 			$comp.sources.cajasMovimientos.addNewElement();
-			$comp.sources.cajasMovimientos.entregado = $$(id+"_textField5").getValue();
-			$comp.sources.cajasMovimientos.concepto = "Anadido Manualmente";
+			$comp.sources.cajasMovimientos.importeVenta = $$(id+"_textField5").getValue();
+			$comp.sources.cajasMovimientos.concepto = $$(id+"_textField8").getValue();
 			$comp.sources.cajasMovimientos.fecha = new Date();
 			$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
 			$comp.sources.cajasMovimientos.MedioPago.set($comp.sources.medioPago);
 			$comp.sources.cajasMovimientos.save({
 				onSuccess:function (){
 					$$(id+"_textField5").setValue("");
-					$("#"+$comp.id+"_textField5").fadeOut(1000); 
-					$$($comp.id+"_richText17").setValue("Anadir");
+					$$(id+"_textField8").setValue("");
+					$("#"+$comp.id+"_textField5").fadeOut(1000);
+					$("#"+$comp.id+"_textField8").fadeOut(1000); 
+					$$($comp.id+"_richText7").setValue("Anadir");
 					$(window).scrollTop(0);
 				}
 			});
@@ -260,8 +252,9 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_cajasMovimientos", "onElementSaved", cajasMovimientosEvent.onElementSaved, "WAF");
+	WAF.addListener(this.id + "_cajasMovimientos", "onCurrentElementChange", cajasMovimientosEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_richText17", "click", richText17.click, "WAF");
+	WAF.addListener(this.id + "_richText7", "click", richText7.click, "WAF");
 	WAF.addListener(this.id + "_richText8", "click", richText8.click, "WAF");
 	WAF.addListener(this.id + "_fileUpload1", "filesUploaded", fileUpload1.filesUploaded, "WAF");
 	WAF.addListener(this.id + "_richText5", "click", richText5.click, "WAF");

@@ -166,6 +166,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	enfocar();
 	
 	// @region namespaceDeclaration// @startlock
+	var dataGrid1 = {};	// @dataGrid
 	var btnAll = {};	// @buttonImage
 	var richText30 = {};	// @richText
 	var richText29 = {};	// @richText
@@ -208,6 +209,23 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 
 	// eventHandlers// @lock
+
+	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
+	{// @endlock
+		if($comp.sources.docComercial.Cobrado != true){
+			var dialogo = getHtmlId("dialog2");
+			var jqdialogo = getHtmlObj("dialog2");
+		
+			$("BODY").append($(jqdialogo));
+			$(jqdialogo).css("top",100);
+			$(jqdialogo).css("left",100);
+			$(jqdialogo).css("position","fixed");
+			$$(dialogo).displayDialog();
+			$("#"+$comp.id+"_textField11").focus();
+		}else{
+			UI.alert("Ya esta cobrado este Ticket","Atencion");
+		}
+	};// @lock
 
 	btnAll.click = function btnAll_click (event)// @startlock
 	{// @endlock
@@ -694,6 +712,7 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_textField3", "blur", textField3.blur, "WAF");
 	WAF.addListener(this.id + "_textField4", "blur", textField4.blur, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
