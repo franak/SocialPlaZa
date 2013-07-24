@@ -145,7 +145,16 @@ appdsObj = function () {
      
      this.openDialogEmpresa = function() {
      	
+     	$$(components.dialog).hide();
+     	
      	$$(components.dialog).loadComponent({path: components.Dialog.path,userData: { myParameter: "Empresa"}});
+		
+		setTimeout(function(){	//lo retardo para que no aparezca primero vacío y después aparezcan los datos
+		     	$$(components.dialog).show();
+
+		},600);		
+     	
+
     
      }
 	
