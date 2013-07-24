@@ -119,8 +119,7 @@ function constructor (id) {
 	       		}
 		   });
 		 }
-		 console.log(entregado);
-		 console.log(cambio);
+		 
 		 return (entregado - cambio);
 	    
 	}
@@ -211,6 +210,16 @@ function constructor (id) {
 		$$(id+"_dialog2").hide();
 		$("#"+id+"_dialog3").css("top",100);
 		$$(id+"_dialog3").show();
+		
+		$(":input").bind('keypress', function(e) {
+			if(e.keyCode==13){
+				var btn_valor = $$(id+"_richText17").getValue();
+				if(btn_valor == "Guardar"){
+					$("#"+id+"_richText17").click();
+				}
+			}
+	  });
+	  
 	}else{
 		$$(id+"_dialog1").hide();
 		$$(id+"_dialog3").hide();
