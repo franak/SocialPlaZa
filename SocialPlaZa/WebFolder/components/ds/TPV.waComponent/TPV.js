@@ -388,11 +388,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton1.click = function imageButton1_click (event)// @startlock
 	{// @endlock
-			UI.gifCargando(); //el chirimbolo de "carga"
-			
-			appds.openDialogEmpresa();
 		
-
 		
 	};// @lock
 
@@ -897,7 +893,8 @@ function modificarLinea(){
 		
 		
 }	
- //Menú para el botón Toolbar
+ //Menú para el botón Toolbar de lineas
+ 
  
  var menuBoton = ' <ul id="format-toolbar-options"  role="menu" aria-labelledby="dLabel" style="display:none">'
 +'<li><a href="#" id="elimina" class="tool"><i class=" icon-remove"></i> Eliminar</a></li>'
@@ -948,13 +945,39 @@ $('#modifica').click(function() {
 });
 
 
+ //Menú para el botón Toolbar de Documento
+ 
+ 
+ var menuBoton = ' <ul id="format-toolbar-options-doc"  role="menu" aria-labelledby="dLabel" style="display:none">'
++'<li><a href="#" id="VerCaja" class="tool"> Ver Caja</a></li>'
++'</ul>';
+$('body').append(menuBoton);
+
+//Comportamiento de los botones de la toolbar:
+$('#VerCaja').click(function() {
+	UI.gifCargando();
+		appds.openDialogMovimiento($comp);
+		mantenerFoco();
+});
+
+
+ 	
+ //Botón con menú
+ var bToolbarDoc = getHtmlObj('imageButton1');
+ 
+ $(bToolbarDoc).toolbar({
+	content: '#format-toolbar-options-doc', 
+	position: 'right',
+	hideOnClick: true
+});
+
 
 
 /*
 --------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------
 */
 
-var botonArticulo = getHtmlId('btnArticulo');
+var botonArticulo = getHtmlId('richText25');
 $('.matrix_articulos').live("touchstart", function(e){
     e.preventDefault();
 });
@@ -1030,7 +1053,7 @@ function articulo_btn(esteObjeto){
 	}else{
 		
 		var cobrado = $comp.sources.docComercial.Cobrado;
-		botonArticulo = getHtmlId('btnArticulo');
+		botonArticulo = getHtmlId('richText25');
 		if(cobrado != true){
 			
 			appds.anadirLinea($comp,esteObjeto);
