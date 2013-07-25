@@ -211,8 +211,8 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	richText25.touchend = function richText25_touchend (event)// @startlock
 	{// @endlock
-			articulo_btn(this);
-		$("#"+id+"_textField4").focus();
+		articulo_btn(this);
+		mantenerFoco();
 	};// @lock
 
 	richText25.touchstart = function richText25_touchstart (event)// @startlock
@@ -1042,15 +1042,15 @@ function articulo_btn(esteObjeto){
 	var vTimeResta = new Date();
 	vTimeResta = vTimeResta - vTime;
 	
-	if (vTimeResta >= 750) {
+	/*if (vTimeResta >= 750) {
 		
 		var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
-		$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
+		$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
 		
 		appds.estadoInicial($comp, "modificar",esteObjeto);
 		
 		
-	}else{
+	}else{*/
 		
 		var cobrado = $comp.sources.docComercial.Cobrado;
 		botonArticulo = getHtmlId('richText25');
@@ -1065,7 +1065,7 @@ function articulo_btn(esteObjeto){
 			
 		}
 
-	}
+	//}
 }
 
 function btn_borrar(){

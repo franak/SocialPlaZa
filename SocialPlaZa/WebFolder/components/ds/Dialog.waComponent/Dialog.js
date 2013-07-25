@@ -12,7 +12,6 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
-	$$($comp.id+"_richText7").setValue("Anadir"); // Ponemos un valor al boton
 	$comp.sources.medioPago.all();
 	$comp.sources.cajasTPV.all();
 	$comp.sources.docComercial.all();
@@ -110,12 +109,16 @@ function constructor (id) {
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
+	var richText26 = {};	// @richText
+	var richText27 = {};	// @richText
+	var textField5 = {};	// @textField
+	var textField8 = {};	// @textField
+	var richText5 = {};	// @richText
 	var richText17 = {};	// @richText
 	var cajasMovimientosEvent = {};	// @dataSource
 	var richText7 = {};	// @richText
 	var richText8 = {};	// @richText
 	var fileUpload1 = {};	// @fileUpload
-	var richText5 = {};	// @richText
 	var button1 = {};	// @button
 	var richText3 = {};	// @richText
 	var richText2 = {};	// @richText
@@ -123,9 +126,64 @@ function constructor (id) {
 
 	// eventHandlers// @lock
 
+	richText26.click = function richText26_click (event)// @startlock
+	{// @endlock
+		$comp.sources.cajasMovimientos.addNewElement();
+		$comp.sources.cajasMovimientos.importeVenta = $$(id+"_textField5").getValue();
+		$comp.sources.cajasMovimientos.concepto = $$(id+"_textField8").getValue();
+		$comp.sources.cajasMovimientos.fecha = new Date();
+		$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
+		$comp.sources.cajasMovimientos.MedioPago.set($comp.sources.medioPago);
+		$comp.sources.cajasMovimientos.save({
+			onSuccess:function (){
+				$$(id+"_textField5").setValue("");
+				$$(id+"_textField8").setValue("");
+				$("#"+$comp.id+"_richText18").fadeOut();
+				$("#"+$comp.id+"_richText20").fadeOut();
+				$(window).scrollTop(0);
+				$("#"+id+"_dialog4").slideUp(500);
+				
+			}
+		});
+	};// @lock
+
+	richText27.click = function richText27_click (event)// @startlock
+	{// @endlock
+		$$(id+"_textField5").setValue("");
+		$$(id+"_textField8").setValue("");
+		$("#"+$comp.id+"_richText18").fadeOut();
+		$("#"+$comp.id+"_richText20").fadeOut();
+		$("#"+id+"_dialog4").slideUp(500);
+	};// @lock
+
+	textField5.keydown = function textField5_keydown (event)// @startlock
+	{// @endlock
+		if($$(id+"_textField5").getValue()!=""){
+			$("#"+id+"_richText18").fadeIn();
+		}
+	};// @lock
+
+	textField8.keydown = function textField8_keydown (event)// @startlock
+	{// @endlock
+		if($$(id+"_textField8").getValue()!=""){
+			$("#"+id+"_richText20").fadeIn();
+		}
+	};// @lock
+
+	richText5.click = function richText5_click (event)// @startlock
+	{// @endlock
+		$("#"+id+"_dialog2").css("top",200);
+		$(window).scrollTop(0);
+		$$(id+"_dialog2").hide();
+		objComponent.sources.usuarios.serverRefresh();
+		appds.closeDialogEmpresa();		
+	};// @lock
+
 	richText17.click = function richText17_click (event)// @startlock
 	{// @endlock
-		$comp.sources.cajasMovimientos.removeCurrent();
+		if(confirm("¿Desea eliminar el movimiento de caja seleccionado?")){
+			$comp.sources.cajasMovimientos.removeCurrent();
+		}
 	};// @lock
 
 	cajasMovimientosEvent.onCurrentElementChange = function cajasMovimientosEvent_onCurrentElementChange (event)// @startlock
@@ -137,32 +195,11 @@ function constructor (id) {
 
 	richText7.click = function richText7_click (event)// @startlock
 	{// @endlock
-		
-		if($$($comp.id+"_richText7").getValue() == "Anadir"){
-			$("#"+$comp.id+"_textField5").fadeIn(1000);
-			$("#"+$comp.id+"_textField8").fadeIn(1000);
-			$$($comp.id+"_richText7").setValue("Guardar");
-			$("#"+$comp.id+"_textField5").focus();
-			
-		}else if($$($comp.id+"_richText7").getValue() == "Guardar"){
-			
-			$comp.sources.cajasMovimientos.addNewElement();
-			$comp.sources.cajasMovimientos.importeVenta = $$(id+"_textField5").getValue();
-			$comp.sources.cajasMovimientos.concepto = $$(id+"_textField8").getValue();
-			$comp.sources.cajasMovimientos.fecha = new Date();
-			$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
-			$comp.sources.cajasMovimientos.MedioPago.set($comp.sources.medioPago);
-			$comp.sources.cajasMovimientos.save({
-				onSuccess:function (){
-					$$(id+"_textField5").setValue("");
-					$$(id+"_textField8").setValue("");
-					$("#"+$comp.id+"_textField5").fadeOut(1000);
-					$("#"+$comp.id+"_textField8").fadeOut(1000); 
-					$$($comp.id+"_richText7").setValue("Anadir");
-					$(window).scrollTop(0);
-				}
-			});
-		}
+
+		$("#"+id+"_dialog4").css("top",525);
+		$("#"+id+"_dialog4").slideDown(500);
+		$("#"+$comp.id+"_textField5").focus();
+				
 	};// @lock
 
 	richText8.click = function richText8_click (event)// @startlock
@@ -176,15 +213,6 @@ function constructor (id) {
 	fileUpload1.filesUploaded = function fileUpload1_filesUploaded (event)// @startlock
 	{// @endlock
 		$comp.sources.entidades.save();
-	};// @lock
-
-	richText5.click = function richText5_click (event)// @startlock
-	{// @endlock
-		$("#"+id+"_dialog2").css("top",200);
-		$(window).scrollTop(0);
-		$$(id+"_dialog2").hide();
-		objComponent.sources.usuarios.serverRefresh();
-		appds.closeDialogEmpresa();		
 	};// @lock
 	
 	if(data.userData.myParameter == "Empresa"){
@@ -200,15 +228,12 @@ function constructor (id) {
 	}else if(data.userData.myParameter == "Movimiento"){
 		$$(id+"_dialog1").hide();
 		$$(id+"_dialog2").hide();
-		$("#"+id+"_dialog3").css("top",100);
+		$("#"+id+"_dialog3").css("top",20);
 		$$(id+"_dialog3").show();
 		
 		$(":input").bind('keypress', function(e) {
 			if(e.keyCode==13){
-				var btn_valor = $$(id+"_richText17").getValue();
-				if(btn_valor == "Guardar"){
-					$("#"+id+"_richText17").click();
-				}
+				$("#"+id+"_richText26").click();
 			}
 	  });
 	  
@@ -252,12 +277,16 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText26", "click", richText26.click, "WAF");
+	WAF.addListener(this.id + "_richText27", "click", richText27.click, "WAF");
+	WAF.addListener(this.id + "_textField5", "keydown", textField5.keydown, "WAF");
+	WAF.addListener(this.id + "_textField8", "keydown", textField8.keydown, "WAF");
+	WAF.addListener(this.id + "_richText5", "click", richText5.click, "WAF");
 	WAF.addListener(this.id + "_cajasMovimientos", "onCurrentElementChange", cajasMovimientosEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_richText17", "click", richText17.click, "WAF");
 	WAF.addListener(this.id + "_richText7", "click", richText7.click, "WAF");
 	WAF.addListener(this.id + "_richText8", "click", richText8.click, "WAF");
 	WAF.addListener(this.id + "_fileUpload1", "filesUploaded", fileUpload1.filesUploaded, "WAF");
-	WAF.addListener(this.id + "_richText5", "click", richText5.click, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_richText3", "click", richText3.click, "WAF");
 	WAF.addListener(this.id + "_richText2", "click", richText2.click, "WAF");
