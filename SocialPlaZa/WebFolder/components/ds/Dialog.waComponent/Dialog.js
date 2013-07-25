@@ -15,7 +15,73 @@ function constructor (id) {
 	$comp.sources.medioPago.all();
 	$comp.sources.cajasTPV.all();
 	$comp.sources.docComercial.all();
-	$comp.sources.cajasMovimientos.all();
+	$comp.sources.cajasMovimientos.all({
+		onSuccess: function(){
+			cargarDataPicker();
+		}
+	});
+	
+	//cargarDataPicker();
+function cargarDataPicker(){
+	var date = $comp.sources.cajasMovimientos.fecha;
+	console.log(date);
+	var dia = date.getDate();
+	var mes = date.getMonth()+1;
+	mes = "0"+mes;
+	var anio = date.getFullYear();
+
+	
+	var fechaElement =  '<div class="input-append date" id="datepicker" data-date-format="dd-mm-yyyy">'
+    					+'<input class="span2" size="16" type="text" value="'+dia+"/"+mes+"/"+anio+'" readonly><span class="add-on"><i class="icon-th"></i></span>'
+						+'</div>';
+	$("#"+id+"_container9").append(fechaElement);
+	$("#"+id+"_container9").css("z-index","99999");
+	
+	$("#"+id+"_container9").css("background","transparent");
+	$(".span2").css("position","absolute");
+	$(".span2").css("left","250px");
+	$(".span2").css("top","20px");
+	$(".add-on").css("position","absolute");
+	$(".add-on").css("left","370px");
+	$(".add-on").css("top","20px");
+	$(".add-on").css("width","25px");
+	$(".icon-th").css("position","absolute");
+	$(".icon-th").css("top","0px");
+	$(".icon-th").click(function(){
+		$(".ui-datepicker-inline").fadeIn();
+			$('#datepicker').datepicker({
+				onSelect: function (ev){
+					$('.span2').val(this.value);
+					
+					/*var fecha = this.value;
+					var dia = fecha.substring(0,2);
+					var mes = fecha.substring(3,5);
+					mes = mes-1;
+					var anio = fecha.substring(6);
+					
+					
+					var f2 = new Date(anio, mes, dia);
+					console.log(f2);
+					dia = parseInt(dia);
+					dia++;
+					var f3 = new Date(anio, mes, dia);
+					console.log(f3);
+					$comp.sources.cajasMovimientos.query("fecha < "+f2);
+					$("#"+id+"_container9").css("height","53px");
+					$(".ui-datepicker-inline").fadeOut();*/
+				}
+			});
+			
+		$(".ui-datepicker-inline").css("position","absolute");
+		$(".ui-datepicker-inline").css("left","400px");
+		$("#"+id+"_container9").css("height","220px");
+				
+	});
+	
+	
+	
+}
+	
 		
 	
 	//-- Append del select de paises --\\
