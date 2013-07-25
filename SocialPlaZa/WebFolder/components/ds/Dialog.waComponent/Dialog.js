@@ -16,9 +16,6 @@ function constructor (id) {
 	$comp.sources.cajasTPV.all();
 	$comp.sources.docComercial.all();
 	$comp.sources.cajasMovimientos.all();
-	
-		
-	
 		
 	
 	//-- Append del select de paises --\\
@@ -141,7 +138,7 @@ function constructor (id) {
 				$("#"+$comp.id+"_richText18").fadeOut();
 				$("#"+$comp.id+"_richText20").fadeOut();
 				$(window).scrollTop(0);
-				$("#"+id+"_dialog4").slideUp(500);
+				$("#"+id+"_container16").fadeOut();
 				
 			}
 		});
@@ -153,7 +150,7 @@ function constructor (id) {
 		$$(id+"_textField8").setValue("");
 		$("#"+$comp.id+"_richText18").fadeOut();
 		$("#"+$comp.id+"_richText20").fadeOut();
-		$("#"+id+"_dialog4").slideUp(500);
+		$("#"+id+"_container16").fadeOut();
 	};// @lock
 
 	textField5.keydown = function textField5_keydown (event)// @startlock
@@ -196,8 +193,8 @@ function constructor (id) {
 	richText7.click = function richText7_click (event)// @startlock
 	{// @endlock
 
-		$("#"+id+"_dialog4").css("top",525);
-		$("#"+id+"_dialog4").slideDown(500);
+		
+		$("#"+id+"_container16").fadeIn(500);
 		$("#"+$comp.id+"_textField5").focus();
 				
 	};// @lock
