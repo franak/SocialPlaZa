@@ -66,7 +66,7 @@ function constructor (id) {
 
 	richText2.click = function richText2_click (event)// @startlock
 	{// @endlock
-		registrarse(id);
+		registrarse(id); // en funcion.js
 
 	};// @lock
 
