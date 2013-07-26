@@ -106,6 +106,36 @@ fcBrainObj = function() {
 
     this.openAltaUsuario = function() {
 
+
+   var user = WAF.directory.currentUser();
+
+        if (user) {
+            //ds Si le da al usuario demo al boton desconectar se elimina sus datos y logout();
+
+
+            if (ds.Metodos.getGrupo() == "Prueba") {
+
+                ds.Metodos.eliminarDemo();
+
+                sessionStorage.clear();
+
+
+            }
+
+            WAF.directory.logout({
+                onSuccess: function(event) {
+                    location.href = '/main.html';
+                    self.location.search = 'origin=AltaUsuario';
+
+             
+
+                },
+                onError: function(error) {
+                    UI.getMensaje("Logout error");
+                }
+            });
+        }
+       
         $$(components.right).removeComponent();
         $$(components.banner).removeComponent();
         $$('socialComponent').removeComponent();
@@ -113,6 +143,14 @@ fcBrainObj = function() {
         $$(components.main).removeComponent();
         $$(components.main).loadComponent(components.defaults.AltaUsuario.compPath);
         $('#' + components.main).attr('z-index', '999');
+        
+            $('#' + id + '_conectText').text('INICIAR');
+
+      
+
+
+
+      
 
     }
 
@@ -251,10 +289,16 @@ fcBrainObj = function() {
     functions.openWelcome = function() {
         var parametros = ds.Metodos.getParam(window.location.href);
         
-        if (parametros.origin) {
+        if (parametros.origin =='demo#tpv') {
             //Si procede de una página que necesitaba hacer "login", se lo enseño
             $$(components.main).loadComponent(components.defaults.login.compPath);
-        }
+        
+       }else if(parametros.origin =='AltaUsuario#tpv'){
+            
+           $$(components.main).loadComponent(components.defaults.AltaUsuario.compPath);
+
+       }
+        
         else {
             
             var user = WAF.directory.currentUser();

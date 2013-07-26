@@ -54,7 +54,9 @@ btmodales.initModal('Usuarios',$comp);
 
 	richText14.click = function richText14_click (event)// @startlock
 	{// @endlock
+		
 		fcBrain.openAltaUsuario();
+		
 	};// @lock
 
 	foto_usuario.click = function foto_usuario_click (event)// @startlock
