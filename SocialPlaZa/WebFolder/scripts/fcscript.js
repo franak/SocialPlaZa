@@ -212,7 +212,7 @@ fcBrainObj = function() {
 
     functions.CargarUI = function() {
 
-        UI.loadingMsg();
+      UI.loadingMsg();
 
         self.location.hash = 'tpv';
 
@@ -342,7 +342,6 @@ fcBrainObj = function() {
         }
 
     }
-
     functions.verContenido = function() {
 
         newTab("Usuario", "/components/ds/Usuario.waComponent");
