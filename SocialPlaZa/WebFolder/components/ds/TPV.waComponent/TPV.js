@@ -105,7 +105,7 @@ UI.disableSelection(document.body);
 
   btmodales.modalListaRegistros();
   
- 
+ btmodales.modalBienvenido();
   
 
 var bNuevo = getHtmlObj('imageButton1');	
