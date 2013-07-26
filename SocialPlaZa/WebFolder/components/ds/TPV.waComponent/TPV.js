@@ -31,8 +31,27 @@ function enfocar (){
 			mantenerFoco();
 			
 			//-- Se elimina el preLoader de carga (overlay) --\\
-			
+
 			$('#overlay').remove();
+
+   var user = WAF.directory.currentUser();
+
+        if (user) {
+            //ds Si le da al usuario demo al boton desconectar se elimina sus datos y logout();
+
+
+            if (ds.Metodos.getGrupo() == "Prueba") {
+
+              
+		$('#modalBienvenido').modal({
+    backdrop: false
+});
+
+            }
+			
+		};
+			
+
 		}
 	});
 	
