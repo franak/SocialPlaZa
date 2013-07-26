@@ -31,18 +31,20 @@ function cargarDataPicker(){
 	var fechaElement =  '<div id="datepicker" class="input-append date" data-date-format="dd-mm-yyyy">'
     					+'<input class="span2" size="16" type="text" value="'+dia+"/"+mes+"/"+anio+'"><span class="add-on"><i class="icon-calendar"></i></span>'
 						+'</div>';
-				$("#"+id+"_container9").append(fechaElement);
+	$("#"+id+"_container9").append(fechaElement);
 
 	$("#"+id+"_container9").css("background","transparent");
 	$(".span2").css("position","absolute");
 	$(".span2").css("left","250px");
-	$(".span2").css("top","20px");
+	$(".span2").css("top","15px");
+	$(".span2").css("height","40px");
 	$(".add-on").css("position","absolute");
 	$(".add-on").css("left","370px");
-	$(".add-on").css("top","20px");
+	$(".add-on").css("top","15px");
 	$(".add-on").css("width","25px");
+	$(".add-on").css("height","40px");
 	$(".icon-calendar").css("position","absolute");
-	$(".icon-calendar").css("top","0px");
+	$(".icon-calendar").css("top","10px");
 	
 	//Inicio de las operaciones de la consulta inicial:
 	var fecha = $('.span2').val();
@@ -93,7 +95,7 @@ function cargarDataPicker(){
 					
 					$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f2,f3);
 					UI.gifCargando();
-					$("#"+id+"_container9").css("height","53px");
+					$("#"+id+"_container9").css("height","59px");
 					$(".ui-datepicker-inline").hide();
 				}
 			});
@@ -194,6 +196,7 @@ function cargarDataPicker(){
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
+	var richText21 = {};	// @richText
 	var richText26 = {};	// @richText
 	var richText27 = {};	// @richText
 	var textField5 = {};	// @textField
@@ -210,6 +213,30 @@ function cargarDataPicker(){
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	richText21.click = function richText21_click (event)// @startlock
+	{// @endlock
+		var fecha= new Date();
+		var dia = fecha.getDate();
+		var mes = fecha.getMonth()+1;
+		mes = "0"+mes;
+		var anio = fecha.getFullYear();
+		
+		$('.span2').val(dia+'/'+mes+'/'+anio);
+		mes = mes-1;
+		
+		//f0 es la fecha inicio
+		var f0 = new Date(anio, mes, dia);
+
+		dia = parseInt(dia);
+		dia++;
+		//f1 es la fecha fin
+		var f1 = new Date(anio, mes, dia);
+		
+		
+		$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f0,f1);
+		
+	};// @lock
 
 	richText26.click = function richText26_click (event)// @startlock
 	{// @endlock
@@ -362,6 +389,7 @@ function cargarDataPicker(){
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText21", "click", richText21.click, "WAF");
 	WAF.addListener(this.id + "_richText26", "click", richText26.click, "WAF");
 	WAF.addListener(this.id + "_richText27", "click", richText27.click, "WAF");
 	WAF.addListener(this.id + "_textField5", "keydown", textField5.keydown, "WAF");
