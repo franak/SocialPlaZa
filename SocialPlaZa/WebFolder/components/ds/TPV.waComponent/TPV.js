@@ -829,13 +829,22 @@ $(".cobro").focus( function(event) {
 	console.log("total: "+total);
 	console.log("diferencia: "+diferencia);
 	
-	if(diferencia >= 0){
+	
+	if(diferencia > 0){
 		diferenciaCambio = diferencia;
 		diferencia = parseFloat(diferencia);//ds pasar a numero la variable
 		diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
 		$(this).val(diferencia);
 		$(this).select();
+	}else if(vSumaR < 0){
+		diferenciaCambio = diferencia;
+		diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
+		$(this).val(diferencia);
+		$(this).select();
+		$('#input_EF').attr('readonly', true);
+		$('#input_TJ').attr('readonly', true);
 	}
+	
 	
 
 
