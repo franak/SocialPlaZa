@@ -15,24 +15,19 @@ function constructor (id) {
 	$comp.sources.medioPago.all();
 	$comp.sources.cajasTPV.all();
 	$comp.sources.docComercial.all();
-	$comp.sources.cajasMovimientos.all({
-		onSuccess: function(){
-			cargarDataPicker();
-		}
-	});
-	
-	//cargarDataPicker();
+
+	cargarDataPicker();
+		
 function cargarDataPicker(){
 	
-
-	var date = $comp.sources.cajasMovimientos.fecha;
-	console.log(date);
-	var dia = date.getDate();
-	var mes = date.getMonth()+1;
+	//Se coje la fecha de hoy por defecto:
+	var fecha= new Date();
+	var dia = fecha.getDate();
+	var mes = fecha.getMonth()+1;
 	mes = "0"+mes;
-	var anio = date.getFullYear();
-
-
+	var anio = fecha.getFullYear();
+	
+	
 	var fechaElement =  '<div id="datepicker" class="input-append date" data-date-format="dd-mm-yyyy">'
     					+'<input class="span2" size="16" type="text" value="'+dia+"/"+mes+"/"+anio+'"><span class="add-on"><i class="icon-calendar"></i></span>'
 						+'</div>';
@@ -48,16 +43,32 @@ function cargarDataPicker(){
 	$(".add-on").css("width","25px");
 	$(".icon-calendar").css("position","absolute");
 	$(".icon-calendar").css("top","0px");
+	
+	//Inicio de las operaciones de la consulta inicial:
+	var fecha = $('.span2').val();
+	var dia = fecha.substring(0,2);
+	var mes = fecha.substring(3,5);
+	mes = mes-1;
+	var anio = fecha.substring(6);
+	
+	//f0 es la fecha inicio
+	var f0 = new Date(anio, mes, dia);
+
+	dia = parseInt(dia);
+	dia++;
+	//f1 es la fecha fin
+	var f1 = new Date(anio, mes, dia);
+	
+	
+	$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f0,f1);
+	
 	$(".icon-calendar").click(function(){
 			
 			$(".ui-datepicker-inline").css("position","absolute");
 			$(".ui-datepicker-inline").css("left","400px");
 			$("#"+id+"_container9").css("height","220px");
-
 			$(".ui-datepicker-inline").fadeIn();
-			
-		
-		
+	
 	});
 	
 	
@@ -65,26 +76,22 @@ function cargarDataPicker(){
 	$('#datepicker').datepicker({
 				onSelect: function (ev){
 					$('.span2').val(this.value);
-					console.log(this.value);
-
+					
 					var fecha = this.value;
 					var dia = fecha.substring(0,2);
 					var mes = fecha.substring(3,5);
 					mes = mes-1;
 					var anio = fecha.substring(6);
 					
-	
+					//f2 es la fecha inicio
 					var f2 = new Date(anio, mes, dia);
-
-					console.log(f2);
+				
 					dia = parseInt(dia);
 					dia++;
+					//f3 es la fecha fin
 					var f3 = new Date(anio, mes, dia);
-					console.log(f3);
 					
-				//	$comp.sources.cajasMovimientos.query("fecha < "+f2);
-					$comp.sources.cajasMovimientos.query("fecha == "+f2);
-					console.log($comp.sources.cajasMovimientos.fecha)
+					$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f2,f3);
 					UI.gifCargando();
 					$("#"+id+"_container9").css("height","53px");
 					$(".ui-datepicker-inline").hide();
@@ -92,9 +99,7 @@ function cargarDataPicker(){
 			});
 			
 	$(".ui-datepicker-inline").hide();
-	/*	$(".ui-datepicker-inline").css("position","absolute");
-		$(".ui-datepicker-inline").css("left","400px");
-		$("#"+id+"_container9").css("height","220px");*/
+	
 				
 	
 }
