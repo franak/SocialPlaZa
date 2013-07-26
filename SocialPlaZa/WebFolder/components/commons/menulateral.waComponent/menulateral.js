@@ -15,7 +15,7 @@ function constructor (id) {
 var menuContainer = getHtmlObj ('container10');
 $(menuContainer).append('<ul class="nav nav-pills nav-stacked">'
 +'  <li class="nav-header">MenPrincipal</li>'
-+'  <li class="active"><a href="#">Home</a></li>'
++'  <li class="active"><a href="main.html">Home</a></li>'
 +'  <li><a href="javascript:void(0)" onclick="appds.openAgenda();">Agenda</a></li>'
 +' <li class="divider"></li>'
 +'  <li class="nav-header">MenSecundario</li>'
