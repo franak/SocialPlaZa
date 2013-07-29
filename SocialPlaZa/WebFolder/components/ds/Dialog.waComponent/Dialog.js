@@ -23,8 +23,15 @@ function cargarDataPicker(){
 	//Se coje la fecha de hoy por defecto:
 	var fecha= new Date();
 	var dia = fecha.getDate();
+	dia = parseInt(dia);
+	if(dia < 10){
+		dia = "0"+dia;
+	}
 	var mes = fecha.getMonth()+1;
-	mes = "0"+mes;
+	mes = parseInt(mes);
+	if(mes < 10){
+		mes = "0"+mes;
+	}
 	var anio = fecha.getFullYear();
 	
 	
@@ -196,6 +203,8 @@ function cargarDataPicker(){
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
+	var richText23 = {};	// @richText
+	var richText22 = {};	// @richText
 	var richText21 = {};	// @richText
 	var richText26 = {};	// @richText
 	var richText27 = {};	// @richText
@@ -214,6 +223,85 @@ function cargarDataPicker(){
 
 	// eventHandlers// @lock
 
+	richText23.click = function richText23_click (event)// @startlock
+	{// @endlock
+		//-- Boton restar Fecha --\\
+		var fecha = $('.span2').val();
+					
+		var dia = fecha.substring(0,2);
+		var mes = fecha.substring(3,5);
+		mes = mes-1;
+		var anio = fecha.substring(6);
+		
+		
+		//f2 es la fecha inicio
+		var f2 = new Date(anio, mes, dia);
+		
+		
+		var dia2 = f2.getDate();
+		
+		dia2 = parseInt(dia2);
+		dia2--;
+		if(dia2 < 10){
+			dia2 = "0"+dia2;
+		}
+		var mes2 = f2.getMonth()+1;
+		mes2 = parseInt(mes2);
+		if(mes2 < 10){
+			mes2 = "0"+mes2;
+		}
+		
+		var anio2 = f2.getFullYear();
+		$('.span2').val(dia2+"/"+mes2+"/"+anio2);
+		
+		
+		//f3 es la fecha fin
+		dia = parseInt(dia);
+		dia--;
+		var f3 = new Date(anio, mes, dia);
+
+		
+		
+		$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f3,f2);
+	};// @lock
+
+	richText22.click = function richText22_click (event)// @startlock
+	{// @endlock
+		//-- Boton sumar Fecha --\\
+		var fecha = $('.span2').val();
+					
+		var dia = fecha.substring(0,2);
+		var mes = fecha.substring(3,5);
+		mes = mes-1;
+		var anio = fecha.substring(6);
+		dia = parseInt(dia);
+		dia++;
+		
+		//f2 es la fecha inicio
+		var f2 = new Date(anio, mes, dia);
+		var dia2 = f2.getDate();
+		dia2 = parseInt(dia2);
+		if(dia2 < 10){
+			dia2 = "0"+dia2;
+		}
+		var mes2 = f2.getMonth()+1;
+		mes2 = parseInt(mes2);
+		if(mes2 < 10){
+			mes2 = "0"+mes2;
+		}
+		
+		var anio2 = f2.getFullYear();
+		$('.span2').val(dia2+"/"+mes2+"/"+anio2);
+		
+		dia++;
+		//f3 es la fecha fin
+		var f3 = new Date(anio, mes, dia);
+		
+		
+		$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f2,f3);
+		
+	};// @lock
+
 	richText21.click = function richText21_click (event)// @startlock
 	{// @endlock
 		var fecha= new Date();
@@ -227,12 +315,13 @@ function cargarDataPicker(){
 		
 		//f0 es la fecha inicio
 		var f0 = new Date(anio, mes, dia);
+		console.log(f0);
 
 		dia = parseInt(dia);
 		dia++;
 		//f1 es la fecha fin
 		var f1 = new Date(anio, mes, dia);
-		
+		console.log(f1);
 		
 		$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f0,f1);
 		
@@ -243,7 +332,14 @@ function cargarDataPicker(){
 		$comp.sources.cajasMovimientos.addNewElement();
 		$comp.sources.cajasMovimientos.importeVenta = $$(id+"_textField5").getValue();
 		$comp.sources.cajasMovimientos.concepto = $$(id+"_textField8").getValue();
-		$comp.sources.cajasMovimientos.fecha = new Date();
+		var fecha = $('.span2').val();
+		var dia = fecha.substring(0,2);
+		var mes = fecha.substring(3,5);
+		mes = mes-1;
+		var anio = fecha.substring(6);
+		var fechaObjeto = new Date(anio, mes, dia);
+		
+		$comp.sources.cajasMovimientos.fecha = fechaObjeto;
 		$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
 		$comp.sources.cajasMovimientos.MedioPago.set($comp.sources.medioPago);
 		$comp.sources.cajasMovimientos.save({
@@ -389,6 +485,8 @@ function cargarDataPicker(){
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText23", "click", richText23.click, "WAF");
+	WAF.addListener(this.id + "_richText22", "click", richText22.click, "WAF");
 	WAF.addListener(this.id + "_richText21", "click", richText21.click, "WAF");
 	WAF.addListener(this.id + "_richText26", "click", richText26.click, "WAF");
 	WAF.addListener(this.id + "_richText27", "click", richText27.click, "WAF");
