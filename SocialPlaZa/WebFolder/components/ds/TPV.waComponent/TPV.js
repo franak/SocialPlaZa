@@ -44,7 +44,6 @@ function enfocar (){
 			    backdrop: false
 				});
 				$("#btn_empezar").click(function(){
-					console.log("hola");
 					mantenerFoco();
 				});
 				
@@ -150,8 +149,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 		
 		var tamanio;
 		
-		$comp.sources.cajasTPV.all({
-			onSuccess:function (event){
+		
 				$comp.sources.docComercial.all({
 					onSuccess:function (event){
 					tamanio = $comp.sources.docComercial.length;	
@@ -161,11 +159,10 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 							tamanio = 1;
 						}
 						$comp.sources.docComercial.select(tamanio-1);
-
+						$comp.sources.docComercial.serverRefresh();
 					}
 				});			
-			}
-		});	
+			
 
 
 		//DS DECLARACION DE LA VARIABLE POS A LA QUE SE REFIERE A LAS POSICIONES DE LAS LINEAS
@@ -303,19 +300,24 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	textField4.blur = function textField4_blur (event)// @startlock
 	{// @endlock
 		
-		if($$(id+"_textField4").getValue() != ""){
-			var cobrado = $comp.sources.docComercial.Cobrado;
-			if(cobrado != true){
-				
-				appds.anadirLineaPorCodigo($comp);
-				
-				
-				
-			}else{
-				
-				UI.alert('Ya está Cobrado','Atención');
+		setTimeout(function() { 
+		
+			if($$(id+"_textField4").getValue() != ""){
+				var cobrado = $comp.sources.docComercial.Cobrado;
+				if(cobrado != true){
+					
+					appds.anadirLineaPorCodigo($comp);
+					
+				}else{
+					
+					UI.alert('Ya está Cobrado','Atención');
+				}
 			}
-		}
+			$$(id+"_textField4").setValue("");
+
+        }, 500);
+		
+		
 		
 	
 	};// @lock
