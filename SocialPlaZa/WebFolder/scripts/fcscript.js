@@ -139,18 +139,11 @@ fcBrainObj = function() {
         $$(components.right).removeComponent();
         $$(components.banner).removeComponent();
         $$('socialComponent').removeComponent();
-        $('#headComp_botonera1').fadeOut();
+        $$('headComp_botonera1').hide();
         $$(components.main).removeComponent();
         $$(components.main).loadComponent(components.defaults.AltaUsuario.compPath);
         $('#' + components.main).attr('z-index', '999');
-        
-            $('#' + id + '_conectText').text('INICIAR');
-
-      
-
-
-
-      
+        $('#' + id + '_conectText').text('INICIAR');
 
     }
 

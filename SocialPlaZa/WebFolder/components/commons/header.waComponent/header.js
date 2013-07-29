@@ -26,6 +26,8 @@ $('#mlateralComp').hide();
  var botonera1 = getHtmlObj('botonera1');
  var botonera2 = getHtmlObj('botonera2');
  var botonera2b = getHtmlId('botonera2');
+ 
+ 
 
 //SERVICIO PARA AVERIGUAR LA IP PÚBLICA 
 /* $.getJSON("http://jsonip.com", function(data){ip=data.ip; 
@@ -43,10 +45,11 @@ btmodales.initModal('Usuarios',$comp);
 	 var user = WAF.directory.currentUser();
 	if(user){
 		$(getHtmlObj('conectText')).text('DESCONECTAR');
-		}else{
+	}else{
 		$(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'grayscale(100%)');
 		$(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'blur(2px)');
 		$(getHtmlObj('conectText')).text('INICIAR');
+		$$(id+'_botonera1').hide();
 	}
 			
 

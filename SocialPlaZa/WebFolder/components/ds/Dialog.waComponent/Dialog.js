@@ -134,7 +134,7 @@ function cargarDataPicker(){
 	    $comp.sources.paisesISO.allEntities({
 	    	onSuccess:function(){
 	    		 var paises = $comp.sources.paisesISO;
-	    		 
+	    		 console.log(paises.length);
 	    		 for (var i = 0; i < paises.length; i++){
 	    		 	
 	    		 	paises.getElement(i, { 
@@ -203,6 +203,7 @@ function cargarDataPicker(){
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
+	var richText24 = {};	// @richText
 	var richText23 = {};	// @richText
 	var richText22 = {};	// @richText
 	var richText21 = {};	// @richText
@@ -222,6 +223,11 @@ function cargarDataPicker(){
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	richText24.click = function richText24_click (event)// @startlock
+	{// @endlock
+		$comp.sources.cajasMovimientos.all();
+	};// @lock
 
 	richText23.click = function richText23_click (event)// @startlock
 	{// @endlock
@@ -329,30 +335,38 @@ function cargarDataPicker(){
 
 	richText26.click = function richText26_click (event)// @startlock
 	{// @endlock
-		$comp.sources.cajasMovimientos.addNewElement();
-		$comp.sources.cajasMovimientos.importeVenta = $$(id+"_textField5").getValue();
-		$comp.sources.cajasMovimientos.concepto = $$(id+"_textField8").getValue();
-		var fecha = $('.span2').val();
-		var dia = fecha.substring(0,2);
-		var mes = fecha.substring(3,5);
-		mes = mes-1;
-		var anio = fecha.substring(6);
-		var fechaObjeto = new Date(anio, mes, dia);
-		
-		$comp.sources.cajasMovimientos.fecha = fechaObjeto;
-		$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
-		$comp.sources.cajasMovimientos.MedioPago.set($comp.sources.medioPago);
-		$comp.sources.cajasMovimientos.save({
-			onSuccess:function (){
-				$$(id+"_textField5").setValue("");
-				$$(id+"_textField8").setValue("");
-				$("#"+$comp.id+"_richText18").fadeOut();
-				$("#"+$comp.id+"_richText20").fadeOut();
-				$(window).scrollTop(0);
-				$("#"+id+"_container16").fadeOut();
-				
-			}
-		});
+		if($$(id+"_richText26").getState()!="diabled"){
+			$$(id+"_richText26").setState("disabled");
+			$comp.sources.cajasMovimientos.addNewElement();
+			$comp.sources.cajasMovimientos.importeVenta = $$(id+"_textField5").getValue();
+			$comp.sources.cajasMovimientos.concepto = $$(id+"_textField8").getValue();
+			var fecha = $('.span2').val();
+			var dia = fecha.substring(0,2);
+			var mes = fecha.substring(3,5);
+			mes = mes-1;
+			var anio = fecha.substring(6);
+			var fechaObjeto = new Date(anio, mes, dia);
+			
+			$comp.sources.cajasMovimientos.fecha = fechaObjeto;
+			$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
+			$comp.sources.cajasMovimientos.MedioPago.set($comp.sources.medioPago);
+			$comp.sources.cajasMovimientos.save({
+				onSuccess:function (){
+					$$(id+"_textField5").setValue("");
+					$$(id+"_textField8").setValue("");
+					$("#"+$comp.id+"_richText18").fadeOut();
+					$("#"+$comp.id+"_richText20").fadeOut();
+					$(window).scrollTop(0);
+					$$(id+"_container16").hide({
+						onSuccess:function (e){
+							$$(id+"_richText26").setState("default");
+						}
+					});
+					
+					
+				}
+			});
+		}
 	};// @lock
 
 	richText27.click = function richText27_click (event)// @startlock
@@ -389,8 +403,14 @@ function cargarDataPicker(){
 
 	richText17.click = function richText17_click (event)// @startlock
 	{// @endlock
-		if(confirm("¿Desea eliminar el movimiento de caja seleccionado?")){
-			$comp.sources.cajasMovimientos.removeCurrent();
+		if(confirm("¿Desea eliminar lo(s) movimiento(s) de caja seleccionado(s)?")){
+			var aSeleccionados = $$(id+"_dataGrid1").getSelectedRows();
+
+			for(var i = 0; i < aSeleccionados.length; i++){
+				$comp.sources.cajasMovimientos.select(aSeleccionados[i]);
+				$comp.sources.cajasMovimientos.removeCurrent();
+			}
+			
 		}
 	};// @lock
 
@@ -485,6 +505,7 @@ function cargarDataPicker(){
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText24", "click", richText24.click, "WAF");
 	WAF.addListener(this.id + "_richText23", "click", richText23.click, "WAF");
 	WAF.addListener(this.id + "_richText22", "click", richText22.click, "WAF");
 	WAF.addListener(this.id + "_richText21", "click", richText21.click, "WAF");

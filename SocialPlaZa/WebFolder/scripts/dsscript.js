@@ -281,13 +281,13 @@ appdsObj = function () {
 				
 
 				
-				$comp.sources.lineas.newEntity();
-				$comp.sources.lineas.Codigo = art.Codigo.value;
-				$comp.sources.lineas.Descripcion = art.Descripcion.value;
-				$comp.sources.lineas.PrecioUnitario = art.Precio.value;
-				$comp.sources.lineas.Cantidad = 1;
-				$comp.sources.lineas.Documento.set($comp.sources.docComercial);
-				$comp.sources.lineas.Almacen.set($comp.sources.almacenes);
+				sources.lineas.newEntity();
+				sources.lineas.Codigo = art.Codigo.value;
+				sources.lineas.Descripcion = art.Descripcion.value;
+				sources.lineas.PrecioUnitario = art.Precio.value;
+				sources.lineas.Cantidad = 1;
+				sources.lineas.Documento.set($comp.sources.docComercial);
+				sources.lineas.Almacen.set($comp.sources.almacenes);
 				//DS si ha habido algun borrado previamente se le asigna automaticamente su posicion antigua
 				if(vPosRestada != null){
 					
@@ -299,16 +299,16 @@ appdsObj = function () {
 					
 				//DS si es la primera linea, se le da la posicion 0
 				}else if(aPos.length == 0){
-					$comp.sources.lineas.Posicion=0;
+					sources.lineas.Posicion=0;
 					pos = 0;
 					 
 				}else{
 					var n = aPos[0] + 1;
-					$comp.sources.lineas.Posicion = n;
+					sources.lineas.Posicion = n;
 					pos = n;
 				}
 				
-				$comp.sources.lineas.save({
+				sources.lineas.save({
 					onSuccess:function (event){
 						$comp.sources.docComercial.collectionRefresh();
 						$$(esteObjeto.id).setState('default');

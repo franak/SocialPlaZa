@@ -34,23 +34,24 @@ function enfocar (){
 
 			$('#overlay').remove();
 
-   var user = WAF.directory.currentUser();
+   			var user = WAF.directory.currentUser();
 
-        if (user) {
-            //ds Si le da al usuario demo al boton desconectar se elimina sus datos y logout();
-
-
-            if (ds.Metodos.getGrupo() == "Prueba") {
-
-              
-		$('#modalBienvenido').modal({
-    backdrop: false
-});
-
-            }
-			
-		};
-			
+	        if (user) {
+	        	
+	          if (ds.Metodos.getGrupo() == "Prueba") {
+				
+				$('#modalBienvenido').modal({
+			    backdrop: false
+				});
+				$("#btn_empezar").click(function(){
+					console.log("hola");
+					mantenerFoco();
+				});
+				
+			   }
+						
+			};
+				
 
 		}
 	});
@@ -155,18 +156,12 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 					onSuccess:function (event){
 					tamanio = $comp.sources.docComercial.length;	
 					
-
 						if(tamanio == 0){
 							fcBrain.crearDocComercial($comp,1);
 							tamanio = 1;
 						}
-				
-  setTimeout(function(){ //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
+						$comp.sources.docComercial.select(tamanio-1);
 
-	$comp.sources.docComercial.select(tamanio-1);
-
-        },300);
-				
 					}
 				});			
 			}
@@ -307,7 +302,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	textField4.blur = function textField4_blur (event)// @startlock
 	{// @endlock
-
+		
 		if($$(id+"_textField4").getValue() != ""){
 			var cobrado = $comp.sources.docComercial.Cobrado;
 			if(cobrado != true){
@@ -315,12 +310,14 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 				appds.anadirLineaPorCodigo($comp);
 				
 				
+				
 			}else{
 				
 				UI.alert('Ya está Cobrado','Atención');
 			}
 		}
-		$$(id+"_textField4").setValue("");
+		
+	
 	};// @lock
 
 	textField4.focus = function textField4_focus (event)// @startlock
@@ -351,14 +348,14 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton11.click = function imageButton11_click (event)// @startlock
 	{// @endlock
-		listarDocComercial();
-		/*$("BODY").append($("#"+id+"_dialog5"));         	
-		$(id+"_dialog5").displayDialog(); //cancel button
-		$("#"+id+"_dialog5").css("top",20);
-		$("#"+id+"_dialog5").css("left",300);*/
+		$comp.sources.docComercial.save({
+			onSuccess:function(){
+				$('#modalLista').modal('show');
+				listarDocComercial();
+				mantenerFoco();
+			}
+		});
 		
-		$('#modalLista').modal('show');
-		mantenerFoco();
 	};// @lock
 
 	button11.click = function button11_click (event)// @startlock
@@ -473,7 +470,7 @@ $.getJSON( ruta, function(data) {
 
 	bContinuarDispensar.click = function bContinuarDispensar_click (event)// @startlock
 	{// @endlock
-	
+
 		dispensar();
 		
 	};// @lock
@@ -620,7 +617,7 @@ $.getJSON( ruta, function(data) {
 
 	richText9.click = function richText9_click (event)// @startlock
 	{// @endlock
-		$comp.sources.lineasCollection.Codigo = $("#"+id+"_textField11").val();
+		
 		$comp.sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val();
 		$comp.sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
 		$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
@@ -649,12 +646,12 @@ $.getJSON( ruta, function(data) {
 				
 				//appds.modificarArticulo($comp); DA FALLO
 				$("#"+id+"_textField2").blur();
-				var codigo = $$($comp.id+"_textField2").getValue();
+				
 				var precio = $$($comp.id+"_textField6").getValue();
 				var descripcion = $$($comp.id+"_textField7").getValue();
 				var familia = ds.Familias.getFamilia($$($comp.id+"_combobox2").getValue());
 			
-				$comp.sources.articulos.Codigo = codigo;
+				
 				$comp.sources.articulos.Precio = precio;
 				$comp.sources.articulos.Descripcion = descripcion;
 				$comp.sources.articulos.Familia.set(familia);
@@ -917,7 +914,7 @@ function modificarLinea(){
 	
 	$(jqdialogo).css("top",20);
 	$(jqdialogo).css("left",300);
-	$("#"+$comp.id+"_textField11").focus();
+	$("#"+$comp.id+"_textField12").focus();
 		
 		
 }	
@@ -1240,7 +1237,7 @@ html += '<thead>'
 +'<th>Descripción</th>'
 +'<th>Importe</th>'
 +'</thead><tbody>';
-console.log(lineas);
+console.log(resultado.length);
 	for (var i = 0; i < resultado.length; i++){
 		resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
         {
@@ -1256,7 +1253,8 @@ console.log(lineas);
 	       		var total = ds.Lineas.devolverTotal(entity.ID);
 	       		total = total.toFixed(2);
 	       		html += "<tr class='linkDoc lead' id='"+event.position+"'><td><h6><code>"+caja+"</code></h6></td><td><h6>"+entity.Numero +"</h6></td><td><h6 class='label label-success'>"+ denominacion +"</h6></td><td><h6>"+total+"€</h6></td></tr>";
-			//	html += "<li><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +" "+ denominacion +" </h5></a></li>";
+				console.log("pick");			
+//	html += "<li><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +" "+ denominacion +" </h5></a></li>";
 
 	       
 	       }
