@@ -177,6 +177,9 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	enfocar();
 	
 	// @region namespaceDeclaration// @startlock
+	var imageButton4 = {};	// @buttonImage
+	var imageButton10 = {};	// @buttonImage
+	var imageButton5 = {};	// @buttonImage
 	var richText25 = {};	// @richText
 	var btnAll = {};	// @buttonImage
 	var richText30 = {};	// @richText
@@ -187,7 +190,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	var imageButton2 = {};	// @buttonImage
 	var imageButton8 = {};	// @buttonImage
 	var textField4 = {};	// @textField
-	var bPrint = {};	// @buttonImage
 	var textField3 = {};	// @textField
 	var imageButton11 = {};	// @buttonImage
 	var button11 = {};	// @button
@@ -195,15 +197,11 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	var docComercialEvent = {};	// @dataSource
 	var imageButton15 = {};	// @buttonImage
 	var btnArticulo = {};	// @richText
-	var imageButton1 = {};	// @buttonImage
 	var imageButton14 = {};	// @buttonImage
 	var imageButton9 = {};	// @buttonImage
 	var containerFamilias = {};	// @container
 	var bContinuarDispensar = {};	// @richText
 	var bCancelDispensar = {};	// @richText
-	var imageButton4 = {};	// @buttonImage
-	var imageButton10 = {};	// @buttonImage
-	var imageButton5 = {};	// @buttonImage
 	var richText23 = {};	// @richText
 	var richText6 = {};	// @richText
 	var richText19 = {};	// @richText
@@ -211,7 +209,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	var richText4 = {};	// @richText
 	var richText21 = {};	// @richText
 	var richText9 = {};	// @richText
-	var imageButton13 = {};	// @buttonImage
+	var bPrint = {};	// @buttonImage
 	var richText14 = {};	// @richText
 	var richText15 = {};	// @richText
 	var lineasCollectionEvent = {};	// @dataSource
@@ -219,6 +217,25 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 
 	// eventHandlers// @lock
+
+	imageButton4.click = function imageButton4_click (event)// @startlock
+	{// @endlock
+			cargarMovimientoCaja_btn();
+		mantenerFoco();
+	};// @lock
+
+	imageButton10.click = function imageButton10_click (event)// @startlock
+	{// @endlock
+btn_borrar();
+		mantenerFoco();
+	};// @lock
+
+	imageButton5.click = function imageButton5_click (event)// @startlock
+	{// @endlock
+		var tipoDoc = 1;
+		fcBrain.crearDocComercial($comp,tipoDoc);
+		mantenerFoco();
+	};// @lock
 
 	richText25.touchend = function richText25_touchend (event)// @startlock
 	{// @endlock
@@ -329,13 +346,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	
 	};// @lock
 
-	bPrint.click = function bPrint_click (event)// @startlock
-	{// @endlock
-		var docActual = $comp.sources.docComercial.ID;
-		localStorage.docActual = docActual;
-		mantenerFoco();
-	};// @lock
-
 	textField3.blur = function textField3_blur (event)// @startlock
 	{// @endlock
 		$comp.sources.docComercial.getCurrentElement();
@@ -404,12 +414,6 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 	};// @lock
 
 	
-
-	imageButton1.click = function imageButton1_click (event)// @startlock
-	{// @endlock
-		
-		
-	};// @lock
 
 	imageButton14.click = function imageButton14_click (event)// @startlock
 	{// @endlock
@@ -483,28 +487,6 @@ $.getJSON( ruta, function(data) {
 		$$(id+"_dialog1").disable();
 		$(window).scrollTop(0);
 		$$(getHtmlId("dialog1")).closeDialog(); //Cancelar button
-		
-	};// @lock
-
-	imageButton4.click = function imageButton4_click (event)// @startlock
-	{// @endlock
-		cargarMovimientoCaja_btn();
-		mantenerFoco();
-
-	};// @lock
-
-	imageButton10.click = function imageButton10_click (event)// @startlock
-	{// @endlock
-		btn_borrar();
-		mantenerFoco();
-		
-	};// @lock
-
-	imageButton5.click = function imageButton5_click (event)// @startlock
-	{// @endlock
-		var tipoDoc = 1;
-		fcBrain.crearDocComercial($comp,tipoDoc);
-		mantenerFoco();
 		
 	};// @lock
 
@@ -632,9 +614,11 @@ $.getJSON( ruta, function(data) {
 
 	};// @lock
 
-	imageButton13.click = function imageButton13_click (event)// @startlock
+	bPrint.click = function bPrint_click (event)// @startlock
 	{// @endlock
-		$$(getHtmlId("dialog2")).closeDialog();
+var docActual = $comp.sources.docComercial.ID;
+		localStorage.docActual = docActual;
+		mantenerFoco();
 	};// @lock
 
 	richText14.click = function richText14_click (event)// @startlock
@@ -702,6 +686,9 @@ $.getJSON( ruta, function(data) {
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_imageButton4", "click", imageButton4.click, "WAF");
+	WAF.addListener(this.id + "_imageButton10", "click", imageButton10.click, "WAF");
+	WAF.addListener(this.id + "_imageButton5", "click", imageButton5.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "touchend", richText25.touchend, "WAF");
 	WAF.addListener(this.id + "_richText25", "touchstart", richText25.touchstart, "WAF");
 	WAF.addListener(this.id + "_richText25", "mouseup", richText25.mouseup, "WAF");
@@ -717,7 +704,6 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_imageButton3", "click", imageButton3.click, "WAF");
 	WAF.addListener(this.id + "_imageButton2", "click", imageButton2.click, "WAF");
 	WAF.addListener(this.id + "_imageButton8", "click", imageButton8.click, "WAF");
-	WAF.addListener(this.id + "_bPrint", "click", bPrint.click, "WAF");
 	WAF.addListener(this.id + "_imageButton11", "click", imageButton11.click, "WAF");
 	WAF.addListener(this.id + "_button11", "click", button11.click, "WAF");
 	WAF.addListener(this.id + "_docComercial1", "onCollectionChange", docComercial1Event.onCollectionChange, "WAF");
@@ -729,22 +715,18 @@ $.getJSON( ruta, function(data) {
 	WAF.addListener(this.id + "_btnArticulo", "touchstart", btnArticulo.touchstart, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "touchend", btnArticulo.touchend, "WAF");
 	WAF.addListener(this.id + "_richText23", "touchend", richText23.touchend, "WAF");
-	WAF.addListener(this.id + "_imageButton1", "click", imageButton1.click, "WAF");
 	WAF.addListener(this.id + "_imageButton14", "click", imageButton14.click, "WAF");
 	WAF.addListener(this.id + "_imageButton9", "click", imageButton9.click, "WAF");
 	WAF.addListener(this.id + "_containerFamilias", "click", containerFamilias.click, "WAF");
 	WAF.addListener(this.id + "_bContinuarDispensar", "click", bContinuarDispensar.click, "WAF");
 	WAF.addListener(this.id + "_bCancelDispensar", "click", bCancelDispensar.click, "WAF");
-	WAF.addListener(this.id + "_imageButton4", "click", imageButton4.click, "WAF");
-	WAF.addListener(this.id + "_imageButton10", "click", imageButton10.click, "WAF");
-	WAF.addListener(this.id + "_imageButton5", "click", imageButton5.click, "WAF");
 	WAF.addListener(this.id + "_richText23", "click", richText23.click, "WAF");
 	WAF.addListener(this.id + "_richText19", "click", richText19.click, "WAF");
 	WAF.addListener(this.id + "_richText18", "click", richText18.click, "WAF");
 	WAF.addListener(this.id + "_richText4", "click", richText4.click, "WAF");
 	WAF.addListener(this.id + "_richText21", "click", richText21.click, "WAF");
 	WAF.addListener(this.id + "_richText9", "click", richText9.click, "WAF");
-	WAF.addListener(this.id + "_imageButton13", "click", imageButton13.click, "WAF");
+	WAF.addListener(this.id + "_bPrint", "click", bPrint.click, "WAF");
 	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
 	WAF.addListener(this.id + "_richText15", "click", richText15.click, "WAF");
 	WAF.addListener(this.id + "_lineasCollection", "onCollectionChange", lineasCollectionEvent.onCollectionChange, "WAF");
