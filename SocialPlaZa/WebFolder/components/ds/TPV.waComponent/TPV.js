@@ -354,6 +354,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 			onSuccess:function(){
 				$('#modalLista').modal('show');
 				listarDocComercial();
+				
 				mantenerFoco();
 			}
 		});
@@ -1224,59 +1225,64 @@ function dispensar(){
 function listarDocComercial(){
 	   
 	
-	   
-	var resultado = $comp.sources.docComercial;
-	var lineas = $comp.sources.lineasCollection;
-	var caja = $comp.sources.cajasTPV.Codigo;
-		
-var html="";
-//var html = '<ul class="nav nav-tabs nav-stacked">';
-var html = "<table class='table table-hover ' id='tabla_tickets'>";
+	$comp.sources.docComercial.all({
+		onSuccess:function(){
+			var resultado = $comp.sources.docComercial;
+			var lineas = $comp.sources.lineasCollection;
+			var caja = $comp.sources.cajasTPV.Codigo;
+				
+			var html="";
+			//var html = '<ul class="nav nav-tabs nav-stacked">';
+			var html = "<table class='table table-hover ' id='tabla_tickets'>";
 
-html += '<thead>'
-+'<tr> <th>#Caja</th>'
-+'<th>Venta Nº</th>'
-+'<th>Descripción</th>'
-+'<th>Importe</th>'
-+'</thead><tbody>';
-console.log(resultado.length);
-	for (var i = 0; i < resultado.length; i++){
-		resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
-        {
-        	var entity = event.element;
-        	
-				if (entity.Denom){
-				var denominacion = entity.Denom;
-				}else{
-				var denominacion = "";
-				}
+			html += '<thead>'
+			+'<tr> <th>#Caja</th>'
+			+'<th>Venta Nº</th>'
+			+'<th>Descripción</th>'
+			+'<th>Importe</th>'
+			+'</thead><tbody>';
+
+			for (var i = 0; i < resultado.length; i++){
+				resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
+		        {
+		        	console.log(i);
+		        	var entity = event.element;
+		        	
+					if (entity.Denom){
+						var denominacion = entity.Denom;
+					}else{
+						var denominacion = "";
+					}
+					
+			        if(entity.Cobrado == false){
+			       		var total = ds.Lineas.devolverTotal(entity.ID);
+			       		total = total.toFixed(2);
+			       		html += "<tr class='linkDoc lead' id='"+event.position+"'><td><h6><code>"+caja+"</code></h6></td><td><h6>"+entity.Numero +"</h6></td><td><h6 class='label label-success'>"+ denominacion +"</h6></td><td><h6>"+total+"€</h6></td></tr>";
+						console.log(event.position);
+		//	html += "<li><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +" "+ denominacion +" </h5></a></li>";
+
+			       }
+		       }
+			   });
+			}
+			html += "</tbody></table>";
 			
-	        if(entity.Cobrado == false){
-	       		var total = ds.Lineas.devolverTotal(entity.ID);
-	       		total = total.toFixed(2);
-	       		html += "<tr class='linkDoc lead' id='"+event.position+"'><td><h6><code>"+caja+"</code></h6></td><td><h6>"+entity.Numero +"</h6></td><td><h6 class='label label-success'>"+ denominacion +"</h6></td><td><h6>"+total+"€</h6></td></tr>";
-				console.log("pick");			
-//	html += "<li><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +" "+ denominacion +" </h5></a></li>";
-
-	       
-	       }
-       }
-	   });
-	}
-	html += "</tbody></table>";
-	//html += '</ul>';
+			//html += '</ul>';
+			
+			//$("#"+id+"_container16").append(html);
+			$('#modalListaBody').html(html);
+			
+		  	$('.linkDoc').click(function(){ 
+		  	UI.gifCargando();
+		    	$comp.sources.docComercial.select(this.id);
+		    	mantenerFoco();
+		    	$('#modalLista').modal('hide');
+		    	/*$("#"+id+"_container16").text("");
+		    	$(getHtmlId("dialog5")).closeDialog(); //cancel button*/
+		   	});
+		}
+	});
 	
-	//$("#"+id+"_container16").append(html);
-	$('#modalListaBody').html(html);
-	
-  	$('.linkDoc').click(function(){ 
-  	UI.gifCargando();
-    	$comp.sources.docComercial.select(this.id);
-    	mantenerFoco();
-    	$('#modalLista').modal('hide');
-    	/*$("#"+id+"_container16").text("");
-    	$(getHtmlId("dialog5")).closeDialog(); //cancel button*/
-   	});
    	
 }
 

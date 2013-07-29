@@ -406,12 +406,15 @@ function cargarDataPicker(){
 		if(confirm("¿Desea eliminar lo(s) movimiento(s) de caja seleccionado(s)?")){
 			var aSeleccionados = $$(id+"_dataGrid1").getSelectedRows();
 
-			for(var i = 0; i < aSeleccionados.length; i++){
+			for(var i = 0; i < aSeleccionados.length+1; i++){
+				
 				$comp.sources.cajasMovimientos.select(aSeleccionados[i]);
 				$comp.sources.cajasMovimientos.removeCurrent();
 			}
+			$comp.sources.cajasMovimientos.serverRefresh();
 			
 		}
+			
 	};// @lock
 
 	cajasMovimientosEvent.onCurrentElementChange = function cajasMovimientosEvent_onCurrentElementChange (event)// @startlock
