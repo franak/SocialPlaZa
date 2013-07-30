@@ -59,11 +59,6 @@ function constructor (id) {
 
 	};// @lock
 
-	richText2.touchend = function richText2_touchend (event)// @startlock
-	{// @endlock
-		registrarse(id);
-	};// @lock
-
 	richText2.click = function richText2_click (event)// @startlock
 	{// @endlock
 		registrarse(id); // en funcion.js
@@ -109,7 +104,6 @@ $(':input').bind('blur',function() {
     }
 });
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_richText2", "touchend", richText2.touchend, "WAF");
 	WAF.addListener(this.id + "_authorize_button", "click", authorize_button.click, "WAF");
 	WAF.addListener(this.id + "_inputUsuario", "focus", inputUsuario.focus, "WAF");
 	WAF.addListener(this.id + "_inputUsuario", "blur", inputUsuario.blur, "WAF");

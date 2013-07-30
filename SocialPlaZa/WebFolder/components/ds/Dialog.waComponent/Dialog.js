@@ -207,9 +207,6 @@ function cargarDataPicker(){
 	var imageButton2 = {};	// @buttonImage
 	var imageButton1 = {};	// @buttonImage
 	var richText24 = {};	// @richText
-	var richText23 = {};	// @richText
-	var richText22 = {};	// @richText
-	var richText21 = {};	// @richText
 	var richText26 = {};	// @richText
 	var richText27 = {};	// @richText
 	var textField5 = {};	// @textField
@@ -251,8 +248,8 @@ function cargarDataPicker(){
 		if(mes2 < 10){
 			mes2 = "0"+mes2;
 		}
-		
 		var anio2 = f2.getFullYear();
+		
 		$('.span2').val(dia2+"/"+mes2+"/"+anio2);
 		
 		dia++;
@@ -334,110 +331,6 @@ function cargarDataPicker(){
 	richText24.click = function richText24_click (event)// @startlock
 	{// @endlock
 		$comp.sources.cajasMovimientos.all();
-	};// @lock
-
-	richText23.click = function richText23_click (event)// @startlock
-	{// @endlock
-		//-- Boton restar Fecha --\\
-		var fecha = $('.span2').val();
-					
-		var dia = fecha.substring(0,2);
-		var mes = fecha.substring(3,5);
-		mes = mes-1;
-		var anio = fecha.substring(6);
-		
-		
-		//f2 es la fecha inicio
-		var f2 = new Date(anio, mes, dia);
-		
-		
-		var dia2 = f2.getDate();
-		
-		dia2 = parseInt(dia2);
-		dia2--;
-		if(dia2 < 10){
-			dia2 = "0"+dia2;
-		}
-		var mes2 = f2.getMonth()+1;
-		mes2 = parseInt(mes2);
-		if(mes2 < 10){
-			mes2 = "0"+mes2;
-		}
-		
-		var anio2 = f2.getFullYear();
-		$('.span2').val(dia2+"/"+mes2+"/"+anio2);
-		
-		
-		//f3 es la fecha fin
-		dia = parseInt(dia);
-		dia--;
-		var f3 = new Date(anio, mes, dia);
-
-		
-		
-		$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f3,f2);
-	};// @lock
-
-	richText22.click = function richText22_click (event)// @startlock
-	{// @endlock
-		//-- Boton sumar Fecha --\\
-		var fecha = $('.span2').val();
-					
-		var dia = fecha.substring(0,2);
-		var mes = fecha.substring(3,5);
-		mes = mes-1;
-		var anio = fecha.substring(6);
-		dia = parseInt(dia);
-		dia++;
-		
-		//f2 es la fecha inicio
-		var f2 = new Date(anio, mes, dia);
-		var dia2 = f2.getDate();
-		dia2 = parseInt(dia2);
-		if(dia2 < 10){
-			dia2 = "0"+dia2;
-		}
-		var mes2 = f2.getMonth()+1;
-		mes2 = parseInt(mes2);
-		if(mes2 < 10){
-			mes2 = "0"+mes2;
-		}
-		
-		var anio2 = f2.getFullYear();
-		$('.span2').val(dia2+"/"+mes2+"/"+anio2);
-		
-		dia++;
-		//f3 es la fecha fin
-		var f3 = new Date(anio, mes, dia);
-		
-		
-		$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f2,f3);
-		
-	};// @lock
-
-	richText21.click = function richText21_click (event)// @startlock
-	{// @endlock
-		var fecha= new Date();
-		var dia = fecha.getDate();
-		var mes = fecha.getMonth()+1;
-		mes = "0"+mes;
-		var anio = fecha.getFullYear();
-		
-		$('.span2').val(dia+'/'+mes+'/'+anio);
-		mes = mes-1;
-		
-		//f0 es la fecha inicio
-		var f0 = new Date(anio, mes, dia);
-		console.log(f0);
-
-		dia = parseInt(dia);
-		dia++;
-		//f1 es la fecha fin
-		var f1 = new Date(anio, mes, dia);
-		console.log(f1);
-		
-		$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f0,f1);
-		
 	};// @lock
 
 	richText26.click = function richText26_click (event)// @startlock
@@ -538,10 +431,15 @@ function cargarDataPicker(){
 
 	richText8.click = function richText8_click (event)// @startlock
 	{// @endlock
-		$("#"+id+"_dialog2").css("top",200);
-		$(window).scrollTop(0);
-		$$(id+"_dialog3").hide();
-		appds.closeDialogMovimiento();		
+		vComp.sources.docComercial.all({
+			onSuccess: function(){
+				$("#"+id+"_dialog2").css("top",200);
+				$(window).scrollTop(0);
+				$$(id+"_dialog3").hide();
+				appds.closeDialogMovimiento();		
+			}
+		});
+		
 	};// @lock
 
 	fileUpload1.filesUploaded = function fileUpload1_filesUploaded (event)// @startlock
@@ -615,9 +513,6 @@ function cargarDataPicker(){
 	WAF.addListener(this.id + "_imageButton2", "click", imageButton2.click, "WAF");
 	WAF.addListener(this.id + "_imageButton1", "click", imageButton1.click, "WAF");
 	WAF.addListener(this.id + "_richText24", "click", richText24.click, "WAF");
-	WAF.addListener(this.id + "_richText23", "click", richText23.click, "WAF");
-	WAF.addListener(this.id + "_richText22", "click", richText22.click, "WAF");
-	WAF.addListener(this.id + "_richText21", "click", richText21.click, "WAF");
 	WAF.addListener(this.id + "_richText26", "click", richText26.click, "WAF");
 	WAF.addListener(this.id + "_richText27", "click", richText27.click, "WAF");
 	WAF.addListener(this.id + "_textField5", "keydown", textField5.keydown, "WAF");

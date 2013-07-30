@@ -54,10 +54,28 @@ guidedModel =// @startlock
 			{// @lock
 				 // Create an empty collection, that will be filled with entities to delete
                 var toDelete = ds.CajasMovimientos.createEntityCollection();
+                var collDocumentos = ds.DocComercial.createEntityCollection();
                 
                 // Fill the collection to delete
                 inSelectedRows.forEach(function(rowNum) {
+                	
+                	// se a–ade a una collecion los documentos afectados por la eliminacion de los registros
+                	if(this[rowNum].Documento != null){
+                		var doc = ds.DocComercial.find("ID =:1", this[rowNum].Documento.ID);
+                		collDocumentos.add(doc);
+                	}
+              
                     toDelete.add( this[rowNum] );
+                    
+                }, this);
+                
+                // se modifica el ticket a pendiente
+                collDocumentos.forEach(function(registro) {
+                	
+                	registro.Cobrado = false;
+                	registro.Cambio = 0;
+                	registro.save();
+                    
                 }, this);
                 
                 // Reduce current collection

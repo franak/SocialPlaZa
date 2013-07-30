@@ -94,10 +94,10 @@ function registrarse(id){
 			    	$.get("/sendMail",{tipo:'1', correo:acceso, id:resultado, password:pass}, function(data){
 						if(data){
 							UI.alert("GRACIAS POR REGISTRARSE\r\nCompruebe su correo electronico. Recibira un mensaje con instrucciones para completar el proceso de alta.","Enviado",function(r){
-							if(r == true){
-							$('#'+id+'_richText2').html('Enviado');
-							self.location.search = 'origin=registro';
-							}
+								if(r == true){
+									$('#'+id+'_richText2').html('Enviado');
+									self.location.search = 'origin=registro';
+								}
 							});
 						
 						

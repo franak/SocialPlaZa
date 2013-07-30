@@ -15,11 +15,13 @@ function constructor (id) {
 		
 
 
+//ds Necesito la variable $comp en el componente dialogo para recargar resources desde alli;
+
+vComp = $comp;
+
 
 //Tener el campo de busqueda de codigo enfocado y vacio a la vez;
-
-
-
+enfocar();
 
 
 function enfocar (){
@@ -46,6 +48,7 @@ function enfocar (){
 				$("#btn_empezar").click(function(){
 					mantenerFoco();
 				});
+				
 				
 			   }
 						
@@ -116,65 +119,45 @@ $('.matrix_a').dblclick(function(e){
 });
 
 //Evito que se seleccione el texto de los botones
-
 UI.disableSelection(document.body);
 
 //Se crean los modales de Bootstrap
-
-
-  btmodales.modalListaRegistros();
-  
- btmodales.modalBienvenido();
+btmodales.modalListaRegistros();
+btmodales.modalBienvenido();
   
 
 var bNuevo = getHtmlObj('imageButton1');	
 //bNuevo.popover({'placement':'top', 'trigger' : 'hover', 'content' : 'Nuevo Artículo'});
 
 
-		var app = {};
-		var app = SPL.getUrlVars()["app"];
-		
-		
-		//++++++++++++++++++++++++++++++++++++++++++
-		//Se crea un docComercial si no existe ninguno.
-		//++++++++++++++++++++++++++++++++++++++++++
-
-	/*$('MainComp').hide();
-//	
-
-setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);		
-
-*/
+var app = {};
+var app = SPL.getUrlVars()["app"];
 
 		
-		var tamanio;
-		
-		
-				$comp.sources.docComercial.all({
-					onSuccess:function (event){
-					tamanio = $comp.sources.docComercial.length;	
-					
-						if(tamanio == 0){
-							fcBrain.crearDocComercial($comp,1);
-							tamanio = 1;
-						}
-						$comp.sources.docComercial.select(tamanio-1);
-						$comp.sources.docComercial.serverRefresh();
-					}
-				});			
-			
-
-
-		//DS DECLARACION DE LA VARIABLE POS A LA QUE SE REFIERE A LAS POSICIONES DE LAS LINEAS
-		pos = 0;
-		vPosRestada = null;
-		//DS DECLARACION DE qString PARA SABER EN QUE MOMENTO EN QUE FAMILIA ESTAMOS
-		qString = null;
+//++++++++++++++++++++++++++++++++++++++++++
+//Se crea un docComercial si no existe ninguno.
+//++++++++++++++++++++++++++++++++++++++++++
 	
+var tamanio;
+$comp.sources.docComercial.all({
+	onSuccess:function (event){
+	tamanio = $comp.sources.docComercial.length;	
+	
+		if(tamanio == 0){
+			fcBrain.crearDocComercial($comp,1);
+			tamanio = 1;
+		}
+		$comp.sources.docComercial.select(tamanio-1);
+		$comp.sources.docComercial.serverRefresh();
+	}
+});			
 
-	
-	
-	enfocar();
+//DS DECLARACION DE LA VARIABLE POS A LA QUE SE REFIERE A LAS POSICIONES DE LAS LINEAS
+pos = 0;
+vPosRestada = null;
+//DS DECLARACION DE qString PARA SABER EN QUE MOMENTO EN QUE FAMILIA ESTAMOS
+qString = null;
+
 	
 	// @region namespaceDeclaration// @startlock
 	var imageButton4 = {};	// @buttonImage
@@ -226,7 +209,7 @@ setTimeout(function(){$('#MainComp').fadeIn('slow');},2000);
 
 	imageButton10.click = function imageButton10_click (event)// @startlock
 	{// @endlock
-btn_borrar();
+		btn_borrar();
 		mantenerFoco();
 	};// @lock
 
@@ -333,10 +316,7 @@ btn_borrar();
 			$$(id+"_textField4").setValue("");
 
         }, 500);
-		
-		
-		
-	
+
 	};// @lock
 
 	textField4.focus = function textField4_focus (event)// @startlock
@@ -432,54 +412,48 @@ btn_borrar();
 
 	containerFamilias.click = function containerFamilias_click (event)// @startlock
 	{// @endlock
-//GRIDTEST
-var over = '<img id="loading" src="../images/loading.gif">'
-   	 var containerFam = getHtmlObj('containerFamilias');
+		//GRIDTEST
+		var over = '<img id="loading" src="../images/loading.gif">'
+   	 	var containerFam = getHtmlObj('containerFamilias');
 
-   	 $(containerFam).html(over);
+   	 	$(containerFam).html(over);
 
-var ruta = '/rest/Familias';
-$.getJSON( ruta, function(data) {
-	console.log(data);
-
-   var articulos = data.__ENTITIES;
+		var ruta = '/rest/Familias';
+		$.getJSON( ruta, function(data) {
+		
+   		var articulos = data.__ENTITIES;
   
-   	 $(containerFam).html( '<div class="row-fluid">'
+   	 	$(containerFam).html( '<div class="row-fluid">'
           +'  <ul class="thumbnails" style="list-decoration:none">'
-          );
+        );
  
-    for (var idx in articulos)
-    {
-        articulo = articulos[idx];
-       // var tabla = getHtmlObj('container4');
-       var nombre = articulo.Nombre.substring(0, 20) + '...';
+    	for (var idx in articulos)
+    	{
+        	articulo = articulos[idx];
+       		// var tabla = getHtmlObj('container4');
+       		var nombre = articulo.Nombre.substring(0, 20) + '...';
 
-        $(containerFam).append(
+        	$(containerFam).append(
             '  <li class="product" >'
 			+'<span><small>'+nombre+'</small></span>'
             +'  </li>'
            
             ); 
-    } 
+    	} 
     
-  $(containerFam).append( '</ul>'
+  		$(containerFam).append( '</ul>'
          +' </div>'
          );
 
- });
+ 		});
  
  
  //-> GRITEST
-
-
-
 	};// @lock
 
 	bContinuarDispensar.click = function bContinuarDispensar_click (event)// @startlock
 	{// @endlock
-
-		dispensar();
-		
+		dispensar();		
 	};// @lock
 
 	bCancelDispensar.click = function bCancelDispensar_click (event)// @startlock
@@ -506,16 +480,16 @@ $.getJSON( ruta, function(data) {
 	richText23.click = function richText23_click (event)// @startlock
 	{// @endlock
 		
-			var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
-			$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
-			
-			appds.estadoInicial($comp, "modificar");
-			
-			$("BODY").append($("#"+id+"_dialog3"));
-			$$(dialogo).displayDialog();
-			$("#"+id+"_dialog3").css("top",100);
-			$("#"+id+"_dialog3").css("left",200);
-			$("#"+$comp.id+"_textField2").focus();
+		var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
+		$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
+		
+		appds.estadoInicial($comp, "modificar");
+		
+		$("BODY").append($("#"+id+"_dialog3"));
+		$$(dialogo).displayDialog();
+		$("#"+id+"_dialog3").css("top",100);
+		$("#"+id+"_dialog3").css("left",200);
+		$("#"+$comp.id+"_textField2").focus();
 	};// @lock
 
 	richText6.click = function richText6_click (event)// @startlock
@@ -535,9 +509,6 @@ $.getJSON( ruta, function(data) {
 		//$('.allArticulos').removeClass('disabled');
 		
 		mantenerFoco();
-
-
-
 	};// @lock
 
 	richText19.click = function richText19_click (event)// @startlock
@@ -616,7 +587,7 @@ $.getJSON( ruta, function(data) {
 
 	bPrint.click = function bPrint_click (event)// @startlock
 	{// @endlock
-var docActual = $comp.sources.docComercial.ID;
+		var docActual = $comp.sources.docComercial.ID;
 		localStorage.docActual = docActual;
 		mantenerFoco();
 	};// @lock
@@ -740,10 +711,10 @@ var docActual = $comp.sources.docComercial.ID;
 //Cargar el pago (Dispensar)
 function cargarMedioPago(donde){
 	
-$$(id+"_dialog1").enable();
+	$$(id+"_dialog1").enable();
  		
-var ruta = '/rest/MedioPago';
-$.getJSON( ruta, function(data) {
+	var ruta = '/rest/MedioPago';
+	$.getJSON( ruta, function(data) {
 
    var medios = data.__ENTITIES;
   
@@ -802,9 +773,6 @@ setTimeout(function(){ //Le pongo un tiempo de espera porque al cargar, lineasCo
 
 var vSumaR =  Math.round(vSuma*100)/100;
 vSumaR = vSumaR.toFixed(2);
-//$("#input_EF").val(vSumaR);
-
-//$(fpEfectivoObj).select();//Para que apareza seleccionado todo el contenido
 		
  //INICIALIZACIÓN DE LOS CAMPOS Y EVENTOS
  
@@ -1227,7 +1195,7 @@ function listarDocComercial(){
 			for (var i = 0; i < resultado.length; i++){
 				resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
 		        {
-		        	console.log(i);
+		        
 		        	var entity = event.element;
 		        	
 					if (entity.Denom){

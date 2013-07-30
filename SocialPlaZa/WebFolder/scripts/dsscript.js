@@ -331,7 +331,7 @@ appdsObj = function () {
 		var docComercialID = $comp.sources.docComercial.ID;
 		var art = ds.Articulos.devolverArticuloCodigo($$(id+"_textField4").getValue());
 		if(art != null){
-		var lin = ds.Lineas.getLinea(articuloCodigo,docComercialID); //en el servidor.
+		var lin = ds.Lineas.getLinea(art.Codigo.value,docComercialID); //en el servidor.
 				
 			if(lin != null){
 				lin.Cantidad.setValue(lin.Cantidad.getValue() + 1);
