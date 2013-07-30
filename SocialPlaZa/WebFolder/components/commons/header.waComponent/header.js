@@ -176,7 +176,9 @@ $('body').append(menuServicios);
 	hideOnClick: true
 });			
 
-
+var herramientas = btBarras.barraUno();
+contenedorBar = getHtmlObj('container2');
+contenedorBar.html(herramientas);
 
 
 
