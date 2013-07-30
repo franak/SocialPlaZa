@@ -333,10 +333,21 @@ function cargarDataPicker(){
 		//-- FUNCION MOSTRAR TODOS LOS REGISTROS --\\
 		
 			//appds.mostrarTodo($comp.sources.cajasMovimientos);
+			
+		//-- FUNCION QUE SELECCIONA TODOS LOS REGISTROS--\\
+
+			//$(id+'_dataGrid1').selectAll();
+			
+		
+		//-- FUNCION QUE NO SELECCIONA NADA--\\
+
+			//$(id+'_dataGrid1').selectNone();
 		
 		//-- FUNCION AISLAR REGISTROS SELECCIONADOS--\\
 		
-			//appds.aislarSeleccionados($comp.sources.cajasMovimientos,$$(id+'_dataGrid1').getSelectedRows());
+			/*var sel = $(id+'_dataGrid1').getSelection();
+			sel.setToInverted($(id+'_dataGrid1').source.length);
+			$(id+'_dataGrid1').source.buildFromSelection(sel);*/
 			
 			//en cuanto se recarga el recurso o la pagina los registros vuelve aparecer
 			
@@ -348,11 +359,12 @@ function cargarDataPicker(){
 			
 		//-- FUNCION SELECCION INVERSA DE LOS REGISTROS SELECCIONADOS--\\
 
-			//var selecionInversa = appds.seleccionInversa($comp.sources.cajasMovimientos,$$(id+'_dataGrid1').getSelectedRows());
-			//$$(id+'_dataGrid1').setSelectedRows(selecionInversa);
+			//$(id+'_dataGrid1').invertSelection();
 			
 			
 		//Todas estas funciones estan en dsscripts
+		
+		
 		
 	};// @lock
 

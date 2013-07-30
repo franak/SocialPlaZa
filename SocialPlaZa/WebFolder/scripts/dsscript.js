@@ -489,15 +489,6 @@ appdsObj = function () {
 		
 	}
 	
-	this.aislarSeleccionados = function (recurso, aSeleccionados){
-		
-		for (var i = 0; i < aSeleccionados.length; i++){
-			recurso.select(aSeleccionados[i]);
-			recurso.getCurrentElement();
-			recurso.removeCurrentReference();
-		}
-		
-	}
 	
 	this.omitirSeleccionados = function (recurso, aOmitidos){
 		
@@ -523,32 +514,7 @@ appdsObj = function () {
 		console.log(aRestoOmitidos);
 	}
 	
-	this.seleccionInversa = function(recurso, aSeleccionados){
-		var tamanioRecurso = recurso.length;
-		var aSelecionInversa =[];
-		
-		//recorrido del recurso
-		for(var i=0; i < tamanioRecurso; i++){
-			aSelecionInversa[aSelecionInversa.length] = i;
-			
-			//recorrido del los seleccionados omitidos
-			for(var x = 0; x < aSeleccionados.length; x++){
-				
-				if(aSeleccionados[x] == i){
-					
-					//eliminacion de los selecionados
-					var pos = aSelecionInversa.indexOf( i );
-					pos > -1 && aSelecionInversa.splice( pos, 1 );
-				}
-				
-			}
-		}
-		return aSelecionInversa;
-	}
 	
-
-
-    	
 }
 
 var appds = new appdsObj();
