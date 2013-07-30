@@ -48,6 +48,26 @@ guidedModel =// @startlock
 	},
 	CajasMovimientos :
 	{
+		collectionMethods :
+		{// @endlock
+			eliminarSeleccionados:function(inSelectedRows)
+			{// @lock
+				 // Create an empty collection, that will be filled with entities to delete
+                var toDelete = ds.CajasMovimientos.createEntityCollection();
+                
+                // Fill the collection to delete
+                inSelectedRows.forEach(function(rowNum) {
+                    toDelete.add( this[rowNum] );
+                }, this);
+                
+                // Reduce current collection
+                var newColl = this.minus( toDelete );
+                // Delete what needs to be deleted
+                toDelete.remove();
+                // Return the new collection
+                return newColl;
+			}// @startlock
+		},
 		events :
 		{
 			onRestrictingQuery:function()
