@@ -176,9 +176,11 @@ $('body').append(menuServicios);
 	hideOnClick: true
 });			
 
-var herramientas = btBarras.barraUno();
+//Llamo al prodecimiento en el módulo btBarras en el servidor
+//Desactivado hasta que lo termine
+/*var herramientas = btBarras.barraUno();
 contenedorBar = getHtmlObj('container2');
-contenedorBar.html(herramientas);
+contenedorBar.html(herramientas);*/
 
 
 
