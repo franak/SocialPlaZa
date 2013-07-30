@@ -795,9 +795,6 @@ $(".cobro").focus( function(event) {
 
 	total += $(this).val() * 1;
 	diferencia = vSumaR - total;
-	console.log("total: "+total);
-	console.log("diferencia: "+diferencia);
-	
 	
 	if(diferencia > 0){
 		diferenciaCambio = diferencia;

@@ -330,7 +330,30 @@ function cargarDataPicker(){
 
 	richText24.click = function richText24_click (event)// @startlock
 	{// @endlock
-		$comp.sources.cajasMovimientos.all();
+		//-- FUNCION MOSTRAR TODOS LOS REGISTROS --\\
+		
+			//appds.mostrarTodo($comp.sources.cajasMovimientos);
+		
+		//-- FUNCION AISLAR REGISTROS SELECCIONADOS--\\
+		
+			//appds.aislarSeleccionados($comp.sources.cajasMovimientos,$$(id+'_dataGrid1').getSelectedRows());
+			
+			//en cuanto se recarga el recurso o la pagina los registros vuelve aparecer
+			
+		//-- FUNCION OMITIR REGISTROS SELECCIONADOS--\\
+			
+			//appds.omitirSeleccionados($comp.sources.cajasMovimientos,$$(id+'_dataGrid1').getSelectedRows());
+		
+			//muestro por console.log un array con las posiciones de los registros NO omitidos.
+			
+		//-- FUNCION SELECCION INVERSA DE LOS REGISTROS SELECCIONADOS--\\
+
+			//var selecionInversa = appds.seleccionInversa($comp.sources.cajasMovimientos,$$(id+'_dataGrid1').getSelectedRows());
+			//$$(id+'_dataGrid1').setSelectedRows(selecionInversa);
+			
+			
+		//Todas estas funciones estan en dsscripts
+		
 	};// @lock
 
 	richText26.click = function richText26_click (event)// @startlock

@@ -483,6 +483,68 @@ appdsObj = function () {
 		
 	}
 	
+	this.mostrarTodo = function(recurso){
+		
+		recurso.all();
+		
+	}
+	
+	this.aislarSeleccionados = function (recurso, aSeleccionados){
+		
+		for (var i = 0; i < aSeleccionados.length; i++){
+			recurso.select(aSeleccionados[i]);
+			recurso.getCurrentElement();
+			recurso.removeCurrentReference();
+		}
+		
+	}
+	
+	this.omitirSeleccionados = function (recurso, aOmitidos){
+		
+		var tamanioRecurso = recurso.length;
+		var aRestoOmitidos =[];
+		
+		//recorrido del recurso
+		for(var i=0; i < tamanioRecurso; i++){
+			aRestoOmitidos[aRestoOmitidos.length] = i;
+			
+			//recorrido del los seleccionados omitidos
+			for(var x = 0; x < aOmitidos.length; x++){
+				
+				if(aOmitidos[x] == i){
+					
+					//eliminacion de los selecionados
+					var pos = aRestoOmitidos.indexOf( i );
+					pos > -1 && aRestoOmitidos.splice( pos, 1 );
+				}
+				
+			}
+		}
+		console.log(aRestoOmitidos);
+	}
+	
+	this.seleccionInversa = function(recurso, aSeleccionados){
+		var tamanioRecurso = recurso.length;
+		var aSelecionInversa =[];
+		
+		//recorrido del recurso
+		for(var i=0; i < tamanioRecurso; i++){
+			aSelecionInversa[aSelecionInversa.length] = i;
+			
+			//recorrido del los seleccionados omitidos
+			for(var x = 0; x < aSeleccionados.length; x++){
+				
+				if(aSeleccionados[x] == i){
+					
+					//eliminacion de los selecionados
+					var pos = aSelecionInversa.indexOf( i );
+					pos > -1 && aSelecionInversa.splice( pos, 1 );
+				}
+				
+			}
+		}
+		return aSelecionInversa;
+	}
 	
 
 
@@ -491,6 +553,9 @@ appdsObj = function () {
 
 var appds = new appdsObj();
 
+function gritar(recurso){
+	alert(recurso);
+}
 
 function comprobarAbierto(titulo){
 	
