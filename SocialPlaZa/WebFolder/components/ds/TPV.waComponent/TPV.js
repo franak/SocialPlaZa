@@ -19,7 +19,6 @@ function constructor (id) {
 
 vComp = $comp;
 
-
 //Tener el campo de busqueda de codigo enfocado y vacio a la vez;
 enfocar();
 
