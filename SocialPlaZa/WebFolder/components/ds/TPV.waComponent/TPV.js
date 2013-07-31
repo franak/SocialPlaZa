@@ -77,6 +77,7 @@ function enfocar (){
 			case "textField4": break;
 			case "textField7": break;
 			case "textField6": break;
+			case "textField5": break;
 			case "textField9": break;
 			default : mantenerFoco();
 			
@@ -143,7 +144,6 @@ $comp.sources.docComercial.all({
 	tamanio = $comp.sources.docComercial.length;	
 	
 		if(tamanio == 0){
-			fcBrain.crearDocComercial($comp,1);
 			tamanio = 1;
 		}
 		$comp.sources.docComercial.select(tamanio-1);
