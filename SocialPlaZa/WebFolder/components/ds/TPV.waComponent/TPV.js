@@ -159,6 +159,7 @@ qString = null;
 
 	
 	// @region namespaceDeclaration// @startlock
+	var infoText = {};	// @richText
 	var imageButton4 = {};	// @buttonImage
 	var imageButton10 = {};	// @buttonImage
 	var imageButton5 = {};	// @buttonImage
@@ -199,6 +200,25 @@ qString = null;
 
 
 	// eventHandlers// @lock
+
+	infoText.click = function infoText_click (event)// @startlock
+	{// @endlock
+		UI.confirm('¿Desea borrar los articulos demos?', 'Confirmacion', function(r) {
+			
+			if(r == true){
+
+				ds.Articulos.borrarArticulosDemos({
+					onSuccess:function(){
+						$comp.sources.articulos.resolveSource();
+					}
+				});
+			
+			}
+		
+		});
+		
+		
+	};// @lock
 
 	imageButton4.click = function imageButton4_click (event)// @startlock
 	{// @endlock
@@ -657,6 +677,7 @@ qString = null;
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_infoText", "click", infoText.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
 	WAF.addListener(this.id + "_imageButton4", "click", imageButton4.click, "WAF");
 	WAF.addListener(this.id + "_imageButton10", "click", imageButton10.click, "WAF");

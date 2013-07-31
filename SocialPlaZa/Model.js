@@ -210,6 +210,20 @@ guidedModel =// @startlock
 	{
 		methods :
 		{// @endlock
+			borrarArticulosDemos:function()
+			{// @lock
+				var collPreArticulos = ds.PreArticulos.all();
+				
+				 collPreArticulos.forEach(function(registro) {
+                	
+                	var codigo = registro.Codigo;
+                	var articulo = ds.Articulos.find("Codigo =:1",codigo);
+                	articulo.remove();
+                	
+                    
+                }, this);
+				
+			},// @lock
 			devolverArticuloCodigo:function(vCod)
 			{// @lock
 				var art = ds.Articulos.find("Codigo =:1",vCod);

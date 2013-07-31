@@ -123,6 +123,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				ds.Metodos.importacionInicial();
 				var retorno = ds.Metodos.crearDemo();
 				sessionStorage.setItem("demo","true");
+				
 			}
 
 		//DS SI LA VARIABLE DE SESSION HA SIDO ELIMINADA Y ESTAS LOGUEADO COMO DEMO
@@ -131,6 +132,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			ds.Metodos.importacionInicial();
 			var retorno = ds.Metodos.crearDemo();
 			sessionStorage.setItem("demo","true");
+			
 		}
 		
 		
