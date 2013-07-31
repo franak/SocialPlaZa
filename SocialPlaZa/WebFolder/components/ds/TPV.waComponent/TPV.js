@@ -219,6 +219,12 @@ qString = null;
 		mantenerFoco();
 	};// @lock
 
+	richText25.mousedown = function richText25_mousedown (event)// @startlock
+	{// @endlock
+		vTime = 0;
+		vTime = new Date();
+	};// @lock
+
 	richText25.touchend = function richText25_touchend (event)// @startlock
 	{// @endlock
 		articulo_btn(this);
@@ -236,12 +242,6 @@ qString = null;
 		articulo_btn(this);
 		mantenerFoco();
 		
-	};// @lock
-
-	richText25.mouseout = function richText25_mouseout (event)// @startlock
-	{// @endlock
-		vTime = 0;
-		vTime = new Date();
 	};// @lock
 
 	btnAll.click = function btnAll_click (event)// @startlock
@@ -388,7 +388,7 @@ qString = null;
 		$$(dialogo).displayDialog();
 		$("#"+id+"_dialog3").css("top",20);
 		$("#"+id+"_dialog3").css("left",200);
-		$("#"+$comp.id+"_textField2").focus();
+		$("#"+$comp.id+"_textField5").focus();
 
 	};// @lock
 
@@ -528,7 +528,7 @@ qString = null;
 		var estado = $$(dialogo).getState();
 		if(estado == "crear"){
 			
-			var codigo = $$($comp.id+"_textField2").getValue();
+			var codigo = $$($comp.id+"_textField5").getValue();
 			var precio = $$($comp.id+"_textField6").getValue();
 			var descripcion = $$($comp.id+"_textField7").getValue();
 			$comp.sources.articulos.addNewElement();
@@ -604,11 +604,12 @@ qString = null;
 				//appds.modificarArticulo($comp); DA FALLO
 				$("#"+id+"_textField2").blur();
 				
+				var codigo = $$($comp.id+"_textField5").getValue();
 				var precio = $$($comp.id+"_textField6").getValue();
 				var descripcion = $$($comp.id+"_textField7").getValue();
 				var familia = ds.Familias.getFamilia($$($comp.id+"_combobox2").getValue());
 			
-				
+				$comp.sources.articulos.Codigo = codigo;
 				$comp.sources.articulos.Precio = precio;
 				$comp.sources.articulos.Descripcion = descripcion;
 				$comp.sources.articulos.Familia.set(familia);
@@ -656,13 +657,13 @@ qString = null;
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
 	WAF.addListener(this.id + "_imageButton4", "click", imageButton4.click, "WAF");
 	WAF.addListener(this.id + "_imageButton10", "click", imageButton10.click, "WAF");
 	WAF.addListener(this.id + "_imageButton5", "click", imageButton5.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "touchend", richText25.touchend, "WAF");
 	WAF.addListener(this.id + "_richText25", "touchstart", richText25.touchstart, "WAF");
 	WAF.addListener(this.id + "_richText25", "mouseup", richText25.mouseup, "WAF");
-	WAF.addListener(this.id + "_richText25", "mouseout", richText25.mouseout, "WAF");
 	WAF.addListener(this.id + "_textField3", "blur", textField3.blur, "WAF");
 	WAF.addListener(this.id + "_textField4", "blur", textField4.blur, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
@@ -1015,16 +1016,17 @@ function articulo_btn(esteObjeto){
 	
 	var vTimeResta = new Date();
 	vTimeResta = vTimeResta - vTime;
+	console.log(vTimeResta);
 	
-	/*if (vTimeResta >= 750) {
-		
+	if (vTimeResta >= 700) {
+		vTime = 0;
 		var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
-		$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
+		$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
 		
 		appds.estadoInicial($comp, "modificar",esteObjeto);
 		
 		
-	}else{*/
+	}else{
 		
 		var cobrado = $comp.sources.docComercial.Cobrado;
 		botonArticulo = getHtmlId('richText25');
@@ -1039,7 +1041,7 @@ function articulo_btn(esteObjeto){
 			
 		}
 
-	//}
+	}
 }
 
 function btn_borrar(){

@@ -1,37 +1,4 @@
-﻿waf.widget.Grid.prototype.invertSelection = function(){
-	var sel = this.getSelection();
-	if(sel.isModeMultiple()){
-		sel.setToInverted(this.source.length);
-		this.$domNode.find('.container').trigger('scroll');
-	}
-}
-
-waf.widget.Grid.prototype.selectAll = function(){
-	var sel = this.getSelection();
-	if(sel.isModeMultiple()){
-		sel.selectRange(0, this.source.length - 1, true);
-		this.$domNode.find('.container').trigger('scroll');
-	}
-}
-
-waf.widget.Grid.prototype.selectNone = function(){
-	var sel = this.getSelection();
-	if(sel.isModeMultiple()){
-		sel.setSelectedRows([]);
-		this.$domNode.find('.container').trigger('scroll');
-	}
-}
-
-waf.Selection.prototype.setToInverted = function(length){
-	if(this.isModeMultiple()){
-		this.buildFromObject({
-			butRows: this.getSelectedRows(),
-			mode: 'multiple',
-			ranges: [{start: 0, end: length - 1}]
-		});
-	}
-}
-
+﻿
 WAF.onAfterInit = function onAfterInit() {// @lock
 
 // @region namespaceDeclaration// @startlock

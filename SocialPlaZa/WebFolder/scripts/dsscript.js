@@ -404,7 +404,7 @@ appdsObj = function () {
 			var vFamilia = ds.Articulos.getFamilia(codigoArticulo);
 			$$($comp.id+"_combobox2").setValue(vFamilia);//Poner el combo a la familia deseada
 			
-			
+			$$($comp.id+"_textField5").setValue("");
 			$$($comp.id+"_textField6").setValue("");
 			$$($comp.id+"_textField7").setValue("");
 			
@@ -481,37 +481,6 @@ appdsObj = function () {
 			$("#"+$comp.id+"_richText19").hide();
 		}
 		
-	}
-	
-	this.mostrarTodo = function(recurso){
-		
-		recurso.all();
-		
-	}
-	
-	
-	this.omitirSeleccionados = function (recurso, aOmitidos){
-		
-		var tamanioRecurso = recurso.length;
-		var aRestoOmitidos =[];
-		
-		//recorrido del recurso
-		for(var i=0; i < tamanioRecurso; i++){
-			aRestoOmitidos[aRestoOmitidos.length] = i;
-			
-			//recorrido del los seleccionados omitidos
-			for(var x = 0; x < aOmitidos.length; x++){
-				
-				if(aOmitidos[x] == i){
-					
-					//eliminacion de los selecionados
-					var pos = aRestoOmitidos.indexOf( i );
-					pos > -1 && aRestoOmitidos.splice( pos, 1 );
-				}
-				
-			}
-		}
-		console.log(aRestoOmitidos);
 	}
 	
 	
