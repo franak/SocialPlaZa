@@ -85,9 +85,19 @@ exports.insertaUsuarioNuevo = function insertaUsuarioNuevo (vNombreAcceso, vPass
 			new_usuario.TPVAlmacen = almacen;
 			new_usuario.save();
 			
+			var doc = new ds.DocComercial();
+			doc.Entorno = entorno;
+			doc.Tipo = 1;
+			doc.Numero = 1;
+			doc.Fecha = new Date();
+			doc.Cobrado = false;
+			doc.Cambio = 0;
+			doc.save();
+			
 			
 			
 			require("importacionModule").pegarArticulos(new_empresa);
+			
 			logout();
 			return resultado;	
 		}
