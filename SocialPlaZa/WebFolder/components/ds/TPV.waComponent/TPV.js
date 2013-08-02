@@ -12,52 +12,28 @@ function constructor (id) {
 
 
 	this.load = function (data) {// @lock
-		
-
+	
 
 //ds Necesito la variable $comp en el componente dialogo para recargar resources desde alli;
 
 vComp = $comp;
+
+//-- FUNCION QUE CARGA TODOS LOS RECURSOS DEL COMPONENTE--\\
+
+appds.cargarDataTPV(vComp);
+
+	
+
+	
+	
+	
 
 //Tener el campo de busqueda de codigo enfocado y vacio a la vez;
 enfocar();
 
 
 function enfocar (){
-	
-	
-	$comp.sources.articulos1.resolveSource({
-		onSuccess: function (event){
-			$$(id+"_textField4").setValue("");
-			mantenerFoco();
-			
-			//-- Se elimina el preLoader de carga (overlay) --\\
-
-			$('#overlay').remove();
-
-   			var user = WAF.directory.currentUser();
-
-	        if (user) {
-	        	
-	          if (ds.Metodos.getGrupo() == "Prueba") {
-				
-				$('#modalBienvenido').modal({
-			    backdrop: false
-				});
-				$("#btn_empezar").click(function(){
-					mantenerFoco();
-				});
-				
-				
-			   }
-						
-			};
-				
-
-		}
-	});
-	
-	
+		
 	$("input").blur(function (){
 		
 		
@@ -138,18 +114,16 @@ var app = SPL.getUrlVars()["app"];
 //Se crea un docComercial si no existe ninguno.
 //++++++++++++++++++++++++++++++++++++++++++
 	
-var tamanio;
-$comp.sources.docComercial.all({
-	onSuccess:function (event){
-	tamanio = $comp.sources.docComercial.length;	
+
 	
-		if(tamanio == 0){
-			tamanio = 1;
-		}
-		$comp.sources.docComercial.select(tamanio-1);
-		$comp.sources.docComercial.serverRefresh();
-	}
-});			
+	
+	
+
+	
+	
+	
+
+	
 
 //DS DECLARACION DE LA VARIABLE POS A LA QUE SE REFIERE A LAS POSICIONES DE LAS LINEAS
 pos = 0;
@@ -176,7 +150,6 @@ qString = null;
 	var textField3 = {};	// @textField
 	var imageButton11 = {};	// @buttonImage
 	var button11 = {};	// @button
-	var docComercial1Event = {};	// @dataSource
 	var docComercialEvent = {};	// @dataSource
 	var imageButton15 = {};	// @buttonImage
 	var btnArticulo = {};	// @richText
@@ -209,7 +182,7 @@ qString = null;
 
 				ds.Articulos.borrarArticulosDemos({
 					onSuccess:function(){
-						$comp.sources.articulos.resolveSource();
+						$comp.sources.articulos.all();
 					}
 				});
 			
@@ -375,11 +348,6 @@ qString = null;
 		$("#"+id+"_container16").text("");
     	$$(getHtmlId("dialog5")).closeDialog(); //cancel button
     			
-	};// @lock
-
-	docComercial1Event.onCollectionChange = function docComercial1Event_onCollectionChange (event)// @startlock
-	{// @endlock
-		// Add your code here
 	};// @lock
 
 	docComercialEvent.onCurrentElementChange = function docComercialEvent_onCurrentElementChange (event)// @startlock
@@ -555,7 +523,7 @@ qString = null;
 			$comp.sources.articulos.Codigo = codigo;
 			$comp.sources.articulos.Precio = precio;
 			$comp.sources.articulos.Descripcion = descripcion;
-			$comp.sources.articulos.Familia.set($comp.sources.familias2);
+			$comp.sources.articulos.Familia.set($comp.sources.familias2.getCurrentElement());
 			$comp.sources.articulos.save();
 			$comp.sources.articulos.serverRefresh();
 			if(WAF.directory.currentUser().fullName == "TG"){
@@ -698,7 +666,6 @@ qString = null;
 	WAF.addListener(this.id + "_imageButton8", "click", imageButton8.click, "WAF");
 	WAF.addListener(this.id + "_imageButton11", "click", imageButton11.click, "WAF");
 	WAF.addListener(this.id + "_button11", "click", button11.click, "WAF");
-	WAF.addListener(this.id + "_docComercial1", "onCollectionChange", docComercial1Event.onCollectionChange, "WAF");
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_imageButton15", "click", imageButton15.click, "WAF");
 	WAF.addListener(this.id + "_richText6", "click", richText6.click, "WAF");
@@ -729,6 +696,9 @@ qString = null;
 
 //Funciones de la página.
 
+
+ 
+ 
 //Cargar el pago (Dispensar)
 function cargarMedioPago(donde){
 	

@@ -400,8 +400,16 @@ appdsObj = function () {
 			$$($comp.id+"_richText15").show();
 			
 			$$($comp.id+"_richText14").setValue("Crear");//Botn Guardar pasa ser Crear
-			var codigoArticulo = $comp.sources.articulos.Codigo;
-			var vFamilia = ds.Articulos.getFamilia(codigoArticulo);
+			
+			if($comp.sources.articulos.length != 0){
+				var codigoArticulo = $comp.sources.articulos.Codigo;
+				var vFamilia = ds.Articulos.getFamilia(codigoArticulo);
+				$$($comp.id+"_combobox2").setValue(vFamilia);
+			}else{
+				$$($comp.id+"_combobox2").setValue($comp.sources.familias2.getCurrentElement());
+			}
+			
+			
 			$$($comp.id+"_combobox2").setValue(vFamilia);//Poner el combo a la familia deseada
 			
 			$$($comp.id+"_textField5").setValue("");
@@ -482,6 +490,149 @@ appdsObj = function () {
 		}
 		
 	}
+	
+	this.cargarDataTPV = function($comp){
+	
+		var tamanio;
+		var x = 0;
+		
+	// CARGA DE CajasMovimientos
+		$comp.sources.cajasMovimientos.all({
+			onSuccess:function(){
+				x++;
+			}
+		});
+		
+		
+	//CARGA DE Articulos
+		$comp.sources.articulos.all({
+			onSuccess:function(){
+				x++;
+			}
+		});
+		
+	// CARGA DE Copia1 Articulos
+		$comp.sources.articulos1.all({
+			onSuccess:function(){
+				x++;
+			}
+		});
+		
+	// CARGA DE Copia2 Articulos
+		$comp.sources.articulos2.all({
+			onSuccess:function(){
+				x++;
+			}
+		});
+
+	// CARGA DE DocComercial
+		$comp.sources.docComercial.all({
+			onSuccess:function (event){
+				x++;
+				tamanio = $comp.sources.docComercial.length;	
+				if(tamanio == 0){
+					tamanio = 1;
+				}
+				$comp.sources.docComercial.select(tamanio-1);
+				$comp.sources.docComercial.serverRefresh();
+			}
+			
+		});
+		
+	// CARGA DE MedioPago
+		$comp.sources.medioPago.all({
+			onSuccess:function (event){
+				x++;
+			}
+			
+		});
+
+	// CARGA DE Familias
+		sources.familias.all({
+			onSuccess:function (event){
+				x++;
+			}
+			
+		});
+		
+	// CARGA DE Copia1 Familias
+		$comp.sources.familias2.all({
+			onSuccess:function (event){
+				x++;
+			}
+			
+		});
+		
+	// CARGA DE Almacenes
+		$comp.sources.almacenes.all({
+			onSuccess:function (event){
+				x++;
+			}
+			
+		});
+		
+	// CARGA DE Usuarios
+		$comp.sources.usuarios.all({
+			onSuccess:function (event){
+				x++;
+			}
+			
+		});
+		
+	// CARGA DE CajasTPV
+		$comp.sources.cajasTPV.all({
+			onSuccess:function (event){
+				x++;
+			}
+			
+		});
+		
+	// CARGA DE Lineas
+		sources.lineas.all({
+			onSuccess:function (event){
+				x++;
+			}
+			
+		});
+
+	//-- FUNCION QUE COMPRUEBA QUE TERMINA LAS CARGAS DE LOS RECURSOS CADA 0,1s--\\
+
+
+		var t = setInterval(function(){
+			
+			if(x==12){				
+				clearInterval(t); //Se para la comprobacion 
+				
+				//-- Apartir de aqui los recursos del componente estan cargados --\\
+		
+				$$($comp.id+"_textField4").setValue("");
+				if(window.navigator.platform != "iPad"){
+					$("#"+$comp.id+"_textField4").focus();
+				}
+				//-- Se elimina el preLoader de carga (overlay) --\\
+				$('#overlay').remove();
+
+	   			var user = WAF.directory.currentUser();
+		        if (user) {
+		          if (ds.Metodos.getGrupo() == "Prueba") {
+					
+					$('#modalBienvenido').modal({
+				    backdrop: false
+					});
+					$("#btn_empezar").click(function(){
+						if(window.navigator.platform != "iPad"){
+							$("#"+$comp.id+"_textField4").focus();
+						}
+					});
+					
+					
+				   }
+							
+				}
+			}
+			
+		},100);
+}	
 	
 	
 }

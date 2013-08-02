@@ -8,11 +8,11 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 // eventHandlers// @lock
 
-
+	
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
 	
- 
+ 		
 	/*
 		--- Funcion si existe en el sistema los eventos touch (iPad) ---
 	*/			
@@ -143,6 +143,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 
 	};// @lock
+	
+	
 
 // @region eventManager// @startlock
 	WAF.addListener("document", "onLoad", documentEvent.onLoad, "WAF");
