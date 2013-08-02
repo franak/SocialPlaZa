@@ -559,25 +559,29 @@ appdsObj = function () {
 					$("#"+$comp.id+"_textField4").focus();
 				}
 				//-- Se elimina el preLoader de carga (overlay) --\\
-				$('#overlay').remove();
+				setTimeout(function(){
+					$('#overlay').remove();
+					var user = WAF.directory.currentUser();
+				    if (user) {
+				      if (ds.Metodos.getGrupo() == "Prueba") {
+						console.log("hola");
+						$('#modalBienvenido').modal({
+					    backdrop: false
+						});
+						$("#btn_empezar").click(function(){
+							if(window.navigator.platform != "iPad"){
+								$("#"+$comp.id+"_textField4").focus();
+							}
+						});
+						
+						
+					   }
+								
+					}
+				},500);
+				
 
-				var user = WAF.directory.currentUser();
-			    if (user) {
-			      if (ds.Metodos.getGrupo() == "Prueba") {
-					console.log("hola");
-					$('#modalBienvenido').modal({
-				    backdrop: false
-					});
-					$("#btn_empezar").click(function(){
-						if(window.navigator.platform != "iPad"){
-							$("#"+$comp.id+"_textField4").focus();
-						}
-					});
-					
-					
-				   }
-							
-				}
+				
 			
 
 
