@@ -354,6 +354,22 @@ guidedModel =// @startlock
 	{
 		methods :
 		{// @endlock
+			consultar:function(clase)
+			{// @lock
+				switch(clase){
+					case "Articulos": return ds.Articulos.all();
+					case "DocComercial": return ds.DocComercial.all();
+					case "Lineas": return ds.Lineas.all();
+					case "CajasMovimientos": return ds.CajasMovimientos.all();
+					case "CajasTPV": return ds.CajasTPV.all();
+					case "Almacenes": return ds.Almacenes.all();
+					case "Familias": return ds.Familias.all();
+					case "MedioPago": return ds.MedioPago.all();
+					case "Usuarios": return ds.Usuarios.all();
+					case "DocComercial": return ds.DocComercial.all();
+					default: return "Error";
+				};
+			},// @lock
 			recuperarPass:function(acceso)
 			{// @lock
 				loginByPassword("manager","123");

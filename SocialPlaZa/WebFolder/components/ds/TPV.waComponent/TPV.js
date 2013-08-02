@@ -10,23 +10,25 @@ function constructor (id) {
 	this.name = 'TPV';
 	// @endregion// @endlock
 
-
 	this.load = function (data) {// @lock
 	
 
 //ds Necesito la variable $comp en el componente dialogo para recargar resources desde alli;
-
 vComp = $comp;
+
+btmodales.modalListaRegistros();
+btmodales.modalBienvenido();
+
 
 //-- FUNCION QUE CARGA TODOS LOS RECURSOS DEL COMPONENTE--\\
 
-appds.cargarDataTPV(vComp);
+//appds.cargarDataTPV(vComp);
 
-	
+$(this.id).ready(function(){
+	appds.cargarDataTPV(vComp);
+});
 
-	
-	
-	
+
 
 //Tener el campo de busqueda de codigo enfocado y vacio a la vez;
 enfocar();
@@ -98,8 +100,7 @@ $('.matrix_a').dblclick(function(e){
 UI.disableSelection(document.body);
 
 //Se crean los modales de Bootstrap
-btmodales.modalListaRegistros();
-btmodales.modalBienvenido();
+
   
 
 var bNuevo = getHtmlObj('imageButton1');	

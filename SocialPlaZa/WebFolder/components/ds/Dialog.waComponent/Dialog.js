@@ -265,8 +265,13 @@ function cargarDataPicker(){
 	{// @endlock
 		var fecha= new Date();
 		var dia = fecha.getDate();
+		if(dia < 10){
+			dia = "0"+dia;
+		}
 		var mes = fecha.getMonth()+1;
-		mes = "0"+mes;
+		if(mes < 10){
+			mes = "0"+mes;
+		}
 		var anio = fecha.getFullYear();
 		
 		$('.span2').val(dia+'/'+mes+'/'+anio);
@@ -299,14 +304,18 @@ function cargarDataPicker(){
 		
 		//f2 es la fecha inicio
 		var f2 = new Date(anio, mes, dia);
+		f2.setTime(f2.getTime() - 86400000);
+		
 		
 		
 		var dia2 = f2.getDate();
 		
 		dia2 = parseInt(dia2);
-		dia2--;
-		if(dia2 < 10){
+		
+		if(dia2 < 10 && dia2 != 0){
 			dia2 = "0"+dia2;
+		}else if(dia2 == 0){
+			dia2 = -1;
 		}
 		var mes2 = f2.getMonth()+1;
 		mes2 = parseInt(mes2);
@@ -319,13 +328,13 @@ function cargarDataPicker(){
 		
 		
 		//f3 es la fecha fin
-		dia = parseInt(dia);
-		dia--;
+		
 		var f3 = new Date(anio, mes, dia);
-
+		console.log(f3);
+		console.log(f2);
 		
 		
-		$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f3,f2);
+		$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f2,f3);
 	};// @lock
 
 	richText24.click = function richText24_click (event)// @startlock
