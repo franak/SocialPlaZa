@@ -578,9 +578,7 @@ appdsObj = function () {
 						$("#"+$comp.id+"_textField4").focus();
 					}
 				});
-				$("input").keypress(function(){
-					$("#"+$comp.id+"_textField4").focus();
-				});
+				
 				
 			   }
 						
