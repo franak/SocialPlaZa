@@ -520,18 +520,7 @@ appdsObj = function () {
 	// CARGA DE DocComercial
 		
 		result = ds.Metodos.consultar("DocComercial");
-		$comp.sources.docComercial.setEntityCollection(result,{
-			onSuccess:function (event){
-				var tamanio;
-				tamanio = $comp.sources.docComercial.length;	
-				if(tamanio == 0){
-					tamanio = 1;
-				}
-				$comp.sources.docComercial.select(tamanio-1);
-				
-			}
-			
-		});
+		$comp.sources.docComercial.setEntityCollection(result);
 		
 	// CARGA DE MedioPago
 		result = ds.Metodos.consultar("MedioPago");
@@ -565,9 +554,18 @@ appdsObj = function () {
 		if(window.navigator.platform != "iPad"){
 			$("#"+$comp.id+"_textField4").focus();
 		}
-		//-- Se elimina el preLoader de carga (overlay) --\\
+		
+		var tamanio;
+		tamanio = $comp.sources.docComercial.length;	
+		if(tamanio == 0){
+			tamanio = 1;
+		}
+		$comp.sources.docComercial.select(tamanio-1);
+		$comp.sources.docComercial.serverRefresh();
 		setTimeout(function(){
+			//-- Se elimina el preLoader de carga (overlay) --\\
 			$('#overlay').remove();
+			
 			var user = WAF.directory.currentUser();
 		    if (user) {
 		      if (ds.Metodos.getGrupo() == "Prueba") {
