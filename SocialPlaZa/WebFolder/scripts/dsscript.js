@@ -493,7 +493,6 @@ appdsObj = function () {
 	
 	this.cargarDataTPV = function($comp){
 	
-		var tamanio;
 		var result;
 		
 	// CARGA DE CajasMovimientos
@@ -510,18 +509,26 @@ appdsObj = function () {
 		
 	// CARGA DE Copia2 Articulos
 		result = ds.Metodos.consultar("Articulos");
-		$comp.sources.articulos2.setEntityCollection(result);
-
+		$comp.sources.articulos2.setEntityCollection(result,{
+			onSuccess:function (event){
+				$comp.sources.articulos2.select(-1);
+				
+			}
+			
+		});
+		
 	// CARGA DE DocComercial
+		
 		result = ds.Metodos.consultar("DocComercial");
 		$comp.sources.docComercial.setEntityCollection(result,{
 			onSuccess:function (event){
+				var tamanio;
 				tamanio = $comp.sources.docComercial.length;	
 				if(tamanio == 0){
 					tamanio = 1;
 				}
 				$comp.sources.docComercial.select(tamanio-1);
-				$comp.sources.docComercial.serverRefresh();
+				
 			}
 			
 		});
@@ -535,8 +542,8 @@ appdsObj = function () {
 		sources.familias.setEntityCollection(result);
 		
 	// CARGA DE Copia1 Familias
-		result = ds.Metodos.consultar("Familias");
-		$comp.sources.familias2.setEntityCollection(result);
+		//result = ds.Metodos.consultar("Familias");
+		//$comp.sources.familias2.setEntityCollection(result);
 		
 	// CARGA DE Almacenes
 		result = ds.Metodos.consultar("Almacenes");
@@ -553,40 +560,34 @@ appdsObj = function () {
 	// CARGA DE Lineas
 		result = ds.Metodos.consultar("Lineas");
 		sources.lineas.setEntityCollection(result);
-			
-				$$($comp.id+"_textField4").setValue("");
-				if(window.navigator.platform != "iPad"){
-					$("#"+$comp.id+"_textField4").focus();
-				}
-				//-- Se elimina el preLoader de carga (overlay) --\\
-				setTimeout(function(){
-					$('#overlay').remove();
-					var user = WAF.directory.currentUser();
-				    if (user) {
-				      if (ds.Metodos.getGrupo() == "Prueba") {
-						console.log("hola");
-						$('#modalBienvenido').modal({
-					    backdrop: false
-						});
-						$("#btn_empezar").click(function(){
-							if(window.navigator.platform != "iPad"){
-								$("#"+$comp.id+"_textField4").focus();
-							}
-						});
-						
-						
-					   }
-								
-					}
-				},500);
-				
-
-				
-			
-
-
 		
-}	
+		
+		if(window.navigator.platform != "iPad"){
+			$("#"+$comp.id+"_textField4").focus();
+		}
+		//-- Se elimina el preLoader de carga (overlay) --\\
+		setTimeout(function(){
+			$('#overlay').remove();
+			var user = WAF.directory.currentUser();
+		    if (user) {
+		      if (ds.Metodos.getGrupo() == "Prueba") {
+				
+				$('#modalBienvenido').modal({
+			   	 backdrop: false
+				});
+				$("#btn_empezar").click(function(){
+					if(window.navigator.platform != "iPad"){
+						$("#"+$comp.id+"_textField4").focus();
+					}
+				});
+				
+				
+			   }
+						
+			}
+		},500);
+				
+	}	
 	
 	
 }

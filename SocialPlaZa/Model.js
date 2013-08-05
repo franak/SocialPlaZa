@@ -218,6 +218,12 @@ guidedModel =// @startlock
                 	
                 	var codigo = registro.Codigo;
                 	var articulo = ds.Articulos.find("Codigo =:1",codigo);
+                	
+            		familia = ds.Familias.find("articulosCollection.Codigo =:1",codigo);
+            		if(familia!=null){
+            			familia.remove();
+            		}
+
                 	articulo.remove();
                 	
                     

@@ -134,6 +134,7 @@ qString = null;
 
 	
 	// @region namespaceDeclaration// @startlock
+	var infoText = {};	// @richText
 	var imageButton4 = {};	// @buttonImage
 	var imageButton10 = {};	// @buttonImage
 	var imageButton5 = {};	// @buttonImage
@@ -173,6 +174,25 @@ qString = null;
 
 
 	// eventHandlers// @lock
+
+	infoText.click = function infoText_click (event)// @startlock
+	{// @endlock
+		UI.confirm('¿Desea borrar los articulos demos?', 'Confirmacion', function(r) {
+			
+			if(r == true){
+
+				ds.Articulos.borrarArticulosDemos({
+					onSuccess:function(){
+						$comp.sources.articulos.all();
+					}
+				});
+			
+			}
+		
+		});
+		
+		
+	};// @lock
 
 	imageButton4.click = function imageButton4_click (event)// @startlock
 	{// @endlock
@@ -222,7 +242,7 @@ qString = null;
 	{// @endlock
 		UI.gifCargando();
 		qString = null;
-		$comp.sources.articulos.resolveSource();
+		$comp.sources.articulos.all();
 		$('.solapa').removeClass('btn-maniadmin-4');
 		//$('.matrix_a').removeClass('tpv-btn');
 		//this.addClass('disabled');
@@ -346,6 +366,8 @@ qString = null;
 
 	imageButton15.click = function imageButton15_click (event)// @startlock
 	{// @endlock
+		result = ds.Metodos.consultar("Familias");
+		$comp.sources.familias2.setEntityCollection(result);
 		var dialogo = getHtmlId("dialog3");//Coger el dialogo widget
 		var jqdialogo = getHtmlId("dialog3");
 		
@@ -626,6 +648,7 @@ qString = null;
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_infoText", "click", infoText.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
 	WAF.addListener(this.id + "_imageButton4", "click", imageButton4.click, "WAF");
 	WAF.addListener(this.id + "_imageButton10", "click", imageButton10.click, "WAF");
@@ -896,7 +919,6 @@ $('#modifica').click(function() {
  
  var menuBoton = ' <ul id="format-toolbar-options-doc"  role="menu" aria-labelledby="dLabel" style="display:none">'
 +'<li><a href="#" id="VerCaja" class="tool"> Ver Caja</a></li>'
-+'<li><a href="#" id="BorrarAr" class="tool"> Eliminar art. Demo</a></li>'
 +'</ul>';
 $('body').append(menuBoton);
 
@@ -907,21 +929,7 @@ $('#VerCaja').click(function() {
 		mantenerFoco();
 });
 
-$('#BorrarAr').click(function() {
-UI.confirm('¿Desea borrar los articulos demos?', 'Confirmacion', function(r) {
-			
-			if(r == true){
 
-				ds.Articulos.borrarArticulosDemos({
-					onSuccess:function(){
-						$comp.sources.articulos.all();
-					}
-				});
-			
-			}
-		
-		});
-});
  	
  //Botón con menú
  var bToolbarDoc = getHtmlObj('imageButton1');
@@ -1002,9 +1010,10 @@ function articulo_btn(esteObjeto){
 	
 	var vTimeResta = new Date();
 	vTimeResta = vTimeResta - vTime;
-	console.log(vTimeResta);
 	
 	if (vTimeResta >= 700) {
+		result = ds.Metodos.consultar("Familias");
+		$comp.sources.familias2.setEntityCollection(result);
 		vTime = 0;
 		var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
 		$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
