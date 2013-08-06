@@ -491,99 +491,144 @@ appdsObj = function () {
 		
 	}
 	
+	// Declaracion del array source listo;
+	var arrSource = new Array();
+	for(var i = 0; i < 11; i++){
+		arrSource[i] = false;
+	}
+	
+	function sourceReady($comp){
+		
+		var flag = true;
+		
+		for(var i = 0; i < 11; i++){
+			flag *=  arrSource[i];
+		}
+		
+		if(flag){
+			
+			if(window.navigator.platform != "iPad"){
+				$("#"+$comp.id+"_textField4").focus();
+			}
+			
+			var tamanio;
+			tamanio = $comp.sources.docComercial.length;	
+			if(tamanio == 0){
+				tamanio = 1;
+			}
+			$comp.sources.docComercial.select(tamanio-1);
+			$comp.sources.docComercial.serverRefresh();
+			setTimeout(function(){
+				//-- Se elimina el preLoader de carga (overlay) --\\
+				$('#overlay').remove();
+				
+				var user = WAF.directory.currentUser();
+			    if (user) {
+			      if (ds.Metodos.getGrupo() == "Prueba") {
+						$('#modalBienvenido').modal({
+					   	 backdrop: false
+						});
+						$("#btn_empezar").click(function(){
+							if(window.navigator.platform != "iPad"){
+								$("#"+$comp.id+"_textField4").focus();
+							}
+						});
+				   }
+							
+				}
+			},500);
+			
+		}
+	 
+	};
+	
 	this.cargarDataTPV = function($comp){
 	
-		var result;
+		
 		
 	// CARGA DE CajasMovimientos
-		result = ds.Metodos.consultar("CajasMovimientos");
-		$comp.sources.cajasMovimientos.setEntityCollection(result);
+		ds.Metodos.consultar("CajasMovimientos", {onSuccess: function(e) {
+		  $comp.sources.cajasMovimientos.setEntityCollection(e.result);
+		  arrSource[0] = true;
+		  sourceReady($comp)
+		}});
 		
 	//CARGA DE Articulos
-		result = ds.Metodos.consultar("Articulos");
-		$comp.sources.articulos.setEntityCollection(result);
+		ds.Metodos.consultar("Articulos", {onSuccess: function(e) {
+		  $comp.sources.articulos.setEntityCollection(e.result);
+		  arrSource[1] = true;
+		  sourceReady($comp)
+		}});
 		
 	// CARGA DE Copia1 Articulos
-		result = ds.Metodos.consultar("Articulos");
-		$comp.sources.articulos1.setEntityCollection(result);
+		ds.Metodos.consultar("Articulos", {onSuccess: function(e) {
+		  $comp.sources.articulos1.setEntityCollection(e.result);
+		  arrSource[2] = true;
+		  sourceReady($comp)
+		}});
 		
 	// CARGA DE Copia2 Articulos
-		result = ds.Metodos.consultar("Articulos");
-		$comp.sources.articulos2.setEntityCollection(result,{
-			onSuccess:function (event){
-				$comp.sources.articulos2.select(-1);
-				
-			}
-			
-		});
+		ds.Metodos.consultar("Articulos", {onSuccess: function(e) {
+		  $comp.sources.articulos2.setEntityCollection(e.result);
+		  arrSource[3] = true;
+		  sourceReady($comp)
+		  $comp.sources.articulos2.select(-1);
+		}});
 		
 	// CARGA DE DocComercial
-		
-		result = ds.Metodos.consultar("DocComercial");
-		$comp.sources.docComercial.setEntityCollection(result);
+
+		ds.Metodos.consultar("DocComercial", {onSuccess: function(e) {
+		  $comp.sources.docComercial.setEntityCollection(e.result);
+		  arrSource[4] = true;
+		  sourceReady($comp)
+		}});
 		
 	// CARGA DE MedioPago
-		result = ds.Metodos.consultar("MedioPago");
-		$comp.sources.medioPago.setEntityCollection(result);
+		ds.Metodos.consultar("MedioPago", {onSuccess: function(e) {
+		  $comp.sources.medioPago.setEntityCollection(e.result);
+		  arrSource[5] = true;
+		  sourceReady($comp)
+		}});
 		
 	// CARGA DE Familias
-		result = ds.Metodos.consultar("Familias");
-		sources.familias.setEntityCollection(result);
-		
-	// CARGA DE Copia1 Familias
-		//result = ds.Metodos.consultar("Familias");
-		//$comp.sources.familias2.setEntityCollection(result);
+		ds.Metodos.consultar("Familias", {onSuccess: function(e) {
+		  sources.familias.setEntityCollection(e.result);
+		  arrSource[6] = true;
+		  sourceReady($comp)
+		}});
+	
 		
 	// CARGA DE Almacenes
-		result = ds.Metodos.consultar("Almacenes");
-		$comp.sources.almacenes.setEntityCollection(result);
+		ds.Metodos.consultar("Almacenes", {onSuccess: function(e) {
+		  $comp.sources.almacenes.setEntityCollection(e.result);
+		  arrSource[7] = true;
+		  sourceReady($comp)
+		}});
 		
 	// CARGA DE Usuarios
-		result = ds.Metodos.consultar("Usuarios");
-		$comp.sources.usuarios.setEntityCollection(result);
+		ds.Metodos.consultar("Usuarios", {onSuccess: function(e) {
+		  $comp.sources.usuarios.setEntityCollection(e.result);
+		  arrSource[8] = true;
+		  sourceReady($comp)
+		}});
+		
 		
 	// CARGA DE CajasTPV
-		result = ds.Metodos.consultar("CajasTPV");
-		$comp.sources.cajasTPV.setEntityCollection(result);
+		ds.Metodos.consultar("CajasTPV", {onSuccess: function(e) {
+		  $comp.sources.cajasTPV.setEntityCollection(e.result);
+		  arrSource[9] = true;
+		  sourceReady();
+		}});
 		
 	// CARGA DE Lineas
-		result = ds.Metodos.consultar("Lineas");
-		sources.lineas.setEntityCollection(result);
+		ds.Metodos.consultar("Lineas", {onSuccess: function(e) {
+		  sources.lineas.setEntityCollection(e.result);
+		  arrSource[10] = true;
+		  sourceReady($comp)
+		}});
 		
 		
-		if(window.navigator.platform != "iPad"){
-			$("#"+$comp.id+"_textField4").focus();
-		}
 		
-		var tamanio;
-		tamanio = $comp.sources.docComercial.length;	
-		if(tamanio == 0){
-			tamanio = 1;
-		}
-		$comp.sources.docComercial.select(tamanio-1);
-		$comp.sources.docComercial.serverRefresh();
-		setTimeout(function(){
-			//-- Se elimina el preLoader de carga (overlay) --\\
-			$('#overlay').remove();
-			
-			var user = WAF.directory.currentUser();
-		    if (user) {
-		      if (ds.Metodos.getGrupo() == "Prueba") {
-				
-				$('#modalBienvenido').modal({
-			   	 backdrop: false
-				});
-				$("#btn_empezar").click(function(){
-					if(window.navigator.platform != "iPad"){
-						$("#"+$comp.id+"_textField4").focus();
-					}
-				});
-				
-				
-			   }
-						
-			}
-		},500);
 				
 	}	
 	
