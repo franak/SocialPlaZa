@@ -833,9 +833,10 @@ $(".cobro").focus( function(event) {
 	diferencia = vSumaR - total;
 	
 	if(diferencia > 0){
-		diferenciaCambio = diferencia;
 		diferencia = parseFloat(diferencia);//ds pasar a numero la variable
 		diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
+		/*console.log("diferencia :"+diferencia);*/
+		diferenciaCambio = diferencia;
 		$(this).val(diferencia);
 		$(this).select();
 	}else if(vSumaR < 0){
@@ -1154,7 +1155,10 @@ function dispensar(){
 				switch(i){
 					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo"); 
 							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							/*console.log("valor del campo:"+aMediosPagos[i]);
+							console.log("diferenciaCambio: "+diferenciaCambio);*/
 							var cambio = aMediosPagos[i] - diferenciaCambio;
+							/*console.log("Cambio: "+cambio);*/
 							diferenciaCambio = 0;
 							if(cambio > 0){
 								$comp.sources.docComercial.Cambio = cambio;
@@ -1167,9 +1171,6 @@ function dispensar(){
 							}
 							break;
 					case 1: var m = ds.MedioPago.asignarMedioPago("Tarjeta"); 
-							$comp.sources.cajasMovimientos.MedioPago.set(m);
-							break;
-					case 2: var m = ds.MedioPago.asignarMedioPago("Regalo"); 
 							$comp.sources.cajasMovimientos.MedioPago.set(m);
 							break;
 				}
