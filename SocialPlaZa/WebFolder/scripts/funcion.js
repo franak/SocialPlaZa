@@ -97,6 +97,7 @@ function registrarse(id){
 								if(r == true){
 									$('#'+id+'_richText2').html('Enviado');
 									self.location.search = 'origin=registro';
+									
 								}
 							});
 						
