@@ -579,7 +579,7 @@ qString = null;
 		
 		if(relleno){
 			
-			$('#'+id+'_richText16').slideUp('fast');
+			$('#'+id+'_richText16').slideUp(100);
 		
 			$comp.sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val();
 			$comp.sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
@@ -591,7 +591,7 @@ qString = null;
 			$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
 				
 		}else{
-			$('#'+id+'_richText16').slideDown('fast');
+			$('#'+id+'_richText16').slideDown(100);
 		}
 	};// @lock
 
@@ -606,47 +606,69 @@ qString = null;
 	{// @endlock
 		
 		if($$(id+"_richText14").getState() != "disabled"){
-			$$(id+"_richText14").setState("disabled");
-			var dialogo = getHtmlId("dialog3");
-			var estado = $$(dialogo).getState();
-			//Si el usuario va modificar o borrar el articulos
-			if(estado == "modificar"){
-				
-				//appds.modificarArticulo($comp); DA FALLO
-				$("#"+id+"_textField2").blur();
-				
-				var codigo = $$($comp.id+"_textField5").getValue();
-				var precio = $$($comp.id+"_textField6").getValue();
-				var descripcion = $$($comp.id+"_textField7").getValue();
-				var familia = ds.Familias.getFamilia($$($comp.id+"_combobox2").getValue());
 			
-				$comp.sources.articulos.Codigo = codigo;
-				$comp.sources.articulos.Precio = precio;
-				$comp.sources.articulos.Descripcion = descripcion;
-				$comp.sources.articulos.Familia.set(familia);
-				$comp.sources.articulos.save({
-					onSuccess:function(event){
-						$comp.sources.articulos.serverRefresh();
-						if(qString != null){
-							$comp.sources.articulos.query("Familia.Nombre =:1",qString);
-						}
-						$$($comp.id+"_richText14").setState("default");
-						mantenerFoco();
-						$(window).scrollTop(0);
-						$$($comp.id+'_dialog3').closeDialog();
-					}
-				});
-				
-			}else if (estado == "crear"){
-				appds.estadoConfirmacion($comp, "crear");
-				
+			var relleno = true;
+			if($("#"+id+"_textField5").val()==""){
+				relleno = false
 			}
+			if($("#"+id+"_textField6").val()==""){
+				relleno = false
+			}
+			if($("#"+id+"_textField7").val()==""){
+				relleno = false
+			}
+			
+			if(relleno){
+				$("#"+id+"_richText23").slideUp(100);
+				$$(id+"_richText14").setState("disabled");
+				var dialogo = getHtmlId("dialog3");
+				var estado = $$(dialogo).getState();
+				//Si el usuario va modificar o borrar el articulos
+				if(estado == "modificar"){
+					
+					//appds.modificarArticulo($comp); DA FALLO
+					$("#"+id+"_textField2").blur();
+					
+					var codigo = $$($comp.id+"_textField5").getValue();
+					var precio = $$($comp.id+"_textField6").getValue();
+					var descripcion = $$($comp.id+"_textField7").getValue();
+					var familia = ds.Familias.getFamilia($$($comp.id+"_combobox2").getValue());
+				
+					$comp.sources.articulos.Codigo = codigo;
+					$comp.sources.articulos.Precio = precio;
+					$comp.sources.articulos.Descripcion = descripcion;
+					$comp.sources.articulos.Familia.set(familia);
+					$comp.sources.articulos.save({
+						onSuccess:function(event){
+							$comp.sources.articulos.serverRefresh();
+							if(qString != null){
+								$comp.sources.articulos.query("Familia.Nombre =:1",qString);
+							}
+							$$($comp.id+"_richText14").setState("default");
+							mantenerFoco();
+							$(window).scrollTop(0);
+							$$($comp.id+'_dialog3').closeDialog();
+						}
+					});
+					
+				}else if (estado == "crear"){
+					appds.estadoConfirmacion($comp, "crear");
+					
+				}
+			}else{
+				$("#"+id+"_richText23").slideDown(100);
+			}
+			
+			
+			
+			
 		}
 	};// @lock
 
 	richText15.click = function richText15_click (event)// @startlock
 	{// @endlock
 		$$(id+"_richText14").setValue("Guardar");
+		$("#"+id+"_richText23").slideUp("fast");
 		mantenerFoco();
 		$(window).scrollTop(0);
 		$$(getHtmlId("dialog3")).closeDialog();
