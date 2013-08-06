@@ -626,11 +626,10 @@ appdsObj = function () {
 		  arrSource[10] = true;
 		  sourceReady($comp)
 		}});
-		
-		
-		
 				
 	}	
+	
+	
 	
 	
 }

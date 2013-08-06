@@ -61,8 +61,8 @@ function enfocar (){
 			
 		}
 		
-		
 	});
+	
 	
 }
 
@@ -556,23 +556,43 @@ qString = null;
 
 	richText21.click = function richText21_click (event)// @startlock
 	{// @endlock
+		$('#'+id+'_richText16').slideUp('fast');
 		mantenerFoco();
 		$(window).scrollTop(0);
+		$comp.sources.docComercial.serverRefresh();
 		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
 	};// @lock
 
 	richText9.click = function richText9_click (event)// @startlock
 	{// @endlock
+		var relleno = true;
 		
-		$comp.sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val();
-		$comp.sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
-		$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
-		$comp.sources.lineasCollection.save();
-		$comp.sources.docComercial.serverRefresh();
-		mantenerFoco();
-		$(window).scrollTop(0);
-		$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
-
+		if($("#"+id+"_textField12").val() == ""){
+			relleno = false;
+		}
+		if($("#"+id+"_textField9").val() == ""){
+			relleno = false;
+		}
+		if($("#"+id+"_textField14").val() == ""){
+			relleno = false;
+		}
+		
+		if(relleno){
+			
+			$('#'+id+'_richText16').slideUp('fast');
+		
+			$comp.sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val();
+			$comp.sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
+			$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
+			$comp.sources.lineasCollection.save();
+			$comp.sources.docComercial.serverRefresh();
+			mantenerFoco();
+			$(window).scrollTop(0);
+			$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
+				
+		}else{
+			$('#'+id+'_richText16').slideDown('fast');
+		}
 	};// @lock
 
 	bPrint.click = function bPrint_click (event)// @startlock
