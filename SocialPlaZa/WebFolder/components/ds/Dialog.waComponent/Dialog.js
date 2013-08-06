@@ -380,36 +380,54 @@ function cargarDataPicker(){
 	richText26.click = function richText26_click (event)// @startlock
 	{// @endlock
 		if($$(id+"_richText26").getState()!="diabled"){
-			$$(id+"_richText26").setState("disabled");
-			$comp.sources.cajasMovimientos.addNewElement();
-			$comp.sources.cajasMovimientos.importeVenta = $$(id+"_textField5").getValue();
-			$comp.sources.cajasMovimientos.concepto = $$(id+"_textField8").getValue();
-			var fecha = $('.span2').val();
-			var dia = fecha.substring(0,2);
-			var mes = fecha.substring(3,5);
-			mes = mes-1;
-			var anio = fecha.substring(6);
-			var fechaObjeto = new Date(anio, mes, dia);
 			
-			$comp.sources.cajasMovimientos.fecha = fechaObjeto;
-			$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
-			$comp.sources.cajasMovimientos.MedioPago.set($comp.sources.medioPago);
-			$comp.sources.cajasMovimientos.save({
-				onSuccess:function (){
-					$$(id+"_textField5").setValue("");
-					$$(id+"_textField8").setValue("");
-					$("#"+$comp.id+"_richText18").fadeOut();
-					$("#"+$comp.id+"_richText20").fadeOut();
-					$(window).scrollTop(0);
-					$$(id+"_container16").hide({
-						onSuccess:function (e){
-							$$(id+"_richText26").setState("default");
-						}
-					});
+			var relleno = true;
+			
+			if($("#"+id+"_textField5").val()==""){
+				relleno = false;
+			}
+			if($("#"+id+"_textField8").val()==""){
+				relleno = false;
+			}
+			
+			if(relleno){
+				
+				$("#"+id+"_richText22").hide();
+				$$(id+"_richText26").setState("disabled");
+				$comp.sources.cajasMovimientos.addNewElement();
+				$comp.sources.cajasMovimientos.importeVenta = $$(id+"_textField5").getValue();
+				$comp.sources.cajasMovimientos.concepto = $$(id+"_textField8").getValue();
+				var fecha = $('.span2').val();
+				var dia = fecha.substring(0,2);
+				var mes = fecha.substring(3,5);
+				mes = mes-1;
+				var anio = fecha.substring(6);
+				var fechaObjeto = new Date(anio, mes, dia);
+				
+				$comp.sources.cajasMovimientos.fecha = fechaObjeto;
+				$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
+				$comp.sources.cajasMovimientos.MedioPago.set($comp.sources.medioPago);
+				$comp.sources.cajasMovimientos.save({
+					onSuccess:function (){
+						$$(id+"_textField5").setValue("");
+						$$(id+"_textField8").setValue("");
+						$("#"+$comp.id+"_richText18").fadeOut();
+						$("#"+$comp.id+"_richText20").fadeOut();
+						$(window).scrollTop(0);
+						$$(id+"_container16").hide({
+							onSuccess:function (e){
+								$$(id+"_richText26").setState("default");
+							}
+						});
+						
+						
+					}
+				});
 					
-					
-				}
-			});
+			}else{
+				$("#"+id+"_richText22").slideDown(100);
+			}
+			
 		}
 	};// @lock
 
@@ -417,6 +435,7 @@ function cargarDataPicker(){
 	{// @endlock
 		$$(id+"_textField5").setValue("");
 		$$(id+"_textField8").setValue("");
+		$("#"+id+"_richText22").hide();
 		$("#"+$comp.id+"_richText18").fadeOut();
 		$("#"+$comp.id+"_richText20").fadeOut();
 		$("#"+id+"_container16").fadeOut();
