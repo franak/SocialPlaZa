@@ -14,6 +14,7 @@ function constructor (id) {
 		$$('mlateralComp').loadComponent('/components/commons/menulateral.waComponent');
 $('#mlateralComp').hide();
 	// @region namespaceDeclaration// @startlock
+	var sNomUsu = {};	// @richText
 	var richText14 = {};	// @richText
 	var foto_usuario = {};	// @image
 	var openMenu = {};	// @richText
@@ -55,6 +56,11 @@ btmodales.initModal('Usuarios',$comp);
 
 	// eventHandlers// @lock
 
+	sNomUsu.click = function sNomUsu_click (event)// @startlock
+	{// @endlock
+		appds.openDialogUsuario($comp);
+	};// @lock
+
 	richText14.click = function richText14_click (event)// @startlock
 	{// @endlock
 		
@@ -87,7 +93,7 @@ btmodales.initModal('Usuarios',$comp);
 
 	richText4.click = function richText4_click (event)// @startlock
 	{// @endlock
-			fcBrain.openAltaUsuario();
+		fcBrain.openAltaUsuario();
 	};// @lock
 
 	conectText.click = function conectText_click (event)// @startlock
@@ -186,6 +192,7 @@ contenedorBar.html(herramientas);*/
 
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_sNomUsu", "click", sNomUsu.click, "WAF");
 	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
 	WAF.addListener(this.id + "_openMenu", "touchend", openMenu.touchend, "WAF");

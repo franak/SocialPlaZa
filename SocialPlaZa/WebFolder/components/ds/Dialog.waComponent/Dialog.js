@@ -341,7 +341,7 @@ function cargarDataPicker(){
 	{// @endlock
 		//-- FUNCION MOSTRAR TODOS LOS REGISTROS --\\
 		
-			//appds.mostrarTodo($comp.sources.cajasMovimientos);
+			mostrarTodo($comp.sources.cajasMovimientos);
 			
 		//-- FUNCION QUE SELECCIONA TODOS LOS REGISTROS--\\
 
@@ -592,6 +592,8 @@ function cargarDataPicker(){
 	// @endregion// @endlock
 
 	};// @lock
+	
+	
 	
 	
 
