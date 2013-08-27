@@ -792,6 +792,7 @@ function cargarMedioPago(donde){
 			var activo = $$(id+"_dialog1").isDisabled();
 			console.log($$(id+"_dialog1").isDisabled());
 			if(activo == false){
+				$('#input_EF').blur();
 				var printContinuar = getHtmlObj('bContinuarDispensar');
 				$(printContinuar).click();
 			}

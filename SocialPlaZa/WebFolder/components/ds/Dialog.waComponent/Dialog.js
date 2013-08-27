@@ -71,7 +71,7 @@ function cargarDataPicker(){
 	
 	$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f0,f1);
 	
-	$(".icon-calendar").click(function(){
+	$(".add-on").click(function(){
 			
 			$(".ui-datepicker-inline").css("position","absolute");
 			$(".ui-datepicker-inline").css("left","400px");
@@ -415,6 +415,7 @@ function cargarDataPicker(){
 						$("#"+$comp.id+"_richText18").fadeOut();
 						$("#"+$comp.id+"_richText20").fadeOut();
 						$(window).scrollTop(0);
+						//$("BODY").animate({ "top": "0px" }, "slow" );
 						$$(id+"_container16").hide({
 							onSuccess:function (e){
 								$$(id+"_richText26").setState("default");
@@ -529,6 +530,7 @@ function cargarDataPicker(){
 		
 		$(":input").bind('keypress', function(e) {
 			if(e.keyCode==13){
+				$("#"+id+"_textField8").blur();
 				$("#"+id+"_richText26").click();
 			}
 	  });
