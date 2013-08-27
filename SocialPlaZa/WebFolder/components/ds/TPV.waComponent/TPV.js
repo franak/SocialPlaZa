@@ -672,7 +672,9 @@ qString = null;
 		$("#"+id+"_richText23").slideUp("fast");
 		mantenerFoco();
 		$(window).scrollTop(0);
-		var posicion = $comp.sources.articulos._private.currentElemPos;
+		
+		//var posicion = $comp.sources.articulos._private.currentElemPos;
+		
 		$comp.sources.articulos.collectionRefresh({
 			onSuccess:function(){
 				
