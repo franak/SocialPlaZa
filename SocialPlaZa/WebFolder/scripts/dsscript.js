@@ -326,7 +326,7 @@ appdsObj = function () {
 		//DS CONDICIONO AL BOTON QUE LA ACCION ANTERIOR SE HA TERMINADO ¡¡
 		
 		
-		var articuloCodigo = sources.articulos3.Codigo;
+		var articuloCodigo = sources.articulos2.Codigo;
 		
 		var docComercialID = $comp.sources.docComercial.ID;
 		var art = ds.Articulos.devolverArticuloCodigo($$(id+"_textField4").getValue());
@@ -429,9 +429,8 @@ appdsObj = function () {
 			$$($comp.id+"_richText4").show();
 			
 			$$($comp.id+"_richText14").setValue("Guardar");
-			var posicion = $comp.sources.articulos._private.currentElemPos;
-			
-			$comp.sources.articulos.select(posicion,{
+
+			sources.articulos1.query("Descripcion =:1",objeto._value,{
 			
 				onSuccess:function (){
 					console.log($comp.sources.articulos.Codigo);
@@ -495,7 +494,7 @@ appdsObj = function () {
 	
 	// Declaracion del array source listo;
 	var arrSource = new Array();
-	for(var i = 0; i < 9; i++){
+	for(var i = 0; i < 11; i++){
 		arrSource[i] = false;
 	}
 	
@@ -503,12 +502,8 @@ appdsObj = function () {
 		
 		var flag = true;
 		
-<<<<<<< HEAD
-		for(var i = 0; i < 9; i++){
-=======
+
 		for(var i = 0; i < 11; i++){
-			console.log(arrSource[i]);
->>>>>>> ds subida anterior
 			flag *=  arrSource[i];
 		}
 		
@@ -566,26 +561,41 @@ appdsObj = function () {
 		  arrSource[1] = true;
 		  sourceReady($comp)
 		}});
+		
+	//CARGA DE Articulos Copia1
+		ds.Metodos.consultar("Articulos", {onSuccess: function(e) {
+		  sources.articulos1.setEntityCollection(e.result);
+		  arrSource[2] = true;
+		  sourceReady($comp);
+		}});
+		
+	//CARGA DE Articulos Copia2
+		ds.Metodos.consultar("Articulos", {onSuccess: function(e) {
+		  sources.articulos2.setEntityCollection(e.result);
+		  arrSource[3] = true;
+		  sourceReady($comp);
+		  sources.articulos2.select(-1);
+		}});
 			
 	// CARGA DE DocComercial
 
 		ds.Metodos.consultar("DocComercial", {onSuccess: function(e) {
 		  $comp.sources.docComercial.setEntityCollection(e.result);
-		  arrSource[2] = true;
+		  arrSource[4] = true;
 		  sourceReady($comp)
 		}});
 		
 	// CARGA DE MedioPago
 		ds.Metodos.consultar("MedioPago", {onSuccess: function(e) {
 		  $comp.sources.medioPago.setEntityCollection(e.result);
-		  arrSource[3] = true;
+		  arrSource[5] = true;
 		  sourceReady($comp)
 		}});
 		
 	// CARGA DE Familias
 		ds.Metodos.consultar("Familias", {onSuccess: function(e) {
 		  sources.familias.setEntityCollection(e.result);
-		  arrSource[4] = true;
+		  arrSource[6] = true;
 		  sourceReady($comp)
 		}});
 	
@@ -593,14 +603,14 @@ appdsObj = function () {
 	// CARGA DE Almacenes
 		ds.Metodos.consultar("Almacenes", {onSuccess: function(e) {
 		  $comp.sources.almacenes.setEntityCollection(e.result);
-		  arrSource[5] = true;
+		  arrSource[7] = true;
 		  sourceReady($comp)
 		}});
 		
 	// CARGA DE Usuarios
 		ds.Metodos.consultar("Usuarios", {onSuccess: function(e) {
 		  $comp.sources.usuarios.setEntityCollection(e.result);
-		  arrSource[6] = true;
+		  arrSource[8] = true;
 		  sourceReady($comp)
 		}});
 		
@@ -608,24 +618,18 @@ appdsObj = function () {
 	// CARGA DE CajasTPV
 		ds.Metodos.consultar("CajasTPV", {onSuccess: function(e) {
 		  $comp.sources.cajasTPV.setEntityCollection(e.result);
-		  arrSource[7] = true;
+		  arrSource[9] = true;
 		  sourceReady();
 		}});
 		
 	// CARGA DE Lineas
 		ds.Metodos.consultar("Lineas", {onSuccess: function(e) {
 		  sources.lineas.setEntityCollection(e.result);
-		  arrSource[8] = true;
+		  arrSource[10] = true;
 		  sourceReady($comp)
 		}});
 		
-	//CARGA DE Articulos Copia
-		ds.Metodos.consultar("Articulos", {onSuccess: function(e) {
-		  sources.articulos3.setEntityCollection(e.result);
-		  arrSource[9] = true;
-		  sourceReady($comp);
-		  sources.articulos3.select(-1);
-		}});
+	
 			
 				
 	}	
