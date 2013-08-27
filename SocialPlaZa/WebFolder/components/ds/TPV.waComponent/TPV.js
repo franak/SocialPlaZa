@@ -25,7 +25,10 @@ btmodales.modalBienvenido();
 //appds.cargarDataTPV(vComp);
 
 $(this.id).ready(function(){
+	
 	appds.cargarDataTPV(vComp);
+	
+	
 });
 
 

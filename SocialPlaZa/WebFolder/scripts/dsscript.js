@@ -503,7 +503,12 @@ appdsObj = function () {
 		
 		var flag = true;
 		
+<<<<<<< HEAD
 		for(var i = 0; i < 9; i++){
+=======
+		for(var i = 0; i < 11; i++){
+			console.log(arrSource[i]);
+>>>>>>> ds subida anterior
 			flag *=  arrSource[i];
 		}
 		

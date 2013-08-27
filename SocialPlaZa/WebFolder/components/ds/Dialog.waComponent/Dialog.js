@@ -75,8 +75,9 @@ function cargarDataPicker(){
 			
 			$(".ui-datepicker-inline").css("position","absolute");
 			$(".ui-datepicker-inline").css("left","400px");
-			$("#"+id+"_container9").css("height","220px");
-			$(".ui-datepicker-inline").fadeIn();
+			$("#"+id+"_container9").css("height","240px");
+			
+			$(".ui-datepicker-inline").slideToggle('200');
 	
 	});
 	
@@ -103,7 +104,7 @@ function cargarDataPicker(){
 					$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f2,f3);
 					UI.gifCargando();
 					$("#"+id+"_container9").css("height","59px");
-					$(".ui-datepicker-inline").hide();
+					$(".ui-datepicker-inline").slideToggle('200');
 				}
 			});
 			

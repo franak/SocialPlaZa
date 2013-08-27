@@ -109,8 +109,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		var user = WAF.directory.currentUser();
 		var origen = UI.getUrlVars()["origin"];
 		var lasesion = sessionStorage.getItem("demo");
-
-			
+		
 			//DS SI LA COOKIE SE SESSION EXISTE Y EL USUARIO NO ESTA LOGUEADO
 			//DS LA COOKIE DE SESSION ES ELIMINADA
 		if(lasesion && !user){		
@@ -132,7 +131,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			ds.Metodos.importacionInicial();
 			var retorno = ds.Metodos.crearDemo();
 			sessionStorage.setItem("demo","true");
-			
 		}
 		
 		
