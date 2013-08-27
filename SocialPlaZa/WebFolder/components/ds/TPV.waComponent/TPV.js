@@ -667,11 +667,21 @@ qString = null;
 
 	richText15.click = function richText15_click (event)// @startlock
 	{// @endlock
+		
 		$$(id+"_richText14").setValue("Guardar");
 		$("#"+id+"_richText23").slideUp("fast");
 		mantenerFoco();
 		$(window).scrollTop(0);
-		$$(getHtmlId("dialog3")).closeDialog();
+		var posicion = $comp.sources.articulos._private.currentElemPos;
+		$comp.sources.articulos.collectionRefresh({
+			onSuccess:function(){
+				
+				//Poner un loader mientras se recarga los articulos ¡¡
+				
+				$$(getHtmlId("dialog3")).closeDialog();
+			}
+		});
+		
 	};// @lock
 
 
@@ -1062,7 +1072,6 @@ function articulo_btn(esteObjeto){
 		vTime = 0;
 		var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
 		$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
-		
 		appds.estadoInicial($comp, "modificar",esteObjeto);
 		
 		
