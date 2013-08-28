@@ -48,6 +48,37 @@ guidedModel =// @startlock
 	},
 	CajasMovimientos :
 	{
+		entityMethods :
+		{// @endlock
+			devuelveMedio:function()
+			{// @lock
+				return this.MedioPago.Descripcion;
+			},// @lock
+			devuelveCambio:function()
+			{// @lock
+				try{
+					return this.Documento.Cambio;
+				}catch(e){
+					return null;
+				}
+			},// @lock
+			devuelveDoc:function()
+			{// @lock
+				try{
+					return this.Documento.Numero;
+				}catch(e){
+					return null;
+				}
+			},// @lock
+			devuelveCaja:function()
+			{// @lock
+				try{
+					return this.Caja.Descripcion;
+				}catch(e){
+					return null;
+				}
+			}// @startlock
+		},
 		collectionMethods :
 		{// @endlock
 			eliminarSeleccionados:function(inSelectedRows)

@@ -13,6 +13,7 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		
 	// @region namespaceDeclaration// @startlock
+	var checkbox3 = {};	// @checkbox
 	var authorize_button = {};	// @richText
 	var inputUsuario = {};	// @textField
 	var textField6 = {};	// @textField
@@ -22,6 +23,11 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	checkbox3.change = function checkbox3_change (event)// @startlock
+	{// @endlock
+		$(window).scrollTop(0);
+	};// @lock
 
 	authorize_button.click = function authorize_button_click (event)// @startlock
 	{// @endlock
@@ -39,12 +45,14 @@ function constructor (id) {
 	{// @endlock
 		fcBrain.verLabel("richText14",id);
 		getHtmlObj('helptextu').slideToggle();
+		$(window).scrollTop(0);
 
 	};// @lock
 
 	textField6.blur = function textField6_blur (event)// @startlock
 	{// @endlock
 		fcBrain.verLabel("richText16",id);
+		$(window).scrollTop(0);
 
 	};// @lock
 
@@ -61,6 +69,8 @@ function constructor (id) {
 
 	richText2.click = function richText2_click (event)// @startlock
 	{// @endlock
+		$(window).scrollTop(0);
+		$("#"+id+"_textField6").blur(); // esconder teclado iPad
 		registrarse(id); // en funcion.js
 
 	};// @lock
@@ -69,6 +79,7 @@ function constructor (id) {
 	{// @endlock
 		fcBrain.verLabel("richText15",id);
 		getHtmlObj('helptextp').slideToggle();
+		$(window).scrollTop(0);
 
 	};// @lock
 
@@ -81,6 +92,8 @@ function constructor (id) {
 
 	$(":input").bind('keypress', function(e) {
 		if(e.keyCode==13){
+			$(window).scrollTop(0);
+			$("#"+id+"_textField6").blur(); // esconder teclado iPad
 			registrarse(id);
 		}
 	});
@@ -104,6 +117,7 @@ $(':input').bind('blur',function() {
     }
 });
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_checkbox3", "change", checkbox3.change, "WAF");
 	WAF.addListener(this.id + "_authorize_button", "click", authorize_button.click, "WAF");
 	WAF.addListener(this.id + "_inputUsuario", "focus", inputUsuario.focus, "WAF");
 	WAF.addListener(this.id + "_inputUsuario", "blur", inputUsuario.blur, "WAF");

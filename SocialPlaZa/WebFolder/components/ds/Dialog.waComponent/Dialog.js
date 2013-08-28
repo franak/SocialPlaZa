@@ -12,6 +12,13 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
+	var printCaja = getHtmlObj('printCaja');
+
+	$(printCaja).printPage({
+	      url: "components/ds/cajaImpresion.waPage/index.html",
+	      message:"Imprimiendo Caja..."
+	});
+		
 	$comp.sources.medioPago.all();
 	$comp.sources.cajasTPV.all();
 	$comp.sources.docComercial.all();
@@ -204,6 +211,7 @@ function cargarDataPicker(){
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
+	var printCaja = {};	// @button
 	var imageButton3 = {};	// @buttonImage
 	var imageButton2 = {};	// @buttonImage
 	var imageButton1 = {};	// @buttonImage
@@ -224,6 +232,13 @@ function cargarDataPicker(){
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	printCaja.click = function printCaja_click (event)// @startlock
+	{// @endlock
+		// Creacion de un array con todos los movimientos de caja que seran pasados para imprimirlos;
+		localStorage.dia = $('.span2').val();
+		
+	};// @lock
 
 	imageButton3.click = function imageButton3_click (event)// @startlock
 	{// @endlock
@@ -575,6 +590,7 @@ function cargarDataPicker(){
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_printCaja", "click", printCaja.click, "WAF");
 	WAF.addListener(this.id + "_imageButton3", "click", imageButton3.click, "WAF");
 	WAF.addListener(this.id + "_imageButton2", "click", imageButton2.click, "WAF");
 	WAF.addListener(this.id + "_imageButton1", "click", imageButton1.click, "WAF");
