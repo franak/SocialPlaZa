@@ -55,6 +55,7 @@ excludedFiles = [
 ];
 
 var serverIP = application.httpServer.ipAddress;
+var serverDomain = application.httpServer.hostName;
 var urlPath = getURLPath(serverIP); 
 /**
 * This method will be invoke to handle incoming request
