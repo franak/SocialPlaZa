@@ -177,6 +177,17 @@ qString = null;
 
 
 	// eventHandlers// @lock
+		
+	var arElementos = ["Elimina Linea","Modifica Linea","/","Ver Caja"];
+	appMenu.abrirMenuSencillo(arElementos2,"MenuPrueba",$comp);
+	
+	$("#"+id+"_bOpciones").toolbar({
+		content: '#MenuPrueba', 
+		position: 'right',
+		hideOnClick: true
+	});
+	
+	
 
 	infoText.click = function infoText_click (event)// @startlock
 	{// @endlock
@@ -866,130 +877,6 @@ $(".cobro").focus( function(event) {
 }
  
  
- //Eliminar línea
-function eliminaLinea(){
-//DS asigno la posicion anterior a pos para cuando borre se valla hacia arriba
-
-	
-		pos = $comp.sources.lineasCollection.Posicion - 1;
-		
-		vPosRestada = $comp.sources.lineasCollection.Posicion;
-		var linea = $comp.sources.lineasCollection.ID;
-		
-		if(linea == null){
-			UI.alert("No hay Líneas")
-		}else{
-	
-		UI.confirm('¿Desea borrar <b>'+$comp.sources.lineasCollection.Descripcion+'</b> del ticket?', 'Confirmacion', function(r) {
-			
-			if(r == true){
-
-			ds.Lineas.borrarLinea(linea);
-			//DS resto las posiciones a todas las lineas a partir de la borrada
-			ds.Lineas.restarPosiciones($comp.sources.docComercial.ID,vPosRestada);
-			$comp.sources.docComercial.serverRefresh();
-				setTimeout(function(){	UI.mostrarAdvertencia('Atención','Se ha eliminado la línea');},500);		
-			}
-		
-		});//Fin de Confirm
-	}//Fin de Else
-}//Fui de function
-
-
-//Modificar Línea
-function modificarLinea(){
-	//$comp.sources.lineasCollection1.query("ID = 1");
-	var dialogo = getHtmlId("dialog2");
-	var jqdialogo = getHtmlObj("dialog2");
-
-	$("BODY").append($(jqdialogo));
-	$$(dialogo).displayDialog();
-	
-	$(jqdialogo).css("top",20);
-	$(jqdialogo).css("left",300);
-	$("#"+$comp.id+"_textField12").focus();
-		
-		
-}	
- //Menú para el botón Toolbar de lineas
- 
- 
- var menuBoton = ' <ul id="format-toolbar-options"  role="menu" aria-labelledby="dLabel" style="display:none">'
-+'<li><a href="#" id="elimina" class="tool"><i class=" icon-remove"></i> Eliminar</a></li>'
-+'<li><a  href="#" id="modifica" class="tool"><i class="icon-screenshot"></i> Modificar</a></li>'
-+'</ul>';
-$('body').append(menuBoton);
-
-//Comportamiento de los botones de la toolbar:
-$('#elimina').click(function() {
-	
-	var cobrado = $comp.sources.docComercial.Cobrado;
-	if(cobrado != true){
-		
-		eliminaLinea();
-		
-	}else{
-		
-		UI.alert('Ya está Cobrado','Atención');
-		
-	}
-	
-});
-
-
-$('#modifica').click(function() {
-	
-	var cobrado = $comp.sources.docComercial.Cobrado;
-	if(cobrado != true){
-		
-		modificarLinea();
-		
-	}else{
-		
-		UI.alert('Ya está Cobrado','Atención');
-		
-	}
-});
-
-
- 	
- //Botón con menú
- var bToolbar = getHtmlObj('bOpciones');
- 
- $(bToolbar).toolbar({
-	content: '#format-toolbar-options', 
-	position: 'right',
-	hideOnClick: true
-});
-
-
- //Menú para el botón Toolbar de Documento
- 
- 
- var menuBoton = ' <ul id="format-toolbar-options-doc"  role="menu" aria-labelledby="dLabel" style="display:none">'
-+'<li><a href="#" id="VerCaja" class="tool"> Ver Caja</a></li>'
-+'</ul>';
-$('body').append(menuBoton);
-
-//Comportamiento de los botones de la toolbar:
-$('#VerCaja').click(function() {
-	UI.gifCargando();
-		appds.openDialogMovimiento($comp);
-		mantenerFoco();
-});
-
-
- 	
- //Botón con menú
- var bToolbarDoc = getHtmlObj('imageButton1');
- 
- $(bToolbarDoc).toolbar({
-	content: '#format-toolbar-options-doc', 
-	position: 'right',
-	hideOnClick: true
-});
-
-
 
 /*
 --------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------

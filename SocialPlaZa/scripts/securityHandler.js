@@ -51,7 +51,8 @@ excludedFiles = [
 "alerts.js",
 "jquery.printpage.js",
 "btmodales.js",
-"herramientas.js"
+"herramientas.js",
+"menu.js"
 ];
 
 var serverIP = application.httpServer.ipAddress;
