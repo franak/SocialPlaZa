@@ -1165,16 +1165,16 @@ function listarDocComercial(){
    	
 }
 
-function mantenerFoco(){
+TPV = {}; //defino el objeto global
+
+TPV.mantenerFoco = function(){
+	
 	
 	if(window.navigator.platform != "iPad"){
 		$("#"+id+"_textField4").focus();
 	}
 	
-}
-
-
-
+  }
 
 }// @startlock
 return constructor;
