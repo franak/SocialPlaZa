@@ -60,7 +60,7 @@ function enfocar (){
 			case "textField6": break;
 			case "textField5": break;
 			case "textField9": break;
-			default : mantenerFoco();
+			default : TPV.mantenerFoco();
 			
 		}
 		
@@ -113,21 +113,6 @@ var bNuevo = getHtmlObj('imageButton1');
 var app = {};
 var app = SPL.getUrlVars()["app"];
 
-		
-//++++++++++++++++++++++++++++++++++++++++++
-//Se crea un docComercial si no existe ninguno.
-//++++++++++++++++++++++++++++++++++++++++++
-	
-
-	
-	
-	
-
-	
-	
-	
-
-	
 
 //DS DECLARACION DE LA VARIABLE POS A LA QUE SE REFIERE A LAS POSICIONES DE LAS LINEAS
 pos = 0;
@@ -177,15 +162,18 @@ qString = null;
 
 
 	// eventHandlers// @lock
-		
-	var arElementos = ["Elimina Linea","Modifica Linea","/","Ver Caja"];
-	appMenu.abrirMenuSencillo(arElementos2,"MenuPrueba",$comp);
 	
-	$("#"+id+"_bOpciones").toolbar({
-		content: '#MenuPrueba', 
-		position: 'right',
-		hideOnClick: true
-	});
+// Llamada a la creacion de un menu dinamico de prueba;
+// Se crea un array con todos los elementos del menu que se quiera mostrar;
+// La barra En diagonal "/" indica un espacio entre dos elementos;
+var arElementos = ["Elimina Linea","Modifica Linea","/","Ver Caja"];
+Menu.abrirMenuSencillo(arElementos,"MenuPrueba",$comp);
+
+$("#"+id+"_bOpciones").toolbar({
+	content: '#MenuPrueba', 
+	position: 'right',
+	hideOnClick: true
+});
 	
 	
 
@@ -211,20 +199,20 @@ qString = null;
 	imageButton4.click = function imageButton4_click (event)// @startlock
 	{// @endlock
 			cargarMovimientoCaja_btn();
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	imageButton10.click = function imageButton10_click (event)// @startlock
 	{// @endlock
 		btn_borrar();
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	imageButton5.click = function imageButton5_click (event)// @startlock
 	{// @endlock
 		var tipoDoc = 1;
 		fcBrain.crearDocComercial($comp,tipoDoc);
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	richText25.mousedown = function richText25_mousedown (event)// @startlock
@@ -236,7 +224,7 @@ qString = null;
 	richText25.touchend = function richText25_touchend (event)// @startlock
 	{// @endlock
 		articulo_btn(this);
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	richText25.touchstart = function richText25_touchstart (event)// @startlock
@@ -248,7 +236,7 @@ qString = null;
 	richText25.mouseup = function richText25_mouseup (event)// @startlock
 	{// @endlock
 		articulo_btn(this);
-		mantenerFoco();
+		TPV.mantenerFoco();
 		
 	};// @lock
 
@@ -264,7 +252,7 @@ qString = null;
 		$$(botonTodos).setState('disabled');
 
 		///this.removeClass('btn-warning');
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	richText30.click = function richText30_click (event)// @startlock
@@ -274,34 +262,34 @@ qString = null;
 
 	bOpciones.click = function bOpciones_click (event)// @startlock
 	{// @endlock
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	imageButton12.click = function imageButton12_click (event)// @startlock
 	{// @endlock
 		UI.gifCargando();
 		appds.openDialogMovimiento($comp);
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	imageButton7.click = function imageButton7_click (event)// @startlock
 	{// @endlock
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	imageButton3.click = function imageButton3_click (event)// @startlock
 	{// @endlock
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	imageButton2.click = function imageButton2_click (event)// @startlock
 	{// @endlock
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	imageButton8.click = function imageButton8_click (event)// @startlock
 	{// @endlock
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	textField4.blur = function textField4_blur (event)// @startlock
@@ -352,7 +340,7 @@ qString = null;
 				$('#modalLista').modal('show');
 				listarDocComercial();
 				
-				mantenerFoco();
+				TPV.mantenerFoco();
 			}
 		});
 		
@@ -401,7 +389,7 @@ qString = null;
 
 	imageButton14.click = function imageButton14_click (event)// @startlock
 	{// @endlock
-		mantenerFoco();
+		TPV.mantenerFoco();
 		$(window).scrollTop(0);
 		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
 	};// @lock
@@ -409,7 +397,7 @@ qString = null;
 	imageButton9.click = function imageButton9_click (event)// @startlock
 	{// @endlock
 		$$(id+"_richText14").setValue("Guardar");
-		mantenerFoco();
+		TPV.mantenerFoco();
 		$(window).scrollTop(0);
 		$$(getHtmlId("dialog3")).closeDialog();
 	};// @lock
@@ -512,7 +500,7 @@ qString = null;
 		
 		//$('.allArticulos').removeClass('disabled');
 		
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	richText19.click = function richText19_click (event)// @startlock
@@ -547,7 +535,7 @@ qString = null;
 				ds.PreArticulos.creaPreArticulo(codigo,precio,descripcion,$comp.sources.familias2.Nombre);
 			}
 			$$(id+"_richText14").setState("default");
-			mantenerFoco();
+			TPV.mantenerFoco();
 			$(window).scrollTop(0);
 			$$(id+"_dialog3").closeDialog();
 		}else{
@@ -555,7 +543,7 @@ qString = null;
 			$comp.sources.articulos.serverRefresh({
 				onSuccess:function (event){
 					$$(id+"_richText4").hide();
-					mantenerFoco();
+					TPV.mantenerFoco();
 					$(window).scrollTop(0);
 					$$(id+"_dialog3").closeDialog();
 				}
@@ -571,7 +559,7 @@ qString = null;
 	richText21.click = function richText21_click (event)// @startlock
 	{// @endlock
 		$('#'+id+'_richText16').slideUp('fast');
-		mantenerFoco();
+		TPV.mantenerFoco();
 		$(window).scrollTop(0);
 		$comp.sources.docComercial.serverRefresh();
 		$$(getHtmlId("dialog2")).closeDialog(); //cancel button
@@ -600,7 +588,7 @@ qString = null;
 			$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
 			$comp.sources.lineasCollection.save();
 			$comp.sources.docComercial.serverRefresh();
-			mantenerFoco();
+			TPV.mantenerFoco();
 			$(window).scrollTop(0);
 			$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
 				
@@ -613,7 +601,7 @@ qString = null;
 	{// @endlock
 		var docActual = $comp.sources.docComercial.ID;
 		localStorage.docActual = docActual;
-		mantenerFoco();
+		TPV.mantenerFoco();
 	};// @lock
 
 	richText14.click = function richText14_click (event)// @startlock
@@ -659,7 +647,7 @@ qString = null;
 								$comp.sources.articulos.query("Familia.Nombre =:1",qString);
 							}
 							$$($comp.id+"_richText14").setState("default");
-							mantenerFoco();
+							TPV.mantenerFoco();
 							$(window).scrollTop(0);
 							$$($comp.id+'_dialog3').closeDialog();
 						}
@@ -683,7 +671,7 @@ qString = null;
 	{// @endlock
 		$$(id+"_richText14").setValue("Guardar");
 		$("#"+id+"_richText23").slideUp("fast");
-		mantenerFoco();
+		TPV.mantenerFoco();
 		$(window).scrollTop(0);
 		$$(getHtmlId("dialog3")).closeDialog();
 	};// @lock
@@ -1154,7 +1142,7 @@ function listarDocComercial(){
 		  	$('.linkDoc').click(function(){ 
 		  	UI.gifCargando();
 		    	$comp.sources.docComercial.select(this.id);
-		    	mantenerFoco();
+		    	TPV.mantenerFoco();
 		    	$('#modalLista').modal('hide');
 		    	/*$("#"+id+"_container16").text("");
 		    	$(getHtmlId("dialog5")).closeDialog(); //cancel button*/
@@ -1165,16 +1153,68 @@ function listarDocComercial(){
    	
 }
 
-TPV = {}; //defino el objeto global
+//+++++++++++++++++++++++++++++++++++\\
+//++ OBJETO TPV (Funciones del tpv) ++\\
+//+++++++++++++++++++++++++++++++++++\\
+
+TPV = {};
 
 TPV.mantenerFoco = function(){
-	
 	
 	if(window.navigator.platform != "iPad"){
 		$("#"+id+"_textField4").focus();
 	}
 	
-  }
+}
+
+TPV.eliminaLinea = function(){
+	var cobrado = $comp.sources.docComercial.Cobrado;
+	if(cobrado != true){
+		pos = $comp.sources.lineasCollection.Posicion - 1;
+		vPosRestada = $comp.sources.lineasCollection.Posicion;
+		var linea = $comp.sources.lineasCollection.ID;
+		
+		if(linea == null){
+			UI.alert("No hay Líneas")
+		}else{
+	
+		UI.confirm('¿Desea borrar <b>'+$comp.sources.lineasCollection.Descripcion+'</b> del ticket?', 'Confirmacion', function(r) {
+			
+			if(r == true){
+
+			ds.Lineas.borrarLinea(linea);
+			//DS resto las posiciones a todas las lineas a partir de la borrada
+			ds.Lineas.restarPosiciones($comp.sources.docComercial.ID,vPosRestada);
+			$comp.sources.docComercial.serverRefresh();
+				setTimeout(function(){	UI.mostrarAdvertencia('Atención','Se ha eliminado la línea');},500);		
+			}
+		
+			});//Fin de Confirm
+		}//Fin de Else
+	}else{
+		UI.alert('Ya está Cobrado','Atención');
+	}
+}
+
+TPV.modificaLinea = function(){
+	var cobrado = $comp.sources.docComercial.Cobrado;
+	if(cobrado != true){
+		$("BODY").append($("#"+$comp.id+"_dialog2"));
+		$$($comp.id+"_dialog2").displayDialog();
+		
+		$("#"+$comp.id+"_dialog2").css("top",20);
+		$("#"+$comp.id+"_dialog2").css("left",300);
+		$("#"+$comp.id+"_textField12").focus();
+	}else{
+		UI.alert('Ya está Cobrado','Atención');
+	}
+}
+
+TPV.verCaja = function(){
+	UI.gifCargando();
+	appds.openDialogMovimiento($comp);
+	TPV.mantenerFoco();
+}
 
 }// @startlock
 return constructor;
