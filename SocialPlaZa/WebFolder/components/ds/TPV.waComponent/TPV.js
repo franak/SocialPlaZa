@@ -69,6 +69,17 @@ function enfocar (){
 	
 }
 
+// Llamada a la creacion de un menu dinamico de prueba;
+// Se crea un array con todos los elementos del menu que se quiera mostrar;
+// La barra En diagonal "/" indica un espacio entre dos elementos;
+var arElementos = ["Nuevo Ticket","Borrar Ticket","Dispensar Ticket","Imprimir Duplicado","Ticket Pendientes","Elimina Linea","Modifica Linea","Ver Caja","Nuevo Articulo"];
+Menu.abrirMenuSencillo(arElementos,"MenuPrueba",$comp);
+
+$("#"+id+"_bOpciones").toolbar({
+	content: '#MenuPrueba', 
+	position: 'bottom',
+	hideOnClick: true
+});
 
 
 
@@ -83,13 +94,6 @@ var printContinuar = getHtmlObj('bContinuarDispensar');
 $(printContinuar).printPage({
       url: "impPages/ticket.html",
       message:"Imprimiendo Ticket..."
-});
-
-var bPrint = getHtmlObj('bPrint');
-
-$(bPrint).printPage({
-      url: "impPages/ticket.html",
-      message:"Imprimiendo Duplicado..."
 });
 
 
@@ -123,28 +127,21 @@ qString = null;
 	
 	// @region namespaceDeclaration// @startlock
 	var infoText = {};	// @richText
-	var imageButton4 = {};	// @buttonImage
-	var imageButton10 = {};	// @buttonImage
-	var imageButton5 = {};	// @buttonImage
 	var richText25 = {};	// @richText
 	var btnAll = {};	// @buttonImage
 	var richText30 = {};	// @richText
 	var bOpciones = {};	// @buttonImage
-	var imageButton12 = {};	// @buttonImage
 	var imageButton7 = {};	// @buttonImage
 	var imageButton3 = {};	// @buttonImage
 	var imageButton2 = {};	// @buttonImage
 	var imageButton8 = {};	// @buttonImage
 	var textField4 = {};	// @textField
 	var textField3 = {};	// @textField
-	var imageButton11 = {};	// @buttonImage
 	var button11 = {};	// @button
 	var docComercialEvent = {};	// @dataSource
-	var imageButton15 = {};	// @buttonImage
 	var btnArticulo = {};	// @richText
 	var imageButton14 = {};	// @buttonImage
 	var imageButton9 = {};	// @buttonImage
-	var containerFamilias = {};	// @container
 	var bContinuarDispensar = {};	// @richText
 	var bCancelDispensar = {};	// @richText
 	var richText23 = {};	// @richText
@@ -154,7 +151,6 @@ qString = null;
 	var richText4 = {};	// @richText
 	var richText21 = {};	// @richText
 	var richText9 = {};	// @richText
-	var bPrint = {};	// @buttonImage
 	var richText14 = {};	// @richText
 	var richText15 = {};	// @richText
 	var lineasCollectionEvent = {};	// @dataSource
@@ -163,17 +159,7 @@ qString = null;
 
 	// eventHandlers// @lock
 	
-// Llamada a la creacion de un menu dinamico de prueba;
-// Se crea un array con todos los elementos del menu que se quiera mostrar;
-// La barra En diagonal "/" indica un espacio entre dos elementos;
-var arElementos = ["Elimina Linea","Modifica Linea","/","Ver Caja"];
-Menu.abrirMenuSencillo(arElementos,"MenuPrueba",$comp);
 
-$("#"+id+"_bOpciones").toolbar({
-	content: '#MenuPrueba', 
-	position: 'right',
-	hideOnClick: true
-});
 	
 	
 
@@ -194,25 +180,6 @@ $("#"+id+"_bOpciones").toolbar({
 		});
 		
 		
-	};// @lock
-
-	imageButton4.click = function imageButton4_click (event)// @startlock
-	{// @endlock
-			cargarMovimientoCaja_btn();
-		TPV.mantenerFoco();
-	};// @lock
-
-	imageButton10.click = function imageButton10_click (event)// @startlock
-	{// @endlock
-		btn_borrar();
-		TPV.mantenerFoco();
-	};// @lock
-
-	imageButton5.click = function imageButton5_click (event)// @startlock
-	{// @endlock
-		var tipoDoc = 1;
-		fcBrain.crearDocComercial($comp,tipoDoc);
-		TPV.mantenerFoco();
 	};// @lock
 
 	richText25.mousedown = function richText25_mousedown (event)// @startlock
@@ -262,13 +229,6 @@ $("#"+id+"_bOpciones").toolbar({
 
 	bOpciones.click = function bOpciones_click (event)// @startlock
 	{// @endlock
-		TPV.mantenerFoco();
-	};// @lock
-
-	imageButton12.click = function imageButton12_click (event)// @startlock
-	{// @endlock
-		UI.gifCargando();
-		appds.openDialogMovimiento($comp);
 		TPV.mantenerFoco();
 	};// @lock
 
@@ -333,19 +293,6 @@ $("#"+id+"_bOpciones").toolbar({
 		});
 	};// @lock
 
-	imageButton11.click = function imageButton11_click (event)// @startlock
-	{// @endlock
-		$comp.sources.docComercial.save({
-			onSuccess:function(){
-				$('#modalLista').modal('show');
-				listarDocComercial();
-				
-				TPV.mantenerFoco();
-			}
-		});
-		
-	};// @lock
-
 	button11.click = function button11_click (event)// @startlock
 	{// @endlock
 		$("#"+id+"_container16").text("");
@@ -366,25 +313,6 @@ $("#"+id+"_bOpciones").toolbar({
 		}
 	};// @lock
 
-	imageButton15.click = function imageButton15_click (event)// @startlock
-	{// @endlock
-		result = ds.Metodos.consultar("Familias");
-		$comp.sources.familias2.setEntityCollection(result);
-		var dialogo = getHtmlId("dialog3");//Coger el dialogo widget
-		var jqdialogo = getHtmlId("dialog3");
-		
-		$$(dialogo).setState("crear");//Estado del dialogo pasa a crear
-		
-		appds.estadoInicial($comp,"crear");
-		
-		$("BODY").append($("#"+id+"_dialog3"));
-		$$(dialogo).displayDialog();
-		$("#"+id+"_dialog3").css("top",20);
-		$("#"+id+"_dialog3").css("left",200);
-		$("#"+$comp.id+"_textField5").focus();
-
-	};// @lock
-
 	
 
 	imageButton14.click = function imageButton14_click (event)// @startlock
@@ -402,50 +330,9 @@ $("#"+id+"_bOpciones").toolbar({
 		$$(getHtmlId("dialog3")).closeDialog();
 	};// @lock
 
-	containerFamilias.click = function containerFamilias_click (event)// @startlock
-	{// @endlock
-		//GRIDTEST
-		var over = '<img id="loading" src="../images/loading.gif">'
-   	 	var containerFam = getHtmlObj('containerFamilias');
-
-   	 	$(containerFam).html(over);
-
-		var ruta = '/rest/Familias';
-		$.getJSON( ruta, function(data) {
-		
-   		var articulos = data.__ENTITIES;
-  
-   	 	$(containerFam).html( '<div class="row-fluid">'
-          +'  <ul class="thumbnails" style="list-decoration:none">'
-        );
- 
-    	for (var idx in articulos)
-    	{
-        	articulo = articulos[idx];
-       		// var tabla = getHtmlObj('container4');
-       		var nombre = articulo.Nombre.substring(0, 20) + '...';
-
-        	$(containerFam).append(
-            '  <li class="product" >'
-			+'<span><small>'+nombre+'</small></span>'
-            +'  </li>'
-           
-            ); 
-    	} 
-    
-  		$(containerFam).append( '</ul>'
-         +' </div>'
-         );
-
- 		});
- 
- 
- //-> GRITEST
-	};// @lock
-
 	bContinuarDispensar.click = function bContinuarDispensar_click (event)// @startlock
 	{// @endlock
-		dispensar();		
+		dispensar();
 	};// @lock
 
 	bCancelDispensar.click = function bCancelDispensar_click (event)// @startlock
@@ -597,13 +484,6 @@ $("#"+id+"_bOpciones").toolbar({
 		}
 	};// @lock
 
-	bPrint.click = function bPrint_click (event)// @startlock
-	{// @endlock
-		var docActual = $comp.sources.docComercial.ID;
-		localStorage.docActual = docActual;
-		TPV.mantenerFoco();
-	};// @lock
-
 	richText14.click = function richText14_click (event)// @startlock
 	{// @endlock
 		
@@ -694,9 +574,6 @@ $("#"+id+"_bOpciones").toolbar({
 	// @region eventManager// @startlock
 	WAF.addListener(this.id + "_infoText", "click", infoText.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
-	WAF.addListener(this.id + "_imageButton4", "click", imageButton4.click, "WAF");
-	WAF.addListener(this.id + "_imageButton10", "click", imageButton10.click, "WAF");
-	WAF.addListener(this.id + "_imageButton5", "click", imageButton5.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "touchend", richText25.touchend, "WAF");
 	WAF.addListener(this.id + "_richText25", "touchstart", richText25.touchstart, "WAF");
 	WAF.addListener(this.id + "_richText25", "mouseup", richText25.mouseup, "WAF");
@@ -706,15 +583,12 @@ $("#"+id+"_bOpciones").toolbar({
 	WAF.addListener(this.id + "_richText30", "click", richText30.click, "WAF");
 	WAF.addListener(this.id + "_textField4", "focus", textField4.focus, "WAF");
 	WAF.addListener(this.id + "_bOpciones", "click", bOpciones.click, "WAF");
-	WAF.addListener(this.id + "_imageButton12", "click", imageButton12.click, "WAF");
 	WAF.addListener(this.id + "_imageButton7", "click", imageButton7.click, "WAF");
 	WAF.addListener(this.id + "_imageButton3", "click", imageButton3.click, "WAF");
 	WAF.addListener(this.id + "_imageButton2", "click", imageButton2.click, "WAF");
 	WAF.addListener(this.id + "_imageButton8", "click", imageButton8.click, "WAF");
-	WAF.addListener(this.id + "_imageButton11", "click", imageButton11.click, "WAF");
 	WAF.addListener(this.id + "_button11", "click", button11.click, "WAF");
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
-	WAF.addListener(this.id + "_imageButton15", "click", imageButton15.click, "WAF");
 	WAF.addListener(this.id + "_richText6", "click", richText6.click, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "mousedown", btnArticulo.mousedown, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "mouseup", btnArticulo.mouseup, "WAF");
@@ -723,7 +597,6 @@ $("#"+id+"_bOpciones").toolbar({
 	WAF.addListener(this.id + "_richText23", "touchend", richText23.touchend, "WAF");
 	WAF.addListener(this.id + "_imageButton14", "click", imageButton14.click, "WAF");
 	WAF.addListener(this.id + "_imageButton9", "click", imageButton9.click, "WAF");
-	WAF.addListener(this.id + "_containerFamilias", "click", containerFamilias.click, "WAF");
 	WAF.addListener(this.id + "_bContinuarDispensar", "click", bContinuarDispensar.click, "WAF");
 	WAF.addListener(this.id + "_bCancelDispensar", "click", bCancelDispensar.click, "WAF");
 	WAF.addListener(this.id + "_richText23", "click", richText23.click, "WAF");
@@ -732,7 +605,6 @@ $("#"+id+"_bOpciones").toolbar({
 	WAF.addListener(this.id + "_richText4", "click", richText4.click, "WAF");
 	WAF.addListener(this.id + "_richText21", "click", richText21.click, "WAF");
 	WAF.addListener(this.id + "_richText9", "click", richText9.click, "WAF");
-	WAF.addListener(this.id + "_bPrint", "click", bPrint.click, "WAF");
 	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
 	WAF.addListener(this.id + "_richText15", "click", richText15.click, "WAF");
 	WAF.addListener(this.id + "_lineasCollection", "onCollectionChange", lineasCollectionEvent.onCollectionChange, "WAF");
@@ -963,63 +835,7 @@ function articulo_btn(esteObjeto){
 	}
 }
 
-function btn_borrar(){
-	var cobrado =  $comp.sources.docComercial.Cobrado;
-	var referencia = $comp.sources.docComercial.Referencia;
-	if(cobrado == true){
-		NegativoTicket();
-	}else if (referencia != null){
-		UI.alert('Ya está Abonado','Atención');
-	}else{
-		borrarTicket();
-	}
-}
 
-function borrarTicket(){
-	
-	UI.confirm('¿Desea borrar este ticket?', 'Confirmacion', function(r) {
-	    if (r == true) {
-	    	
-	        $comp.sources.docComercial.removeCurrent();
-	        $comp.sources.docComercial.all({
-	            onSuccess: function(event) {
-	                if ($comp.sources.docComercial.length == 0) {
-	                    //ds.DocComercial.crearPrincipio
-	                    fcBrain.crearDocComercial($comp, 1, {
-	                        onSuccess: function(event) {
-	                            $comp.sources.docComercial.all({
-	                                onSuccess: function(event) {
-	                                    tamanio = $comp.sources.docComercial.length;
-	                                    if (tamanio == 0) {
-	                                        fcBrain.crearDocComercial($comp, 1);
-	                                        tamanio = 1;
-	                                    }
-	                                    setTimeout(function() { //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
-	                                        $comp.sources.docComercial.select(tamanio - 1);
-
-	                                    }, 300);
-	                                } // Fin de On Success de All
-	                            });// Fin de All
-	                        }
-	                    });
-	                }
-	            }
-	        });
-	    }
-	});
-}
-
-function NegativoTicket(){
-	UI.confirm('Ya está cobrado, no se puede eliminar ¿Desea abonar este ticket?', 'Confirmacion', function(r) {
-	    if (r == true) {
-	    	
-	    	var tipoDoc = 1;
-			fcBrain.crearDocComercial($comp,tipoDoc,true);	
-	    	
-	    }
-	    	
-	 });
-}
 
 function dispensar(){
 	var aMediosPagos = [$("#input_EF").val(),$("#input_TJ").val()]
@@ -1214,6 +1030,216 @@ TPV.verCaja = function(){
 	UI.gifCargando();
 	appds.openDialogMovimiento($comp);
 	TPV.mantenerFoco();
+}
+
+TPV.nuevoTicket = function (){
+	var tipoDoc = 1;
+	fcBrain.crearDocComercial($comp,tipoDoc);
+	TPV.mantenerFoco();
+}
+
+TPV.imprimirDuplicado = function (){
+	var docActual = $comp.sources.docComercial.ID;
+	localStorage.docActual = docActual;
+	TPV.mantenerFoco();
+}
+
+TPV.accionBorrado = function (){
+	var cobrado =  $comp.sources.docComercial.Cobrado;
+	var referencia = $comp.sources.docComercial.Referencia;
+	if(cobrado == true){
+		TPV.negativoTicket();
+	}else if (referencia != null){
+		UI.alert('Ya está Abonado','Atención');
+	}else{
+		TPV.borrarTicket();
+	}
+}
+
+TPV.borrarTicket = function (){
+	UI.confirm('¿Desea borrar este ticket?', 'Confirmacion', function(r) {
+	    if (r == true) {
+	    	
+	        $comp.sources.docComercial.removeCurrent();
+	        $comp.sources.docComercial.all({
+	            onSuccess: function(event) {
+	                if ($comp.sources.docComercial.length == 0) {
+	                    //ds.DocComercial.crearPrincipio
+	                    fcBrain.crearDocComercial($comp, 1, {
+	                        onSuccess: function(event) {
+	                            $comp.sources.docComercial.all({
+	                                onSuccess: function(event) {
+	                                    tamanio = $comp.sources.docComercial.length;
+	                                    if (tamanio == 0) {
+	                                        fcBrain.crearDocComercial($comp, 1);
+	                                        tamanio = 1;
+	                                    }
+	                                    setTimeout(function() { //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
+	                                        $comp.sources.docComercial.select(tamanio - 1);
+
+	                                    }, 300);
+	                                } // Fin de On Success de All
+	                            });// Fin de All
+	                        }
+	                    });
+	                }
+	            }
+	        });
+	    }
+	});
+}
+
+TPV.negativoTicket = function (){
+	UI.confirm('Ya está cobrado, no se puede eliminar ¿Desea abonar este ticket?', 'Confirmacion', function(r) {
+	    if (r == true) {
+	    	var tipoDoc = 1;
+			fcBrain.crearDocComercial($comp,tipoDoc,true);	
+	    }
+	    	
+	 });
+}
+
+TPV.cargarMovimientoCaja = function (){
+	var cobrado = $comp.sources.docComercial.Cobrado;
+	botonDispensar = getHtmlId('imageButton4');
+	if(cobrado != true){
+		
+		UI.gifCargando(); //el chirimbolo de "carga"
+			
+		var dialogo = getHtmlId("dialog1");
+		var jqdialogo = getHtmlObj("dialog1");		
+	
+		$("BODY").append($(jqdialogo));	
+		
+		$(jqdialogo).css("left",300);
+		setTimeout(function(){ //Espero a abrir el diálogo para que de tiempo a que se carguen los eventos
+		$$(dialogo).displayDialog();
+		},600);
+
+		var donde = getHtmlObj('container6');
+		//En funciones de la página:
+		TPV.cargarMedioPago(donde); //Le paso el contenedor dónde tiene que cargarlo
+		
+	}else{
+		
+		$$(botonDispensar).setState('disabled');
+		UI.alert('Ya está Cobrado','Atención');
+		
+	}
+}
+
+TPV.cargarMedioPago = function(donde) {
+		
+	$$(id+"_dialog1").enable();
+ 		
+	var ruta = '/rest/MedioPago';
+	$.getJSON( ruta, function(data) {
+		var medios = data.__ENTITIES;
+  		var tabla = donde;
+     	$(tabla).html('<form class="form-inline"> <fieldset> <legend>Dispensar</legend>'); 
+
+		for (var idx in medios){
+			medio = medios[idx];
+
+			$(tabla).append('<div class="control-group success">');
+      		$(tabla).append('<label class="control-label" for="input_'+ medio.Codigo +'">'+ medio.Descripcion +'</label>');
+      		$(tabla).append('<input  type="number"  id="input_'+ medio.Codigo +'" class="entrada cobro" placeholder='+ medio.Descripcion +' >');
+   			$(tabla).append('</div></div>');
+ 
+    	} 
+    
+ 	 	$(tabla).append('</fieldset></form>'); 
+ 	 	$(tabla).fadeIn();
+	 	$('#input_EF').attr("autofocus","autofocus"); 
+
+		// Se intercepta la tecla INTRO
+		$(":input").bind('keypress', function(e) {
+			if(e.keyCode==13){
+				var activo = $$(id+"_dialog1").isDisabled();
+				console.log($$(id+"_dialog1").isDisabled());
+				if(activo == false){
+					$('#input_EF').blur();
+					var printContinuar = getHtmlObj('bContinuarDispensar');
+					$(printContinuar).click();
+				}
+				
+			}
+		  });
+	});
+	// FIN getJSON
+		
+	setTimeout(function(){ //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
+		   
+		var vSumaR =  Math.round(vSuma*100)/100;
+		vSumaR = vSumaR.toFixed(2);
+		
+ 		//INICIALIZACIÓN DE LOS CAMPOS Y EVENTOS
+ 
+		var total={};
+		var valorActual={};
+		var diferencia = {};
+		total = 0;  
+		$(".cobro").blur( function(event) {
+			
+			total = 0;   
+			$(".cobro").each( function(){
+				total += $(this).val() * 1;
+			});
+
+		});
+
+		$(".cobro").focus( function(event) {
+
+			total += $(this).val() * 1;
+			diferencia = vSumaR - total;
+			
+			if(diferencia > 0){
+				diferencia = parseFloat(diferencia);//ds pasar a numero la variable
+				diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
+				console.log("diferencia :"+diferencia);
+				
+				if(this.id == 'input_EF'){
+					diferenciaCambio = diferencia;
+				}
+				$(this).val(diferencia);
+				$(this).select();
+			}else if(vSumaR < 0){
+				diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
+				$(this).val(diferencia);
+				$(this).select();
+				$('#input_EF').attr('readonly', true);
+				$('#input_TJ').attr('readonly', true);
+			}
+		});	
+     },500);
+}
+
+TPV.ticketPendientes = function (){
+	$comp.sources.docComercial.save({
+		onSuccess:function(){
+			$('#modalLista').modal('show');
+			listarDocComercial();
+			
+			TPV.mantenerFoco();
+		}
+	});
+}
+
+TPV.nuevoArticulo = function () {
+	result = ds.Metodos.consultar("Familias");
+	$comp.sources.familias2.setEntityCollection(result);
+	var dialogo = getHtmlId("dialog3");//Coger el dialogo widget
+	var jqdialogo = getHtmlId("dialog3");
+	
+	$$(dialogo).setState("crear");//Estado del dialogo pasa a crear
+	
+	appds.estadoInicial($comp,"crear");
+	
+	$("BODY").append($("#"+id+"_dialog3"));
+	$$(dialogo).displayDialog();
+	$("#"+id+"_dialog3").css("top",20);
+	$("#"+id+"_dialog3").css("left",200);
+	$("#"+$comp.id+"_textField5").focus();
 }
 
 }// @startlock
