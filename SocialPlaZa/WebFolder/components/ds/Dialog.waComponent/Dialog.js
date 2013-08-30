@@ -142,19 +142,13 @@ function cargarDataPicker(){
 	    $comp.sources.paisesISO.allEntities({
 	    	onSuccess:function(){
 	    		 var paises = $comp.sources.paisesISO;
-	    		 console.log(paises.length);
 	    		 for (var i = 0; i < paises.length; i++){
-	    		 	
 	    		 	paises.getElement(i, { 
 	    		 	
 	    		 		onSuccess: function(event) {
 	    		 			
 			        		var entity = event.element;
-			        		var optionHTML;
-			        		
-			        		var alphaPais = entity.Alpha;
-			        		alphaPais = alphaPais.toLowerCase();
-			        		
+			        		var optionHTML;			        		
 			        		if(vDefecto == entity.Name){
 			 
 			        			optionHTML += '<option value="'+entity.Number+'" selected >'+entity.Name+'</option>';

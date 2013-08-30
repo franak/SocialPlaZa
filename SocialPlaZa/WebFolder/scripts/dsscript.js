@@ -512,7 +512,7 @@ appdsObj = function () {
 			if(window.navigator.platform != "iPad"){
 				$("#"+$comp.id+"_textField4").focus();
 			}
-			
+			TPV.pintarFamilias();
 			var tamanio;
 			tamanio = $comp.sources.docComercial.length;	
 			if(tamanio == 0){

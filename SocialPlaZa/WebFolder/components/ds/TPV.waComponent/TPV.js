@@ -20,9 +20,9 @@ btmodales.modalListaRegistros();
 btmodales.modalBienvenido();
 
 
-//-- FUNCION QUE CARGA TODOS LOS RECURSOS DEL COMPONENTE--\\
 
-//appds.cargarDataTPV(vComp);
+
+//-- FUNCION QUE CARGA TODOS LOS RECURSOS DEL COMPONENTE--\\
 
 $(this.id).ready(function(){
 	
@@ -145,7 +145,6 @@ qString = null;
 	var bContinuarDispensar = {};	// @richText
 	var bCancelDispensar = {};	// @richText
 	var richText23 = {};	// @richText
-	var richText6 = {};	// @richText
 	var richText19 = {};	// @richText
 	var richText18 = {};	// @richText
 	var richText4 = {};	// @richText
@@ -213,12 +212,9 @@ qString = null;
 		qString = null;
 		$comp.sources.articulos.all();
 		$('.solapa').removeClass('btn-maniadmin-4');
-		//$('.matrix_a').removeClass('tpv-btn');
-		//this.addClass('disabled');
 		botonTodos = getHtmlId('btnAll');
 		$$(botonTodos).setState('disabled');
-
-		///this.removeClass('btn-warning');
+		TPV.recargarFamilias();
 		TPV.mantenerFoco();
 	};// @lock
 
@@ -369,25 +365,6 @@ qString = null;
 		$("#"+id+"_dialog3").css("top",100);
 		$("#"+id+"_dialog3").css("left",200);
 		$("#"+$comp.id+"_textField2").focus();
-	};// @lock
-
-	richText6.click = function richText6_click (event)// @startlock
-	{// @endlock
-		var familiaselec = this.getValue();
-		$comp.sources.articulos.query("Familia.Nombre=:1",familiaselec);
-		qString = familiaselec;
-		
-
-		$('.solapa').removeClass('btn-maniadmin-4');
-		this.addClass('btn-maniadmin-4');
-
-		botonTodos = getHtmlId('btnAll');
-
-		$$(botonTodos).setState('active');
-		
-		//$('.allArticulos').removeClass('disabled');
-		
-		TPV.mantenerFoco();
 	};// @lock
 
 	richText19.click = function richText19_click (event)// @startlock
@@ -589,7 +566,6 @@ qString = null;
 	WAF.addListener(this.id + "_imageButton8", "click", imageButton8.click, "WAF");
 	WAF.addListener(this.id + "_button11", "click", button11.click, "WAF");
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
-	WAF.addListener(this.id + "_richText6", "click", richText6.click, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "mousedown", btnArticulo.mousedown, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "mouseup", btnArticulo.mouseup, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "touchstart", btnArticulo.touchstart, "WAF");
@@ -1240,6 +1216,54 @@ TPV.nuevoArticulo = function () {
 	$("#"+id+"_dialog3").css("top",20);
 	$("#"+id+"_dialog3").css("left",200);
 	$("#"+$comp.id+"_textField5").focus();
+}
+
+TPV.pintarFamilias = function (){
+	var selectElement = document.createElement('select');
+	selectElement.setAttribute('id','select-familias');
+    $('#'+id+'_containerArticulos').append(selectElement);
+    $('#select-familias').css('position','absolute');
+    $('#select-familias').css('top','30px');
+    $('#select-familias').css('left','400px');
+    var familias = sources.familias;
+    var optionHTML = '<option id="playholder" value="">Familia...</option>';	
+	for (var i = 0; i < familias.length; i++){
+	 	familias.getElement(i, { 
+	 		onSuccess: function(event) {
+        		var entity = event.element;
+        		optionHTML += '<option value="'+entity.Nombre+'">'+entity.Nombre+'</option>';
+        		
+       		}
+	   });
+	 
+	}
+	$('#select-familias').append(optionHTML);
+	$('#select-familias').change(function(){
+		$('#playholder').remove();
+		var nombre = $(this).val();
+		$comp.sources.articulos.query("Familia.Nombre =:1",nombre);
+	});
+}
+
+TPV.recargarFamilias = function (){
+	$('#select-familias').empty();
+	sources.familias.allEntities({
+		onSuccess:function(){
+			var familias = sources.familias;
+		    var optionHTML = '<option id="playholder" value="">Familia...</option>';
+			for (var i = 0; i < familias.length; i++){
+			 	familias.getElement(i, { 
+			 		onSuccess: function(event) {
+		        		var entity = event.element;
+		        		optionHTML += '<option value="'+entity.Nombre+'">'+entity.Nombre+'</option>';
+		        		
+		       		}
+			   });
+			 
+			}
+			$('#select-familias').append(optionHTML);
+		}
+	});
 }
 
 }// @startlock
