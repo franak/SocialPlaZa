@@ -40,12 +40,12 @@ body > * {
 /*Hasta aqu’ la barra superior fija*/
 
 
-#MainComp{
+/*#MainComp{
 	min-width: 800px;
 	margin:0px auto;x	
 	margin-top:0px;
 
-	}
+	}*/
 
 #bannerPrincipal{
 	min-width:1024px;

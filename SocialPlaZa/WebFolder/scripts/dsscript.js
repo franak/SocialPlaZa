@@ -433,9 +433,10 @@ appdsObj = function () {
 			sources.articulos1.query("Descripcion =:1",objeto._value,{
 			
 				onSuccess:function (){
-					console.log($comp.sources.articulos.Codigo);
-					var vFamilia = ds.Articulos.getFamilia($comp.sources.articulos.Codigo);
-					$$($comp.id+"_combobox2").setValue(vFamilia);//Ponermos los respectivos datos elegidos
+					
+					
+					TPV.recargarFamiliasDialog();
+					
 					$$($comp.id+"_richText4").show();//Mostrar el boton eliminar
 	
 					$("BODY").append($("#"+$comp.id+"_dialog3"));
@@ -513,6 +514,7 @@ appdsObj = function () {
 				$("#"+$comp.id+"_textField4").focus();
 			}
 			TPV.pintarFamilias();
+			TPV.pintarFamiliasDialog();
 			var tamanio;
 			tamanio = $comp.sources.docComercial.length;	
 			if(tamanio == 0){

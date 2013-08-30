@@ -491,7 +491,7 @@ qString = null;
 					var codigo = $$($comp.id+"_textField5").getValue();
 					var precio = $$($comp.id+"_textField6").getValue();
 					var descripcion = $$($comp.id+"_textField7").getValue();
-					var familia = ds.Familias.getFamilia($$($comp.id+"_combobox2").getValue());
+					var familia = ds.Familias.getFamilia($("#select-familias2").val());
 				
 					$comp.sources.articulos.Codigo = codigo;
 					$comp.sources.articulos.Precio = precio;
@@ -1223,8 +1223,8 @@ TPV.pintarFamilias = function (){
 	selectElement.setAttribute('id','select-familias');
     $('#'+id+'_containerArticulos').append(selectElement);
     $('#select-familias').css('position','absolute');
-    $('#select-familias').css('top','30px');
-    $('#select-familias').css('left','400px');
+    $('#select-familias').css('top','10px');
+    $('#select-familias').css('left','420px');
     var familias = sources.familias;
     var optionHTML = '<option id="playholder" value="">Familia...</option>';	
 	for (var i = 0; i < familias.length; i++){
@@ -1262,6 +1262,51 @@ TPV.recargarFamilias = function (){
 			 
 			}
 			$('#select-familias').append(optionHTML);
+		}
+	});
+}
+
+TPV.pintarFamiliasDialog = function (){
+	var selectElement = document.createElement('select');
+	selectElement.setAttribute('id','select-familias2');
+    $('#'+id+'_container11').append(selectElement);
+    $('#select-familias2').css('position','absolute');
+    $('#select-familias2').css('top','150px');
+    $('#select-familias2').css('left','200px');
+    var familias = $comp.sources.familias2;
+    var optionHTML;	
+	for (var i = 0; i < familias.length; i++){
+	 	familias.getElement(i, { 
+	 		onSuccess: function(event) {
+        		var entity = event.element;
+        		optionHTML += '<option value="'+entity.Nombre+'">'+entity.Nombre+'</option>';
+        		
+       		}
+	   });
+	 
+	}
+	$('#select-familias2').append(optionHTML);
+}
+
+TPV.recargarFamiliasDialog = function (){
+	$('#select-familias2').empty();
+	$comp.sources.familias2.allEntities({
+		onSuccess:function(){
+			var familias = sources.familias;
+		    var optionHTML;
+			for (var i = 0; i < familias.length; i++){
+			 	familias.getElement(i, { 
+			 		onSuccess: function(event) {
+		        		var entity = event.element;
+		        		optionHTML += '<option value="'+entity.Nombre+'">'+entity.Nombre+'</option>';
+		        		
+		       		}
+			   });
+			 
+			}
+			$('#select-familias2').append(optionHTML);
+			var vFamilia = ds.Articulos.getFamilia($comp.sources.articulos.Codigo);
+			$("#select-familias2 option[value="+ vFamilia +"]").attr("selected","selected");
 		}
 	});
 }
