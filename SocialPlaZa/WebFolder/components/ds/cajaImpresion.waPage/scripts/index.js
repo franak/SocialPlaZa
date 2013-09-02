@@ -17,14 +17,28 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		$('body').css({'max-width':'280px','font-size':'70%'});
 		pintar("<h1>Nombre de la Tienda</h1>");
 		
-		
-		sources.cajasMovimientos.all({
-			onSuccess:function(){
+		var fecha =localStorage.dia;
+		var dia = fecha.substring(0,2);
+		var mes = fecha.substring(3,5);
+		mes = mes-1;
+		var anio = fecha.substring(6);
+
+		//f0 es la fecha inicio
+		var f0 = new Date(anio, mes, dia);
+		dia = parseInt(dia);
+		dia++;
+		//f1 es la fecha fin
+		var f1 = new Date(anio, mes, dia);
+		ds.CajasMovimientos.consultaMovimientos(f0,f1,{onSuccess: function(e) {
+				sources.cajasMovimientos.setEntityCollection(e.result);
 				
 				pintar("<h2>"+localStorage.dia+"</h2>");
 				var descripcionCaja = sources.cajasMovimientos.devuelveCaja();
 				pintar("<h2>"+descripcionCaja+"</h2>");
 				var tabla = "<table><tr><td><b>Ticket</b></td><td><b>Importe</b></td><td><b>Entregado</b></td><td><b>Cambio</b></td><td><b>Medio</b></td><td><b>Concepto</b></td></tr>";
+				//Inicio de las operaciones de la consulta inicial:
+				
+				
 				var resultado = sources.cajasMovimientos;
 				
 				
@@ -38,12 +52,41 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				        	var cambio = sources.cajasMovimientos.devuelveCambio();
 				        	var medio = sources.cajasMovimientos.devuelveMedio();
 				        
-				        	tabla += "<tr><td>"+doc+"</td>";
-				        	tabla += "<td>"+entity.importeVenta+"</td>";
-				        	tabla += "<td>"+entity.entregado+"</td>";
-				        	tabla += "<td>"+cambio+"</td>";
-				        	tabla += "<td>"+medio+"</td>";
-				        	tabla += "<td>"+entity.concepto+"</td></tr>";
+				        	if(doc == null){
+				        		tabla += "<tr><td> - </td>";
+				      		}else{
+				      			tabla += "<tr><td>"+doc+"</td>";
+				      		}
+				        	if(entity.importeVenta == null){
+				        		tabla += "<td>0</td>";
+				      		}else{
+				      			tabla += "<td>"+entity.importeVenta+"</td>";
+				      		}
+				      		if(entity.entregado == null){
+				        		tabla += "<td>0</td>";
+				      		}else{
+				      			tabla += "<td>"+entity.entregado+"</td>";
+				      		}
+				      		
+				      		if(cambio == null){
+				        		tabla += "<td>0</td>";
+				      		}else{
+				      			cambio = parseFloat(cambio);
+				      			cambio = cambio.toFixed(2);
+				      			tabla += "<td>"+cambio+"</td>";
+				      		}
+							if(medio == null){
+				        		tabla += "<td> - </td>";
+				      		}else{
+				      			tabla += "<td>"+medio+"</td>";
+				      		}
+				      		if(entity.concepto == null){
+				        		tabla += "<td>&nbsp;&nbsp;-</td></tr>";
+				      		}else{
+				      			tabla += "<td>"+entity.concepto+"</td></tr>";
+				      		}				        	
+				      
+				       
 				        	
 				       }
 				   });
@@ -52,8 +95,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				tabla += "</table>";
 				pintar(tabla);
 					
-			}
-		});
+			
+		}});
 		
 		
 		

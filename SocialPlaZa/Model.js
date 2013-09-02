@@ -48,6 +48,14 @@ guidedModel =// @startlock
 	},
 	CajasMovimientos :
 	{
+		methods :
+		{// @endlock
+			consultaMovimientos:function(vFecha1,vFecha2)
+			{// @lock
+				var collMovimientos = ds.CajasMovimientos.query("fecha >=:1 and fecha <:2",vFecha1,vFecha2);
+				return collMovimientos;
+			}// @startlock
+		},
 		entityMethods :
 		{// @endlock
 			devuelveMedio:function()
