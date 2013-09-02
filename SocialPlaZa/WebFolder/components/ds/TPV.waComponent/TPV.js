@@ -28,7 +28,6 @@ $(this.id).ready(function(){
 	
 	appds.cargarDataTPV(vComp);
 	
-	
 });
 
 
@@ -126,6 +125,7 @@ qString = null;
 
 	
 	// @region namespaceDeclaration// @startlock
+	var button1 = {};	// @button
 	var infoText = {};	// @richText
 	var richText25 = {};	// @richText
 	var btnAll = {};	// @buttonImage
@@ -157,6 +157,11 @@ qString = null;
 
 
 	// eventHandlers// @lock
+
+	button1.click = function button1_click (event)// @startlock
+	{// @endlock
+		alert(window.innerWidth + " x " + window.innerHeight);
+	};// @lock
 	
 
 	
@@ -328,11 +333,13 @@ qString = null;
 
 	bContinuarDispensar.click = function bContinuarDispensar_click (event)// @startlock
 	{// @endlock
+		$("#"+id+"_bOpciones").click();
 		dispensar();
 	};// @lock
 
 	bCancelDispensar.click = function bCancelDispensar_click (event)// @startlock
 	{// @endlock
+		$("#"+id+"_bOpciones").click();
 		$$(id+"_dialog1").disable();
 		$(window).scrollTop(0);
 		$$(getHtmlId("dialog1")).closeDialog(); //Cancelar button
@@ -492,7 +499,6 @@ qString = null;
 					var precio = $$($comp.id+"_textField6").getValue();
 					var descripcion = $$($comp.id+"_textField7").getValue();
 					var familia = ds.Familias.getFamilia($("#select-familias2").val());
-				
 					$comp.sources.articulos.Codigo = codigo;
 					$comp.sources.articulos.Precio = precio;
 					$comp.sources.articulos.Descripcion = descripcion;
@@ -549,6 +555,7 @@ qString = null;
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_infoText", "click", infoText.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
 	WAF.addListener(this.id + "_richText25", "touchend", richText25.touchend, "WAF");
