@@ -41,7 +41,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				
 				var resultado = sources.cajasMovimientos;
 				
-				
+				var totalEfectivo = 0;
+				var totalTarjeta = 0;
 				for (var i = 0; i < resultado.length; i++){
 					resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
 				        {
@@ -80,11 +81,18 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				      		}else{
 				      			tabla += "<td>"+medio+"</td>";
 				      		}
+				      		
 				      		if(entity.concepto == null){
 				        		tabla += "<td>&nbsp;&nbsp;-</td></tr>";
 				      		}else{
 				      			tabla += "<td>"+entity.concepto+"</td></tr>";
-				      		}				        	
+				      		}
+				      		
+				      		if(medio == "Efectivo"){
+				      			totalEfectivo += entity.importeVenta;
+				      		}else{
+				      			totalTarjeta += entity.importeVenta;
+				      		}		        	
 				      
 				       
 				        	
@@ -94,7 +102,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				
 				tabla += "</table>";
 				pintar(tabla);
-					
+				pintar("<h3>Total Efectivo: €"+totalEfectivo+"</h3>");
+				pintar("<h3>Total Tarjeta: €"+totalTarjeta+"</h3>");
+			
 			
 		}});
 		

@@ -71,11 +71,11 @@ function enfocar (){
 // Llamada a la creacion de un menu dinamico de prueba;
 // Se crea un array con todos los elementos del menu que se quiera mostrar;
 // La barra En diagonal "/" indica un espacio entre dos elementos;
-var arElementos = ["Nuevo Ticket","Borrar Ticket","Dispensar Ticket","Imprimir Duplicado","Ticket Pendientes","Elimina Linea","Modifica Linea","Ver Caja","Nuevo Articulo"];
-Menu.abrirMenuSencillo(arElementos,"MenuPrueba",$comp);
+var arElementos = ["Nuevo Ticket","Borrar Ticket","Dispensar Ticket","Imprimir Duplicado","Ticket Pendientes","/","Elimina Linea","Modifica Linea","/","Ver Caja","/","Nuevo Articulo"];
+Menu.abrirMenuSencillo(arElementos,"MenuTPV",$comp);
 
 $("#"+id+"_bOpciones").toolbar({
-	content: '#MenuPrueba', 
+	content: '#MenuTPV', 
 	position: 'bottom',
 	hideOnClick: true
 });
@@ -123,8 +123,38 @@ vPosRestada = null;
 //DS DECLARACION DE qString PARA SABER EN QUE MOMENTO EN QUE FAMILIA ESTAMOS
 qString = null;
 
+window.onorientationchange = readDeviceOrientation;
+function readDeviceOrientation() {
+
+    switch (window.orientation) {  
+    case 0:  
+    
+        // Portrait
+        TPV.orientacionVertical(); 
+        break; 
+        
+    case 180:  
+    
+        // Portrait (Upside-down)
+        TPV.orientacionVertical();
+        break; 
+  
+    case -90:  
+    
+        // Landscape (Clockwise)
+        TPV.orientacionHorizontal();
+        break;  
+  
+    case 90:  
+    
+        // Landscape  (Counterclockwise)
+        TPV.orientacionHorizontal();
+        break;
+    }
+}
 	
 	// @region namespaceDeclaration// @startlock
+	var button2 = {};	// @button
 	var button1 = {};	// @button
 	var infoText = {};	// @richText
 	var richText25 = {};	// @richText
@@ -158,9 +188,15 @@ qString = null;
 
 	// eventHandlers// @lock
 
+	button2.click = function button2_click (event)// @startlock
+	{// @endlock
+		TPV.orientacionVertical();
+	};// @lock
+
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
-		alert(window.innerWidth + " x " + window.innerHeight);
+		//alert(window.innerWidth + " x " + window.innerHeight);
+		TPV.orientacionHorizontal();
 	};// @lock
 	
 
@@ -555,6 +591,7 @@ qString = null;
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_infoText", "click", infoText.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
@@ -1211,6 +1248,7 @@ TPV.ticketPendientes = function (){
 TPV.nuevoArticulo = function () {
 	result = ds.Metodos.consultar("Familias");
 	$comp.sources.familias2.setEntityCollection(result);
+	
 	var dialogo = getHtmlId("dialog3");//Coger el dialogo widget
 	var jqdialogo = getHtmlId("dialog3");
 	
@@ -1274,6 +1312,7 @@ TPV.recargarFamilias = function (){
 }
 
 TPV.pintarFamiliasDialog = function (){
+	
 	var selectElement = document.createElement('select');
 	selectElement.setAttribute('id','select-familias2');
     $('#'+id+'_container11').append(selectElement);
@@ -1316,6 +1355,38 @@ TPV.recargarFamiliasDialog = function (){
 			$("#select-familias2 option[value="+ vFamilia +"]").attr("selected","selected");
 		}
 	});
+}
+
+TPV.orientacionVertical = function (){
+	$("#rightComp").css("width","768px");
+	$("#rightComp").css("height","256px");
+	$("#rightComp").css("top","680px");
+	$("#rightComp").css("left","0px");
+	
+	$("#rightComp_container1").css("left","0px");
+	
+	$("#rightComp_container2").css("top","0px");
+	$("#rightComp_container2").css("left","256px");
+	
+	$("#rightComp_container4").css("top","0px");
+	$("#rightComp_container4").css("left","513px");
+}
+
+TPV.orientacionHorizontal = function (){
+	$("#rightComp").css("width","256px");
+	$("#rightComp").css("height","768px");
+	$("#rightComp").css("top","59px");
+	$("#rightComp").css("left","770px");
+	
+	//$("#rightComp_container1").css("float","left");
+	$("#rightComp_container1").css("left","0px");
+	$("#rightComp_container1").css("top","0px");
+	
+	$("#rightComp_container2").css("top","206px");
+	$("#rightComp_container2").css("left","0px");
+	
+	$("#rightComp_container4").css("top","412px");
+	$("#rightComp_container4").css("left","0px");
 }
 
 }// @startlock

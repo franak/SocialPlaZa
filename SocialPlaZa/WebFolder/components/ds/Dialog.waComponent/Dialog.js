@@ -184,28 +184,37 @@ function cargarDataPicker(){
 	function calculaTotalCaja(){
 		
 		 var movimientos = $comp.sources.cajasMovimientos;
-		 var importe = 0;
+		 var totalEfectivo = 0;
+		 var totalTarjeta = 0;
 		 
 		 for (var i = 0; i < movimientos.length; i++){
 		 	movimientos.getElement(i, { 
 		 		onSuccess: function(event) {
 		 			
-	        		var entity = event.element;
-	        		
-					importe += entity.importeVenta;
+		 			var entity = event.element;
+		 			
+		 			
+		      			totalEfectivo += entity.importeVenta;
+		      		
+		      			totalTarjeta += entity.importeVenta;
+		      		
+		 			
+	   
 	       		}
 		   });
 		 }
 		 
+		var arTotal = [totalEfectivo,totalTarjeta];
 		 
-		 return (importe);
+		 
+		 return arTotal;
 	    
 	}
 	
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
-	var printCaja = {};	// @button
+	var printCaja = {};	// @richText
 	var imageButton3 = {};	// @buttonImage
 	var imageButton2 = {};	// @buttonImage
 	var imageButton1 = {};	// @buttonImage
@@ -229,9 +238,7 @@ function cargarDataPicker(){
 
 	printCaja.click = function printCaja_click (event)// @startlock
 	{// @endlock
-		// Creacion de un array con todos los movimientos de caja que seran pasados para imprimirlos;
-		localStorage.dia = $('.span2').val();
-		
+		localStorage.dia = $('.span2').val();		
 	};// @lock
 
 	imageButton3.click = function imageButton3_click (event)// @startlock
@@ -352,6 +359,7 @@ function cargarDataPicker(){
 		//-- FUNCION MOSTRAR TODOS LOS REGISTROS --\\
 		
 			mostrarTodo($comp.sources.cajasMovimientos);
+			
 			
 		//-- FUNCION QUE SELECCIONA TODOS LOS REGISTROS--\\
 
@@ -490,10 +498,10 @@ function cargarDataPicker(){
 	cajasMovimientosEvent.onCurrentElementChange = function cajasMovimientosEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
 		var total = calculaTotalCaja();
-		total = total.toFixed(2);
-		$$(id+"_richText19").setValue("TOTAL en caja "+total+"€");
+		$$(id+"_richText19").setValue("TOTAL Ejectivo "+total[0]+"€");
+		$$(id+"_richText23").setValue("TOTAL Tarjeta "+total[1]+"€");
 	};// @lock
-
+ 
 	richText7.click = function richText7_click (event)// @startlock
 	{// @endlock
 

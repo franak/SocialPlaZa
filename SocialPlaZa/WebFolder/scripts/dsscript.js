@@ -404,13 +404,15 @@ appdsObj = function () {
 			if($comp.sources.articulos.length != 0){
 				var codigoArticulo = $comp.sources.articulos.Codigo;
 				var vFamilia = ds.Articulos.getFamilia(codigoArticulo);
-				$$($comp.id+"_combobox2").setValue(vFamilia);
+				TPV.recargarFamiliasDialog();
+				$("#select-familias2 option[value="+ vFamilia +"]").attr("selected","selected");
 			}else{
-				$$($comp.id+"_combobox2").setValue($comp.sources.familias2.getCurrentElement());
+				TPV.recargarFamiliasDialog();
+				$("#select-familias2 option[value="+ $comp.sources.familias2.getCurrentElement() +"]").attr("selected","selected");
 			}
 			
 			
-			$$($comp.id+"_combobox2").setValue(vFamilia);//Poner el combo a la familia deseada
+			
 			
 			$$($comp.id+"_textField5").setValue("");
 			$$($comp.id+"_textField6").setValue("");
