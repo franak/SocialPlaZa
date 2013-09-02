@@ -35,7 +35,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				pintar("<h2>"+localStorage.dia+"</h2>");
 				var descripcionCaja = sources.cajasMovimientos.devuelveCaja();
 				pintar("<h2>"+descripcionCaja+"</h2>");
-				var tabla = "<table><tr><td><b>Ticket</b></td><td><b>Importe</b></td><td><b>Entregado</b></td><td><b>Cambio</b></td><td><b>Medio</b></td><td><b>Concepto</b></td></tr>";
+				var tabla = "<table class='table table-condensed'><tr><td><b>Ticket</b></td><td><b>Importe</b></td><td><b>Entregado</b></td><td><b>Cambio</b></td><td><b>Medio</b></td><td><b>Concepto</b></td></tr>";
 				//Inicio de las operaciones de la consulta inicial:
 				
 				
