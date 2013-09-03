@@ -498,8 +498,8 @@ function cargarDataPicker(){
 	cajasMovimientosEvent.onCurrentElementChange = function cajasMovimientosEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
 		var total = calculaTotalCaja();
-		$$(id+"_richText19").setValue("TOTAL Ejectivo "+total[0]+"€");
-		$$(id+"_richText23").setValue("TOTAL Tarjeta "+total[1]+"€");
+		//$$(id+"_richText19").setValue("TOTAL Ejectivo "+total[0]+"€");
+		//$$(id+"_richText23").setValue("TOTAL Tarjeta "+total[1]+"€");
 	};// @lock
  
 	richText7.click = function richText7_click (event)// @startlock
