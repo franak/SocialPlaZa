@@ -270,7 +270,7 @@ appdsObj = function () {
 				$comp.sources.lineasCollection.Cantidad = cant;
 				$comp.sources.lineasCollection.save({
 					onSuccess:function(){
-						
+						//$comp.sources.lineasCollection.serverRefresh();
 						$(esteObjeto.id).setState('default');
 					}
 				});

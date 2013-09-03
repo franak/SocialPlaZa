@@ -542,6 +542,14 @@ qString = null;
 	};// @lock
 
 
+	lineasCollectionEvent.onElementSaved = function lineasCollectionEvent_onElementSaved (event)// @startlock
+	{// @endlock
+		var docID = $comp.sources.docComercial.ID;
+		if(docID){	
+			fcBrain.sumarLineas(id,docID)
+		}
+	};// @lock
+
 	lineasCollectionEvent.onCollectionChange = function lineasCollectionEvent_onCollectionChange (event)// @startlock
 	{// @endlock
 		var docID = $comp.sources.docComercial.ID;
@@ -557,6 +565,7 @@ qString = null;
 	
 	
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_lineasCollection", "onElementSaved", lineasCollectionEvent.onElementSaved, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_infoText", "click", infoText.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
