@@ -1,6 +1,13 @@
 ﻿
 WAF.onAfterInit = function onAfterInit() {// @lock
 
+//1º Lectura de la horientazion
+//readDeviceOrientation();
+
+//Evento que lee la horientazion
+
+
+
 // @region namespaceDeclaration// @startlock
 	
 	var documentEvent = {};	// @document
@@ -11,6 +18,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
+	
+	
 	
  		
 	/*

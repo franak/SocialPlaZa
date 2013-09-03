@@ -123,38 +123,9 @@ vPosRestada = null;
 //DS DECLARACION DE qString PARA SABER EN QUE MOMENTO EN QUE FAMILIA ESTAMOS
 qString = null;
 
-window.onorientationchange = readDeviceOrientation;
-function readDeviceOrientation() {
 
-    switch (window.orientation) {  
-    case 0:  
-    
-        // Portrait
-        TPV.orientacionVertical(); 
-        break; 
-        
-    case 180:  
-    
-        // Portrait (Upside-down)
-        TPV.orientacionVertical();
-        break; 
-  
-    case -90:  
-    
-        // Landscape (Clockwise)
-        TPV.orientacionHorizontal();
-        break;  
-  
-    case 90:  
-    
-        // Landscape  (Counterclockwise)
-        TPV.orientacionHorizontal();
-        break;
-    }
-}
 	
 	// @region namespaceDeclaration// @startlock
-	var button2 = {};	// @button
 	var button1 = {};	// @button
 	var infoText = {};	// @richText
 	var richText25 = {};	// @richText
@@ -188,15 +159,9 @@ function readDeviceOrientation() {
 
 	// eventHandlers// @lock
 
-	button2.click = function button2_click (event)// @startlock
-	{// @endlock
-		TPV.orientacionVertical();
-	};// @lock
-
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
-		//alert(window.innerWidth + " x " + window.innerHeight);
-		TPV.orientacionHorizontal();
+		alert(window.innerWidth + " x " + window.innerHeight);
 	};// @lock
 	
 
@@ -591,7 +556,6 @@ function readDeviceOrientation() {
 	
 	
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_infoText", "click", infoText.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
@@ -1358,21 +1322,31 @@ TPV.recargarFamiliasDialog = function (){
 }
 
 TPV.orientacionVertical = function (){
+
+	$("#socialComponent").css("right","-1px");
+	$("#headComp").css("right","-1px");
+	$("#headComp").css("left","0px");
+
 	$("#rightComp").css("width","768px");
 	$("#rightComp").css("height","256px");
-	$("#rightComp").css("top","680px");
+	$("#rightComp").css("top","724px");
 	$("#rightComp").css("left","0px");
 	
 	$("#rightComp_container1").css("left","0px");
 	
 	$("#rightComp_container2").css("top","0px");
-	$("#rightComp_container2").css("left","256px");
+	$("#rightComp_container2").css("left","257px");
 	
 	$("#rightComp_container4").css("top","0px");
-	$("#rightComp_container4").css("left","513px");
+	$("#rightComp_container4").css("right","0px");
+	
+	$("#rightComp_container4").css("left","514px");
 }
 
 TPV.orientacionHorizontal = function (){
+	
+	$("#socialComponent").css("right","254px");
+	
 	$("#rightComp").css("width","256px");
 	$("#rightComp").css("height","768px");
 	$("#rightComp").css("top","59px");
@@ -1382,11 +1356,41 @@ TPV.orientacionHorizontal = function (){
 	$("#rightComp_container1").css("left","0px");
 	$("#rightComp_container1").css("top","0px");
 	
-	$("#rightComp_container2").css("top","206px");
+	$("#rightComp_container2").css("top","204px");
 	$("#rightComp_container2").css("left","0px");
 	
-	$("#rightComp_container4").css("top","412px");
+	$("#rightComp_container4").css("top","408px");
 	$("#rightComp_container4").css("left","0px");
+}
+readDeviceOrientation();
+window.onorientationchange = readDeviceOrientation;
+function readDeviceOrientation() {
+
+    switch (window.orientation) {  
+    case 0:  
+    
+        // Portrait
+        TPV.orientacionVertical();
+        break; 
+        
+    case 180:  
+    
+        // Portrait (Upside-down)
+        TPV.orientacionVertical();
+        break; 
+  
+    case -90:  
+    
+        // Landscape (Clockwise)
+        TPV.orientacionHorizontal();
+        break;  
+  
+    case 90:  
+    
+        // Landscape  (Counterclockwise)
+        TPV.orientacionHorizontal();
+        break;
+    }
 }
 
 }// @startlock

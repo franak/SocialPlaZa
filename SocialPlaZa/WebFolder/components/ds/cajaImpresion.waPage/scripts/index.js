@@ -10,7 +10,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
 		function pintar(codigo) {
-		$('body').append(codigo);
+			$('body').append(codigo);
 		}
 
 		// Medidas de la impresion
