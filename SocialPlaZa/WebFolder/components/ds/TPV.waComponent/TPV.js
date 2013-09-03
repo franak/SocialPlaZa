@@ -349,6 +349,7 @@ qString = null;
 
 	richText23.touchend = function richText23_touchend (event)// @startlock
 	{// @endlock
+		
 		var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
 		$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
 		
@@ -392,7 +393,7 @@ qString = null;
 		var dialogo = getHtmlId("dialog3");
 		var estado = $$(dialogo).getState();
 		if(estado == "crear"){
-			
+			var familia = ds.Familias.getFamilia($("#select-familias2").val());
 			var codigo = $$($comp.id+"_textField5").getValue();
 			var precio = $$($comp.id+"_textField6").getValue();
 			var descripcion = $$($comp.id+"_textField7").getValue();
@@ -400,7 +401,7 @@ qString = null;
 			$comp.sources.articulos.Codigo = codigo;
 			$comp.sources.articulos.Precio = precio;
 			$comp.sources.articulos.Descripcion = descripcion;
-			$comp.sources.articulos.Familia.set($comp.sources.familias2.getCurrentElement());
+			$comp.sources.articulos.Familia.set(familia);
 			$comp.sources.articulos.save();
 			$comp.sources.articulos.serverRefresh();
 			if(WAF.directory.currentUser().fullName == "TG"){
@@ -1212,6 +1213,7 @@ TPV.ticketPendientes = function (){
 TPV.nuevoArticulo = function () {
 	result = ds.Metodos.consultar("Familias");
 	$comp.sources.familias2.setEntityCollection(result);
+	TPV.recargarFamiliasDialog();
 	
 	var dialogo = getHtmlId("dialog3");//Coger el dialogo widget
 	var jqdialogo = getHtmlId("dialog3");
@@ -1234,8 +1236,9 @@ TPV.pintarFamilias = function (){
     $('#select-familias').css('position','absolute');
     $('#select-familias').css('top','10px');
     $('#select-familias').css('left','420px');
+    $('#select-familias').css('heght','40px');
     var familias = sources.familias;
-    var optionHTML = '<option id="playholder" value="">Familia...</option>';	
+    var optionHTML = '<option id="playholder" value="" style="color: grey">Familia...</option>';	
 	for (var i = 0; i < familias.length; i++){
 	 	familias.getElement(i, { 
 	 		onSuccess: function(event) {
@@ -1259,7 +1262,7 @@ TPV.recargarFamilias = function (){
 	sources.familias.allEntities({
 		onSuccess:function(){
 			var familias = sources.familias;
-		    var optionHTML = '<option id="playholder" value="">Familia...</option>';
+		    var optionHTML = '<option id="playholder" value="" style="color: grey">Familia...</option>';
 			for (var i = 0; i < familias.length; i++){
 			 	familias.getElement(i, { 
 			 		onSuccess: function(event) {
@@ -1302,8 +1305,9 @@ TPV.recargarFamiliasDialog = function (){
 	$('#select-familias2').empty();
 	$comp.sources.familias2.allEntities({
 		onSuccess:function(){
-			var familias = sources.familias;
+			var familias = $comp.sources.familias2;
 		    var optionHTML;
+		    
 			for (var i = 0; i < familias.length; i++){
 			 	familias.getElement(i, { 
 			 		onSuccess: function(event) {

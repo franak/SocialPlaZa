@@ -11,19 +11,16 @@ body > * {
 
 
 #headComp{
-/*	background-color:#262626;*/
 	width:100%;	
 	height:60px;	
-		
-	position:absolute;	
-	top:0px;
-	
-
+	min-width: 770px;
+	position:absolute;
+	background-color: black;
 }
 
-#headComp{
-	  background-color: black;
-	}
+
+
+
 	
 /*	#headComp{*/
 /*  background-color: #802c59;*/
@@ -55,9 +52,7 @@ body > * {
 	
 }
 
-#socialComponent{
 
-}
 
 .buttonRed{
 	background-color: "red";

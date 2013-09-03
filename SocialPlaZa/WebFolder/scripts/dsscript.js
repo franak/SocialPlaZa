@@ -400,14 +400,14 @@ appdsObj = function () {
 			$$($comp.id+"_richText15").show();
 			
 			$$($comp.id+"_richText14").setValue("Crear");//Botn Guardar pasa ser Crear
-			
+		
 			if($comp.sources.articulos.length != 0){
 				var codigoArticulo = $comp.sources.articulos.Codigo;
 				var vFamilia = ds.Articulos.getFamilia(codigoArticulo);
-				TPV.recargarFamiliasDialog();
+				
 				$("#select-familias2 option[value="+ vFamilia +"]").attr("selected","selected");
 			}else{
-				TPV.recargarFamiliasDialog();
+				
 				$("#select-familias2 option[value="+ $comp.sources.familias2.getCurrentElement() +"]").attr("selected","selected");
 			}
 			
@@ -435,9 +435,6 @@ appdsObj = function () {
 			sources.articulos1.query("Descripcion =:1",objeto._value,{
 			
 				onSuccess:function (){
-					
-					
-					TPV.recargarFamiliasDialog();
 					
 					$$($comp.id+"_richText4").show();//Mostrar el boton eliminar
 	
