@@ -1236,7 +1236,7 @@ TPV.pintarFamilias = function (){
     $('#select-familias').css('position','absolute');
     $('#select-familias').css('top','10px');
     $('#select-familias').css('left','420px');
-    $('#select-familias').css('heght','40px');
+    $('#select-familias').css('height','35px');
     var familias = sources.familias;
     var optionHTML = '<option id="playholder" value="" disabled selected style="display:none">Familia...</option>';	
 	for (var i = 0; i < familias.length; i++){
