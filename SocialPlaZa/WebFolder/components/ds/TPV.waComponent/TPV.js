@@ -1238,7 +1238,7 @@ TPV.pintarFamilias = function (){
     $('#select-familias').css('left','420px');
     $('#select-familias').css('heght','40px');
     var familias = sources.familias;
-    var optionHTML = '<option id="playholder" value="" style="color: grey">Familia...</option>';	
+    var optionHTML = '<option id="playholder" value="" disabled selected style="display:none">Familia...</option>';	
 	for (var i = 0; i < familias.length; i++){
 	 	familias.getElement(i, { 
 	 		onSuccess: function(event) {
@@ -1262,7 +1262,7 @@ TPV.recargarFamilias = function (){
 	sources.familias.allEntities({
 		onSuccess:function(){
 			var familias = sources.familias;
-		    var optionHTML = '<option id="playholder" value="" style="color: grey">Familia...</option>';
+		    var optionHTML = '<option id="playholder" value="" disabled selected style="display:none">Familia...</option>';
 			for (var i = 0; i < familias.length; i++){
 			 	familias.getElement(i, { 
 			 		onSuccess: function(event) {
