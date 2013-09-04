@@ -103,6 +103,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				tabla += "</table>";
 				pintar(tabla);
 				var total = totalTarjeta+totalEfectivo;
+				total = total.toFixed(2);
 				pintar("<h3>Total CAJA: "+total+"€</h3>");
 				pintar("<h3>Total Efectivo: "+totalEfectivo+"€</h3>");
 				pintar("<h3>Total Tarjeta: "+totalTarjeta+"€</h3>");

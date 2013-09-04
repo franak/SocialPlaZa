@@ -839,30 +839,34 @@ function dispensar(){
 			
 			if(aMediosPagos[i] != "" && aMediosPagos[i] != 0){
 				$comp.sources.cajasMovimientos.newEntity();
-				$comp.sources.cajasMovimientos.importeVenta = vSuma;
+				
 				$comp.sources.cajasMovimientos.entregado = aMediosPagos[i];
 				$comp.sources.cajasMovimientos.fecha = new Date();
 				$comp.sources.cajasMovimientos.Documento.set($comp.sources.docComercial);
 				$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
 				switch(i){
-					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo"); 
+					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo");
 							$comp.sources.cajasMovimientos.MedioPago.set(m);
 							console.log("valor del campo:"+aMediosPagos[i]);
 							console.log("diferenciaCambio: "+diferenciaCambio);
 							var cambio = aMediosPagos[i] - diferenciaCambio;
+							
 							/*console.log("Cambio: "+cambio);*/
 							diferenciaCambio = 0;
 							if(cambio > 0){
+								$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i] - cambio;
 								$comp.sources.docComercial.Cambio = cambio;
 								localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
 								//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
 						 		UI.alert(localStorage.cambio,'Devolución');
 
 							}else{
+								$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i];
 								localStorage.cambio= 0;
 							}
 							break;
 					case 1: var m = ds.MedioPago.asignarMedioPago("Tarjeta"); 
+							$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i];
 							$comp.sources.cajasMovimientos.MedioPago.set(m);
 							break;
 				}
