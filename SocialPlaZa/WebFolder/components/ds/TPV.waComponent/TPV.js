@@ -1265,6 +1265,7 @@ TPV.pintarFamilias = function (){
 		$('#playholder').remove();
 		var nombre = $(this).val();
 		$comp.sources.articulos.query("Familia.Nombre =:1",nombre);
+		qString = nombre;
 	});
 }
 
