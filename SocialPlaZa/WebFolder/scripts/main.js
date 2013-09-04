@@ -1,11 +1,6 @@
 ﻿
 WAF.onAfterInit = function onAfterInit() {// @lock
 
-//1º Lectura de la horientazion
-//readDeviceOrientation();
-
-//Evento que lee la horientazion
-
 
 
 // @region namespaceDeclaration// @startlock
@@ -47,8 +42,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		        document.addEventListener("touchstart", function(event) {
 		            scrollStartPos=this.scrollTop+event.touches[0].pageY;      
 		        },false);
-		     
-
+		        
 		        document.addEventListener("touchmove", function(event) {
 		            this.scrollTop=scrollStartPos-event.touches[0].pageY;
 		            event.preventDefault();
@@ -72,7 +66,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		$(':input').bind('blur',function() {
 			
 			
-		   // if(currentscroll != $(window).scrollTop()){
+		   //if(currentscroll != $(window).scrollTop()){
 		    	$(window).scrollTop(currentscroll);
 		   // }
 		});
@@ -82,11 +76,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		    document.body.scroll = "no"; // ie only
 		}
 		
+	
 		
 		
 		// llamadas a las funciones declaradas anteriormente
-		unloadScrollBars();
 		touchScroll();
+		unloadScrollBars();
+		
 		// -------------------------------------------------------
 		
 		/*
@@ -146,6 +142,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		fcBrain.welcome();
 		
 		fcBrain.welcomeHead();
+		
+		
 
 
 

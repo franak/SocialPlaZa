@@ -11,7 +11,6 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-	
 
 //ds Necesito la variable $comp en el componente dialogo para recargar resources desde alli;
 vComp = $comp;
@@ -215,12 +214,12 @@ qString = null;
 	btnAll.click = function btnAll_click (event)// @startlock
 	{// @endlock
 		UI.gifCargando();
-		qString = null;
 		$comp.sources.articulos.all();
 		$('.solapa').removeClass('btn-maniadmin-4');
 		botonTodos = getHtmlId('btnAll');
 		$$(botonTodos).setState('disabled');
 		TPV.recargarFamilias();
+		qString = null;
 		TPV.mantenerFoco();
 	};// @lock
 
@@ -1408,6 +1407,7 @@ function readDeviceOrientation() {
         break;
     }
 }
+
 
 }// @startlock
 return constructor;
