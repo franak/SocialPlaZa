@@ -460,7 +460,9 @@ qString = null;
 			$comp.sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
 			$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
 			$comp.sources.lineasCollection.save();
+			pos = $comp.sources.lineasCollection.Posicion;
 			$comp.sources.docComercial.serverRefresh();
+			
 			TPV.mantenerFoco();
 			$(window).scrollTop(0);
 			$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
@@ -556,7 +558,6 @@ qString = null;
 		if(docID){	
 			fcBrain.sumarLineas(id,docID)
 		}
-		
 		$$(id+"_dataGrid1").setSelectedRows([pos]);
 		
 	};// @lock
