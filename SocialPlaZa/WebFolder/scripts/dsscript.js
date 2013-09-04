@@ -245,39 +245,31 @@ appdsObj = function () {
 		if($$(esteObjeto.id).getState() != "disabled"){
 			
 		
-		//DS PONGO EL ESTADO DISABLED AL BOTON
-		//$$(esteObjeto.id).setState('disabled');
+			//DS PONGO EL ESTADO DISABLED AL BOTON
+			$$(esteObjeto.id).setState('disabled');
 		
-		/*JUEGO DE COLORES*/	
-		//$('.matrix_a').removeClass('tpv-btn');
-		//esteObjeto.addClass('tpv-btn');
-			//console.log($comp.sources.articulos.getCurrentElement().Codigo.value);
-			//console.log(esteObjeto);
 			var art = ds.Articulos.devolverArticulo(esteObjeto._value);
 			
 			var articuloCodigo = art.Codigo.value;
 			var docComercialID = $comp.sources.docComercial.ID;
 			
-			var lin = ds.Lineas.getLinea(articuloCodigo,docComercialID); //en el servidor.
-			
-		//	var lin = $comp.sources.lineas.query("Documento.ID=:1 AND Codigo =:2",docComercialID,articuloCodigo);
+			var lin = ds.Lineas.getLinea(articuloCodigo,docComercialID); //en el servidor
 			
 			if(lin != null){
 				pos = lin.Posicion.getValue();
-				//$$(id+"_dataGrid1").setSelectedRows([pos]);
 				$comp.sources.lineasCollection.select(lin.Posicion.getValue());
 				var cant = $comp.sources.lineasCollection.Cantidad + 1;
 				$comp.sources.lineasCollection.Cantidad = cant;
 				$comp.sources.lineasCollection.save({
 					onSuccess:function(){
-						//$comp.sources.lineasCollection.serverRefresh();
-						$(esteObjeto.id).setState('default');
+						$$(esteObjeto.id).setState('default');
 					}
 				});
 				
 			}else{
 				var aPos = ds.Lineas.getPosiciones(docComercialID);
-								
+				
+				//Se crea un registro en la coleccion lineasCollection;
 				$comp.sources.lineasCollection.newEntity();
 				$comp.sources.lineasCollection.Codigo = art.Codigo.value;
 				$comp.sources.lineasCollection.Descripcion = art.Descripcion.value;
@@ -307,8 +299,8 @@ appdsObj = function () {
 				
 				$comp.sources.lineasCollection.save({
 					onSuccess:function (event){
+						//Cuando se guarda se a–ade esta nueva entidad a la coleccion lineasCollection;
 						$comp.sources.lineasCollection.addEntity($comp.sources.lineasCollection.getCurrentElement());
-						//$comp.sources.lineasCollection.serverRefresh();
 						$$(esteObjeto.id).setState('default');
 					}
 				});	
@@ -329,27 +321,27 @@ appdsObj = function () {
 		var docComercialID = $comp.sources.docComercial.ID;
 		var art = ds.Articulos.devolverArticuloCodigo($$(id+"_textField4").getValue());
 		if(art != null){
+			
 		var lin = ds.Lineas.getLinea(art.Codigo.value,docComercialID); //en el servidor.
 				
 			if(lin != null){
-				lin.Cantidad.setValue(lin.Cantidad.getValue() + 1);
 				pos = lin.Posicion.getValue();
-				lin.save({
-					onSuccess:function (event){
-						$comp.sources.docComercial.collectionRefresh();
-					}
-				});
+				$comp.sources.lineasCollection.select(lin.Posicion.getValue());
+				var cant = $comp.sources.lineasCollection.Cantidad + 1;
+				$comp.sources.lineasCollection.Cantidad = cant;
+				$comp.sources.lineasCollection.save();
 				
 			}else{
 				var aPos = ds.Lineas.getPosiciones(docComercialID);
 			
-				sources.lineas.newEntity();
-				sources.lineas.Codigo = art.Codigo.value;
-				sources.lineas.Descripcion = art.Descripcion.value;
-				sources.lineas.PrecioUnitario = art.Precio.value;
-				sources.lineas.Cantidad = 1;
-				sources.lineas.Documento.set($comp.sources.docComercial);
-				sources.lineas.Almacen.set($comp.sources.almacenes);
+				//Se crea un registro en la coleccion lineasCollection;
+				$comp.sources.lineasCollection.newEntity();
+				$comp.sources.lineasCollection.Codigo = art.Codigo.value;
+				$comp.sources.lineasCollection.Descripcion = art.Descripcion.value;
+				$comp.sources.lineasCollection.PrecioUnitario = art.Precio.value;
+				$comp.sources.lineasCollection.Cantidad = 1;
+				$comp.sources.lineasCollection.Documento.set($comp.sources.docComercial);
+				$comp.sources.lineasCollection.Almacen.set($comp.sources.almacenes);
 				//DS si ha habido algun borrado previamente se le asigna automaticamente su posicion antigua
 				if(vPosRestada != null){
 					
@@ -361,19 +353,19 @@ appdsObj = function () {
 					
 				//DS si es la primera linea, se le da la posicion 0
 				}else if(aPos.length == 0){
-					sources.lineas.Posicion=0;
+					$comp.sources.lineasCollection.Posicion=0;
 					pos = 0;
-					 
+					
 				}else{
 					var n = aPos[0] + 1;
-					sources.lineas.Posicion = n;
+					$comp.sources.lineasCollection.Posicion = n;
 					pos = n;
 				}
 				
-				sources.lineas.save({
+				$comp.sources.lineasCollection.save({
 					onSuccess:function (event){
-						$comp.sources.docComercial.collectionRefresh();
-						
+						//Cuando se guarda se a–ade esta nueva entidad a la coleccion lineasCollection;
+						$comp.sources.lineasCollection.addEntity($comp.sources.lineasCollection.getCurrentElement());
 					}
 				});	
 			

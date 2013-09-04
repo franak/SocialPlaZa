@@ -555,7 +555,7 @@ function cargarDataPicker(){
 	}else{
 		$$(id+"_dialog1").hide();
 		$$(id+"_dialog3").hide();
-		$("#"+id+"_dialog2").css("top",100);
+		$("#"+id+"_dialog2").css("top",20);
 		$$(id+"_dialog2").show();
 	}
 	
