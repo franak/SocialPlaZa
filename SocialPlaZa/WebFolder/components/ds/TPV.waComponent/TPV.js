@@ -802,6 +802,7 @@ function articulo_btn(esteObjeto){
 	vTimeResta = vTimeResta - vTime;
 	
 	if (vTimeResta >= 700) {
+		TPV.recargarFamiliasDialog();
 		result = ds.Metodos.consultar("Familias");
 		$comp.sources.familias2.setEntityCollection(result);
 		vTime = 0;
