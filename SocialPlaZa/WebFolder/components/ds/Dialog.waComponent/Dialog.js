@@ -547,14 +547,12 @@ function cargarDataPicker(){
 
 	richText8.click = function richText8_click (event)// @startlock
 	{// @endlock
-		vComp.sources.docComercial.all({
-			onSuccess: function(){
+		
 				$("#"+id+"_dialog2").css("top",200);
 				$(window).scrollTop(0);
 				$$(id+"_dialog3").hide();
 				appds.closeDialogMovimiento();		
-			}
-		});
+			
 		
 	};// @lock
 
