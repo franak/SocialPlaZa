@@ -79,8 +79,9 @@ function comprobarFormulario(comp){
 }
 
 function registrarse(id){
-	if($$(id+'_checkbox3').getValue()){
+	//if($$(id+'_checkbox3').getValue()){
 		if (comprobarFormulario(id)) {
+			if($$(id+'_checkbox3').getValue()){
 		    var acceso=$('#'+id+'_inputUsuario').val();
 		    var pass=$('#'+id+'_inputPass').val();
 		    var nombre= acceso.split('@');
@@ -113,14 +114,17 @@ function registrarse(id){
 				}
 			}else{
 				UI.alert("El correo ya existe");
-			} 
+			}
+		  }else{
+			UI.alert("Debe aceptar la clausula de proteccion de datos");
+		  }
 	    } else {
 	        UI.alert("Revisa los campos del formularios");
 	        
 	    }
-	}else{
+	/*}else{
 		UI.alert("Debe aceptar la clausula de proteccion de datos");
-	}
+	}*/
 }
 
 

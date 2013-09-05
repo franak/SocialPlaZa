@@ -13,6 +13,16 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
+		var currentscroll = 0;
+
+		$(':input').bind('focus',function() {
+		    currentscroll = $(window).scrollTop();
+		});
+
+		$(':input').bind('blur',function() {
+		    $(window).scrollTop(0);  
+		});
+		
 	// @region namespaceDeclaration// @startlock
 	var richText14 = {};	// @richText
 	var richText10 = {};	// @richText
@@ -74,6 +84,7 @@ function constructor (id) {
 	richText3.click = function richText3_click (event)// @startlock
 	{// @endlock
 		fcBrain.login(id);
+		$(window).scrollTop(0); 
 	};// @lock
 
 	passwordInput.focus = function passwordInput_focus (event)// @startlock
