@@ -12,36 +12,42 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\\ 
+//++ Operaciones y cargas necesarias para el funcionamiento del TPV ++\\
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\\ 
+
+//++ Declaracion de Variables del TPV ++\\
+
+var app = {};
+var app = SPL.getUrlVars()["app"];
+//DS DECLARACION DE LA VARIABLE POS A LA QUE SE REFIERE A LAS POSICIONES DE LAS LINEAS
+pos = 0;
+vPosRestada = null;
+
+//DS DECLARACION DE qString PARA SABER EN QUE MOMENTO EN QUE FAMILIA ESTAMOS
+qString = null;
+
 //ds Necesito la variable $comp en el componente dialogo para recargar resources desde alli;
 vComp = $comp;
 
-btmodales.modalListaRegistros();
-btmodales.modalBienvenido();
-
-
-
-
-//-- FUNCION QUE CARGA TODOS LOS RECURSOS DEL COMPONENTE--\\
-
+//-- FUNCION QUE CARGA TODOS LOS RECURSOS DEL COMPONENTE (Tablas)--\\
 $(this.id).ready(function(){
 	
 	appds.cargarDataTPV(vComp);
 	
 });
 
+//++ Carga de Modales ++\\
+btmodales.modalListaRegistros();
+btmodales.modalBienvenido();
 
 
 //Tener el campo de busqueda de codigo enfocado y vacio a la vez;
 enfocar();
-
-
 function enfocar (){
 		
 	$("input").blur(function (){
-		
-		
 		switch (this.id){
-			
 			case id+"_textField4": break;
 			case id+"_textField5": break;
 			case id+"_textField10": break;
@@ -59,13 +65,10 @@ function enfocar (){
 			case "textField5": break;
 			case "textField9": break;
 			default : TPV.mantenerFoco();
-			
 		}
-		
 	});
-	
-	
 }
+
 
 // Llamada a la creacion de un menu dinamico de prueba;
 // Se crea un array con todos los elementos del menu que se quiera mostrar;
@@ -80,12 +83,6 @@ $("#"+id+"_bOpciones").toolbar({
 });
 
 
-
-	
-	
-
-
-
 //Activación del botón para imprimir		
 var printContinuar = getHtmlObj('bContinuarDispensar');
 
@@ -93,8 +90,6 @@ $(printContinuar).printPage({
       url: "impPages/ticket.html",
       message:"Imprimiendo Ticket..."
 });
-
-
 
 //Desactivo el doble click de los botones de TPV
 $('.matrix_a').dblclick(function(e){ 
@@ -104,23 +99,36 @@ $('.matrix_a').dblclick(function(e){
 //Evito que se seleccione el texto de los botones
 UI.disableSelection(document.body);
 
-//Se crean los modales de Bootstrap
+$('.matrix_articulos').live("touchstart", function(e){
+    e.preventDefault();
+});
 
-  
+/*
+--------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------
+*/
 
-var bNuevo = getHtmlObj('imageButton1');	
-//bNuevo.popover({'placement':'top', 'trigger' : 'hover', 'content' : 'Nuevo Artículo'});
+// Dos funciones para que cuando se esconda el teclado la pantalla vuelva a su posicion incial...¡¡
+
+var currentscroll = 0;
+
+$(':input').bind('focus',function() {
+	
+    currentscroll = $(window).scrollTop();
+ 
+});
+
+$(':input').bind('blur',function() {
+	
+    if(currentscroll != $(window).scrollTop()){
+    	$(window).scrollTop(currentscroll);
+    }
+});
 
 
-var app = {};
-var app = SPL.getUrlVars()["app"];
 
+//++ FIN Operaciones y cargas necesarias para el funcionamiento del TPV ++\\
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\\ 
 
-//DS DECLARACION DE LA VARIABLE POS A LA QUE SE REFIERE A LAS POSICIONES DE LAS LINEAS
-pos = 0;
-vPosRestada = null;
-//DS DECLARACION DE qString PARA SABER EN QUE MOMENTO EN QUE FAMILIA ESTAMOS
-qString = null;
 
 
 	
@@ -194,7 +202,7 @@ qString = null;
 
 	richText25.touchend = function richText25_touchend (event)// @startlock
 	{// @endlock
-		articulo_btn(this);
+		TPV.articulos_btn(this);
 		TPV.mantenerFoco();
 	};// @lock
 
@@ -206,7 +214,7 @@ qString = null;
 
 	richText25.mouseup = function richText25_mouseup (event)// @startlock
 	{// @endlock
-		articulo_btn(this);
+		TPV.articulos_btn(this);
 		TPV.mantenerFoco();
 		
 	};// @lock
@@ -334,7 +342,7 @@ qString = null;
 	bContinuarDispensar.click = function bContinuarDispensar_click (event)// @startlock
 	{// @endlock
 		$("#"+id+"_bOpciones").click();
-		dispensar();
+		TPV.dispensar();
 	};// @lock
 
 	bCancelDispensar.click = function bCancelDispensar_click (event)// @startlock
@@ -607,363 +615,6 @@ qString = null;
 	
 	};// @lock
 
-//Funciones de la página.
-
-
- 
- 
-//Cargar el pago (Dispensar)
-function cargarMedioPago(donde){
-	
-	$$(id+"_dialog1").enable();
- 		
-	var ruta = '/rest/MedioPago';
-	$.getJSON( ruta, function(data) {
-
-   var medios = data.__ENTITIES;
-  
-//  var tabla = getHtmlObj('container6');
-   var tabla = donde;
-     $(tabla).html('<form class="form-inline"> <fieldset> <legend>Dispensar</legend>'); 
-
-    for (var idx in medios){
-       medio = medios[idx];
-
-      $(tabla).append('<div class="control-group success">');
-      
-	//INPUTS DE BOOTSTRAP
-	
-      $(tabla).append('<label class="control-label" for="input_'+ medio.Codigo +'">'+ medio.Descripcion +'</label>');
-      $(tabla).append('<input  type="number"  id="input_'+ medio.Codigo +'" class="entrada cobro" placeholder='+ medio.Descripcion +' >');
-    //  $(tabla).append(' <span class="help-block">Indique el importe en '+ medio.Descripcion +'</span>');     
-   
-
-  //INPUTS DE WAKANDA:
-/*    $(tabla).append('<label id="{id}label1" for={id}input_'+ medio.Codigo +'" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-label default inherited  waf-label-textField control-label">'+medio.Descripcion+'</label>');
-	$(tabla).append('<input value="[vEfectivo]" type="text" id="{id}input_'+ medio.Codigo +'" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="'+ medio.Descripcion +'" data-format="###,###,###.00" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="vEfectivo" class="waf-widget waf-textField default inherited entrada"/>');
-    */
-    	$(tabla).append('</div></div>');
- 
-    } 
-    
- 	 $(tabla).append('</fieldset></form>'); 
- 	 $(tabla).fadeIn();
-	 $('#input_EF').attr("autofocus","autofocus"); 
-
-	 
-	 
-	 $(":input").bind('keypress', function(e) {
-		if(e.keyCode==13){
-			var activo = $$(id+"_dialog1").isDisabled();
-			console.log($$(id+"_dialog1").isDisabled());
-			if(activo == false){
-				$('#input_EF').blur();
-				var printContinuar = getHtmlObj('bContinuarDispensar');
-				$(printContinuar).click();
-			}
-			
-		}
-	  });
-  
-	
-});
-		
-
-
-setTimeout(function(){ //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
-		   
-
-
-
-
-var vSumaR =  Math.round(vSuma*100)/100;
-vSumaR = vSumaR.toFixed(2);
-		
- //INICIALIZACIÓN DE LOS CAMPOS Y EVENTOS
- 
- 
-
-var total={};
-var valorActual={};
-var diferencia = {};
-total = 0;  
-$(".cobro").blur( function(event) {
-	
-	total = 0;   
-	$(".cobro").each( function(){
-		total += $(this).val() * 1;
-	});
-
-});
-
-$(".cobro").focus( function(event) {
-
-	total += $(this).val() * 1;
-	diferencia = vSumaR - total;
-	
-	if(diferencia > 0){
-		diferencia = parseFloat(diferencia);//ds pasar a numero la variable
-		diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
-		console.log("diferencia :"+diferencia);
-		
-		if(this.id == 'input_EF'){
-			diferenciaCambio = diferencia;
-		}
-		$(this).val(diferencia);
-		$(this).select();
-	}else if(vSumaR < 0){
-		diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
-		$(this).val(diferencia);
-		$(this).select();
-		$('#input_EF').attr('readonly', true);
-		$('#input_TJ').attr('readonly', true);
-	}
-	
-	
-
-
-});	
-
-//->
-        },500);
-
-      
-}
- 
- 
-
-/*
---------------Funcion para iPad => para volver a su posicion original cuando salga el teclado-------------------
-*/
-
-var botonArticulo = getHtmlId('richText25');
-$('.matrix_articulos').live("touchstart", function(e){
-    e.preventDefault();
-});
-//btnArticulo
-
-// Dos funciones para que cuando se esconda el teclado la pantalla vuelva a su posicion incial...¡¡
-
-var currentscroll = 0;
-
-$(':input').bind('focus',function() {
-	
-    currentscroll = $(window).scrollTop();
- 
-});
-
-$(':input').bind('blur',function() {
-	
-    if(currentscroll != $(window).scrollTop()){
-    	$(window).scrollTop(currentscroll);
-    }
-});
-
-
-//Funcion de cargar los movimientos de caja e imprimir
-
-function cargarMovimientoCaja_btn(){
-	
-	var cobrado = $comp.sources.docComercial.Cobrado;
-	botonDispensar = getHtmlId('imageButton4');
-	if(cobrado != true){
-		
-		UI.gifCargando(); //el chirimbolo de "carga"
-			
-		var dialogo = getHtmlId("dialog1");
-		var jqdialogo = getHtmlObj("dialog1");		
-	
-		$("BODY").append($(jqdialogo));	
-		
-		$(jqdialogo).css("left",300);
-		setTimeout(function(){ //Espero a abrir el diálogo para que de tiempo a que se carguen los eventos
-		$$(dialogo).displayDialog();
-		},600);
-
-		var donde = getHtmlObj('container6');
-		//En funciones de la página:
-		cargarMedioPago(donde); //Le paso el contenedor dónde tiene que cargarlo
-		
-	}else{
-		
-		$$(botonDispensar).setState('disabled');
-		UI.alert('Ya está Cobrado','Atención');
-		
-	}
-	
-	
-}
-
-//Funcion cuando hacemos un click o mantenemos pulsado un articulo
-
-function articulo_btn(esteObjeto){
-	
-	var vTimeResta = new Date();
-	vTimeResta = vTimeResta - vTime;
-	
-	if (vTimeResta >= 700) {
-		TPV.recargarFamiliasDialog();
-		result = ds.Metodos.consultar("Familias");
-		$comp.sources.familias2.setEntityCollection(result);
-		vTime = 0;
-		var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
-		$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
-		
-		appds.estadoInicial($comp, "modificar",esteObjeto);
-		
-		
-	}else{
-		
-		var cobrado = $comp.sources.docComercial.Cobrado;
-		botonArticulo = getHtmlId('richText25');
-		if(cobrado != true){
-			
-			appds.anadirLinea($comp,esteObjeto);
-			
-		}else{
-			
-			$$(botonArticulo).setState('disabled');
-			UI.alert('Ya está Cobrado','Atención');
-			
-		}
-
-	}
-}
-
-
-
-function dispensar(){
-	var aMediosPagos = [$("#input_EF").val(),$("#input_TJ").val()]
-		
-		for (var i =0; i < aMediosPagos.length; i++){
-			
-			if(aMediosPagos[i] != "" && aMediosPagos[i] != 0){
-				$comp.sources.cajasMovimientos.newEntity();
-				$comp.sources.cajasMovimientos.entregado = aMediosPagos[i];
-				$comp.sources.cajasMovimientos.fecha = new Date();
-				$comp.sources.cajasMovimientos.Documento.set($comp.sources.docComercial);
-				$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
-				switch(i){
-					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo");
-							$comp.sources.cajasMovimientos.MedioPago.set(m);
-							var cambio = aMediosPagos[i] - diferenciaCambio;
-							
-							/*console.log("Cambio: "+cambio);*/
-							diferenciaCambio = 0;
-							if(cambio > 0){
-								$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i] - cambio;
-								$comp.sources.docComercial.Cambio = cambio;
-								localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
-								//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
-						 		UI.alert(localStorage.cambio,'Devolución');
-
-							}else{
-								$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i];
-								localStorage.cambio= 0;
-							}
-							break;
-					case 1: var m = ds.MedioPago.asignarMedioPago("Tarjeta"); 
-							$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i];
-							$comp.sources.cajasMovimientos.MedioPago.set(m);
-							break;
-				}
-				$comp.sources.cajasMovimientos.save({
-					onSuccess: function(){
-						$comp.sources.cajasMovimientos.serverRefresh();
-						
-					}
-				});
-			}
-
-		}
-		
-		var docActual = $comp.sources.docComercial.ID;
-		localStorage.docActual = docActual;
-		localStorage.Total = vSuma.toFixed(2);
-		$comp.sources.docComercial.Cobrado = true;
-		$comp.sources.docComercial.save();
-		
-		$$(id+"_dialog1").disable();
-		
-		$(window).scrollTop(0);
-		$$(getHtmlId("dialog1")).closeDialog({
-			onSuccess: function(){
-				if(localStorage.cambio  > 0){
-					UI.alert(localStorage.cambio,'Devolución');
-				}					
-			}
-		}); //Guardar button
-		
-	
-		 dataGrid1Lineas = getHtmlObj('dataGrid1');		
-		$('#dataGrid2 .waf-dataGrid-body').scrollLeft(10);
-   
- 
-}
-
-function listarDocComercial(){
-	   
-	
-	$comp.sources.docComercial.all({
-		onSuccess:function(){
-			var resultado = $comp.sources.docComercial;
-			var lineas = $comp.sources.lineasCollection;
-			var caja = $comp.sources.cajasTPV.Codigo;
-				
-			var html="";
-			//var html = '<ul class="nav nav-tabs nav-stacked">';
-			var html = "<table class='table table-hover ' id='tabla_tickets'>";
-
-			html += '<thead>'
-			+'<tr> <th>#Caja</th>'
-			+'<th>Venta Nº</th>'
-			+'<th>Descripción</th>'
-			+'<th>Importe</th>'
-			+'</thead><tbody>';
-
-			for (var i = 0; i < resultado.length; i++){
-				resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
-		        {
-		        
-		        	var entity = event.element;
-		        	
-					if (entity.Denom){
-						var denominacion = entity.Denom;
-					}else{
-						var denominacion = "";
-					}
-					
-			        if(entity.Cobrado == false){
-			       		var total = ds.Lineas.devolverTotal(entity.ID);
-			       		total = total.toFixed(2);
-			       		html += "<tr class='linkDoc lead' id='"+event.position+"'><td><h6><code>"+caja+"</code></h6></td><td><h6>"+entity.Numero +"</h6></td><td><h6 class='label label-success'>"+ denominacion +"</h6></td><td><h6>"+total+"€</h6></td></tr>";
-						console.log(event.position);
-		//	html += "<li><a class='linkDoc' id='"+event.position+"' ><h5>Numero: "+entity.Numero +" "+ denominacion +" </h5></a></li>";
-
-			       }
-		       }
-			   });
-			}
-			html += "</tbody></table>";
-			
-			//html += '</ul>';
-			
-			//$("#"+id+"_container16").append(html);
-			$('#modalListaBody').html(html);
-			
-		  	$('.linkDoc').click(function(){ 
-		  	UI.gifCargando();
-		    	$comp.sources.docComercial.select(this.id);
-		    	TPV.mantenerFoco();
-		    	$('#modalLista').modal('hide');
-		    	/*$("#"+id+"_container16").text("");
-		    	$(getHtmlId("dialog5")).closeDialog(); //cancel button*/
-		   	});
-		}
-	});
-	
-   	
-}
 
 //+++++++++++++++++++++++++++++++++++\\
 //++ OBJETO TPV (Funciones del tpv) ++\\
@@ -1019,6 +670,39 @@ TPV.modificaLinea = function(){
 		$("#"+$comp.id+"_textField12").focus();
 	}else{
 		UI.alert('Ya está Cobrado','Atención');
+	}
+}
+
+TPV.articulos_btn = function (esteObjeto){
+	var vTimeResta = new Date();
+	vTimeResta = vTimeResta - vTime;
+	
+	if (vTimeResta >= 700) {
+		TPV.recargarFamiliasDialog();
+		result = ds.Metodos.consultar("Familias");
+		$comp.sources.familias2.setEntityCollection(result);
+		vTime = 0;
+		var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
+		$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
+		
+		appds.estadoInicial($comp, "modificar",esteObjeto);
+		
+		
+	}else{
+		
+		var cobrado = $comp.sources.docComercial.Cobrado;
+		botonArticulo = getHtmlId('richText25');
+		if(cobrado != true){
+			
+			appds.anadirLinea($comp,esteObjeto);
+			
+		}else{
+			
+			$$(botonArticulo).setState('disabled');
+			UI.alert('Ya está Cobrado','Atención');
+			
+		}
+
 	}
 }
 
@@ -1192,7 +876,6 @@ TPV.cargarMedioPago = function(donde) {
 			if(diferencia > 0){
 				diferencia = parseFloat(diferencia);//ds pasar a numero la variable
 				diferencia = diferencia.toFixed(2);//ds fijar 2 decimales a la variable
-				console.log("diferencia :"+diferencia);
 				
 				if(this.id == 'input_EF'){
 					diferenciaCambio = diferencia;
@@ -1208,6 +891,126 @@ TPV.cargarMedioPago = function(donde) {
 			}
 		});	
      },500);
+}
+
+TPV.listarDocComercial = function(){
+	
+	$comp.sources.docComercial.all({
+		onSuccess:function(){
+			var resultado = $comp.sources.docComercial;
+			var lineas = $comp.sources.lineasCollection;
+			var caja = $comp.sources.cajasTPV.Codigo;
+				
+			var html="";
+			var html = "<table class='table table-hover ' id='tabla_tickets'>";
+
+			html += '<thead>'
+			+'<tr> <th>#Caja</th>'
+			+'<th>Venta Nº</th>'
+			+'<th>Descripción</th>'
+			+'<th>Importe</th>'
+			+'</thead><tbody>';
+
+			for (var i = 0; i < resultado.length; i++){
+				resultado.getElement(i, { onSuccess: function(event) // we get the element of position i  
+		        {
+		        
+		        	var entity = event.element;
+		        	
+					if (entity.Denom){
+						var denominacion = entity.Denom;
+					}else{
+						var denominacion = "";
+					}
+					
+			        if(entity.Cobrado == false){
+			       		var total = ds.Lineas.devolverTotal(entity.ID);
+			       		total = total.toFixed(2);
+			       		html += "<tr class='linkDoc lead' id='"+event.position+"'><td><h6><code>"+caja+"</code></h6></td><td><h6>"+entity.Numero +"</h6></td><td><h6 class='label label-success'>"+ denominacion +"</h6></td><td><h6>"+total+"€</h6></td></tr>";
+			       }
+		       }
+			   });
+			}
+			html += "</tbody></table>";
+			
+			$('#modalListaBody').html(html);
+			
+		  	$('.linkDoc').click(function(){ 
+		  	UI.gifCargando();
+		    	$comp.sources.docComercial.select(this.id);
+		    	TPV.mantenerFoco();
+		    	$('#modalLista').modal('hide');
+		   	});
+		}
+	});
+}
+
+TPV.dispensar = function(){
+	
+	var aMediosPagos = [$("#input_EF").val(),$("#input_TJ").val()]
+		
+		for (var i =0; i < aMediosPagos.length; i++){
+			
+			if(aMediosPagos[i] != "" && aMediosPagos[i] != 0){
+				$comp.sources.cajasMovimientos.newEntity();
+				$comp.sources.cajasMovimientos.entregado = aMediosPagos[i];
+				$comp.sources.cajasMovimientos.fecha = new Date();
+				$comp.sources.cajasMovimientos.Documento.set($comp.sources.docComercial);
+				$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
+				switch(i){
+					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo");
+							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							var cambio = aMediosPagos[i] - diferenciaCambio;
+							
+							/*console.log("Cambio: "+cambio);*/
+							diferenciaCambio = 0;
+							if(cambio > 0){
+								$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i] - cambio;
+								$comp.sources.docComercial.Cambio = cambio;
+								localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
+								//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
+						 		UI.alert(localStorage.cambio,'Devolución');
+
+							}else{
+								$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i];
+								localStorage.cambio= 0;
+							}
+							break;
+					case 1: var m = ds.MedioPago.asignarMedioPago("Tarjeta"); 
+							$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i];
+							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							break;
+				}
+				$comp.sources.cajasMovimientos.save({
+					onSuccess: function(){
+						$comp.sources.cajasMovimientos.serverRefresh();
+						
+					}
+				});
+			}
+
+		}
+		
+		var docActual = $comp.sources.docComercial.ID;
+		localStorage.docActual = docActual;
+		localStorage.Total = vSuma.toFixed(2);
+		$comp.sources.docComercial.Cobrado = true;
+		$comp.sources.docComercial.save();
+		
+		$$(id+"_dialog1").disable();
+		
+		$(window).scrollTop(0);
+		$$(getHtmlId("dialog1")).closeDialog({
+			onSuccess: function(){
+				if(localStorage.cambio  > 0){
+					UI.alert(localStorage.cambio,'Devolución');
+				}					
+			}
+		}); //Guardar button
+		
+	
+		 dataGrid1Lineas = getHtmlObj('dataGrid1');		
+		$('#dataGrid2 .waf-dataGrid-body').scrollLeft(10);
 }
 
 TPV.ticketPendientes = function (){

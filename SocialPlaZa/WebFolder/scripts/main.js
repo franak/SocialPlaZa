@@ -14,9 +14,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
 	
+	//++ Empieze de carga del sistema ++\\
 	
 	
- 		
 	/*
 		--- Funcion si existe en el sistema los eventos touch (iPad) ---
 	*/			
@@ -50,37 +50,15 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		    }
 		}
 		
+		touchScroll();
 		
-		
-		/*
-		--- Funcion para quitar el scroll del PC ---
-		*/
-		var currentscroll = 0;
-		$(window).scrollTop(currentscroll);
-		$(':input').bind('focus',function() {
-			
-		    currentscroll = $(window).scrollTop();
-		 
-		});
-
-		$(':input').bind('blur',function() {
-			
-			
-		   //if(currentscroll != $(window).scrollTop()){
-		    	$(window).scrollTop(currentscroll);
-		   // }
-		});
+		//++ Quitar el scroll en PC++\\
 		
 		function unloadScrollBars() {
-		 //   document.documentElement.style.overflow = 'hidden';  // firefox, chrome
+		    document.documentElement.style.overflow = 'hidden';  // firefox, chrome
 		    document.body.scroll = "no"; // ie only
 		}
 		
-	
-		
-		
-		// llamadas a las funciones declaradas anteriormente
-		touchScroll();
 		unloadScrollBars();
 		
 		// -------------------------------------------------------
@@ -95,9 +73,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		
 		//Desactivar la capitalizacion en los input
 		jQuery('input').attr('autocapitalize', 'off');
-		//$$('MainComp').hide();
 
+
+		//++ Procedimientos ¿Que entorno cargar? ++\\
+		
 		//DS CONSIGO EL USUARIO LOGUEADO, EL CONTENIDO DE LAS VARIABLES DE LA URL Y LA COOKIE DE SESION
+		
 		var cod = UI.getUrlVars()["cod"];
 		if(cod){
 			if(ds.Metodos.activarUser(cod)==true){
@@ -115,8 +96,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		var origen = UI.getUrlVars()["origin"];
 		var lasesion = sessionStorage.getItem("demo");
 		
-			//DS SI LA COOKIE SE SESSION EXISTE Y EL USUARIO NO ESTA LOGUEADO
-			//DS LA COOKIE DE SESSION ES ELIMINADA
+		//DS SI LA COOKIE SE SESSION EXISTE Y EL USUARIO NO ESTA LOGUEADO
+		//DS LA COOKIE DE SESSION ES ELIMINADA
 		if(lasesion && !user){		
 			sessionStorage.clear();
 		}
