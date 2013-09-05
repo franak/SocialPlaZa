@@ -133,7 +133,7 @@ $(':input').bind('focus',function() {
 $(':input').bind('blur',function() {
 	
     if(currentscroll != $(window).scrollTop()){
-    	$(window).scrollTop(currentscroll);
+    	$(window).scrollTop(0);
     }
 });
 

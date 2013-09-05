@@ -14,7 +14,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
 	
+	//++++++++++++++++++++++++++++++++++\\
 	//++ Empieze de carga del sistema ++\\
+	//++++++++++++++++++++++++++++++++++\\
 	
 	
 	/*
@@ -74,8 +76,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		//Desactivar la capitalizacion en los input
 		jQuery('input').attr('autocapitalize', 'off');
 
-
+		//+++++++++++++++++++++++++++++++++++++++++\\
 		//++ Procedimientos ¿Que entorno cargar? ++\\
+		//++++++++++++++++++++++++++++++++++++++++++\\
 		
 		//DS CONSIGO EL USUARIO LOGUEADO, EL CONTENIDO DE LAS VARIABLES DE LA URL Y LA COOKIE DE SESION
 		
