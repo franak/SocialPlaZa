@@ -277,6 +277,7 @@ appdsObj = function () {
 				$comp.sources.lineasCollection.Cantidad = 1;
 				$comp.sources.lineasCollection.Documento.set($comp.sources.docComercial);
 				$comp.sources.lineasCollection.Almacen.set($comp.sources.almacenes);
+				$comp.sources.lineasCollection.cajasTPV.set($comp.sources.cajasTPV);
 				//DS si ha habido algun borrado previamente se le asigna automaticamente su posicion antigua
 				if(vPosRestada != null){
 					
@@ -342,6 +343,7 @@ appdsObj = function () {
 				$comp.sources.lineasCollection.Cantidad = 1;
 				$comp.sources.lineasCollection.Documento.set($comp.sources.docComercial);
 				$comp.sources.lineasCollection.Almacen.set($comp.sources.almacenes);
+				$comp.sources.lineasCollection.cajasTPV.set($comp.sources.cajasTPV);
 				//DS si ha habido algun borrado previamente se le asigna automaticamente su posicion antigua
 				if(vPosRestada != null){
 					

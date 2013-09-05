@@ -2296,12 +2296,12 @@ table th[class*="span"],
   left: auto;
 }
 .dropdown-menu .divider {
-  *width: 100%;
-  height: 1px;
+  width: 100%;
+  height: 10px;
   margin: 9px 1px;
-  *margin: -5px 0 5px;
+  margin: -5px 0 5px;
   overflow: hidden;
-  background-color: #e5e5e5;
+  background-color: red;
   border-bottom: 1px solid #ffffff;
 }
 .dropdown-menu li > a {

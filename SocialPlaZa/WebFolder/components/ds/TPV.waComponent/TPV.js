@@ -70,7 +70,7 @@ function enfocar (){
 // Llamada a la creacion de un menu dinamico de prueba;
 // Se crea un array con todos los elementos del menu que se quiera mostrar;
 // La barra En diagonal "/" indica un espacio entre dos elementos;
-var arElementos = ["Nuevo Ticket","Borrar Ticket","Dispensar Ticket","Imprimir Duplicado","Ticket Pendientes","/","Elimina Linea","Modifica Linea","/","Ver Caja","/","Nuevo Articulo"];
+var arElementos = ["Nuevo Ticket","Borrar Ticket","Dispensar Ticket","Imprimir Duplicado","Ticket Pendientes","Elimina Linea","Modifica Linea","Ver Caja","Nuevo Articulo"];
 Menu.abrirMenuSencillo(arElementos,"MenuTPV",$comp);
 
 $("#"+id+"_bOpciones").toolbar({
@@ -839,7 +839,6 @@ function dispensar(){
 			
 			if(aMediosPagos[i] != "" && aMediosPagos[i] != 0){
 				$comp.sources.cajasMovimientos.newEntity();
-				
 				$comp.sources.cajasMovimientos.entregado = aMediosPagos[i];
 				$comp.sources.cajasMovimientos.fecha = new Date();
 				$comp.sources.cajasMovimientos.Documento.set($comp.sources.docComercial);
@@ -847,8 +846,6 @@ function dispensar(){
 				switch(i){
 					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo");
 							$comp.sources.cajasMovimientos.MedioPago.set(m);
-							console.log("valor del campo:"+aMediosPagos[i]);
-							console.log("diferenciaCambio: "+diferenciaCambio);
 							var cambio = aMediosPagos[i] - diferenciaCambio;
 							
 							/*console.log("Cambio: "+cambio);*/
