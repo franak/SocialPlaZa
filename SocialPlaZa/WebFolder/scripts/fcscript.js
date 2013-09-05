@@ -170,11 +170,6 @@ fcBrainObj = function() {
         if(abonado == true){
            $comp.sources.docComercial.Referencia = docReferencia;
         }
-        // employer is a relation attribute of the datasource; it has the set method
-        // we assign a datasource to it, hence its current element
-        //$comp.sources.docComercial.save();
-
-
         $comp.sources.docComercial.save({
             onSuccess: function(event) {
                 $comp.sources.docComercial.serverRefresh();
@@ -182,7 +177,9 @@ fcBrainObj = function() {
                 if(abonado == true){
                 	abonar($comp,docCobrado,almacen);
                 }
-                
+            },
+            onError:function(){
+            	UI.alert("No se ha podido crear el ticket Nuevo","ERROR");	
             }
         });
     }

@@ -170,10 +170,6 @@ $(':input').bind('blur',function() {
 	{// @endlock
 		alert(window.innerWidth + " x " + window.innerHeight);
 	};// @lock
-	
-
-	
-	
 
 	infoText.click = function infoText_click (event)// @startlock
 	{// @endlock
@@ -184,6 +180,9 @@ $(':input').bind('blur',function() {
 				ds.Articulos.borrarArticulosDemos({
 					onSuccess:function(){
 						$comp.sources.articulos.all();
+					},
+					onError:function(){
+						UI.alert("No se ha podido borrar los articulos demos","ERROR");
 					}
 				});
 			
@@ -258,7 +257,7 @@ $(':input').bind('blur',function() {
 
 	imageButton8.click = function imageButton8_click (event)// @startlock
 	{// @endlock
-		TPV.mantenerFoco();
+		//TPV.mantenerFoco();
 	};// @lock
 
 	textField4.blur = function textField4_blur (event)// @startlock
@@ -409,17 +408,28 @@ $(':input').bind('blur',function() {
 			$comp.sources.articulos.Precio = precio;
 			$comp.sources.articulos.Descripcion = descripcion;
 			$comp.sources.articulos.Familia.set(familia);
-			$comp.sources.articulos.save();
-			$comp.sources.articulos.serverRefresh();
-			if(WAF.directory.currentUser().fullName == "TG"){
-				ds.PreArticulos.creaPreArticulo(codigo,precio,descripcion,$comp.sources.familias2.Nombre);
-			}
+			$comp.sources.articulos.save({
+				onSuccess:function(){
+					$comp.sources.articulos.serverRefresh();
+					if(WAF.directory.currentUser().fullName == "TG"){
+						ds.PreArticulos.creaPreArticulo(codigo,precio,descripcion,$comp.sources.familias2.Nombre);
+					}
+				},
+				onError:function(){
+					UI.alert("No se ha podido crear el articulo","ERROR");
+				}
+			});
+			
 			$$(id+"_richText14").setState("default");
 			TPV.mantenerFoco();
 			$(window).scrollTop(0);
 			$$(id+"_dialog3").closeDialog();
 		}else{
-			$comp.sources.articulos.removeCurrent();
+			$comp.sources.articulos.removeCurrent({
+				onError:function(){
+					UI.alert("No se ha podido eliminar el articulo","ERROR");
+				}
+			});
 			$comp.sources.articulos.serverRefresh({
 				onSuccess:function (event){
 					$$(id+"_richText4").hide();
@@ -466,10 +476,14 @@ $(':input').bind('blur',function() {
 			$comp.sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val();
 			$comp.sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
 			$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
-			$comp.sources.lineasCollection.save();
+			$comp.sources.lineasCollection.save({
+				onError:function(){
+					UI.alert("No se ha podido modificar la linea","ERROR");
+				}
+			});
+			
 			pos = $comp.sources.lineasCollection.Posicion;
 			$comp.sources.docComercial.serverRefresh();
-			
 			TPV.mantenerFoco();
 			$(window).scrollTop(0);
 			$$(getHtmlId("dialog2")).closeDialog(); //Guardar button
@@ -524,6 +538,13 @@ $(':input').bind('blur',function() {
 							TPV.mantenerFoco();
 							$(window).scrollTop(0);
 							$$($comp.id+'_dialog3').closeDialog();
+						},
+						onError:function(){
+							UI.alert("No se ha podido modificar el articulo","ERROR");
+							$$($comp.id+"_richText14").setState("default");
+							TPV.mantenerFoco();
+							$(window).scrollTop(0);
+							$$($comp.id+'_dialog3').closeDialog();
 						}
 					});
 					
@@ -534,9 +555,6 @@ $(':input').bind('blur',function() {
 			}else{
 				$("#"+id+"_richText23").slideDown(100);
 			}
-			
-			
-			
 			
 		}
 	};// @lock
@@ -570,8 +588,7 @@ $(':input').bind('blur',function() {
 	};// @lock
 	
 	
-	
-	
+
 	// @region eventManager// @startlock
 	WAF.addListener(this.id + "_lineasCollection", "onElementSaved", lineasCollectionEvent.onElementSaved, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
@@ -740,30 +757,36 @@ TPV.borrarTicket = function (){
 	UI.confirm('¿Desea borrar este ticket?', 'Confirmacion', function(r) {
 	    if (r == true) {
 	    	
-	        $comp.sources.docComercial.removeCurrent();
-	        $comp.sources.docComercial.all({
-	            onSuccess: function(event) {
-	                if ($comp.sources.docComercial.length == 0) {
-	                    //ds.DocComercial.crearPrincipio
-	                    fcBrain.crearDocComercial($comp, 1, {
-	                        onSuccess: function(event) {
-	                            $comp.sources.docComercial.all({
-	                                onSuccess: function(event) {
-	                                    tamanio = $comp.sources.docComercial.length;
-	                                    if (tamanio == 0) {
-	                                        fcBrain.crearDocComercial($comp, 1);
-	                                        tamanio = 1;
-	                                    }
-	                                    setTimeout(function() { //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
-	                                        $comp.sources.docComercial.select(tamanio - 1);
+	        $comp.sources.docComercial.removeCurrent({
+	        	onSuccess:function(){
+	        		 $comp.sources.docComercial.all({
+			            onSuccess: function(event) {
+			                if ($comp.sources.docComercial.length == 0) {
+			                    //ds.DocComercial.crearPrincipio
+			                    fcBrain.crearDocComercial($comp, 1, {
+			                        onSuccess: function(event) {
+			                            $comp.sources.docComercial.all({
+			                                onSuccess: function(event) {
+			                                    tamanio = $comp.sources.docComercial.length;
+			                                    if (tamanio == 0) {
+			                                        fcBrain.crearDocComercial($comp, 1);
+			                                        tamanio = 1;
+			                                    }
+			                                    setTimeout(function() { //Le pongo un tiempo de espera porque al cargar, lineasCollection se refrescaba y perdía la posición.
+			                                        $comp.sources.docComercial.select(tamanio - 1);
 
-	                                    }, 300);
-	                                } // Fin de On Success de All
-	                            });// Fin de All
-	                        }
-	                    });
-	                }
-	            }
+			                                    }, 300);
+			                                } // Fin de On Success de All
+			                            });// Fin de All
+			                        }
+			                    });
+			                }
+			            }
+			        });
+	        	},
+	        	onError:function(){
+	        		UI.alert("No se ha podido eliminar el ticket","ERROR");
+	        	}
 	        });
 	    }
 	});
@@ -983,8 +1006,10 @@ TPV.dispensar = function(){
 				}
 				$comp.sources.cajasMovimientos.save({
 					onSuccess: function(){
-						$comp.sources.cajasMovimientos.serverRefresh();
-						
+						$comp.sources.cajasMovimientos.serverRefresh();	
+					},
+					onError:function(){
+						UI.alert("No se ha podido dispensar el ticket","ERROR");
 					}
 				});
 			}
@@ -1017,8 +1042,7 @@ TPV.ticketPendientes = function (){
 	$comp.sources.docComercial.save({
 		onSuccess:function(){
 			$('#modalLista').modal('show');
-			listarDocComercial();
-			
+			TPV.listarDocComercial();
 			TPV.mantenerFoco();
 		}
 	});

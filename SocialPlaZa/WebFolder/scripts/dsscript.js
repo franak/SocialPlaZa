@@ -14,26 +14,8 @@ appdsObj = function () {
         AltaUsuario : {
             path:"/components/ds/AltaUsuario.waComponent"
         },
-        Usuarios : {
-            path:"/components/ds/dsUsuarios.waComponent"
-        },
-        InputUsuarios : {
-            path:"/components/ds/InputUsuario.waComponent"
-        },
-        Entidades : {
-            path:"/components/ds/dsEntidades.waComponent"
-        },
-        Articulos : {
-            path:"/components/ds/dsArticulos.waComponent"
-        },
-        Empresa : {
-            path:"/components/ds/Empresa.waComponent"
-        },
         TPV : {
             path:"/components/ds/TPV.waComponent"
-        },
-        InputArticulo : {
-            path:"/components/ds/InputArticulo.waComponent"
         },
         Agenda : {
             path:"/components/ds/Agenda.waComponent"
@@ -92,14 +74,6 @@ appdsObj = function () {
      	
      }
      
-    /* functions.openWelcome = function () {
-		
-		$('#'+components.main).hide('fast');
-		$(components.main).loadComponent(components.defaults.landing.compPath);
-		$('#'+components.main).fadeIn('fast');
-
-	};
-     */
      //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
      //DS Declaracion de funciones
      //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -198,37 +172,7 @@ appdsObj = function () {
      	$$(components.sub1).loadComponent(components.Entorno1.path);
      	
      }
-     
-     this.openUsuario = function(){
-     	
-     	$$(components.dsComp).loadComponent(components.Usuarios.path);
-     	
-     }
-     
-     this.openInputUsuario = function(){
-     	
-     	$$(components.dsComp).loadComponent(components.InputUsuarios.path);
-     	
-     }
-     
-     this.openEntidad = function(){
-     	
-     	$$(components.dsComp).loadComponent(components.Entidades.path);
-     	
-     }
-     
-     this.openArticulo = function(){
-     	
-     	$$(components.dsComp).loadComponent(components.Articulos.path);
-     	
-     }
-     
-     this.openEmpresa = function(){
-     	
-     	$$(components.dsComp).loadComponent(components.Empresa.path);
-     	
-     }
-     
+ 
      this.openTPV = function(){
      	
      	$$(components.dsComp).loadComponent(components.TPV.path);
@@ -236,9 +180,7 @@ appdsObj = function () {
      }
      
      this.anadirLinea = function($comp,esteObjeto){
-     	
-
-
+     
 		var id = $comp.id; //FC Traemos el id mendiante el $comp. Siempre enviar $comp en lugar de id
 		
 		//DS CONDICIONO AL BOTON QUE LA ACCION ANTERIOR SE HA TERMINADO ¡¡
@@ -263,6 +205,9 @@ appdsObj = function () {
 				$comp.sources.lineasCollection.save({
 					onSuccess:function(){
 						$$(esteObjeto.id).setState('default');
+					},
+					onError:function(){
+						UI.alert("No se ha podido añadir el articulo","ERROR");
 					}
 				});
 				
@@ -303,6 +248,9 @@ appdsObj = function () {
 						//Cuando se guarda se añade esta nueva entidad a la coleccion lineasCollection;
 						$comp.sources.lineasCollection.addEntity($comp.sources.lineasCollection.getCurrentElement());
 						$$(esteObjeto.id).setState('default');
+					},
+					onError:function(){
+						UI.alert("No se ha podido añadir el articulo","ERROR");
 					}
 				});	
 			}
@@ -330,7 +278,11 @@ appdsObj = function () {
 				$comp.sources.lineasCollection.select(lin.Posicion.getValue());
 				var cant = $comp.sources.lineasCollection.Cantidad + 1;
 				$comp.sources.lineasCollection.Cantidad = cant;
-				$comp.sources.lineasCollection.save();
+				$comp.sources.lineasCollection.save({
+					onError:function(){
+						UI.alert("Error al añadir el articulo","ERROR");
+					}
+				});
 				
 			}else{
 				var aPos = ds.Lineas.getPosiciones(docComercialID);
@@ -368,6 +320,9 @@ appdsObj = function () {
 					onSuccess:function (event){
 						//Cuando se guarda se añade esta nueva entidad a la coleccion lineasCollection;
 						$comp.sources.lineasCollection.addEntity($comp.sources.lineasCollection.getCurrentElement());
+					},
+					onError:function(){
+						UI.alert("Error al añadir el articulo","ERROR");
 					}
 				});	
 			
@@ -634,78 +589,8 @@ appdsObj = function () {
 
 var appds = new appdsObj();
 
-function gritar(recurso){
-	alert(recurso);
-}
-
-function comprobarAbierto(titulo){
-	
-	for (var i=2; i<=$$("tabView1").countTabs()  ;i++) {
-		$$("tabView1").selectTab(i);
-		if($$("tabView1").getSelectedTab().menuItem.id == titulo){
-			return true;
-		}
-	}
-	 
-	return false;
-	
-}
-
-function newTab (title, component, id, entityID){
-  
-  	
-     $$("tabView1").addTab(title, true);
-
-     var selectedTab = $$("tabView1").getSelectedTab();
-     selectedTab.menuItem.id = title;
-     var tabContainerID = $$("tabView1").getTabContainer(selectedTab.index).id;
-     
-     if(entityID == null){
-          domID = Math.floor(Math.random()*100000)+1;
-         
-          var isNew = true;
-     }
-     var componentDOM = document.createElement('div');
-     componentDOM.setAttribute('id','comp_'+domID);
-     
-     document.body.appendChild(componentDOM);
-     
-     var componentWidget = new WAF.widget.Component({
-          'id': 'comp_' + domID,
-          'data-type': 'component',
-          'data-lib': 'WAF',
-          'data-constraint-top': 'true',
-          'data-constraint-right': 'true',
-          'data-constraint-left': 'true',
-          'data-constraint-bottom': 'true',
-          'class': 'compTransparente'
-     });
-
-     $$(tabContainerID).addChild(componentWidget);
-     componentWidget.loadComponent({
-          path: component,
-          userData: {entityID: entityID}
-     });    
-}
-
-function cargarFiltroPaises(id){
-	paises = ds.Entidades.getPaisesEmpresas();
-	
-	for (var i = 0; i <= paises.length-1; i++ ) {
-		$$(id+'_combobox1').addOption(paises[i],paises[i],false);
-	}
-	
-}
 
 
-
-function comprobarEntidad($comp){
-	var datos = $comp.sources.empresasCliente.getEntidadEmpresa();
-	/*alert(datos.entidad);
-	alert(datos.pais);*/
-	$comp.sources.entidades.query("ID ="+datos.entidad);
-	$comp.sources.paisesISO.query("ID ="+datos.pais);
-}
 
 function getTotal($comp,id){
 	
