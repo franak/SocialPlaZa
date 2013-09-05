@@ -561,14 +561,6 @@ $(':input').bind('blur',function() {
 	};// @lock
 
 
-	lineasCollectionEvent.onElementSaved = function lineasCollectionEvent_onElementSaved (event)// @startlock
-	{// @endlock
-		var docID = $comp.sources.docComercial.ID;
-		if(docID){	
-			fcBrain.sumarLineas(id,docID)
-		}
-	};// @lock
-
 	lineasCollectionEvent.onCollectionChange = function lineasCollectionEvent_onCollectionChange (event)// @startlock
 	{// @endlock
 		var docID = $comp.sources.docComercial.ID;
@@ -576,13 +568,12 @@ $(':input').bind('blur',function() {
 			fcBrain.sumarLineas(id,docID)
 		}
 		$$(id+"_dataGrid1").setSelectedRows([pos]);
-		
 	};// @lock
 	
 	
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_lineasCollection", "onElementSaved", lineasCollectionEvent.onElementSaved, "WAF");
+	WAF.addListener(this.id + "_lineasCollection", "onCollectionChange", lineasCollectionEvent.onCollectionChange, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_infoText", "click", infoText.click, "WAF");
 	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
@@ -617,7 +608,6 @@ $(':input').bind('blur',function() {
 	WAF.addListener(this.id + "_richText9", "click", richText9.click, "WAF");
 	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
 	WAF.addListener(this.id + "_richText15", "click", richText15.click, "WAF");
-	WAF.addListener(this.id + "_lineasCollection", "onCollectionChange", lineasCollectionEvent.onCollectionChange, "WAF");
 	// @endregion// @endlock
 
 	
@@ -1042,6 +1032,7 @@ TPV.ticketPendientes = function (){
 TPV.nuevoArticulo = function () {
 	result = ds.Metodos.consultar("Familias");
 	$comp.sources.familias2.setEntityCollection(result);
+	
 	TPV.recargarFamiliasDialog();
 	
 	var dialogo = getHtmlId("dialog3");//Coger el dialogo widget
@@ -1117,10 +1108,12 @@ TPV.pintarFamiliasDialog = function (){
     $('#select-familias2').css('top','150px');
     $('#select-familias2').css('left','200px');
     var familias = $comp.sources.familias2;
-    var optionHTML;	
+    var optionHTML;
+   
 	for (var i = 0; i < familias.length; i++){
 	 	familias.getElement(i, { 
 	 		onSuccess: function(event) {
+	 			 alert("e.e.e");
         		var entity = event.element;
         		optionHTML += '<option value="'+entity.Nombre+'">'+entity.Nombre+'</option>';
         		
@@ -1132,12 +1125,12 @@ TPV.pintarFamiliasDialog = function (){
 }
 
 TPV.recargarFamiliasDialog = function (){
-	$('#select-familias2').empty();
+	
 	$comp.sources.familias2.allEntities({
 		onSuccess:function(){
 			var familias = $comp.sources.familias2;
 		    var optionHTML;
-		    
+		    $('#select-familias2').empty();
 			for (var i = 0; i < familias.length; i++){
 			 	familias.getElement(i, { 
 			 		onSuccess: function(event) {

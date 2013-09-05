@@ -205,6 +205,10 @@ appdsObj = function () {
 				$comp.sources.lineasCollection.save({
 					onSuccess:function(){
 						$$(esteObjeto.id).setState('default');
+						var docID = $comp.sources.docComercial.ID;
+						if(docID){	
+							fcBrain.sumarLineas(id,docID)
+						}
 					},
 					onError:function(){
 						UI.alert("No se ha podido a–adir el articulo","ERROR");
@@ -279,6 +283,12 @@ appdsObj = function () {
 				var cant = $comp.sources.lineasCollection.Cantidad + 1;
 				$comp.sources.lineasCollection.Cantidad = cant;
 				$comp.sources.lineasCollection.save({
+					onSuccess:function(){
+						var docID = $comp.sources.docComercial.ID;
+						if(docID){	
+							fcBrain.sumarLineas(id,docID)
+						}
+					},
 					onError:function(){
 						UI.alert("Error al a–adir el articulo","ERROR");
 					}
