@@ -11,6 +11,40 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+	
+	if(data.userData.myParameter == "Empresa"){
+		
+		cargarFichaEmpresa();
+		$$(id+"_dialog3").hide()
+		$$(id+"_dialog2").hide({
+			onSuccess:function(){
+				$$(id+"_dialog1").show();
+			}
+		});
+		
+	}else if(data.userData.myParameter == "Movimiento"){
+		$$(id+"_dialog1").hide();
+		$$(id+"_dialog2").hide();
+		$("#"+id+"_dialog3").css("top",20);
+		$$(id+"_dialog3").show();
+		
+		$(":input").bind('keypress', function(e) {
+			if(e.keyCode==13){
+				$("#"+id+"_textField8").blur();
+				$("#"+id+"_richText26").click();
+			}
+	  });
+	  
+	}else{
+		$$(id+"_dialog1").hide();
+		$$(id+"_dialog3").hide();
+		$("#"+id+"_dialog2").css("top",20);
+		$$(id+"_dialog2").show();
+	}
+	
+	var objComponent = data.userData.myParameter2;
+		
+		
 		
 	var printCaja = getHtmlObj('printCaja');
 
@@ -529,37 +563,7 @@ function cargarDataPicker(){
 		$comp.sources.entidades.save();
 	};// @lock
 	
-	if(data.userData.myParameter == "Empresa"){
-		
-		cargarFichaEmpresa();
-		$$(id+"_dialog3").hide()
-		$$(id+"_dialog2").hide({
-			onSuccess:function(){
-				$$(id+"_dialog1").show();
-			}
-		});
-		
-	}else if(data.userData.myParameter == "Movimiento"){
-		$$(id+"_dialog1").hide();
-		$$(id+"_dialog2").hide();
-		$("#"+id+"_dialog3").css("top",20);
-		$$(id+"_dialog3").show();
-		
-		$(":input").bind('keypress', function(e) {
-			if(e.keyCode==13){
-				$("#"+id+"_textField8").blur();
-				$("#"+id+"_richText26").click();
-			}
-	  });
-	  
-	}else{
-		$$(id+"_dialog1").hide();
-		$$(id+"_dialog3").hide();
-		$("#"+id+"_dialog2").css("top",20);
-		$$(id+"_dialog2").show();
-	}
 	
-	var objComponent = data.userData.myParameter2;
 
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
