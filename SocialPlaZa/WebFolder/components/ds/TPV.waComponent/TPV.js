@@ -11,6 +11,19 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		
+//+++ ESQUEMA DEL CODIGO TPV.js +++\\
+/*
+
+	1.- Operaciones y cargas necesarias para el funcionamiento del TPV.
+	
+	2.- EventHandlers.
+	
+	3.- Declaracion Objeto TPV.
+
+*/
+//++++++++++++++++++++++++++++++++++\\	
+
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\\ 
 //++ Operaciones y cargas necesarias para el funcionamiento del TPV ++\\
@@ -675,7 +688,7 @@ TPV.articulos_btn = function (esteObjeto){
 	var vTimeResta = new Date();
 	vTimeResta = vTimeResta - vTime;
 	
-	if (vTimeResta >= 700) {
+	if (vTimeResta >= 500) {
 		TPV.recargarFamiliasDialog();
 		result = ds.Metodos.consultar("Familias");
 		$comp.sources.familias2.setEntityCollection(result);
@@ -1052,6 +1065,7 @@ TPV.nuevoArticulo = function () {
 TPV.pintarFamilias = function (){
 	var selectElement = document.createElement('select');
 	selectElement.setAttribute('id','select-familias');
+	selectElement.setAttribute('tabindex','-1');
     $('#'+id+'_containerArticulos').append(selectElement);
     $('#select-familias').css('position','absolute');
     $('#select-familias').css('top','10px');
@@ -1103,6 +1117,7 @@ TPV.pintarFamiliasDialog = function (){
 	
 	var selectElement = document.createElement('select');
 	selectElement.setAttribute('id','select-familias2');
+	selectElement.setAttribute('tabindex','13');
     $('#'+id+'_container11').append(selectElement);
     $('#select-familias2').css('position','absolute');
     $('#select-familias2').css('top','150px');
