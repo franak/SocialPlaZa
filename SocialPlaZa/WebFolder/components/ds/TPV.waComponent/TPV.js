@@ -145,7 +145,6 @@ $(':input').bind('blur',function() {
 	var imageButton8 = {};	// @buttonImage
 	var textField4 = {};	// @textField
 	var textField3 = {};	// @textField
-	var button11 = {};	// @button
 	var docComercialEvent = {};	// @dataSource
 	var btnArticulo = {};	// @richText
 	var imageButton14 = {};	// @buttonImage
@@ -299,13 +298,6 @@ $(':input').bind('blur',function() {
 				$(window).scrollTop(0);
 			}
 		});
-	};// @lock
-
-	button11.click = function button11_click (event)// @startlock
-	{// @endlock
-		$("#"+id+"_container16").text("");
-    	$$(getHtmlId("dialog5")).closeDialog(); //cancel button
-    			
 	};// @lock
 
 	docComercialEvent.onCurrentElementChange = function docComercialEvent_onCurrentElementChange (event)// @startlock
@@ -607,7 +599,6 @@ $(':input').bind('blur',function() {
 	WAF.addListener(this.id + "_imageButton3", "click", imageButton3.click, "WAF");
 	WAF.addListener(this.id + "_imageButton2", "click", imageButton2.click, "WAF");
 	WAF.addListener(this.id + "_imageButton8", "click", imageButton8.click, "WAF");
-	WAF.addListener(this.id + "_button11", "click", button11.click, "WAF");
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "mousedown", btnArticulo.mousedown, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "mouseup", btnArticulo.mouseup, "WAF");
