@@ -181,6 +181,10 @@ $(':input').bind('blur',function() {
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
 		alert(window.innerWidth + " x " + window.innerHeight);
+		/*$("MainComp").removeComponent();
+		$("rightComp").removeComponent();
+		$("socialComponent").removeComponent();
+		appds.openAdmin();*/
 		
 	};// @lock
 

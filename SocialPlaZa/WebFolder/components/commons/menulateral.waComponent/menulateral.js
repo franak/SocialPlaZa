@@ -11,13 +11,21 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		
+	
 
 var menuContainer = getHtmlObj ('container10');
-$(menuContainer).append('<ul class="nav nav-pills nav-stacked">'
+
+var menu = '<ul class="nav nav-pills nav-stacked">'
 +'  <li class="nav-header">MenPrincipal</li>'
-+'  <li class="active"><a href="main.html">Home</a></li>'
-+'  <li><a href="javascript:void(0)" onclick="appds.openAgenda();">Agenda</a></li>'
-+' <li class="divider"></li>'
++'  <li class="active"><a href="main.html">Home</a></li>';
+var user = WAF.directory.currentUser();
+if(user.fullName != "TG"){
+	menu +='  <li><a href="javascript:void(0)" onclick="appds.openAgenda();">Agenda</a></li>';
+}else{
+	menu +='  <li><a href="javascript:void(0)" onclick="appds.openAdmin();">Administracion</a></li>';
+}
+menu +=' <li class="divider"></li>'
 +'  <li class="nav-header">MenSecundario</li>'
 +' <li><a href="#">Sección 2</a></li>'
 +'  <li><a href="#">Cositas</a></li>'
@@ -27,11 +35,10 @@ $(menuContainer).append('<ul class="nav nav-pills nav-stacked">'
 +' <ul class="dropdown-menu" > <!-- links -->'
 +'  <li class="active"><a href="#">Home</a></li>'
 +'  <li><a href="#">Library</a></li>'  
-
 +'</ul>'
++'</ul>';
 
-
-+'</ul>');
+$(menuContainer).append(menu);
 
 function abrirAgenda(){
 	appds.openAgenda();

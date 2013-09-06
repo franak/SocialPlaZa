@@ -22,6 +22,9 @@ appdsObj = function () {
         },
         Dialog : {
             path:"/components/ds/Dialog.waComponent"
+        },
+        Admin : {
+            path:"/components/ds/Administracion.waComponent"
         }
     };
         
@@ -78,11 +81,7 @@ appdsObj = function () {
      //DS Declaracion de funciones
      //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
      
-     
-     this.comprobarActivacion = function(cod) {
-     	
-     	
-     }
+
      
      this.inicio = function() {
      	
@@ -104,6 +103,12 @@ appdsObj = function () {
 
      }
      
+     this.openAdmin = function(){
+     	$$("MainComp").removeComponent();
+		$$("rightComp").removeComponent();
+		$$("socialComponent").removeComponent();
+    	$$("adminComp").loadComponent(components.Admin.path);
+     }
      
      this.openLogin = function() {
      	

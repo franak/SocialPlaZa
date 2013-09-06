@@ -12,7 +12,7 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		$$('mlateralComp').loadComponent('/components/commons/menulateral.waComponent');
-$('#mlateralComp').hide();
+		$('#mlateralComp').hide();
 	// @region namespaceDeclaration// @startlock
 	var sNomUsu = {};	// @richText
 	var richText14 = {};	// @richText
