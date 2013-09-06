@@ -41,9 +41,22 @@ function constructor (id) {
 	admin.abrirPestania = function(nombre){
 		
 		switch(nombre){
-			case "usuarios": admin.nuevoTab("Usuarios","dt_usuarios","usuariosComp","/components/Administracion/Usuarios.waComponent");
+			case "usuarios": if(admin.comprobarAbierto("dt_usuarios")==false){admin.nuevoTab("Usuarios","dt_usuarios","usuariosComp","/components/Administracion/Usuarios.waComponent");}
 				
 		}
+	}
+	
+	admin.comprobarAbierto = function(titulo){
+	
+		for (var i=2; i<=$$(id+"_tabView1").countTabs()  ;i++) {
+			$$(id+"_tabView1").selectTab(i);
+			if($$(id+"_tabView1").getSelectedTab().menuItem.id == titulo){
+				return true;
+			}
+		}
+		 
+		return false;
+	
 	}
 	
 	admin.nuevoTab = function(title, identificador,identificadorComponente, component, entityID){
