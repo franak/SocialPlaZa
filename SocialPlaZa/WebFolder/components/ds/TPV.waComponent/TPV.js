@@ -137,12 +137,44 @@ $(':input').bind('blur',function() {
     }
 });
 
+//-- Procedimiento del cambio de orientazion del iPad--\\
+
+readDeviceOrientation();
+window.onorientationchange = readDeviceOrientation;
+function readDeviceOrientation() {
+
+    switch (window.orientation) {  
+    case 0:  
+    
+        // Portrait
+        TPV.orientacionVertical();
+        break; 
+        
+    case 180:  
+    
+        // Portrait (Upside-down)
+        TPV.orientacionVertical();
+        break; 
+  
+    case -90:  
+    
+        // Landscape (Clockwise)
+        TPV.orientacionHorizontal();
+        break;  
+  
+    case 90:  
+    
+        // Landscape  (Counterclockwise)
+        TPV.orientacionHorizontal();
+        break;
+    }
+}
 
 
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\\ 
 //++ FIN Operaciones y cargas necesarias para el funcionamiento del TPV ++\\
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\\ 
-
-
 
 	
 	// @region namespaceDeclaration// @startlock
@@ -181,10 +213,7 @@ $(':input').bind('blur',function() {
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
 		alert(window.innerWidth + " x " + window.innerHeight);
-		/*$("MainComp").removeComponent();
-		$("rightComp").removeComponent();
-		$("socialComponent").removeComponent();
-		appds.openAdmin();*/
+		
 		
 	};// @lock
 
@@ -632,9 +661,14 @@ $(':input').bind('blur',function() {
 	};// @lock
 
 
+
+
 //+++++++++++++++++++++++++++++++++++\\
 //++ OBJETO TPV (Funciones del tpv) ++\\
 //+++++++++++++++++++++++++++++++++++\\
+
+
+
 
 TPV = {};
 
@@ -824,7 +858,6 @@ TPV.cargarMovimientoCaja = function (){
 		
 	}else{
 		
-		$$(botonDispensar).setState('disabled');
 		UI.alert('Ya está Cobrado','Atención');
 		
 	}
@@ -1209,36 +1242,7 @@ TPV.orientacionHorizontal = function (){
 	$("#rightComp_container4").css("top","408px");
 	$("#rightComp_container4").css("left","0px");
 }
-readDeviceOrientation();
-window.onorientationchange = readDeviceOrientation;
-function readDeviceOrientation() {
 
-    switch (window.orientation) {  
-    case 0:  
-    
-        // Portrait
-        TPV.orientacionVertical();
-        break; 
-        
-    case 180:  
-    
-        // Portrait (Upside-down)
-        TPV.orientacionVertical();
-        break; 
-  
-    case -90:  
-    
-        // Landscape (Clockwise)
-        TPV.orientacionHorizontal();
-        break;  
-  
-    case 90:  
-    
-        // Landscape  (Counterclockwise)
-        TPV.orientacionHorizontal();
-        break;
-    }
-}
 
 
 }// @startlock

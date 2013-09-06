@@ -98,9 +98,6 @@ appdsObj = function () {
      
      this.cerraWelcome = function(){
      	$$(components.main).removeComponent();
-
- //$('#containerLanding').hide();
-
      }
      
      this.openAdmin = function(){
