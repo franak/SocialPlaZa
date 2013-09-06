@@ -96,33 +96,32 @@ guidedModel =// @startlock
                 var collDocumentos = ds.DocComercial.createEntityCollection();
                 
                 // Fill the collection to delete
+                
+                var flag = false;
+                
                 inSelectedRows.forEach(function(rowNum) {
                 	
                 	// se a–ade a una collecion los documentos afectados por la eliminacion de los registros
-                	if(this[rowNum].Documento != null){
-                		var doc = ds.DocComercial.find("ID =:1", this[rowNum].Documento.ID);
-                		collDocumentos.add(doc);
+                	if(this[rowNum].Documento == null){
+                		toDelete.add( this[rowNum] );
+                	}else{
+                		flag = true;	
                 	}
               
-                    toDelete.add( this[rowNum] );
-                    
                 }, this);
                 
-                // se modifica el ticket a pendiente
-                collDocumentos.forEach(function(registro) {
-                	
-                	registro.Cobrado = false;
-                	registro.Cambio = 0;
-                	registro.save();
-                    
-                }, this);
-                
-                // Reduce current collection
-                var newColl = this.minus( toDelete );
-                // Delete what needs to be deleted
-                toDelete.remove();
-                // Return the new collection
-                return newColl;
+             	if(flag == true){
+             		return "error";
+             		
+         		}else{
+         			// Reduce current collection
+	                var newColl = this.minus( toDelete );
+	                // Delete what needs to be deleted
+	                toDelete.remove();
+	                // Return the new collection
+	                return newColl;
+         		}
+            
 			}// @startlock
 		},
 		events :

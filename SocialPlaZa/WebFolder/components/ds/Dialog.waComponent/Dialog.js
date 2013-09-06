@@ -4,6 +4,9 @@
 // Add the code that needs to be shared between components here
 
 function constructor (id) {
+	$("#"+id+"_dialog1").hide();
+	$("#"+id+"_dialog2").hide();
+	$("#"+id+"_dialog3").hide();
 
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -11,36 +14,28 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+			
+		$comp.sources.cajasTPV.all();
+		$comp.sources.medioPago.all();	
+		$comp.sources.docComercial.all();	
+		
 	
-	if(data.userData.myParameter == "Empresa"){
+		if(data.userData.myParameter == "Empresa"){
+			
+			cargarFichaEmpresa();
+			$("#"+id+"_dialog1").css("top",20);
+			$$(id+"_dialog1").show();
+			
+		}else if(data.userData.myParameter == "Movimiento"){
+			
+			cargarDataPicker(); 
+			
+		}else{
+			
+			$("#"+id+"_dialog2").css("top",20);
+			$$(id+"_dialog2").show();
+		}
 		
-		cargarFichaEmpresa();
-		$$(id+"_dialog3").hide()
-		$$(id+"_dialog2").hide({
-			onSuccess:function(){
-				$$(id+"_dialog1").show();
-			}
-		});
-		
-	}else if(data.userData.myParameter == "Movimiento"){
-		$$(id+"_dialog1").hide();
-		$$(id+"_dialog2").hide();
-		$("#"+id+"_dialog3").css("top",20);
-		$$(id+"_dialog3").show();
-		
-		$(":input").bind('keypress', function(e) {
-			if(e.keyCode==13){
-				$("#"+id+"_textField8").blur();
-				$("#"+id+"_richText26").click();
-			}
-	  });
-	  
-	}else{
-		$$(id+"_dialog1").hide();
-		$$(id+"_dialog3").hide();
-		$("#"+id+"_dialog2").css("top",20);
-		$$(id+"_dialog2").show();
-	}
 	
 	var objComponent = data.userData.myParameter2;
 		
@@ -53,11 +48,9 @@ function constructor (id) {
 	      message:"Imprimiendo Caja..."
 	});
 		
-	$comp.sources.medioPago.all();
-	$comp.sources.cajasTPV.all();
-	$comp.sources.docComercial.all();
+	
 
-	cargarDataPicker();
+
 		
 function cargarDataPicker(){
 	
@@ -110,14 +103,25 @@ function cargarDataPicker(){
 	var f1 = new Date(anio, mes, dia);
 	
 	
-	$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f0,f1);
+	$comp.sources.cajasMovimientos.query("fecha >=:1 and fecha <:2",f0,f1,{
+		onSuccess:function(){
+			$$(id+"_dialog3").show();
+			$("#"+id+"_dialog3").css("top",20);
+			//$$(id+"_dialog3").displayDialog();
+			$(":input").bind('keypress', function(e) {
+				if(e.keyCode==13){
+					$("#"+id+"_textField8").blur();
+					$("#"+id+"_richText26").click();
+				}
+		    });
+		}
+	});
 	
 	$(".add-on").click(function(){
 			
 			$(".ui-datepicker-inline").css("position","absolute");
 			$(".ui-datepicker-inline").css("left","400px");
 			$("#"+id+"_container9").css("height","240px");
-			
 			$(".ui-datepicker-inline").slideToggle('200');
 	
 	});
@@ -133,10 +137,8 @@ function cargarDataPicker(){
 					var mes = fecha.substring(3,5);
 					mes = mes-1;
 					var anio = fecha.substring(6);
-					
 					//f2 es la fecha inicio
 					var f2 = new Date(anio, mes, dia);
-				
 					dia = parseInt(dia);
 					dia++;
 					//f3 es la fecha fin
@@ -522,7 +524,11 @@ function cargarDataPicker(){
 		if(confirm("¿Desea eliminar lo(s) movimiento(s) de caja seleccionado(s)?")){
 			$comp.sources.cajasMovimientos.eliminarSeleccionados( {
 			    onSuccess: function(evt) {
-			       $comp.sources.cajasMovimientos.setEntityCollection( evt.result );
+			    	if(evt.result == "error"){
+			    		alert("No se puede borrar tickets dispensados");
+			    	}else{
+			    		$comp.sources.cajasMovimientos.setEntityCollection( evt.result );	
+			    	}
 			    }
 			}, $$(id+'_dataGrid1').getSelectedRows());
 		}
@@ -547,13 +553,10 @@ function cargarDataPicker(){
 
 	richText8.click = function richText8_click (event)// @startlock
 	{// @endlock
-		
-				$("#"+id+"_dialog2").css("top",200);
-				$(window).scrollTop(0);
-				$$(id+"_dialog3").hide();
-				appds.closeDialogMovimiento();		
-			
-		
+
+		$(window).scrollTop(0);
+		$$(id+"_dialog3").hide();
+		$comp.removeComponent();		
 	};// @lock
 
 	fileUpload1.filesUploaded = function fileUpload1_filesUploaded (event)// @startlock
@@ -577,7 +580,7 @@ function cargarDataPicker(){
 			onSuccess:function(){
 				ds.Entidades.asignarPais($comp.sources.entidades.ID,$('#select-paises').val());
 				$(window).scrollTop(0);
-				$$(id+"_dialog1").hide();
+				$$(id+"_dialog1").closeDialog();
 				appds.closeDialogEmpresa();
 			}
 		});
