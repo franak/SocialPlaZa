@@ -558,6 +558,24 @@ guidedModel =// @startlock
 		},
 		methods :
 		{// @endlock
+			insertarLinea:function(articuloDescrpcion,doc,almacen,caja)
+			{// @lock
+				
+				var articulo = ds.Articulos.devolverArticulo(articuloDescrpcion);
+				var newLinea = new ds.Lineas({
+					
+					Codigo: articulo.Codigo,
+					Descripcion: articulo.Descripcion,
+					PrecioUnitario: articulo.Precio,
+					Cantidad: 1,
+					Documento: doc,
+					Almacen: almacen,
+					Caja: caja
+					
+				}).save();
+				
+				return newLinea;
+			},// @lock
 			devolverTotal:function(docID)
 			{// @lock
 				var documento = ds.DocComercial.find("ID =:1",docID);

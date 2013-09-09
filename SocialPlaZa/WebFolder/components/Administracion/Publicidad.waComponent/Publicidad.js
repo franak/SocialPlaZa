@@ -11,7 +11,23 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		
+var currentscroll = 0;
 
+$(':input').bind('focus',function() {
+	
+    currentscroll = $(window).scrollTop();
+ 
+});
+
+$(':input').bind('blur',function() {
+	
+    if(currentscroll != $(window).scrollTop()){
+    	$(window).scrollTop(0);
+    }
+});
+
+ 
 	// @region namespaceDeclaration// @startlock
 	var button1 = {};	// @button
 	// @endregion// @endlock

@@ -1,6 +1,0 @@
-﻿{
-    "name"    : "tablaAdministracion",    
-    "html"    : "tablaAdministracion.html",
-    "styles"  : ["tablaAdministracion.css"],
-    "scripts" : ["tablaAdministracion.js"]
-}

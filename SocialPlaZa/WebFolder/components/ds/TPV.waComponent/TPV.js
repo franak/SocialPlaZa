@@ -212,7 +212,8 @@ function readDeviceOrientation() {
 
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
-		alert(window.innerWidth + " x " + window.innerHeight);
+		//alert(window.innerWidth + " x " + window.innerHeight);
+		appds.openAdmin();
 		
 		
 	};// @lock
@@ -615,6 +616,7 @@ function readDeviceOrientation() {
 			fcBrain.sumarLineas(id,docID)
 		}
 		$$(id+"_dataGrid1").setSelectedRows([pos]);
+		
 	};// @lock
 	
 	

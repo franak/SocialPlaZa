@@ -229,6 +229,7 @@ appdsObj = function () {
 				$comp.sources.lineasCollection.Documento.set($comp.sources.docComercial);
 				$comp.sources.lineasCollection.Almacen.set($comp.sources.almacenes);
 				$comp.sources.lineasCollection.cajasTPV.set($comp.sources.cajasTPV);
+				
 				//DS si ha habido algun borrado previamente se le asigna automaticamente su posicion antigua
 				if(vPosRestada != null){
 					
@@ -253,6 +254,7 @@ appdsObj = function () {
 					onSuccess:function (event){
 						//Cuando se guarda se a–ade esta nueva entidad a la coleccion lineasCollection;
 						$comp.sources.lineasCollection.addEntity($comp.sources.lineasCollection.getCurrentElement());
+						
 						$$(esteObjeto.id).setState('default');
 					},
 					onError:function(){

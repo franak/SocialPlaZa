@@ -228,14 +228,9 @@ function cargarDataPicker(){
 		 		onSuccess: function(event) {
 		 			
 		 			var entity = event.element;
-		 			
-		 			
-		      			totalEfectivo += entity.importeVenta;
+	      			totalEfectivo += entity.importeVenta;
+	      			totalTarjeta += entity.importeVenta;
 		      		
-		      			totalTarjeta += entity.importeVenta;
-		      		
-		 			
-	   
 	       		}
 		   });
 		 }
