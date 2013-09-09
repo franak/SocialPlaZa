@@ -922,6 +922,8 @@ TPV.cargarMedioPago = function(donde) {
 			$(".cobro").each( function(){
 				total += $(this).val() * 1;
 			});
+			$(window).scrollTop(0);
+			
 
 		});
 
@@ -946,6 +948,7 @@ TPV.cargarMedioPago = function(donde) {
 				$('#input_EF').attr('readonly', true);
 				$('#input_TJ').attr('readonly', true);
 			}
+			
 		});	
      },500);
 }

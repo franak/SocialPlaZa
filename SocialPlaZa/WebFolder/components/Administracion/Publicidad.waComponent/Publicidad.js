@@ -22,9 +22,9 @@ $(':input').bind('focus',function() {
 
 $(':input').bind('blur',function() {
 	
-    if(currentscroll != $(window).scrollTop()){
+    
     	$(window).scrollTop(0);
-    }
+    
 });
 
  

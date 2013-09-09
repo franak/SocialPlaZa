@@ -7,6 +7,7 @@ function constructor (id) {
 	$("#"+id+"_dialog1").hide();
 	$("#"+id+"_dialog2").hide();
 	$("#"+id+"_dialog3").hide();
+	$("#ui-datepicker-div").css("z-index","99999999");
 
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -70,7 +71,7 @@ function cargarDataPicker(){
 	
 	
 	var fechaElement =  '<div id="datepicker" class="input-append date" data-date-format="dd-mm-yyyy">'
-    					+'<input class="span2" size="16" type="text" value="'+dia+"/"+mes+"/"+anio+'"><span class="add-on"><i class="icon-calendar"></i></span>'
+    					+'<input class="span2" size="16" type="text" value="'+dia+"/"+mes+"/"+anio+'"><span2 class="add-on"><i class="icon-calendar"></i></span2>'
 						+'</div>';
 	$("#"+id+"_container9").append(fechaElement);
 
@@ -88,7 +89,8 @@ function cargarDataPicker(){
 	$(".icon-calendar").css("top","10px");
 	
 	//Inicio de las operaciones de la consulta inicial:
-	var fecha = $('.span2').val();
+	//var fecha = $(".span2").val();
+	var fecha = $(".span2").val();
 	var dia = fecha.substring(0,2);
 	var mes = fecha.substring(3,5);
 	mes = mes-1;
@@ -107,7 +109,7 @@ function cargarDataPicker(){
 		onSuccess:function(){
 			$$(id+"_dialog3").show();
 			$("#"+id+"_dialog3").css("top",20);
-			//$$(id+"_dialog3").displayDialog();
+			//$(id+"_dialog3").displayDialog();
 			$(":input").bind('keypress', function(e) {
 				if(e.keyCode==13){
 					$("#"+id+"_textField8").blur();
@@ -130,7 +132,7 @@ function cargarDataPicker(){
 
 	$('#datepicker').datepicker({
 				onSelect: function (ev){
-					$('.span2').val(this.value);
+					$('.span22').val(this.value);
 					
 					var fecha = this.value;
 					var dia = fecha.substring(0,2);
@@ -245,6 +247,7 @@ function cargarDataPicker(){
 	//---------------------------------\\
 
 	// @region namespaceDeclaration// @startlock
+	var dataGrid1 = {};	// @dataGrid
 	var printCaja = {};	// @richText
 	var imageButton3 = {};	// @buttonImage
 	var imageButton2 = {};	// @buttonImage
@@ -266,16 +269,22 @@ function cargarDataPicker(){
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+	$("#ui-datepicker-div").css("z-index","999999999");
+
+	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
+	{// @endlock
+		$("#ui-datepicker-div").css("z-index","999999999");
+	};// @lock
 
 	printCaja.click = function printCaja_click (event)// @startlock
 	{// @endlock
-		localStorage.dia = $('.span2').val();		
+		localStorage.dia = $(".span2").val();		
 	};// @lock
 
 	imageButton3.click = function imageButton3_click (event)// @startlock
 	{// @endlock
 		//-- Boton sumar Fecha --\\
-		var fecha = $('.span2').val();
+		var fecha = $(".span2").val();
 					
 		var dia = fecha.substring(0,2);
 		var mes = fecha.substring(3,5);
@@ -322,7 +331,7 @@ function cargarDataPicker(){
 		}
 		var anio = fecha.getFullYear();
 		
-		$('.span2').val(dia+'/'+mes+'/'+anio);
+		$(".span2").val(dia+'/'+mes+'/'+anio);
 		mes = mes-1;
 		
 		//f0 es la fecha inicio
@@ -342,7 +351,7 @@ function cargarDataPicker(){
 	imageButton1.click = function imageButton1_click (event)// @startlock
 	{// @endlock
 		//-- Boton restar Fecha --\\
-		var fecha = $('.span2').val();
+		var fecha = $(".span2").val();
 					
 		var dia = fecha.substring(0,2);
 		var mes = fecha.substring(3,5);
@@ -372,7 +381,7 @@ function cargarDataPicker(){
 		}
 		
 		var anio2 = f2.getFullYear();
-		$('.span2').val(dia2+"/"+mes2+"/"+anio2);
+		$(".span2").val(dia2+"/"+mes2+"/"+anio2);
 		
 		
 		//f3 es la fecha fin
@@ -446,7 +455,7 @@ function cargarDataPicker(){
 				$comp.sources.cajasMovimientos.addNewElement();
 				$comp.sources.cajasMovimientos.importeVenta = $$(id+"_textField5").getValue();
 				$comp.sources.cajasMovimientos.concepto = $$(id+"_textField8").getValue();
-				var fecha = $('.span2').val();
+				var fecha = $(".span2").val();
 				var dia = fecha.substring(0,2);
 				var mes = fecha.substring(3,5);
 				mes = mes-1;
@@ -592,6 +601,7 @@ function cargarDataPicker(){
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_printCaja", "click", printCaja.click, "WAF");
 	WAF.addListener(this.id + "_imageButton3", "click", imageButton3.click, "WAF");
 	WAF.addListener(this.id + "_imageButton2", "click", imageButton2.click, "WAF");
