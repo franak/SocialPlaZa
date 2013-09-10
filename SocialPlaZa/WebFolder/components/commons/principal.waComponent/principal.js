@@ -21,7 +21,7 @@ function constructor (id) {
 
 	container1.click = function container1_click (event)// @startlock
 	{// @endlock
-		
+		fcBrain.welcome();
 	};// @lock
 
 	container3.click = function container3_click (event)// @startlock
