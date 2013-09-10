@@ -16,9 +16,7 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 			
-		$comp.sources.cajasTPV.all();
-		$comp.sources.medioPago.all();	
-		$comp.sources.docComercial.all();	
+		
 		
 	
 		if(data.userData.myParameter == "Empresa"){
@@ -29,12 +27,20 @@ function constructor (id) {
 			
 		}else if(data.userData.myParameter == "Movimiento"){
 			
+			$comp.sources.cajasTPV.all();
+			$comp.sources.medioPago.all();	
+			$comp.sources.docComercial.all();
+			
 			cargarDataPicker(); 
 			
 		}else{
+			$comp.sources.usuarios.all({
+				onSuccess:function(){
+					$("#"+id+"_dialog2").css("top",20);
+					$$(id+"_dialog2").show();
+				}
+			});
 			
-			$("#"+id+"_dialog2").css("top",20);
-			$$(id+"_dialog2").show();
 		}
 		
 	

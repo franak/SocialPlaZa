@@ -33,6 +33,7 @@ function constructor (id) {
 
 var app = {};
 var app = SPL.getUrlVars()["app"];
+
 //DS DECLARACION DE LA VARIABLE POS A LA QUE SE REFIERE A LAS POSICIONES DE LAS LINEAS
 pos = 0;
 vPosRestada = null;
@@ -213,9 +214,6 @@ function readDeviceOrientation() {
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
 		alert(window.innerWidth + " x " + window.innerHeight);
-		//appds.openAdmin();
-		
-		
 	};// @lock
 
 	infoText.click = function infoText_click (event)// @startlock

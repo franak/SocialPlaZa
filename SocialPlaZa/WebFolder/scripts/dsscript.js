@@ -211,6 +211,7 @@ appdsObj = function () {
 						if(docID){	
 							fcBrain.sumarLineas(id,docID)
 						}
+						$$(id+"_dataGrid1").setSelectedRows([pos]);
 					},
 					onError:function(){
 						UI.alert("No se ha podido a–adir el articulo","ERROR");
