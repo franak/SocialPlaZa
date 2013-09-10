@@ -255,7 +255,6 @@ appdsObj = function () {
 					onSuccess:function (event){
 						//Cuando se guarda se a–ade esta nueva entidad a la coleccion lineasCollection;
 						$comp.sources.lineasCollection.addEntity($comp.sources.lineasCollection.getCurrentElement());
-						
 						$$(esteObjeto.id).setState('default');
 					},
 					onError:function(){
