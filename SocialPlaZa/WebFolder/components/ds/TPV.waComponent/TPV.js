@@ -1206,42 +1206,42 @@ TPV.recargarFamiliasDialog = function (){
 
 TPV.orientacionVertical = function (){
 
-	$("#socialComponent").css("right","-1px");
-	$("#headComp").css("right","-1px");
-	$("#headComp").css("left","0px");
+	$("#headComp").css("left","2px");
+	$("#MainComp").css("left","2px");
+	$("#socialComponent").css("left","363px");
 
+
+
+
+
+//++ Movimiento de la Publicidad ++\\
 	$("#rightComp").css("width","768px");
 	$("#rightComp").css("height","256px");
-	$("#rightComp").css("top","724px");
-	$("#rightComp").css("left","0px");
-	
+	$("#rightComp").css("top","723px");
+	$("#rightComp").css("left","2px");
 	$("#rightComp_container1").css("left","0px");
-	
 	$("#rightComp_container2").css("top","0px");
-	$("#rightComp_container2").css("left","257px");
-	
+	$("#rightComp_container2").css("left","256px");
 	$("#rightComp_container4").css("top","0px");
 	$("#rightComp_container4").css("right","0px");
-	
-	$("#rightComp_container4").css("left","514px");
+	$("#rightComp_container4").css("left","512px");
 }
 
 TPV.orientacionHorizontal = function (){
 	
-	$("#socialComponent").css("right","254px");
+	$("#headComp").css("left","0px");
+	$("#MainComp").css("left","0px");
+	$("#socialComponent").css("left","361px");
 	
+//++ Movimiento de la Publicidad ++\\
 	$("#rightComp").css("width","256px");
 	$("#rightComp").css("height","768px");
 	$("#rightComp").css("top","59px");
-	$("#rightComp").css("left","770px");
-	
-	//$("#rightComp_container1").css("float","left");
+	$("#rightComp").css("left","767px");
 	$("#rightComp_container1").css("left","0px");
 	$("#rightComp_container1").css("top","0px");
-	
 	$("#rightComp_container2").css("top","204px");
 	$("#rightComp_container2").css("left","0px");
-	
 	$("#rightComp_container4").css("top","408px");
 	$("#rightComp_container4").css("left","0px");
 }
