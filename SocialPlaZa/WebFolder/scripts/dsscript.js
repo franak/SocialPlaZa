@@ -77,6 +77,8 @@ appdsObj = function () {
      	
      }
      
+     
+     
      //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
      //DS Declaracion de funciones
      //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -181,6 +183,8 @@ appdsObj = function () {
      	
      }
      
+     
+     
      this.anadirLinea = function($comp,esteObjeto){
      
 		var id = $comp.id; //FC Traemos el id mendiante el $comp. Siempre enviar $comp en lugar de id
@@ -200,67 +204,33 @@ appdsObj = function () {
 			var lin = ds.Lineas.getLinea(articuloCodigo,docComercialID); //en el servidor
 			
 			if(lin != null){
-				pos = lin.Posicion.getValue();
-				$comp.sources.lineasCollection.select(lin.Posicion.getValue());
-				var cant = $comp.sources.lineasCollection.Cantidad + 1;
-				$comp.sources.lineasCollection.Cantidad = cant;
-				$comp.sources.lineasCollection.save({
-					onSuccess:function(){
-						$$(esteObjeto.id).setState('default');
-						var docID = $comp.sources.docComercial.ID;
-						if(docID){	
-							fcBrain.sumarLineas(id,docID)
+			
+				var tamnioLineas = $comp.sources.lineasCollection.length;
+				if(lin.Posicion.getValue()+1 == tamnioLineas){
+					pos = lin.Posicion.getValue();
+					$comp.sources.lineasCollection.select(lin.Posicion.getValue());
+					var cant = $comp.sources.lineasCollection.Cantidad + 1;
+					$comp.sources.lineasCollection.Cantidad = cant;
+					$comp.sources.lineasCollection.save({
+						onSuccess:function(){
+							$$(esteObjeto.id).setState('default');
+							var docID = $comp.sources.docComercial.ID;
+							if(docID){	
+								fcBrain.sumarLineas(id,docID)
+							}
+							$$(id+"_dataGrid1").setSelectedRows([pos]);
+						},
+						onError:function(){
+							UI.alert("No se ha podido a–adir el articulo","ERROR");
 						}
-						$$(id+"_dataGrid1").setSelectedRows([pos]);
-					},
-					onError:function(){
-						UI.alert("No se ha podido a–adir el articulo","ERROR");
-					}
-				});
-				
-			}else{
-				var aPos = ds.Lineas.getPosiciones(docComercialID);
-				
-				//Se crea un registro en la coleccion lineasCollection;
-				$comp.sources.lineasCollection.newEntity();
-				$comp.sources.lineasCollection.Codigo = art.Codigo.value;
-				$comp.sources.lineasCollection.Descripcion = art.Descripcion.value;
-				$comp.sources.lineasCollection.PrecioUnitario = art.Precio.value;
-				$comp.sources.lineasCollection.Cantidad = 1;
-				$comp.sources.lineasCollection.Documento.set($comp.sources.docComercial);
-				$comp.sources.lineasCollection.Almacen.set($comp.sources.almacenes);
-				$comp.sources.lineasCollection.cajasTPV.set($comp.sources.cajasTPV);
-				
-				//DS si ha habido algun borrado previamente se le asigna automaticamente su posicion antigua
-				if(vPosRestada != null){
-					
-					//DS se le incrementa en 1 a todas las lineas cuyas posiciones son mayores que la borrada 
-					ds.Lineas.sumarPosiciones($comp.sources.docComercial.ID, vPosRestada);
-					//$comp.sources.lineas.Posicion=vPosRestada;
-					pos = vPosRestada;
-					vPosRestada = null;
-					
-				//DS si es la primera linea, se le da la posicion 0
-				}else if(aPos.length == 0){
-					$comp.sources.lineasCollection.Posicion=0;
-					pos = 0;
-					
+					});
 				}else{
-					var n = aPos[0] + 1;
-					$comp.sources.lineasCollection.Posicion = n;
-					pos = n;
+					 functions.guardarLinea(docComercialID,art,$comp,esteObjeto);
 				}
 				
-				$comp.sources.lineasCollection.save({
-					onSuccess:function (event){
-						//Cuando se guarda se a–ade esta nueva entidad a la coleccion lineasCollection;
-						$comp.sources.lineasCollection.addEntity($comp.sources.lineasCollection.getCurrentElement());
-						$$(esteObjeto.id).setState('default');
-					},
-					onError:function(){
-						UI.alert("No se ha podido a–adir el articulo","ERROR");
-					}
-				});	
+			}else{
+				
+				functions.guardarLinea(docComercialID,art,$comp,esteObjeto);
 			}
 		}
 	}
@@ -347,6 +317,51 @@ appdsObj = function () {
 			
 		}
 	}
+	
+	functions.guardarLinea = function (docComercialID,art,$comp,esteObjeto){
+     	var aPos = ds.Lineas.getPosiciones(docComercialID);
+					
+		//Se crea un registro en la coleccion lineasCollection;
+		$comp.sources.lineasCollection.newEntity();
+		$comp.sources.lineasCollection.Codigo = art.Codigo.value;
+		$comp.sources.lineasCollection.Descripcion = art.Descripcion.value;
+		$comp.sources.lineasCollection.PrecioUnitario = art.Precio.value;
+		$comp.sources.lineasCollection.Cantidad = 1;
+		$comp.sources.lineasCollection.Documento.set($comp.sources.docComercial);
+		$comp.sources.lineasCollection.Almacen.set($comp.sources.almacenes);
+		$comp.sources.lineasCollection.cajasTPV.set($comp.sources.cajasTPV);
+		
+		//DS si ha habido algun borrado previamente se le asigna automaticamente su posicion antigua
+		if(vPosRestada != null){
+			
+			//DS se le incrementa en 1 a todas las lineas cuyas posiciones son mayores que la borrada 
+			ds.Lineas.sumarPosiciones($comp.sources.docComercial.ID, vPosRestada);
+			//$comp.sources.lineas.Posicion=vPosRestada;
+			pos = vPosRestada;
+			vPosRestada = null;
+			
+		//DS si es la primera linea, se le da la posicion 0
+		}else if(aPos.length == 0){
+			$comp.sources.lineasCollection.Posicion=0;
+			pos = 0;
+			
+		}else{
+			var n = aPos[0] + 1;
+			$comp.sources.lineasCollection.Posicion = n;
+			pos = n;
+		}
+		
+		$comp.sources.lineasCollection.save({
+			onSuccess:function (event){
+				//Cuando se guarda se a–ade esta nueva entidad a la coleccion lineasCollection;
+				$comp.sources.lineasCollection.addEntity($comp.sources.lineasCollection.getCurrentElement());
+				$$(esteObjeto.id).setState('default');
+			},
+			onError:function(){
+				UI.alert("No se ha podido a–adir el articulo","ERROR");
+			}
+		});	
+     }
 	
 	
 	this.estadoInicial = function ($comp,estado,objeto){

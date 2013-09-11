@@ -558,6 +558,11 @@ guidedModel =// @startlock
 		},
 		methods :
 		{// @endlock
+			devolverTamanio:function(docID)
+			{// @lock
+				var collLineas = this.query("Documento.ID =:1",docID);
+				return collLineas.length;
+			},// @lock
 			insertarLinea:function(articuloDescrpcion,doc,almacen,caja)
 			{// @lock
 				
@@ -640,7 +645,7 @@ guidedModel =// @startlock
 			},// @lock
 			getLinea:function(articuloCodigo, docID)
 			{// @lock
-				var lin = ds.Lineas.find("Documento.ID=:1 AND Codigo =:2",docID,articuloCodigo);
+				var lin = ds.Lineas.find("Documento.ID=:1 AND Codigo =:2 order by ID desc",docID,articuloCodigo);
 				return lin;
 
 			},// @lock
