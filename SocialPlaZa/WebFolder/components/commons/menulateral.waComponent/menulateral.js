@@ -27,15 +27,50 @@ if(user.fullName != "TG"){
 }
 menu +=' <li class="divider"></li>'
 +'  <li class="nav-header">MenSecundario</li>'
-+' <li><a href="#">Sección 2</a></li>'
++' <li><a href="#">Sección 2</a>'
++'<ul class="nav">'
+  +'  <li><a href="#glyphicons-glyphs">Available glyphs</a></li>'
+    +'<li><a href="#glyphicons-how-to-use">How to use</a></li>'
+    +'<li><a href="#glyphicons-examples">Examples</a></li>'
+ +' </ul>'
+
++ '</li>'
 +'  <li><a href="#">Cositas</a></li>'
 +' <li class="dropdown">'
 +'<a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown'
 +'<b class="caret"></b> </a>'
 +' <ul class="dropdown-menu" > <!-- links -->'
-+'  <li class="active"><a href="#">Home</a></li>'
++'  <li><a href="#">Home</a></li>'
 +'  <li><a href="#">Library</a></li>'  
 +'</ul>'
+
++' <li class="dropdown" id="accountmenu">'
+     +'               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account Settings<b class="caret"></b></a>'
+       +'             <ul class="dropdown-menu">'
+         +'               <li><a href="#">Login</a></li>'
+           +'           	<li class="dropdown-submenu">'
+             +'             <a tabindex="-1" href="#">More options</a>'
+               +'           <ul class="dropdown-menu">'
+                 +'           <li><a tabindex="-1" href="#">Second level</a></li>'
+                   +'         <li class="dropdown-submenu">'
+                     +'         <a href="#">More..</a>'
+                       +'       <ul class="dropdown-menu">'
+                         +'         <li><a href="#">3rd level</a></li>'
+                           +'       <li><a href="#">3rd level</a></li>'
+                             +' </ul>'
+              +'              </li>'
+                +'            <li><a href="#">Second level</a></li>'
+                  +'          <li><a href="#">Second level</a></li>'
+                    +'      </ul>'
+                      +'  </li>'
+        +'                <li><a href="#">Register</a></li>'
+          +'              <li class="divider"></li>'
+            +'            <li><a href="#">Logout</a></li>'
+              +'      </ul>'
+                +'</li>'
+
+
+
 +'</ul>';
 
 $(menuContainer).append(menu);
