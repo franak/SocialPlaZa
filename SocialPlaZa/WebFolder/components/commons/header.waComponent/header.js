@@ -61,7 +61,7 @@ btmodales.initModal('Usuarios',$comp);
 	{// @endlock
 		UI.openCloseMenuAcord();
 		$$("MenuComp").loadComponent("/components/ds/MenuPrincipal.waComponent");
-		
+
 	};// @lock
 
 	sNomUsu.click = function sNomUsu_click (event)// @startlock
