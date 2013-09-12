@@ -12,6 +12,8 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 
+ $('#MenuComp').css('left','-300');
+ 
     appds.montarArrayAccesos();
     appds.pintarMenu();
     

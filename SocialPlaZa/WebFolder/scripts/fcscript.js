@@ -256,17 +256,13 @@ fcBrainObj = function() {
 
         var $comp = components.main;
 
-        //	 $('#'+components.main).css("opacity", 0);
         WAF.loadComponent({
             id: components.main,
             path: components.defaults.principal.compPath,
             onSuccess: function() {
             	
-            	//Lo quito por si tarda mas de 2000ms de carga;
             	
-                /*setTimeout(function() {
-		         $('#overlay').remove();
-                }, 2000);*/
+              
             }
         });
         
