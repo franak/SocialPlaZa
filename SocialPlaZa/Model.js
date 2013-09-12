@@ -246,6 +246,17 @@ guidedModel =// @startlock
 	},
 	Articulos :
 	{
+		PrecioIVA :
+		{
+			onSet:function(value)
+			{// @endlock
+				return this.Precio + this.Iva;
+			},// @startlock
+			onGet:function()
+			{// @endlock
+				return this.Precio + this.Iva;
+			}// @startlock
+		},
 		methods :
 		{// @endlock
 			borrarArticulosDemos:function()

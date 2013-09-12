@@ -610,7 +610,7 @@ appdsObj = function () {
 	
 	this.montarArrayAccesos = function(){
 		
-		//var grupo = ds.Metodos.getGrupo();
+		// Declaracion de arrays
 		
 		aNivel1 = [];
 		aNivel2 = [];
@@ -636,10 +636,6 @@ appdsObj = function () {
 		  functions.anhadirAccesoMenu("T.P.V.","...mas","Utilidades");
 		  functions.anhadirAccesoMenu("SocialPlaza","Configuracion","Listas");
 		 
-		
-							
-			
-		
 	}
 	
 	functions.anhadirAccesoMenu = function(vParametro1,vParametro2,vParametro3){
@@ -657,23 +653,19 @@ appdsObj = function () {
 		
 	}
 	
-	functions.ArrayAnhadirElemento = function(arr,posicion,valor){
+	functions.ArrayAnhadirElemento = function(array,posicion,valor){
 		
 		if(posicion == "Final"){
-			arr[arr.length] = valor;
+			//Se inserta el elemento en el array pasado por parametro;
+			//El array.length indica la ultima posicion
+			array[array.length] = valor;
 		}
 		
 	}
-	
-	functions.pintarEstructura = function(){
+
+	this.pintarMenu = function(){
 		
-		nivel = "<div id='menu'><ul id ='nivel1'></ul></div>";
-		$("BODY").append(nivel);
-		
-	}
-	
-	
-	this.pintarAccordion = function(){
+		//se pinta la estructura general del menu;
 		
 		var menuHTML = '<div class="accordion" id="accordionMenu"></div>';
 		$("#MenuComp_container1").append(menuHTML);
@@ -684,66 +676,20 @@ appdsObj = function () {
 				if(aNivel1[i] == aNivel1[i-1]){
 					
 					if(aNivel2[i] == aNivel2[i-1]){
-											
+						
+						//En este caso se pinta el 3¼ nivel;
 						$("#"+nivel3ID).append("<hr>"+aNivel3[i]+"<br>");
 						
-					}else if(aNivel1[i] == aNivel1[i-1]){
+					}else{
 						
-						var t = '<div class="accordion" id="accordion'+i+'"></div>'
-							+'<div class="accordion-group">'
-			    				+'<div class="accordion-heading">'
-			      					+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
-			        					+aNivel2[i]
-			      					+'</a>'
-			    				+'</div>'
-			    				+'<div id="nivel2'+i+'" class="accordion-body collapse">'
-			      		    		+'<div class="accordion-inner" id="nivel3'+i+'">'
-			        					+aNivel3[i]+"<br>"
-			      					+'</div>'
-			    				+'</div>'
-			  				+'</div>'
-			  			+'</div>'
-			  			$("#"+nivel2ID).append(t)
-						nivel1ID = "nivel2"+i;
-						nivel3ID = "nivel3"+i;
-						
+						//En este caso se pinta 2¼ y 3¼ nivel;
+						functions.pintar2Niveles(i);
 					}
 					
 				}else{
 					
-					var n ='<div class="accordion-group">'
-	    					+'<div class="accordion-heading">'
-	      						+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#nivel1'+i+'">'
-	        						+aNivel1[i]
-	      						+'</a>'
-	    					+'</div>'
-	    					+'<div id="nivel1'+i+'" class="accordion-body collapse">'
-	      						+'<div id="nivelb1'+i+'" class="accordion-inner">'
-	      						
-	      							+'<div class="accordion" id="accordion'+i+'"></div>'
-	        							+'<div class="accordion-group">'
-						    				+'<div class="accordion-heading">'
-						      					+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
-						        					+aNivel2[i]
-						      					+'</a>'
-						    				+'</div>'
-						    				+'<div id="nivel2'+i+'" class="accordion-body collapse">'
-						      		    		+'<div class="accordion-inner" id="nivel3'+i+'">'
-						        					+aNivel3[i]+"<br>"
-						      					+'</div>'
-						    				+'</div>'
-						  				+'</div>'
-						  			+'</div>'
-						  			
-	      						+'</div>'
-	    					+'</div>'
-	  					   +'</div>';
-					
-					$("#accordionMenu").append(n);
-					nivel2ID = "nivelb1"+i;
-					nivel1ID = "nivel2"+i;
-					nivel3ID = "nivel3"+i;
-					accordion = "accordion"+i;
+					//En este caso se pinta 1¼,2¼ y 3¼ nivel;
+					functions.pintar3Niveles(i);
 				}
 				
 		}
@@ -751,16 +697,61 @@ appdsObj = function () {
 	
 	}
 	
+	functions.pintar3Niveles = function(i){
+		var n ='<div class="accordion-group">'
+			+'<div class="accordion-heading">'
+					+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#nivel1'+i+'">'
+					+aNivel1[i]
+					+'</a>'
+			+'</div>'
+			+'<div id="nivel1'+i+'" class="accordion-body collapse">'
+					+'<div id="nivelb1'+i+'" class="accordion-inner">'
+					
+						+'<div class="accordion" id="accordion'+i+'"></div>'
+						+'<div class="accordion-group">'
+		    				+'<div class="accordion-heading">'
+		      					+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
+		        					+aNivel2[i]
+		      					+'</a>'
+		    				+'</div>'
+		    				+'<div id="nivel2'+i+'" class="accordion-body collapse">'
+		      		    		+'<div class="accordion-inner" id="nivel3'+i+'">'
+		        					+aNivel3[i]+"<br>"
+		      					+'</div>'
+		    				+'</div>'
+		  				+'</div>'
+		  			+'</div>'
+		  			
+					+'</div>'
+			+'</div>'
+			   +'</div>';
 	
-	
-	
-	this.pintarMenu = function(){
-		functions.pintarEstructura();
-		functions.pintarNiveles();
+		$("#accordionMenu").append(n);
+		nivel2ID = "nivelb1"+i;
+		nivel1ID = "nivel2"+i;
+		nivel3ID = "nivel3"+i;
+		accordion = "accordion"+i;
 	}
-
-
 	
+	functions.pintar2Niveles = function(i){
+		var t = '<div class="accordion" id="accordion'+i+'"></div>'
+					+'<div class="accordion-group">'
+						+'<div class="accordion-heading">'
+		  					+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
+		    					+aNivel2[i]
+		  					+'</a>'
+						+'</div>'
+						+'<div id="nivel2'+i+'" class="accordion-body collapse">'
+		  		    		+'<div class="accordion-inner" id="nivel3'+i+'">'
+		    					+aNivel3[i]+"<br>"
+		  					+'</div>'
+						+'</div>'
+						+'</div>'
+					+'</div>'
+					$("#"+nivel2ID).append(t)
+				nivel1ID = "nivel2"+i;
+				nivel3ID = "nivel3"+i;
+	}
 	
 	
 	

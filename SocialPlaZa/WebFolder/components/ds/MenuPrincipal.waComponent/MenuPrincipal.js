@@ -13,7 +13,7 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 
     appds.montarArrayAccesos();
-    appds.pintarAccordion();
+    appds.pintarMenu();
     
 
 	// @region namespaceDeclaration// @startlock
