@@ -260,9 +260,7 @@ fcBrainObj = function() {
             id: components.main,
             path: components.defaults.principal.compPath,
             onSuccess: function() {
-            	
-            	
-              
+          
             }
         });
         
