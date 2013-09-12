@@ -606,7 +606,160 @@ appdsObj = function () {
 		  sourceReady($comp)
 		}});
 			
-	}	
+	}
+	
+	this.montarArrayAccesos = function(){
+		
+		//var grupo = ds.Metodos.getGrupo();
+		
+		aNivel1 = [];
+		aNivel2 = [];
+		aNivel3 = [];
+		aNivel3A = [];
+		aColores = [];
+		
+		
+		  functions.anhadirAccesoMenu("Social Plaza","Gestion","Entornos");
+		  functions.anhadirAccesoMenu("Social Plaza","Marketing","Anuncios");
+		  functions.anhadirAccesoMenu("Generales","Configuracion","Empresas");
+		  functions.anhadirAccesoMenu("Generales","Configuracion","Usuarios");
+		  functions.anhadirAccesoMenu("Gestion Comercial","Bases","Familias");
+		  functions.anhadirAccesoMenu("Gestion Comercial","Bases","Articulos");
+		  
+		  functions.anhadirAccesoMenu("T.P.V.","Bases","Familias");
+		  functions.anhadirAccesoMenu("T.P.V.","Bases","Articulos");
+		  functions.anhadirAccesoMenu("T.P.V.","Archivos","Ventas TPV");
+		  functions.anhadirAccesoMenu("T.P.V.","Archivos","Cajas TPV");
+		  
+		  functions.anhadirAccesoMenu("T.P.V.","...mas","Listas");
+		  functions.anhadirAccesoMenu("T.P.V.","...mas","Informes");
+		  functions.anhadirAccesoMenu("T.P.V.","...mas","Utilidades");
+		  functions.anhadirAccesoMenu("SocialPlaza","Configuracion","Listas");
+		 
+		
+							
+			
+		
+	}
+	
+	functions.anhadirAccesoMenu = function(vParametro1,vParametro2,vParametro3){
+		
+		var textoNivel1 = vParametro1;
+		var textoNivel2 = vParametro2;
+		var textoNivel3 = vParametro3;
+		
+		
+		functions.ArrayAnhadirElemento(aNivel1,"Final",textoNivel1);
+		functions.ArrayAnhadirElemento(aNivel2,"Final",textoNivel2);
+		functions.ArrayAnhadirElemento(aNivel3,"Final",textoNivel3);
+		
+		
+		
+	}
+	
+	functions.ArrayAnhadirElemento = function(arr,posicion,valor){
+		
+		if(posicion == "Final"){
+			arr[arr.length] = valor;
+		}
+		
+	}
+	
+	functions.pintarEstructura = function(){
+		
+		nivel = "<div id='menu'><ul id ='nivel1'></ul></div>";
+		$("BODY").append(nivel);
+		
+	}
+	
+	
+	this.pintarAccordion = function(){
+		
+		var menuHTML = '<div class="accordion" id="accordionMenu"></div>';
+		$("#MenuComp_container1").append(menuHTML);
+		
+		
+		for(var i=0;i<aNivel1.length; i++){
+			
+				if(aNivel1[i] == aNivel1[i-1]){
+					
+					if(aNivel2[i] == aNivel2[i-1]){
+											
+						$("#"+nivel3ID).append("<hr>"+aNivel3[i]+"<br>");
+						
+					}else if(aNivel1[i] == aNivel1[i-1]){
+						
+						var t = '<div class="accordion" id="accordion'+i+'"></div>'
+							+'<div class="accordion-group">'
+			    				+'<div class="accordion-heading">'
+			      					+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
+			        					+aNivel2[i]
+			      					+'</a>'
+			    				+'</div>'
+			    				+'<div id="nivel2'+i+'" class="accordion-body collapse">'
+			      		    		+'<div class="accordion-inner" id="nivel3'+i+'">'
+			        					+aNivel3[i]+"<br>"
+			      					+'</div>'
+			    				+'</div>'
+			  				+'</div>'
+			  			+'</div>'
+			  			$("#"+nivel2ID).append(t)
+						nivel1ID = "nivel2"+i;
+						nivel3ID = "nivel3"+i;
+						
+					}
+					
+				}else{
+					
+					var n ='<div class="accordion-group">'
+	    					+'<div class="accordion-heading">'
+	      						+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#nivel1'+i+'">'
+	        						+aNivel1[i]
+	      						+'</a>'
+	    					+'</div>'
+	    					+'<div id="nivel1'+i+'" class="accordion-body collapse">'
+	      						+'<div id="nivelb1'+i+'" class="accordion-inner">'
+	      						
+	      							+'<div class="accordion" id="accordion'+i+'"></div>'
+	        							+'<div class="accordion-group">'
+						    				+'<div class="accordion-heading">'
+						      					+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
+						        					+aNivel2[i]
+						      					+'</a>'
+						    				+'</div>'
+						    				+'<div id="nivel2'+i+'" class="accordion-body collapse">'
+						      		    		+'<div class="accordion-inner" id="nivel3'+i+'">'
+						        					+aNivel3[i]+"<br>"
+						      					+'</div>'
+						    				+'</div>'
+						  				+'</div>'
+						  			+'</div>'
+						  			
+	      						+'</div>'
+	    					+'</div>'
+	  					   +'</div>';
+					
+					$("#accordionMenu").append(n);
+					nivel2ID = "nivelb1"+i;
+					nivel1ID = "nivel2"+i;
+					nivel3ID = "nivel3"+i;
+					accordion = "accordion"+i;
+				}
+				
+		}
+		
+	
+	}
+	
+	
+	
+	
+	this.pintarMenu = function(){
+		functions.pintarEstructura();
+		functions.pintarNiveles();
+	}
+
+
 	
 	
 	
