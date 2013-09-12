@@ -696,11 +696,15 @@ appdsObj = function () {
 		
 	
 	}
-	
+
 	functions.pintar3Niveles = function(i){
+		
+	
+    
 		var n ='<div class="accordion-group">'
-			+'<div class="accordion-heading">'
-					+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#nivel1'+i+'">'
+			+'<div class="accordion-heading" id="cor'+i+'">'
+					+'<a onClick="functions.cambiarFlecha('+i+');" name ="'+aNivel1[i]+'"class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#nivel1'+i+'">'
+					+'<i class="icon icon-chevron-right"> </i>'
 					+aNivel1[i]
 					+'</a>'
 			+'</div>'
@@ -709,9 +713,10 @@ appdsObj = function () {
 					
 						+'<div class="accordion" id="accordion'+i+'"></div>'
 						+'<div class="accordion-group">'
-		    				+'<div class="accordion-heading">'
-		      					+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
-		        					+aNivel2[i]
+		    				+'<div class="accordion-heading" id="corD'+i+'">'
+		      					+'<a class="accordion-toggle" onClick="functions.cambiarFlechaD('+i+');" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
+		        				+'<i class="icon icon-chevron-right"> </i>'
+		        				+aNivel2[i]
 		      					+'</a>'
 		    				+'</div>'
 		    				+'<div id="nivel2'+i+'" class="accordion-body collapse">'
@@ -731,14 +736,34 @@ appdsObj = function () {
 		nivel1ID = "nivel2"+i;
 		nivel3ID = "nivel3"+i;
 		accordion = "accordion"+i;
+				
+				
+				
+}
+
+
+	
+	functions.cambiarFlecha = function(i){
+	
+	$('#cor'+i+' i').toggleClass('icon-chevron-right');
+	$('#cor'+i+' i').toggleClass('icon-chevron-down');
+	
+	}
+	
+	functions.cambiarFlechaD = function(i){
+	
+	$('#corD'+i+' i').toggleClass('icon-chevron-right');
+	$('#corD'+i+' i').toggleClass('icon-chevron-down');
+	
 	}
 	
 	functions.pintar2Niveles = function(i){
 		var t = '<div class="accordion" id="accordion'+i+'"></div>'
 					+'<div class="accordion-group">'
-						+'<div class="accordion-heading">'
-		  					+'<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
-		    					+aNivel2[i]
+						+'<div class="accordion-heading" id="corD'+i+'">'
+		  					+'<a class="accordion-toggle"  onClick="functions.cambiarFlechaD('+i+');" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
+		    				+'<i class="icon icon-chevron-right"> </i>'
+		    				+aNivel2[i]
 		  					+'</a>'
 						+'</div>'
 						+'<div id="nivel2'+i+'" class="accordion-body collapse">'
