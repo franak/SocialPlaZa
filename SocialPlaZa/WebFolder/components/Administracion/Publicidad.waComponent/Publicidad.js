@@ -54,7 +54,7 @@ $(':input').bind('blur',function() {
 	{// @endlock
 		sources.publicidad.save({
 			onSuccess:function(){
-				sources.publicidad.serverRefresh();
+				sources.publicidad.all();
 				$$(id+"_dialog1").closeDialog();
 			}
 		});

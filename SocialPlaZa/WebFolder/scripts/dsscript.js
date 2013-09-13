@@ -622,6 +622,7 @@ appdsObj = function () {
 		
 		  functions.anhadirAccesoMenu("Social Plaza","Gestion","Entornos");
 		  functions.anhadirAccesoMenu("Social Plaza","Marketing","Anuncios");
+		  functions.anhadirAccesoMenu("Social Plaza","Configuracion","Listas");
 		  functions.anhadirAccesoMenu("Generales","Configuracion","Empresas");
 		  functions.anhadirAccesoMenu("Generales","Configuracion","Usuarios");
 		  functions.anhadirAccesoMenu("Gestion Comercial","Bases","Familias");
@@ -635,7 +636,7 @@ appdsObj = function () {
 		  functions.anhadirAccesoMenu("T.P.V.","...mas","Listas");
 		  functions.anhadirAccesoMenu("T.P.V.","...mas","Informes");
 		  functions.anhadirAccesoMenu("T.P.V.","...mas","Utilidades");
-		  functions.anhadirAccesoMenu("SocialPlaza","Configuracion","Listas");
+		  
 		 
 	}
 	
@@ -702,7 +703,16 @@ appdsObj = function () {
 		
 		//Se averigua que elemento del 3¼nivel se ha pulsado;
 		$(".proceso").click(function(){
-			UI.alert("Llendo a "+this.id+"...");
+			
+			if(this.id == "Anuncios"){
+				$("#headComp_imageButton1").click();
+				$$("MainComp").removeComponent();
+				$$("socialComponent").removeComponent();
+				$$("rightComp").removeComponent();
+				$$("adminComp").loadComponent("/components/Administracion/Publicidad.waComponent");
+			}else{
+				UI.alert("Llendo a "+this.id+"...");
+			}
 		});
 		
 	
