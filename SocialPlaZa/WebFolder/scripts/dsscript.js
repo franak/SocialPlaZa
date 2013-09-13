@@ -702,7 +702,7 @@ appdsObj = function () {
 	
     
 		var n ='<div class="accordion-group">'
-			+'<div class="accordion-heading" id="cor'+i+'">'
+			+'<div class="accordion-heading nivel1" id="cor'+i+'">'
 					+'<a onClick="functions.cambiarFlecha('+i+');" name ="'+aNivel1[i]+'"class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#nivel1'+i+'">'
 					+'<i class="icon icon-chevron-right"> </i>'
 					+aNivel1[i]
@@ -740,11 +740,22 @@ appdsObj = function () {
 				
 				
 }
-
-
 	
 	functions.cambiarFlecha = function(i){
+				
+	/*var elementoAcor = $('.nivel1 i');
+if(elementoAcor.attr('data-state')){
+	if(elementoAcor.attr('data-state') = 'open'){
+	$('.nivel1 i').toggleClass('icon-chevron-down');
+	$('.nivel1 i').addClass('icon-chevron-right');
+	}
+}
+	$('#cor'+i+' i').toggleClass('icon-chevron-right');
+	$('#cor'+i+' i').toggleClass('icon-chevron-down');
+	$('#cor'+i+' i').attr('data-state','open');
 	
+	*/
+
 	$('#cor'+i+' i').toggleClass('icon-chevron-right');
 	$('#cor'+i+' i').toggleClass('icon-chevron-down');
 	
