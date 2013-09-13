@@ -195,8 +195,9 @@ appdsObj = function () {
 		
 			//DS PONGO EL ESTADO DISABLED AL BOTON
 			$$(esteObjeto.id).setState('disabled');
-		
-			var art = ds.Articulos.devolverArticulo(esteObjeto._value);
+			
+			var d = $comp.sources.articulos.Descripcion;
+			var art = ds.Articulos.devolverArticulo(d);
 			
 			var articuloCodigo = art.Codigo.value;
 			var docComercialID = $comp.sources.docComercial.ID;
