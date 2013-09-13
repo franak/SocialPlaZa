@@ -267,7 +267,7 @@ fcBrainObj = function() {
         $$('rightComp').loadComponent('/components/commons/bannerright.waComponent');
         $$('bannerComponent').removeComponent();
         $$('socialComponent').loadComponent(components.defaults.bannerSocial.compPath);
-
+		$$("MenuComp").loadComponent("/components/ds/MenuPrincipal.waComponent");
     };
 
     functions.openWelcome = function() {

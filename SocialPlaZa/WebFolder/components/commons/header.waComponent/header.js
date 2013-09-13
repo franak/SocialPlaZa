@@ -59,8 +59,9 @@ btmodales.initModal('Usuarios',$comp);
 
 	imageButton1.click = function imageButton1_click (event)// @startlock
 	{// @endlock
+				
+
 		UI.openCloseMenuAcord();
-		$$("MenuComp").loadComponent("/components/ds/MenuPrincipal.waComponent");
 
 	};// @lock
 
