@@ -179,9 +179,9 @@ function readDeviceOrientation() {
 
 	
 	// @region namespaceDeclaration// @startlock
+	var image1 = {};	// @image
 	var button1 = {};	// @button
 	var infoText = {};	// @richText
-	var richText25 = {};	// @richText
 	var btnAll = {};	// @buttonImage
 	var richText30 = {};	// @richText
 	var bOpciones = {};	// @buttonImage
@@ -211,6 +211,30 @@ function readDeviceOrientation() {
 
 	// eventHandlers// @lock
 
+	image1.touchend = function image1_touchend (event)// @startlock
+	{// @endlock
+		TPV.articulos_btn(this);
+		TPV.mantenerFoco();
+	};// @lock
+
+	image1.touchstart = function image1_touchstart (event)// @startlock
+	{// @endlock
+		vTime = 0;
+		vTime = new Date();
+	};// @lock
+
+	image1.mouseup = function image1_mouseup (event)// @startlock
+	{// @endlock
+		TPV.articulos_btn(this);
+		TPV.mantenerFoco();
+	};// @lock
+
+	image1.mousedown = function image1_mousedown (event)// @startlock
+	{// @endlock
+		vTime = 0;
+		vTime = new Date();
+	};// @lock
+
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
 		alert(window.innerWidth + " x " + window.innerHeight);
@@ -236,31 +260,6 @@ function readDeviceOrientation() {
 		
 		});
 		
-		
-	};// @lock
-
-	richText25.mousedown = function richText25_mousedown (event)// @startlock
-	{// @endlock
-		vTime = 0;
-		vTime = new Date();
-	};// @lock
-
-	richText25.touchend = function richText25_touchend (event)// @startlock
-	{// @endlock
-		TPV.articulos_btn(this);
-		TPV.mantenerFoco();
-	};// @lock
-
-	richText25.touchstart = function richText25_touchstart (event)// @startlock
-	{// @endlock
-		vTime = 0;
-		vTime = new Date();
-	};// @lock
-
-	richText25.mouseup = function richText25_mouseup (event)// @startlock
-	{// @endlock
-		TPV.articulos_btn(this);
-		TPV.mantenerFoco();
 		
 	};// @lock
 
@@ -621,13 +620,13 @@ function readDeviceOrientation() {
 	
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_image1", "touchend", image1.touchend, "WAF");
+	WAF.addListener(this.id + "_image1", "touchstart", image1.touchstart, "WAF");
+	WAF.addListener(this.id + "_image1", "mouseup", image1.mouseup, "WAF");
+	WAF.addListener(this.id + "_image1", "mousedown", image1.mousedown, "WAF");
 	WAF.addListener(this.id + "_lineasCollection", "onCollectionChange", lineasCollectionEvent.onCollectionChange, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_infoText", "click", infoText.click, "WAF");
-	WAF.addListener(this.id + "_richText25", "mousedown", richText25.mousedown, "WAF");
-	WAF.addListener(this.id + "_richText25", "touchend", richText25.touchend, "WAF");
-	WAF.addListener(this.id + "_richText25", "touchstart", richText25.touchstart, "WAF");
-	WAF.addListener(this.id + "_richText25", "mouseup", richText25.mouseup, "WAF");
 	WAF.addListener(this.id + "_textField3", "blur", textField3.blur, "WAF");
 	WAF.addListener(this.id + "_textField4", "blur", textField4.blur, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
@@ -729,6 +728,7 @@ TPV.articulos_btn = function (esteObjeto){
 	vTimeResta = vTimeResta - vTime;
 	
 	if (vTimeResta >= 500) {
+		
 		TPV.recargarFamiliasDialog();
 		result = ds.Metodos.consultar("Familias");
 		$comp.sources.familias2.setEntityCollection(result);
@@ -742,7 +742,7 @@ TPV.articulos_btn = function (esteObjeto){
 	}else{
 		
 		var cobrado = $comp.sources.docComercial.Cobrado;
-		botonArticulo = getHtmlId('richText25');
+		botonArticulo = getHtmlId('image1');
 		if(cobrado != true){
 			
 			appds.anadirLinea($comp,esteObjeto);

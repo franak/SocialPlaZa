@@ -409,7 +409,7 @@ appdsObj = function () {
 			
 			$$($comp.id+"_richText14").setValue("Guardar");
 
-			sources.articulos1.query("Descripcion =:1",objeto._value,{
+			sources.articulos1.query("Descripcion =:1",$comp.sources.articulos.Descripcion,{
 			
 				onSuccess:function (){
 					
