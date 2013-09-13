@@ -693,7 +693,14 @@ appdsObj = function () {
 					functions.pintar3Niveles(i);
 				}
 				
+			$('#nivel1'+i).on('hide', function () {
+			  //codigo...
+			});
+				
 		}
+		
+		
+		
 		
 		//Se averigua que elemento del 3¼nivel se ha pulsado;
 		$(".proceso").click(function(){
