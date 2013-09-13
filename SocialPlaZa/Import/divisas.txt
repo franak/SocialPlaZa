@@ -1,637 +1,636 @@
-Lang,CurrencyISO,CurrencyName,Money,Symbol
-"EN","AFN","Afghani","افغانۍ","؋"
-"EN","DZD","Algerian Dinar","دينار","د"
-"EN","ARS","Argentine Peso","Peso","$"
-"EN","AMD","Armenian Dram","Դրամ","դ"
-"EN","AWG","Aruban Guilder","Florijn","A"
-"EN","AUD","Australian Dollar","Dollar","$"
-"EN","AZN","Azerbaijanian Manat","Manatı","м"
-"EN","BSD","Bahamian Dollar","Dollar","B"
-"EN","BHD","Bahraini Dinar","دينار","."
-"EN","THB","Baht","บาทไทย","฿"
-"EN","PAB","Balboa","Balboa","B"
-"EN","BBD","Barbados Dollar","Dollar","B"
-"EN","BYR","Belarussian Ruble","Рубель","B"
-"EN","BZD","Belize Dollar","Dollar","B"
-"EN","BMD","Bermudian Dollar","Dollar","B"
-"EN","VEF","Bolivar Fuerte","Bolívar","B"
-"EN","BOB","Boliviano","Boliviano","B"
-"EN","BRL","Brazilian Real","Real","R"
-"EN","BND","Brunei Dollar","Ringgit","B"
-"EN","BGN","Bulgarian Lev","лев","л"
-"EN","BIF","Burundi Franc","Franc","F"
-"EN","CAD","Canadian Dollar","Dollar","$"
-"EN","CVE","Cape Verde Escudo","Escudo","E"
-"EN","KYD","Cayman Islands Dollar","Dollar","$"
-"EN","GHS","Cedi","Cedi","G"
-"EN","XAF","CFA Franc","Franc","C"
-"EN","XOF","CFA Franc","Franc","C"
-"EN","XPF","CFP Franc","Franc","F"
-"EN","CLP","Chilean Peso","Peso","$"
-"EN","CNY","Chinese Yuan","人民币","¥"
-"EN","COP","Colombian Peso","Peso","C"
-"EN","KMF","Comoro Franc","Franc","F"
-"EN","CDF","Congolese Franc","Franc","F"
-"EN","BAM","Convertible Marks","Marka","K"
-"EN","NIO","Cordoba Oro","Córdoba","C"
-"EN","CRC","Costa Rican Colon","Colón","₡"
-"EN","HRK","Croatian Kuna","Kuna","k"
-"EN","CUP","Cuban Peso","Peso","$"
-"EN","CZK","Czech Koruna","Koruna","K"
-"EN","GMD","Dalasi","Dalasi","D"
-"EN","DKK","Danish Krone","Krone","K"
-"EN","MKD","Denar","Денар","д"
-"EN","DJF","Djibouti Franc","الفرنك","F"
-"EN","STD","Dobra","Dobra","D"
-"EN","DOP","Dominican Peso","Peso","R"
-"EN","VND","Dong","đồng","₫"
-"EN","XCD","East Caribbean Dollar","Dollar","E"
-"EN","EGP","Egyptian Pound","الجنيه","£"
-"EN","ETB","Ethiopian Birr","Birr","B"
-"EN","EUR","Euro","Euro","€"
-"EN","FKP","Falkland Islands Pound","Pound","£"
-"EN","FJD","Fiji Dollar","Dollar","F"
-"EN","GIP","Gibraltar Pound","Pound","£"
-"EN","HTG","Gourde","Gourde","G"
-"EN","PYG","Guarani","Guaraní","₲"
-"EN","GNF","Guinea Franc","Franc","F"
-"EN","GWP","Guinea-Bissau Peso","Peso","$"
-"EN","GYD","Guyana Dollar","Dollar","G"
-"EN","HKD","Hong Kong Dollar","香港圓","H"
-"EN","UAH","Hryvnia","Гривня","₴"
-"EN","HUF","Hungary Forint","Forint","F"
-"EN","ISK","Iceland Krona","Króna","k"
-"EN","INR","Indian Rupee","Rupee","R"
-"EN","IRR","Iranian Rial","﷼","﷼"
-"EN","IQD","Iraqi Dinar","دينار","ع"
-"EN","ILS","Israeli Sheqel","שקל","₪"
-"EN","JMD","Jamaican Dollar","Dollar","$"
-"EN","JPY","Japan Yen","日本円","¥"
-"EN","JOD","Jordanian Dinar","دينار","د"
-"EN","KES","Kenyan Shilling","Shilling","K"
-"EN","PGK","Kina","Kina","K"
-"EN","LAK","Kip","ກີບ","₭"
-"EN","EEK","Kroon","Kroon","K"
-"EN","KWD","Kuwaiti Dinar","دينار","د"
-"EN","MWK","Kwacha","Kwacha","M"
-"EN","AOA","Kwanza","Kwanza","K"
-"EN","MMK","Kyat","Kyat","K"
-"EN","GEL","Lari","ლარი","l"
-"EN","LVL","Latvian Lats","Lats","L"
-"EN","LBP","Lebanese Pound","ليرة,","ل"
-"EN","ALL","Lek","Leku","L"
-"EN","HNL","Lempira","Lempira","L"
-"EN","SLL","Leone","Leone","L"
-"EN","LRD","Liberian Dollar","Dollar","L"
-"EN","LYD","Libyan Dinar","دينار","ل"
-"EN","SZL","Lilangeni","Lilangeni","L"
-"EN","LTL","Lithuanian Litas","Litas","L"
-"EN","LSL","Loti","Loti","L"
-"EN","MGA","Malagasy Ariary","Ariary","F"
-"EN","MYR","Malaysian Ringgit","ريڠڬيت","R"
-"EN","TMT","Manat","Манат","m"
-"EN","MUR","Mauritius Rupee","Roupie","R"
-"EN","MZN","Metical","Metical","M"
-"EN","MXN","Mexican Peso","Peso","$"
-"EN","MDL","Moldovan Leu","Leu","l"
-"EN","MAD","Moroccan Dirham","درهم","د"
-"EN","NGN","Naira","Naira","₦"
-"EN","ERN","Nakfa","Nakfa","N"
-"EN","NAD","Namibia Dollar","Dollar","N"
-"EN","NPR","Nepalese Rupee","Rupee","N"
-"EN","ANG","Netherlands Antillian Guilder","Gulden","N"
-"EN","RON","New Leu","Leu","L"
-"EN","NZD","New Zealand Dollar","Dollar","$"
-"EN","BTN","Ngultrum","དངུལ་ཀྲམ","N"
-"EN","KPW","North Korean Won","원","₩"
-"EN","NOK","Norwegian Krone","Krone","k"
-"EN","PEN","Nuevo Sol","Sol","S"
-"EN","MRO","Ouguiya","أوقية","U"
-"EN","TOP","Pa'anga","Pa'anga","T"
-"EN","PKR","Pakistan Rupee","Rupee","R"
-"EN","MOP","Pataca","澳門圓","M"
-"EN","UYU","Peso Uruguayo","Peso","$"
-"EN","PHP","Philippine Peso","Piso","₱"
-"EN","GBP","Pound Sterling","Pound","£"
-"EN","BWP","Pula","Pula","P"
-"EN","QAR","Qatari Rial","ريال","ر"
-"EN","GTQ","Quetzal","Quetzal","Q"
-"EN","ZAR","Rand","Rand","R"
-"EN","OMR","Rial Omani","ريال","ر"
-"EN","KHR","Riel","Riel","r"
-"EN","MVR","Rufiyaa","Rufiyaa","R"
-"EN","IDR","Rupiah","Rupiah","R"
-"EN","RUB","Russian Ruble","Рубль","р"
-"EN","RWF","Rwanda Franc","Franc","R"
-"EN","SHP","Saint Helena Pound","Pound","£"
-"EN","SVC","Salvadoran Colon","Colón","₡"
-"EN","SAR","Saudi Riyal","ريال","ر"
-"EN","RSD","Serbian Dinar","Динар","д"
-"EN","SCR","Seychelles Rupee","Roupie","S"
-"EN","SGD","Singapore Dollar","新加坡元","S"
-"EN","SBD","Solomon Islands Dollar","Dollar","S"
-"EN","KGS","Som","сом","с"
-"EN","SOS","Somali Shilling","Shilin","S"
-"EN","TJS","Somoni","Сомонӣ","С"
-"EN","LKR","Sri Lanka Rupee","Rupee","R"
-"EN","SDG","Sudanese Pound","جنيه","£"
-"EN","SRD","Surinam Dollar","Dollar","$"
-"EN","SEK","Swedish Krona","Krona","k"
-"EN","CHF","Swiss Franc","Franc","F"
-"EN","SYP","Syrian Pound","الليرة","S"
-"EN","TWD","Taiwan Dollar","新臺幣","$"
-"EN","BDT","Taka","টাকা","৳"
-"EN","WST","Tala","Tālā","W"
-"EN","TZS","Tanzanian Shilling","Shilingi","/"
-"EN","KZT","Tenge","Теңгесі","〒"
-"EN","TTD","Trinidad and Tobago Dollar","Dollar","$"
-"EN","MNT","Tugrik","Төгрөг","₮"
-"EN","TND","Tunisian Dinar","دينار","د"
-"EN","TRY","Turkish Lira","Lirası","T"
-"EN","AED","UAE Dirham","درهم","د"
-"EN","UGX","Uganda Shilling","Shilling","U"
-"EN","USD","US Dollar","Dollar","$"
-"EN","UZS","Uzbekistan Sum","Сўм","с"
-"EN","VUV","Vatu","Vatu","V"
-"EN","KRW","Won","원","₩"
-"EN","YER","Yemeni Rial","ريال","ر"
-"EN","ZMK","Zambian Kwacha","Kwacha","Z"
-"EN","ZWL","Zimbabwe Dollar","Dollar","$"
-"EN","PLN","Zloty","Złoty","z"
-"ES","AFN","Afghani","افغانۍ","؋"
-"ES","THB","Baht","บาทไทย","฿"
-"ES","PAB","Balboa","Balboa","B"
-"ES","ETB","Birr Etiopía","Birr","B"
-"ES","VEF","Bolivar Fuerte","Bolívar","B"
-"ES","BOB","Boliviano","Boliviano","B"
-"ES","BND","Brunei Dólar","Ringgit","B"
-"ES","GHS","Cedi","Cedi","G"
-"ES","CRC","Colón Costa Rican","Colón","₡"
-"ES","SVC","Colón Salvadoreño","Colón","₡"
-"ES","NIO","Cordoba Oro","Córdoba","C"
-"ES","DKK","Corona Danesa","Corona","K"
-"ES","ISK","Corona Islandia","Corona","k"
-"ES","NOK","Corona Noruega","Corona","k"
-"ES","SEK","Corona Suiza","Corona","k"
-"ES","GMD","Dalasi","Dalasi","D"
-"ES","MKD","Dinar","Денар","д"
-"ES","DZD","Dinar Algeria","دينار","د"
-"ES","BHD","Dinar Bahrainí","دينار","."
-"ES","LYD","Dinar de Libia","دينار","ل"
-"ES","RSD","Dinar de Serbian","Динар","д"
-"ES","TND","Dinar de Tunisia","دينار","د"
-"ES","IQD","Dinar Iraqi","دينار","ع"
-"ES","JOD","Dinar Jordano","دينار","د"
-"ES","KWD","Dinar Kuwaití","دينار","د"
-"ES","MAD","Dirham de Moroco","درهم","د"
-"ES","DJF","Djibouti Franco","الفرنك","F"
-"ES","STD","Dobra","Dobra","D"
-"ES","USD","Dólar Americano","Dólar","$"
-"ES","AUD","Dólar Australiano","Dólar","$"
-"ES","BSD","Dólar Bahamas","Dólar","B"
-"ES","BBD","Dólar Barbados","Dólar","B"
-"ES","BZD","Dólar Belize","Dólar","B"
-"ES","BMD","Dólar Bremuda","Dólar","B"
-"ES","CAD","Dólar Canadiense","Dólar","$"
-"ES","GYD","Dólar de Guyana","Dólar","G"
-"ES","NAD","Dólar de Namibia","Dólar","N"
-"ES","ZWL","Dólar de Zimbabwe","Dólar","$"
-"ES","XCD","Dólar del Este Caribeño","Dólar","E"
-"ES","FJD","Dólar Fiji","Dólar","F"
-"ES","HKD","Dólar Hong Kong","香港圓","H"
-"ES","KYD","Dólar Islas Caimán","Dólar","$"
-"ES","SBD","Dólar Islas Salomón","Dólar","S"
-"ES","JMD","Dólar Jamaiquino","Dólar","$"
-"ES","LRD","Dólar Liberiano","Dólar","L"
-"ES","NZD","Dólar Nueva Zelanda","Dólar","$"
-"ES","SGD","Dólar Singapur","新加坡元","S"
-"ES","SRD","Dólar Surinam","Dólar","$"
-"ES","TWD","Dólar Taiwanés","新臺幣","$"
-"ES","TTD","Dólar Trinidad y Tobago","Dólar","$"
-"ES","VND","Dong","đồng","₫"
-"ES","AMD","Dram Armenio","Դրամ","դ"
-"ES","CVE","Escudo Cabo Verde","Escudo","E"
-"ES","EUR","Euro","Euro","€"
-"ES","HUF","Florín Húgaro","Forín","F"
-"ES","XAF","Franco CFA","Franco","C"
-"ES","XOF","Franco CFA","Franco","C"
-"ES","XPF","Franco CFA","Franco","F"
-"ES","CDF","Franco Congolés","Franco","F"
-"ES","KMF","Franco de Comoro","Franco","F"
-"ES","GNF","Franco de Guinea","Franco","F"
-"ES","RWF","Franco Ruandés","Franco","R"
-"ES","CHF","Franco Suizo","Franco","F"
-"ES","BIF","Francoo de Burundi","Franco","F"
-"ES","HTG","Gourde","Gourde","G"
-"ES","PYG","Guarani","Guaraní","₲"
-"ES","ANG","Guilder Antillas Nerlandesas","Gulden","N"
-"ES","AWG","Guilder de Aruba","Florijn","A"
-"ES","UAH","Hryvnia","Гривня","₴"
-"ES","PGK","Kina","Kina","K"
-"ES","LAK","Kip","ກີບ","₭"
-"ES","CZK","Koruna Checa","Koruna","K"
-"ES","EEK","Kroon","Kroon","K"
-"ES","HRK","Kuna Croatí","Kuna","k"
-"ES","MWK","Kwacha","Kwacha","M"
-"ES","ZMK","Kwacha de Zambia","Kwacha","Z"
-"ES","AOA","Kwanza","Kwanza","K"
-"ES","MMK","Kyat","Kyat","K"
-"ES","GEL","Lari","ლარი","l"
-"ES","LVL","Latvian Lats","Lats","L"
-"ES","ALL","Lek","Leku","L"
-"ES","HNL","Lempira","Lempira","L"
-"ES","SLL","Leone","Leone","L"
-"ES","MDL","Leu de Moldovia","Leu","l"
-"ES","BGN","Lev Búlgaro","лев","л"
-"ES","SHP","Libra de Santa Eelena","Libra","£"
-"ES","SDG","Libra de Sudán","جنيه","£"
-"ES","EGP","Libra Egipcia","الجنيه","£"
-"ES","GIP","Libra Gibraltar","Libra","£"
-"ES","FKP","Libra Islas Falkland","Libra","£"
-"ES","LBP","Libra Libanesa","ليرة,","ل"
-"ES","SYP","Libra Siria","الليرة","S"
-"ES","GBP","Libra Sterling","Libra","£"
-"ES","SZL","Lilangeni","Lilangeni","L"
-"ES","TRY","Lira Turca","Lira","T"
-"ES","LTL","Litas Lutianesa","Litas","L"
-"ES","LSL","Loti","Loti","L"
-"ES","MGA","Malagasy Ariary","Ariary","F"
-"ES","TMT","Manat","Манат","m"
-"ES","AZN","Manat Azerbaijanian","Manatı","м"
-"ES","BAM","Marcos Convertibles","Marka","K"
-"ES","MZN","Metical","Metical","M"
-"ES","NGN","Naira","Naira","₦"
-"ES","ERN","Nakfa","Nakfa","N"
-"ES","BTN","Ngultrum","དངུལ་ཀྲམ","N"
-"ES","RON","Nuevo Leu","Leu","L"
-"ES","PEN","Nuevo Sol","Sol","S"
-"ES","MRO","Ouguiya","أوقية","U"
-"ES","TOP","Pa'anga","Pa'anga","T"
-"ES","MOP","Pataca","澳門圓","M"
-"ES","ARS","Peso Argentino","Peso","$"
-"ES","CLP","Peso Chileno","Peso","$"
-"ES","COP","Peso Colombiano","Peso","C"
-"ES","CUP","Peso Cubano","Peso","$"
-"ES","DOP","Peso Dominicano","Peso","R"
-"ES","PHP","Peso Filipino","Piso","₱"
-"ES","GWP","Peso Guinea-Bissau","Peso","$"
-"ES","MXN","Peso Mexicano","Peso","$"
-"ES","UYU","Peso Uruguayo","Peso","$"
-"ES","BWP","Pula","Pula","P"
-"ES","QAR","Qatari Rial","ريال","ر"
-"ES","GTQ","Quetzal","Quetzal","Q"
-"ES","ZAR","Rand","Rand","R"
-"ES","BRL","Real Brasileño","Real","R"
-"ES","IRR","Rial Iraní","﷼","﷼"
-"ES","OMR","Rial Omani","ريال","ر"
-"ES","YER","Rial Yemení","ريال","ر"
-"ES","KHR","Riel","Riel","r"
-"ES","MYR","Ringgit de Malasia","ريڠڬيت","R"
-"ES","SAR","Riyal Saudí","ريال","ر"
-"ES","BYR","Rublo Bieloruso","Рубель","B"
-"ES","RUB","Rublo Ruso","Рубль","р"
-"ES","MVR","Rufiyaa","Rufiyaa","R"
-"ES","IDR","Rupia","Rupia","R"
-"ES","SCR","Rupia de Seychelles ","Rupia","S"
-"ES","INR","Rupia Indú","Rupia","R"
-"ES","MUR","Rupia Mauritius","Rupia","R"
-"ES","NPR","Rupia Nepalesa","Rupia","N"
-"ES","PKR","Rupia Pakistaní","Rupia","R"
-"ES","LKR","Rupia Sri Lanka","Rupia","R"
-"ES","ILS","Sheqel Israeli ","שקל","₪"
-"ES","TZS","Shilling de Tanzania","Shilingi","/"
-"ES","UGX","Shilling de Uganda","Shilling","U"
-"ES","KES","Shilling Kenya","Shilling","K"
-"ES","SOS","Shilling Somalí","Shilin","S"
-"ES","KGS","Som","сом","с"
-"ES","TJS","Somoni","Сомонӣ","С"
-"ES","UZS","Sum Uzbekistán","Сўм","с"
-"ES","BDT","Taka","টাকা","৳"
-"ES","WST","Tala","Tālā","W"
-"ES","KZT","Tenge","Теңгесі","〒"
-"ES","MNT","Tugrik","Төгрөг","₮"
-"ES","AED","UAE Dirham","درهم","د"
-"ES","VUV","Vatu","Vatu","V"
-"ES","KRW","Won","원","₩"
-"ES","KPW","Won Nor-Coreano","원","₩"
-"ES","JPY","Yen Japonés","日本円","¥"
-"ES","CNY","Yuan Chino","人民币","¥"
-"ES","PLN","Zloty","Złoty","z"
-"FR","APN","Afghani","افغانۍ","؋"
-"FR","AMD","arménienne Dram","Դրամ","դ"
-"FR","AWG","Aruba Florin","Florijn","A"
-"FR","THB","Baht","บาท ไทย","฿"
-"FR","CAP","Balboa","Balboa","B"
-"FR","BBD","Barbade Dollar","Dollar","B"
-"FR","BYR","biélorusse Rouble","Рубель","B"
-"FR","ETB","Birr éthiopien","Birr","B"
-"FR","VEF","Bolivar Fuerte","Bolívar","B"
-"FR","BOB","Boliviano","Boliviano","B"
-"FR","BND","Brunei Dollar","Ringgit","B"
-"FR","SGH","Cedi","Cedi","G"
-"FR","SVC","Colon Salvadorien","Colón","₡"
-"FR","NIO","Cordoba Oro","Córdoba","C"
-"FR","KPW","Corée du Nord Won","원","₩"
-"FR","CRC","Costa Rica Colon","Colon","₡"
-"FR","EEK","Couronne","Kroon","K"
-"FR","DKK","Couronne danoise","Krone","K"
-"FR","ISK","Couronne islandaise","couronne","k"
-"FR","NOK","Couronne Norvégienne","Krone","k"
-"FR","SEK","couronne suédoise","Couronne","k"
-"FR","CZK","Couronne tchèque","Couronne","K"
-"FR","GMD","Dalasi","Dalasi","D"
-"FR","MKD","Denar","Денар","д"
-"FR","DZD","Dinar Algérien","دينار","د"
-"FR","BHD","Dinar de Bahreïn","دينار","."
-"FR","JOD","Dinar jordanien","دينار","د"
-"FR","KWD","Dinar koweïtien","دينار","د"
-"FR","LYD","Dinar libyen","دينار","ل"
-"FR","RSD","Dinar serbe","Динар","д"
-"FR","TND","Dinar Tunisien","دينار","د"
-"FR","MAD","Dirham Marocain","درهم","د"
-"FR","MST","Dobra","Dobra","D"
-"FR","AUD","Dollar australien","Dollar","$"
-"FR","DMO","Dollar bermudien","Dollar","B"
-"FR","CAD","Dollar canadien","Dollar","$"
-"FR","BZD","Dollar de Belize","Dollar","B"
-"FR","FJD","Dollar de Fidji","Dollar","F"
-"FR","HKD","Dollar de Hong Kong","香港 圆","H"
-"FR","SGD","Dollar de Singapour","新加坡元","S"
-"FR","TWD","dollar de Taïwan","新台币","$"
-"FR","BSD","Dollar des Bahamas","Dollar","B"
-"FR","XCD","Dollar des Caraïbes orientales","Dollar","E"
-"FR","SBD","Dollar des Îles Salomon","Dollar","S"
-"FR","ZWL","Dollar du Zimbabwe","Dollar","$"
-"FR","GYD","Dollar Guyana","Dollar","G"
-"FR","JMD","Dollar jamaïcain","Dollar","$"
-"FR","LRD","Dollar libérien","Dollar","L"
-"FR","NAD","Dollar Namibie","Dollar","N"
-"FR","NZD","dollar néo-zélandais","Dollar","$"
-"FR","SRD","Dollar Surinam","Dollar","$"
-"FR","VND","Dong","Djong","₫"
-"FR","AED","Emirats Arabes Unis Dirham","درهم","د"
-"FR","CVE","Escudo du Cap Vert","Escudo","E"
-"FR","EUR","Euro","Euro","€"
-"FR","FIF","Franc Burundi","Franc","F"
-"FR","XOF","Franc CFA","Franc","C"
-"FR","XAF","Franc CFA","Franc","C"
-"FR","XPF","Franc CFP","Franc","F"
-"FR","CDF","Franc Congolais","Franc","F"
-"FR","DJF","Franc de Djibouti","الفرنك","F"
-"FR","KMF","Franc des Comores","Franc","F"
-"FR","CHF","franc suisse","Franc","F"
-"FR","HTG","Gourde","Gourde","G"
-"FR","PYG","Guarani","guarani","₲"
-"FR","GNF","Guinée Franc","Franc","F"
-"FR","PRG","Guinée-Bissau Peso","Peso","$"
-"FR","HUF","Hongrie Forint","Forint","F"
-"FR","UAH","Hryvnia","Гривня","₴"
-"FR","KYD","Îles Caïmans Dollar","Dollar","$"
-"FR","FKP","Îles Falkland Pound","Livre","£"
-"FR","IQD","irakienne Dinar","دينار","ع"
-"FR","ILS","israëli sheqel","שקל","₪"
-"FR","JPY","Japon Yen","日本 円","¥"
-"FR","PGK","Kina","Kina","K"
-"FR","LAK","Kip","ກີບ","₭"
-"FR","HRK","Kuna Croate","Kuna","k"
-"FR","MWK","Kwacha","Kwacha","M"
-"FR","ZMK","Kwacha zambien","Kwacha","Z"
-"FR","AOA","Kwanza","Kwanza","K"
-"FR","MMK","Kyat","Kyat","K"
-"FR","GEL","Lari","ლარი","l"
-"FR","LVL","Lats letton","Lats","L"
-"FR","ALL","Lek","Leku","L"
-"FR","HNL","Lempira","Lempira","L"
-"FR","SLL","Leone","Leone","L"
-"FR","MDL","Leu moldave","Leu","l"
-"FR","BGN","lev bulgare","лев","л"
-"FR","SZL","Lilangeni","Lilangeni","L"
-"FR","TRY","lire turque","Lirasi","T"
-"FR","LTL","Litas lituanien","litas","L"
-"FR","GIP","Livre de Gibraltar","Livre","£"
-"FR","EGP","Livre égyptienne","الجنيه","£"
-"FR","LBP","Livre Libanaise","ليرة,","ل"
-"FR","SDG","Livre soudanaise","جنيه","£"
-"FR","GBP","Livre Sterling","Livre","£"
-"FR","SYP","Livre syrienne","الليرة","S"
-"FR","LSL","Loti","Loti","L"
-"FR","MGA","Malagasy Ariary","Ariary","F"
-"FR","TMT","Manat","Манат","m"
-"FR","AZN","manat azerbaïdjanais","Manati","м"
-"FR","BAM","Marks convertibles","Marka","K"
-"FR","MZN","Metical","Metical","M"
-"FR","NGN","Naira","Naira","₦"
-"FR","ERN","Nakfa","Nakfa","N"
-"FR","BTN","Ngultrum","དངུལ་ཀྲམ","N"
-"FR","RON","Nouveau Leu","Leu","L"
-"FR","PEN","Nuevo Sol","Sol","S"
-"FR","MRO","Ouguiya","أوقية","U"
-"FR","TOP","Pa'anga","Pa'anga","T"
-"FR","MOP","Pataca","澳门 圆","M"
-"FR","ANG","Pays-Bas Antilles Florin","Gulden","N"
-"FR","ARS","Peso argentin","Peso","$"
-"FR","CLP","Peso Chilien","Peso","$"
-"FR","COP","Peso colombien","Peso","C"
-"FR","CUP","Peso cubain","Peso","$"
-"FR","DOP","Peso Dominican","Peso","R"
-"FR","MXN","Peso mexicain","Peso","$"
-"FR","PHP","Peso philippin","Piso","₱"
-"FR","UYU","Peso uruguayen","Peso","$"
-"FR","BWP","Pula","Pula","P"
-"FR","GTQ","Quetzal","Quetzal","Q"
-"FR","ZAR","Rand","Rand","R"
-"FR","BRL","Real brésilien","Immobilier","R"
-"FR","IRR","Rial iranien","﷼","﷼"
-"FR","OMR","Rial omanais","ريال","ر"
-"FR","KHR","Riel","Riel","r"
-"FR","MYR","Ringgit Malaisien","ريڠڬيت","R"
-"FR","QAR","Riyal du Qatar","ريال","ر"
-"FR","YER","Riyal du Yémen","ريال","ر"
-"FR","SAR","Riyal saoudien","ريال","ر"
-"FR","RUB","rouble russe","Рубль","р"
-"FR","MUR","Roupie de Maurice","Roupie","R"
-"FR","LKR","Roupie de Sri Lanka","Roupie","R"
-"FR","INR","Roupie indienne","Roupie","R"
-"FR","NPR","Roupie Népalaise","Roupie","N"
-"FR","PKR","Roupie pakistanaise","Roupie","R"
-"FR","RCS","Roupie Seychelloise","Roupie","S"
-"FR","MVR","Rufiyaa","Rufiyaa","R"
-"FR","IDR","Rupiah","Rupiah","R"
-"FR","RWF","Rwanda Franc","Franc","R"
-"FR","SHP","Saint Helena Pound","Livre","£"
-"FR","SOS","Shilling de Somalie","Shilin","S"
-"FR","KES","Shilling kenyan","Shilling","K"
-"FR","UGX","Shilling ougandais","Shilling","U"
-"FR","TZS","Shilling tanzanien","Shilingi","/"
-"FR","KGS","Som","сом","с"
-"FR","TJS","Somoni","Сомонӣ","С"
-"FR","UZS","Sum ouzbek","Сўм","с"
-"FR","BDT","Taka","টাকা","৳"
-"FR","WST","Tala","Tala","W"
-"FR","KZT","Tenge","Теңгесі","〒"
-"FR","TTD","Trinité-et-Tobago Dollar","Dollar","$"
-"FR","MNT","Tugrik","Төгрөг","₮"
-"FR","USD","US Dollar","Dollar","$"
-"FR","VUV","Vatu","Vatu","V"
-"FR","KRW","won","원","₩"
-"FR","CNY","yuan chinois","人民币","¥"
-"FR","PLN","Zloty","Złoty","z"
-"IT","AFN","Afghani afgano","افغانۍ","؋"
-"IT","MGA","Ariary malgascio","Ariary","F"
-"IT","THB","Baht thailandese","บาทไทย","฿"
-"IT","PAB","Balboa panamense","Balboa","B"
-"IT","ETB","Birr etiope","Birr","B"
-"IT","VEF","Bolivar venezuelano","Bolívar","B"
-"IT","BOB","Boliviano boliviano","Boliviano","B"
-"IT","GHS","Cedi ghanese","Cedi","G"
-"IT","CRC","Colón costaricano","Colón","₡"
-"IT","NIO","Cordoba nicaraguense","Córdoba","C"
-"IT","CZK","Corona ceca","Koruna","K"
-"IT","DKK","Corona danese","Krone","K"
-"IT","ISK","Corona islandese","Króna","k"
-"IT","NOK","Corona norvegese","Krone","k"
-"IT","SEK","Corona svedese","Krona","k"
-"IT","GMD","Dalasi gambese","Dalasi","D"
-"IT","DZD","Dinaro algerino","دينار","د"
-"IT","BHD","Dinaro del Bahrain","دينار","."
-"IT","JOD","Dinaro giordano","دينار","د"
-"IT","IQD","Dinaro iracheno","دينار","ع"
-"IT","KWD","Dinaro kuwaitiano","دينار","د"
-"IT","LYD","Dinaro libico","دينار","ل"
-"IT","MKD","Dinaro macedone","Денар","д"
-"IT","RSD","Dinaro serbo","Динар","д"
-"IT","TND","Dinaro tunisino","دينار","د"
-"IT","AED","Dirham degli Emirati Arabi Uniti","درهم","د"
-"IT","MAD","Dirham marocchino","درهم","د"
-"IT","STD","Dobra di São Tomé e Príncipe","Dobra","D"
-"IT","AUD","Dollaro australiano","Dollar","$"
-"IT","CAD","Dollaro canadese","Dollar","$"
-"IT","XCD","Dollaro dei Caraibi Orientali","Dollar","E"
-"IT","BZD","Dollaro del Belize","Dollar","B"
-"IT","BND","Dollaro del Brunei","Ringgit","B"
-"IT","BMD","Dollaro della Bermuda","Dollar","B"
-"IT","GYD","Dollaro della Guyana","Dollar","G"
-"IT","BSD","Dollaro delle Bahamas","Dollar","B"
-"IT","KYD","Dollaro delle Cayman","Dollar","$"
-"IT","FJD","Dollaro delle Figi","Dollar","F"
-"IT","SBD","Dollaro delle Salomone","Dollar","S"
-"IT","BBD","Dollaro di Barbados","Dollar","B"
-"IT","HKD","Dollaro di Hong Kong","香港圓","H"
-"IT","SGD","Dollaro di Singapore","新加坡元","S"
-"IT","TTD","Dollaro di Trinidad e Tobago","Dollar","$"
-"IT","JMD","Dollaro giamaicano","Dollar","$"
-"IT","LRD","Dollaro liberiano","Dollar","L"
-"IT","NAD","Dollaro namibiano","Dollar","N"
-"IT","NZD","Dollaro neozelandese","Dollar","$"
-"IT","USD","Dollaro statunitense","Dollar","$"
-"IT","SRD","Dollaro surinamese","Dollar","$"
-"IT","ZWL","Dollaro zimbabwiano","Dollar","$"
-"IT","VND","Đồng vietnamita","đồng","₫"
-"IT","AMD","Dram armeno","Դրամ","դ"
-"IT","CVE","Escudo di Capo Verde","Escudo","E"
-"IT","EUR","Euro","Euro","€"
-"IT","AWG","Fiorino arubano","Florijn","A"
-"IT","ANG","Fiorino delle Antille olandesi","Gulden","N"
-"IT","HUF","Fiorino ungherese","Forint","F"
-"IT","XOF","Franco CFA BCEAO","Franc","C"
-"IT","XAF","Franco CFA BEAC","Franc","C"
-"IT","XPF","Franco CFP","Franc","F"
-"IT","CDF","Franco congolese","Franc","F"
-"IT","BIF","Franco del Burundi","Franc","F"
-"IT","KMF","Franco delle Comore","Franc","F"
-"IT","DJF","Franco gibutiano","الفرنك","F"
-"IT","GNF","Franco guineano","Franc","F"
-"IT","RWF","Franco ruandese","Franc","R"
-"IT","CHF","Franco svizzero","Franc","F"
-"IT","HTG","Gourde haitiano","Gourde","G"
-"IT","UAH","Grivnia ucraina","Гривня","₴"
-"IT","PYG","Guarani paraguaiano","Guaraní","₲"
-"IT","GWP","Guinea-Bissau Peso","Peso","$"
-"IT","PGK","Kina papuana","Kina","K"
-"IT","LAK","Kip laotiano","ກີບ","₭"
-"IT","EEK","Kroon","Kroon","K"
-"IT","HRK","Kuna croata","Kuna","k"
-"IT","MWK","Kwacha malawiano","Kwacha","M"
-"IT","ZMK","Kwacha zambiano","Kwacha","Z"
-"IT","AOA","Kwanza angolano","Kwanza","K"
-"IT","MMK","Kyat birmano","Kyat","K"
-"IT","GEL","Lari georgiano","ლარი","l"
-"IT","LVL","Lats lettone","Lats","L"
-"IT","ALL","Lek albanese","Leku","L"
-"IT","HNL","Lempira honduregna","Lempira","L"
-"IT","SLL","Leone sierraleonese","Leone","L"
-"IT","MDL","Leu moldavo","Leu","l"
-"IT","SZL","Lilangeni dello Swaziland","Lilangeni","L"
-"IT","EGP","Lira egiziana","الجنيه","£"
-"IT","LBP","Lira libanese (o sterlina)","ليرة,","ل"
-"IT","SYP","Lira siriana (o sterlina)","الليرة","S"
-"IT","LTL","Lita lituano","Litas","L"
-"IT","LSL","Loti lesothiano","Loti","L"
-"IT","AZN","Manat azero","Manatı","м"
-"IT","TMT","Manat turkmeno","Манат","m"
-"IT","BAM","Marco bosniaco","Marka","K"
-"IT","MZN","Metical mozambicano","Metical","M"
-"IT","NGN","Naira nigeriana","Naira","₦"
-"IT","ERN","Nakfa eritreo","Nakfa","N"
-"IT","BTN","Ngultrum del Bhutan","དངུལ་ཀྲམ","N"
-"IT","PEN","Nuevo sol peruviano","Sol","S"
-"IT","TRY","Nuova lira turca","Lirası","T"
-"IT","TWD","Nuovo dollaro taiwanese","新臺幣","$"
-"IT","RON","Nuovo leu rumeno","Leu","L"
-"IT","BGN","Nuovo lev bulgaro","лев","л"
-"IT","ILS","Nuovo siclo israeliano","שקל","₪"
-"IT","MRO","Ouguiya mauritana","أوقية","U"
-"IT","TOP","Paʻanga tongano","Pa'anga","T"
-"IT","MOP","Pataca di Macao","澳門圓","M"
-"IT","ARS","Peso argentino","Peso","$"
-"IT","CLP","Peso cileno","Peso","$"
-"IT","COP","Peso colombiano","Peso","C"
-"IT","CUP","Peso cubano","Peso","$"
-"IT","DOP","Peso dominicano","Peso","R"
-"IT","PHP","Peso filippino","Piso","₱"
-"IT","MXN","Peso messicano","Peso","$"
-"IT","UYU","Peso uruguaiano","Peso","$"
-"IT","BWP","Pula del Botswana","Pula","P"
-"IT","GTQ","Quetzal guatemalteco","Quetzal","Q"
-"IT","ZAR","Rand sudafricano","Rand","R"
-"IT","BRL","Real brasiliano","Real","R"
-"IT","CNY","Renminbi cinese (Yuan)","人民币","¥"
-"IT","QAR","Rial del Qatar","ريال","ر"
-"IT","OMR","Rial dell'Oman","ريال","ر"
-"IT","IRR","Rial iraniano","﷼","﷼"
-"IT","SAR","Rial saudita","ريال","ر"
-"IT","YER","Rial yemenita","ريال","ر"
-"IT","KHR","Riel cambogiano","Riel","r"
-"IT","MYR","Ringgit malese","ريڠڬيت","R"
-"IT","BYR","Rublo bielorusso","Рубель","B"
-"IT","RUB","Rublo russo","Рубль","р"
-"IT","MVR","Rufiyaa delle Maldive","Rufiyaa","R"
-"IT","SCR","Rupia delle Seychelles","Roupie","S"
-"IT","INR","Rupia indiana","Rupee","R"
-"IT","IDR","Rupia indonesiana","Rupiah","R"
-"IT","MUR","Rupia mauriziana","Roupie","R"
-"IT","NPR","Rupia nepalese","Rupee","N"
-"IT","PKR","Rupia pakistana","Rupee","R"
-"IT","LKR","Rupia singalese","Rupee","R"
-"IT","SVC","Salvadoran Colon","Colón","₡"
-"IT","KES","Scellino keniota","Shilling","K"
-"IT","SOS","Scellino somalo","Shilin","S"
-"IT","TZS","Scellino tanzaniano","Shilingi","/"
-"IT","UGX","Scellino ugandese","Shilling","U"
-"IT","KGS","Som kirghizo","сом","с"
-"IT","UZS","Som uzbeco","Сўм","с"
-"IT","TJS","Somoni tagico","Сомонӣ","С"
-"IT","GBP","Sterlina britannica","Pound","£"
-"IT","FKP","Sterlina delle Falkland","Pound","£"
-"IT","GIP","Sterlina di Gibilterra","Pound","£"
-"IT","SHP","Sterlina di Sant'Elena","Pound","£"
-"IT","SDG","Sterlina sudanese","جنيه","£"
-"IT","BDT","Taka bengalese","টাকা","৳"
-"IT","WST","Tala samoano","Tālā","W"
-"IT","KZT","Tenge kazako","Теңгесі","〒"
-"IT","MNT","Tugrik mongolo","Төгрөг","₮"
-"IT","VUV","Vatu di Vanuatu","Vatu","V"
-"IT","KPW","Won nordcoreano","원","₩"
-"IT","KRW","Won sudcoreano","원","₩"
-"IT","JPY","Yen giapponese","日本円","¥"
-"IT","PLN","Złoty polacco","Złoty","z"
+EN,AFN,Afghani,افغانۍ,؋
+EN,DZD,Algerian Dinar,دينار,د
+EN,ARS,Argentine Peso,Peso,$
+EN,AMD,Armenian Dram,Դրամ,դ
+EN,AWG,Aruban Guilder,Florijn,A
+EN,AUD,Australian Dollar,Dollar,$
+EN,AZN,Azerbaijanian Manat,Manatı,м
+EN,BSD,Bahamian Dollar,Dollar,B
+EN,BHD,Bahraini Dinar,دينار,.
+EN,THB,Baht,บาทไทย,฿
+EN,PAB,Balboa,Balboa,B
+EN,BBD,Barbados Dollar,Dollar,B
+EN,BYR,Belarussian Ruble,Рубель,B
+EN,BZD,Belize Dollar,Dollar,B
+EN,BMD,Bermudian Dollar,Dollar,B
+EN,VEF,Bolivar Fuerte,Bolívar,B
+EN,BOB,Boliviano,Boliviano,B
+EN,BRL,Brazilian Real,Real,R
+EN,BND,Brunei Dollar,Ringgit,B
+EN,BGN,Bulgarian Lev,лев,л
+EN,BIF,Burundi Franc,Franc,F
+EN,CAD,Canadian Dollar,Dollar,$
+EN,CVE,Cape Verde Escudo,Escudo,E
+EN,KYD,Cayman Islands Dollar,Dollar,$
+EN,GHS,Cedi,Cedi,G
+EN,XAF,CFA Franc,Franc,C
+EN,XOF,CFA Franc,Franc,C
+EN,XPF,CFP Franc,Franc,F
+EN,CLP,Chilean Peso,Peso,$
+EN,CNY,Chinese Yuan,人民币,¥
+EN,COP,Colombian Peso,Peso,C
+EN,KMF,Comoro Franc,Franc,F
+EN,CDF,Congolese Franc,Franc,F
+EN,BAM,Convertible Marks,Marka,K
+EN,NIO,Cordoba Oro,Córdoba,C
+EN,CRC,Costa Rican Colon,Colón,₡
+EN,HRK,Croatian Kuna,Kuna,k
+EN,CUP,Cuban Peso,Peso,$
+EN,CZK,Czech Koruna,Koruna,K
+EN,GMD,Dalasi,Dalasi,D
+EN,DKK,Danish Krone,Krone,K
+EN,MKD,Denar,Денар,д
+EN,DJF,Djibouti Franc,الفرنك,F
+EN,STD,Dobra,Dobra,D
+EN,DOP,Dominican Peso,Peso,R
+EN,VND,Dong,đồng,₫
+EN,XCD,East Caribbean Dollar,Dollar,E
+EN,EGP,Egyptian Pound,الجنيه,£
+EN,ETB,Ethiopian Birr,Birr,B
+EN,EUR,Euro,Euro,€
+EN,FKP,Falkland Islands Pound,Pound,£
+EN,FJD,Fiji Dollar,Dollar,F
+EN,GIP,Gibraltar Pound,Pound,£
+EN,HTG,Gourde,Gourde,G
+EN,PYG,Guarani,Guaraní,₲
+EN,GNF,Guinea Franc,Franc,F
+EN,GWP,Guinea-Bissau Peso,Peso,$
+EN,GYD,Guyana Dollar,Dollar,G
+EN,HKD,Hong Kong Dollar,香港圓,H
+EN,UAH,Hryvnia,Гривня,₴
+EN,HUF,Hungary Forint,Forint,F
+EN,ISK,Iceland Krona,Króna,k
+EN,INR,Indian Rupee,Rupee,R
+EN,IRR,Iranian Rial,﷼,﷼
+EN,IQD,Iraqi Dinar,دينار,ع
+EN,ILS,Israeli Sheqel,שקל,₪
+EN,JMD,Jamaican Dollar,Dollar,$
+EN,JPY,Japan Yen,日本円,¥
+EN,JOD,Jordanian Dinar,دينار,د
+EN,KES,Kenyan Shilling,Shilling,K
+EN,PGK,Kina,Kina,K
+EN,LAK,Kip,ກີບ,₭
+EN,EEK,Kroon,Kroon,K
+EN,KWD,Kuwaiti Dinar,دينار,د
+EN,MWK,Kwacha,Kwacha,M
+EN,AOA,Kwanza,Kwanza,K
+EN,MMK,Kyat,Kyat,K
+EN,GEL,Lari,ლარი,l
+EN,LVL,Latvian Lats,Lats,L
+EN,LBP,Lebanese Pound,ليرة,,ل
+EN,ALL,Lek,Leku,L
+EN,HNL,Lempira,Lempira,L
+EN,SLL,Leone,Leone,L
+EN,LRD,Liberian Dollar,Dollar,L
+EN,LYD,Libyan Dinar,دينار,ل
+EN,SZL,Lilangeni,Lilangeni,L
+EN,LTL,Lithuanian Litas,Litas,L
+EN,LSL,Loti,Loti,L
+EN,MGA,Malagasy Ariary,Ariary,F
+EN,MYR,Malaysian Ringgit,ريڠڬيت,R
+EN,TMT,Manat,Манат,m
+EN,MUR,Mauritius Rupee,Roupie,R
+EN,MZN,Metical,Metical,M
+EN,MXN,Mexican Peso,Peso,$
+EN,MDL,Moldovan Leu,Leu,l
+EN,MAD,Moroccan Dirham,درهم,د
+EN,NGN,Naira,Naira,₦
+EN,ERN,Nakfa,Nakfa,N
+EN,NAD,Namibia Dollar,Dollar,N
+EN,NPR,Nepalese Rupee,Rupee,N
+EN,ANG,Netherlands Antillian Guilder,Gulden,N
+EN,RON,New Leu,Leu,L
+EN,NZD,New Zealand Dollar,Dollar,$
+EN,BTN,Ngultrum,དངུལ་ཀྲམ,N
+EN,KPW,North Korean Won,원,₩
+EN,NOK,Norwegian Krone,Krone,k
+EN,PEN,Nuevo Sol,Sol,S
+EN,MRO,Ouguiya,أوقية,U
+EN,TOP,Pa'anga,Pa'anga,T
+EN,PKR,Pakistan Rupee,Rupee,R
+EN,MOP,Pataca,澳門圓,M
+EN,UYU,Peso Uruguayo,Peso,$
+EN,PHP,Philippine Peso,Piso,₱
+EN,GBP,Pound Sterling,Pound,£
+EN,BWP,Pula,Pula,P
+EN,QAR,Qatari Rial,ريال,ر
+EN,GTQ,Quetzal,Quetzal,Q
+EN,ZAR,Rand,Rand,R
+EN,OMR,Rial Omani,ريال,ر
+EN,KHR,Riel,Riel,r
+EN,MVR,Rufiyaa,Rufiyaa,R
+EN,IDR,Rupiah,Rupiah,R
+EN,RUB,Russian Ruble,Рубль,р
+EN,RWF,Rwanda Franc,Franc,R
+EN,SHP,Saint Helena Pound,Pound,£
+EN,SVC,Salvadoran Colon,Colón,₡
+EN,SAR,Saudi Riyal,ريال,ر
+EN,RSD,Serbian Dinar,Динар,д
+EN,SCR,Seychelles Rupee,Roupie,S
+EN,SGD,Singapore Dollar,新加坡元,S
+EN,SBD,Solomon Islands Dollar,Dollar,S
+EN,KGS,Som,сом,с
+EN,SOS,Somali Shilling,Shilin,S
+EN,TJS,Somoni,Сомонӣ,С
+EN,LKR,Sri Lanka Rupee,Rupee,R
+EN,SDG,Sudanese Pound,جنيه,£
+EN,SRD,Surinam Dollar,Dollar,$
+EN,SEK,Swedish Krona,Krona,k
+EN,CHF,Swiss Franc,Franc,F
+EN,SYP,Syrian Pound,الليرة,S
+EN,TWD,Taiwan Dollar,新臺幣,$
+EN,BDT,Taka,টাকা,৳
+EN,WST,Tala,Tālā,W
+EN,TZS,Tanzanian Shilling,Shilingi,/
+EN,KZT,Tenge,Теңгесі,〒
+EN,TTD,Trinidad and Tobago Dollar,Dollar,$
+EN,MNT,Tugrik,Төгрөг,₮
+EN,TND,Tunisian Dinar,دينار,د
+EN,TRY,Turkish Lira,Lirası,T
+EN,AED,UAE Dirham,درهم,د
+EN,UGX,Uganda Shilling,Shilling,U
+EN,USD,US Dollar,Dollar,$
+EN,UZS,Uzbekistan Sum,Сўм,с
+EN,VUV,Vatu,Vatu,V
+EN,KRW,Won,원,₩
+EN,YER,Yemeni Rial,ريال,ر
+EN,ZMK,Zambian Kwacha,Kwacha,Z
+EN,ZWL,Zimbabwe Dollar,Dollar,$
+EN,PLN,Zloty,Złoty,z
+ES,AFN,Afghani,افغانۍ,؋
+ES,THB,Baht,บาทไทย,฿
+ES,PAB,Balboa,Balboa,B
+ES,ETB,Birr Etiopía,Birr,B
+ES,VEF,Bolivar Fuerte,Bolívar,B
+ES,BOB,Boliviano,Boliviano,B
+ES,BND,Brunei Dólar,Ringgit,B
+ES,GHS,Cedi,Cedi,G
+ES,CRC,Colón Costa Rican,Colón,₡
+ES,SVC,Colón Salvadoreño,Colón,₡
+ES,NIO,Cordoba Oro,Córdoba,C
+ES,DKK,Corona Danesa,Corona,K
+ES,ISK,Corona Islandia,Corona,k
+ES,NOK,Corona Noruega,Corona,k
+ES,SEK,Corona Suiza,Corona,k
+ES,GMD,Dalasi,Dalasi,D
+ES,MKD,Dinar,Денар,д
+ES,DZD,Dinar Algeria,دينار,د
+ES,BHD,Dinar Bahrainí,دينار,.
+ES,LYD,Dinar de Libia,دينار,ل
+ES,RSD,Dinar de Serbian,Динар,д
+ES,TND,Dinar de Tunisia,دينار,د
+ES,IQD,Dinar Iraqi,دينار,ع
+ES,JOD,Dinar Jordano,دينار,د
+ES,KWD,Dinar Kuwaití,دينار,د
+ES,MAD,Dirham de Moroco,درهم,د
+ES,DJF,Djibouti Franco,الفرنك,F
+ES,STD,Dobra,Dobra,D
+ES,USD,Dólar Americano,Dólar,$
+ES,AUD,Dólar Australiano,Dólar,$
+ES,BSD,Dólar Bahamas,Dólar,B
+ES,BBD,Dólar Barbados,Dólar,B
+ES,BZD,Dólar Belize,Dólar,B
+ES,BMD,Dólar Bremuda,Dólar,B
+ES,CAD,Dólar Canadiense,Dólar,$
+ES,GYD,Dólar de Guyana,Dólar,G
+ES,NAD,Dólar de Namibia,Dólar,N
+ES,ZWL,Dólar de Zimbabwe,Dólar,$
+ES,XCD,Dólar del Este Caribeño,Dólar,E
+ES,FJD,Dólar Fiji,Dólar,F
+ES,HKD,Dólar Hong Kong,香港圓,H
+ES,KYD,Dólar Islas Caimán,Dólar,$
+ES,SBD,Dólar Islas Salomón,Dólar,S
+ES,JMD,Dólar Jamaiquino,Dólar,$
+ES,LRD,Dólar Liberiano,Dólar,L
+ES,NZD,Dólar Nueva Zelanda,Dólar,$
+ES,SGD,Dólar Singapur,新加坡元,S
+ES,SRD,Dólar Surinam,Dólar,$
+ES,TWD,Dólar Taiwanés,新臺幣,$
+ES,TTD,Dólar Trinidad y Tobago,Dólar,$
+ES,VND,Dong,đồng,₫
+ES,AMD,Dram Armenio,Դրամ,դ
+ES,CVE,Escudo Cabo Verde,Escudo,E
+ES,EUR,Euro,Euro,€
+ES,HUF,Florín Húgaro,Forín,F
+ES,XAF,Franco CFA,Franco,C
+ES,XOF,Franco CFA,Franco,C
+ES,XPF,Franco CFA,Franco,F
+ES,CDF,Franco Congolés,Franco,F
+ES,KMF,Franco de Comoro,Franco,F
+ES,GNF,Franco de Guinea,Franco,F
+ES,RWF,Franco Ruandés,Franco,R
+ES,CHF,Franco Suizo,Franco,F
+ES,BIF,Francoo de Burundi,Franco,F
+ES,HTG,Gourde,Gourde,G
+ES,PYG,Guarani,Guaraní,₲
+ES,ANG,Guilder Antillas Nerlandesas,Gulden,N
+ES,AWG,Guilder de Aruba,Florijn,A
+ES,UAH,Hryvnia,Гривня,₴
+ES,PGK,Kina,Kina,K
+ES,LAK,Kip,ກີບ,₭
+ES,CZK,Koruna Checa,Koruna,K
+ES,EEK,Kroon,Kroon,K
+ES,HRK,Kuna Croatí,Kuna,k
+ES,MWK,Kwacha,Kwacha,M
+ES,ZMK,Kwacha de Zambia,Kwacha,Z
+ES,AOA,Kwanza,Kwanza,K
+ES,MMK,Kyat,Kyat,K
+ES,GEL,Lari,ლარი,l
+ES,LVL,Latvian Lats,Lats,L
+ES,ALL,Lek,Leku,L
+ES,HNL,Lempira,Lempira,L
+ES,SLL,Leone,Leone,L
+ES,MDL,Leu de Moldovia,Leu,l
+ES,BGN,Lev Búlgaro,лев,л
+ES,SHP,Libra de Santa Eelena,Libra,£
+ES,SDG,Libra de Sudán,جنيه,£
+ES,EGP,Libra Egipcia,الجنيه,£
+ES,GIP,Libra Gibraltar,Libra,£
+ES,FKP,Libra Islas Falkland,Libra,£
+ES,LBP,Libra Libanesa,ليرة,,ل
+ES,SYP,Libra Siria,الليرة,S
+ES,GBP,Libra Sterling,Libra,£
+ES,SZL,Lilangeni,Lilangeni,L
+ES,TRY,Lira Turca,Lira,T
+ES,LTL,Litas Lutianesa,Litas,L
+ES,LSL,Loti,Loti,L
+ES,MGA,Malagasy Ariary,Ariary,F
+ES,TMT,Manat,Манат,m
+ES,AZN,Manat Azerbaijanian,Manatı,м
+ES,BAM,Marcos Convertibles,Marka,K
+ES,MZN,Metical,Metical,M
+ES,NGN,Naira,Naira,₦
+ES,ERN,Nakfa,Nakfa,N
+ES,BTN,Ngultrum,དངུལ་ཀྲམ,N
+ES,RON,Nuevo Leu,Leu,L
+ES,PEN,Nuevo Sol,Sol,S
+ES,MRO,Ouguiya,أوقية,U
+ES,TOP,Pa'anga,Pa'anga,T
+ES,MOP,Pataca,澳門圓,M
+ES,ARS,Peso Argentino,Peso,$
+ES,CLP,Peso Chileno,Peso,$
+ES,COP,Peso Colombiano,Peso,C
+ES,CUP,Peso Cubano,Peso,$
+ES,DOP,Peso Dominicano,Peso,R
+ES,PHP,Peso Filipino,Piso,₱
+ES,GWP,Peso Guinea-Bissau,Peso,$
+ES,MXN,Peso Mexicano,Peso,$
+ES,UYU,Peso Uruguayo,Peso,$
+ES,BWP,Pula,Pula,P
+ES,QAR,Qatari Rial,ريال,ر
+ES,GTQ,Quetzal,Quetzal,Q
+ES,ZAR,Rand,Rand,R
+ES,BRL,Real Brasileño,Real,R
+ES,IRR,Rial Iraní,﷼,﷼
+ES,OMR,Rial Omani,ريال,ر
+ES,YER,Rial Yemení,ريال,ر
+ES,KHR,Riel,Riel,r
+ES,MYR,Ringgit de Malasia,ريڠڬيت,R
+ES,SAR,Riyal Saudí,ريال,ر
+ES,BYR,Rublo Bieloruso,Рубель,B
+ES,RUB,Rublo Ruso,Рубль,р
+ES,MVR,Rufiyaa,Rufiyaa,R
+ES,IDR,Rupia,Rupia,R
+ES,SCR,Rupia de Seychelles ,Rupia,S
+ES,INR,Rupia Indú,Rupia,R
+ES,MUR,Rupia Mauritius,Rupia,R
+ES,NPR,Rupia Nepalesa,Rupia,N
+ES,PKR,Rupia Pakistaní,Rupia,R
+ES,LKR,Rupia Sri Lanka,Rupia,R
+ES,ILS,Sheqel Israeli ,שקל,₪
+ES,TZS,Shilling de Tanzania,Shilingi,/
+ES,UGX,Shilling de Uganda,Shilling,U
+ES,KES,Shilling Kenya,Shilling,K
+ES,SOS,Shilling Somalí,Shilin,S
+ES,KGS,Som,сом,с
+ES,TJS,Somoni,Сомонӣ,С
+ES,UZS,Sum Uzbekistán,Сўм,с
+ES,BDT,Taka,টাকা,৳
+ES,WST,Tala,Tālā,W
+ES,KZT,Tenge,Теңгесі,〒
+ES,MNT,Tugrik,Төгрөг,₮
+ES,AED,UAE Dirham,درهم,د
+ES,VUV,Vatu,Vatu,V
+ES,KRW,Won,원,₩
+ES,KPW,Won Nor-Coreano,원,₩
+ES,JPY,Yen Japonés,日本円,¥
+ES,CNY,Yuan Chino,人民币,¥
+ES,PLN,Zloty,Złoty,z
+FR,APN,Afghani,افغانۍ,؋
+FR,AMD,arménienne Dram,Դրամ,դ
+FR,AWG,Aruba Florin,Florijn,A
+FR,THB,Baht,บาท ไทย,฿
+FR,CAP,Balboa,Balboa,B
+FR,BBD,Barbade Dollar,Dollar,B
+FR,BYR,biélorusse Rouble,Рубель,B
+FR,ETB,Birr éthiopien,Birr,B
+FR,VEF,Bolivar Fuerte,Bolívar,B
+FR,BOB,Boliviano,Boliviano,B
+FR,BND,Brunei Dollar,Ringgit,B
+FR,SGH,Cedi,Cedi,G
+FR,SVC,Colon Salvadorien,Colón,₡
+FR,NIO,Cordoba Oro,Córdoba,C
+FR,KPW,Corée du Nord Won,원,₩
+FR,CRC,Costa Rica Colon,Colon,₡
+FR,EEK,Couronne,Kroon,K
+FR,DKK,Couronne danoise,Krone,K
+FR,ISK,Couronne islandaise,couronne,k
+FR,NOK,Couronne Norvégienne,Krone,k
+FR,SEK,couronne suédoise,Couronne,k
+FR,CZK,Couronne tchèque,Couronne,K
+FR,GMD,Dalasi,Dalasi,D
+FR,MKD,Denar,Денар,д
+FR,DZD,Dinar Algérien,دينار,د
+FR,BHD,Dinar de Bahreïn,دينار,.
+FR,JOD,Dinar jordanien,دينار,د
+FR,KWD,Dinar koweïtien,دينار,د
+FR,LYD,Dinar libyen,دينار,ل
+FR,RSD,Dinar serbe,Динар,д
+FR,TND,Dinar Tunisien,دينار,د
+FR,MAD,Dirham Marocain,درهم,د
+FR,MST,Dobra,Dobra,D
+FR,AUD,Dollar australien,Dollar,$
+FR,DMO,Dollar bermudien,Dollar,B
+FR,CAD,Dollar canadien,Dollar,$
+FR,BZD,Dollar de Belize,Dollar,B
+FR,FJD,Dollar de Fidji,Dollar,F
+FR,HKD,Dollar de Hong Kong,香港 圆,H
+FR,SGD,Dollar de Singapour,新加坡元,S
+FR,TWD,dollar de Taïwan,新台币,$
+FR,BSD,Dollar des Bahamas,Dollar,B
+FR,XCD,Dollar des Caraïbes orientales,Dollar,E
+FR,SBD,Dollar des Îles Salomon,Dollar,S
+FR,ZWL,Dollar du Zimbabwe,Dollar,$
+FR,GYD,Dollar Guyana,Dollar,G
+FR,JMD,Dollar jamaïcain,Dollar,$
+FR,LRD,Dollar libérien,Dollar,L
+FR,NAD,Dollar Namibie,Dollar,N
+FR,NZD,dollar néo-zélandais,Dollar,$
+FR,SRD,Dollar Surinam,Dollar,$
+FR,VND,Dong,Djong,₫
+FR,AED,Emirats Arabes Unis Dirham,درهم,د
+FR,CVE,Escudo du Cap Vert,Escudo,E
+FR,EUR,Euro,Euro,€
+FR,FIF,Franc Burundi,Franc,F
+FR,XOF,Franc CFA,Franc,C
+FR,XAF,Franc CFA,Franc,C
+FR,XPF,Franc CFP,Franc,F
+FR,CDF,Franc Congolais,Franc,F
+FR,DJF,Franc de Djibouti,الفرنك,F
+FR,KMF,Franc des Comores,Franc,F
+FR,CHF,franc suisse,Franc,F
+FR,HTG,Gourde,Gourde,G
+FR,PYG,Guarani,guarani,₲
+FR,GNF,Guinée Franc,Franc,F
+FR,PRG,Guinée-Bissau Peso,Peso,$
+FR,HUF,Hongrie Forint,Forint,F
+FR,UAH,Hryvnia,Гривня,₴
+FR,KYD,Îles Caïmans Dollar,Dollar,$
+FR,FKP,Îles Falkland Pound,Livre,£
+FR,IQD,irakienne Dinar,دينار,ع
+FR,ILS,israëli sheqel,שקל,₪
+FR,JPY,Japon Yen,日本 円,¥
+FR,PGK,Kina,Kina,K
+FR,LAK,Kip,ກີບ,₭
+FR,HRK,Kuna Croate,Kuna,k
+FR,MWK,Kwacha,Kwacha,M
+FR,ZMK,Kwacha zambien,Kwacha,Z
+FR,AOA,Kwanza,Kwanza,K
+FR,MMK,Kyat,Kyat,K
+FR,GEL,Lari,ლარი,l
+FR,LVL,Lats letton,Lats,L
+FR,ALL,Lek,Leku,L
+FR,HNL,Lempira,Lempira,L
+FR,SLL,Leone,Leone,L
+FR,MDL,Leu moldave,Leu,l
+FR,BGN,lev bulgare,лев,л
+FR,SZL,Lilangeni,Lilangeni,L
+FR,TRY,lire turque,Lirasi,T
+FR,LTL,Litas lituanien,litas,L
+FR,GIP,Livre de Gibraltar,Livre,£
+FR,EGP,Livre égyptienne,الجنيه,£
+FR,LBP,Livre Libanaise,ليرة,,ل
+FR,SDG,Livre soudanaise,جنيه,£
+FR,GBP,Livre Sterling,Livre,£
+FR,SYP,Livre syrienne,الليرة,S
+FR,LSL,Loti,Loti,L
+FR,MGA,Malagasy Ariary,Ariary,F
+FR,TMT,Manat,Манат,m
+FR,AZN,manat azerbaïdjanais,Manati,м
+FR,BAM,Marks convertibles,Marka,K
+FR,MZN,Metical,Metical,M
+FR,NGN,Naira,Naira,₦
+FR,ERN,Nakfa,Nakfa,N
+FR,BTN,Ngultrum,དངུལ་ཀྲམ,N
+FR,RON,Nouveau Leu,Leu,L
+FR,PEN,Nuevo Sol,Sol,S
+FR,MRO,Ouguiya,أوقية,U
+FR,TOP,Pa'anga,Pa'anga,T
+FR,MOP,Pataca,澳门 圆,M
+FR,ANG,Pays-Bas Antilles Florin,Gulden,N
+FR,ARS,Peso argentin,Peso,$
+FR,CLP,Peso Chilien,Peso,$
+FR,COP,Peso colombien,Peso,C
+FR,CUP,Peso cubain,Peso,$
+FR,DOP,Peso Dominican,Peso,R
+FR,MXN,Peso mexicain,Peso,$
+FR,PHP,Peso philippin,Piso,₱
+FR,UYU,Peso uruguayen,Peso,$
+FR,BWP,Pula,Pula,P
+FR,GTQ,Quetzal,Quetzal,Q
+FR,ZAR,Rand,Rand,R
+FR,BRL,Real brésilien,Immobilier,R
+FR,IRR,Rial iranien,﷼,﷼
+FR,OMR,Rial omanais,ريال,ر
+FR,KHR,Riel,Riel,r
+FR,MYR,Ringgit Malaisien,ريڠڬيت,R
+FR,QAR,Riyal du Qatar,ريال,ر
+FR,YER,Riyal du Yémen,ريال,ر
+FR,SAR,Riyal saoudien,ريال,ر
+FR,RUB,rouble russe,Рубль,р
+FR,MUR,Roupie de Maurice,Roupie,R
+FR,LKR,Roupie de Sri Lanka,Roupie,R
+FR,INR,Roupie indienne,Roupie,R
+FR,NPR,Roupie Népalaise,Roupie,N
+FR,PKR,Roupie pakistanaise,Roupie,R
+FR,RCS,Roupie Seychelloise,Roupie,S
+FR,MVR,Rufiyaa,Rufiyaa,R
+FR,IDR,Rupiah,Rupiah,R
+FR,RWF,Rwanda Franc,Franc,R
+FR,SHP,Saint Helena Pound,Livre,£
+FR,SOS,Shilling de Somalie,Shilin,S
+FR,KES,Shilling kenyan,Shilling,K
+FR,UGX,Shilling ougandais,Shilling,U
+FR,TZS,Shilling tanzanien,Shilingi,/
+FR,KGS,Som,сом,с
+FR,TJS,Somoni,Сомонӣ,С
+FR,UZS,Sum ouzbek,Сўм,с
+FR,BDT,Taka,টাকা,৳
+FR,WST,Tala,Tala,W
+FR,KZT,Tenge,Теңгесі,〒
+FR,TTD,Trinité-et-Tobago Dollar,Dollar,$
+FR,MNT,Tugrik,Төгрөг,₮
+FR,USD,US Dollar,Dollar,$
+FR,VUV,Vatu,Vatu,V
+FR,KRW,won,원,₩
+FR,CNY,yuan chinois,人民币,¥
+FR,PLN,Zloty,Złoty,z
+IT,AFN,Afghani afgano,افغانۍ,؋
+IT,MGA,Ariary malgascio,Ariary,F
+IT,THB,Baht thailandese,บาทไทย,฿
+IT,PAB,Balboa panamense,Balboa,B
+IT,ETB,Birr etiope,Birr,B
+IT,VEF,Bolivar venezuelano,Bolívar,B
+IT,BOB,Boliviano boliviano,Boliviano,B
+IT,GHS,Cedi ghanese,Cedi,G
+IT,CRC,Colón costaricano,Colón,₡
+IT,NIO,Cordoba nicaraguense,Córdoba,C
+IT,CZK,Corona ceca,Koruna,K
+IT,DKK,Corona danese,Krone,K
+IT,ISK,Corona islandese,Króna,k
+IT,NOK,Corona norvegese,Krone,k
+IT,SEK,Corona svedese,Krona,k
+IT,GMD,Dalasi gambese,Dalasi,D
+IT,DZD,Dinaro algerino,دينار,د
+IT,BHD,Dinaro del Bahrain,دينار,.
+IT,JOD,Dinaro giordano,دينار,د
+IT,IQD,Dinaro iracheno,دينار,ع
+IT,KWD,Dinaro kuwaitiano,دينار,د
+IT,LYD,Dinaro libico,دينار,ل
+IT,MKD,Dinaro macedone,Денар,д
+IT,RSD,Dinaro serbo,Динар,д
+IT,TND,Dinaro tunisino,دينار,د
+IT,AED,Dirham degli Emirati Arabi Uniti,درهم,د
+IT,MAD,Dirham marocchino,درهم,د
+IT,STD,Dobra di São Tomé e Príncipe,Dobra,D
+IT,AUD,Dollaro australiano,Dollar,$
+IT,CAD,Dollaro canadese,Dollar,$
+IT,XCD,Dollaro dei Caraibi Orientali,Dollar,E
+IT,BZD,Dollaro del Belize,Dollar,B
+IT,BND,Dollaro del Brunei,Ringgit,B
+IT,BMD,Dollaro della Bermuda,Dollar,B
+IT,GYD,Dollaro della Guyana,Dollar,G
+IT,BSD,Dollaro delle Bahamas,Dollar,B
+IT,KYD,Dollaro delle Cayman,Dollar,$
+IT,FJD,Dollaro delle Figi,Dollar,F
+IT,SBD,Dollaro delle Salomone,Dollar,S
+IT,BBD,Dollaro di Barbados,Dollar,B
+IT,HKD,Dollaro di Hong Kong,香港圓,H
+IT,SGD,Dollaro di Singapore,新加坡元,S
+IT,TTD,Dollaro di Trinidad e Tobago,Dollar,$
+IT,JMD,Dollaro giamaicano,Dollar,$
+IT,LRD,Dollaro liberiano,Dollar,L
+IT,NAD,Dollaro namibiano,Dollar,N
+IT,NZD,Dollaro neozelandese,Dollar,$
+IT,USD,Dollaro statunitense,Dollar,$
+IT,SRD,Dollaro surinamese,Dollar,$
+IT,ZWL,Dollaro zimbabwiano,Dollar,$
+IT,VND,Đồng vietnamita,đồng,₫
+IT,AMD,Dram armeno,Դրամ,դ
+IT,CVE,Escudo di Capo Verde,Escudo,E
+IT,EUR,Euro,Euro,€
+IT,AWG,Fiorino arubano,Florijn,A
+IT,ANG,Fiorino delle Antille olandesi,Gulden,N
+IT,HUF,Fiorino ungherese,Forint,F
+IT,XOF,Franco CFA BCEAO,Franc,C
+IT,XAF,Franco CFA BEAC,Franc,C
+IT,XPF,Franco CFP,Franc,F
+IT,CDF,Franco congolese,Franc,F
+IT,BIF,Franco del Burundi,Franc,F
+IT,KMF,Franco delle Comore,Franc,F
+IT,DJF,Franco gibutiano,الفرنك,F
+IT,GNF,Franco guineano,Franc,F
+IT,RWF,Franco ruandese,Franc,R
+IT,CHF,Franco svizzero,Franc,F
+IT,HTG,Gourde haitiano,Gourde,G
+IT,UAH,Grivnia ucraina,Гривня,₴
+IT,PYG,Guarani paraguaiano,Guaraní,₲
+IT,GWP,Guinea-Bissau Peso,Peso,$
+IT,PGK,Kina papuana,Kina,K
+IT,LAK,Kip laotiano,ກີບ,₭
+IT,EEK,Kroon,Kroon,K
+IT,HRK,Kuna croata,Kuna,k
+IT,MWK,Kwacha malawiano,Kwacha,M
+IT,ZMK,Kwacha zambiano,Kwacha,Z
+IT,AOA,Kwanza angolano,Kwanza,K
+IT,MMK,Kyat birmano,Kyat,K
+IT,GEL,Lari georgiano,ლარი,l
+IT,LVL,Lats lettone,Lats,L
+IT,ALL,Lek albanese,Leku,L
+IT,HNL,Lempira honduregna,Lempira,L
+IT,SLL,Leone sierraleonese,Leone,L
+IT,MDL,Leu moldavo,Leu,l
+IT,SZL,Lilangeni dello Swaziland,Lilangeni,L
+IT,EGP,Lira egiziana,الجنيه,£
+IT,LBP,Lira libanese (o sterlina),ليرة,,ل
+IT,SYP,Lira siriana (o sterlina),الليرة,S
+IT,LTL,Lita lituano,Litas,L
+IT,LSL,Loti lesothiano,Loti,L
+IT,AZN,Manat azero,Manatı,м
+IT,TMT,Manat turkmeno,Манат,m
+IT,BAM,Marco bosniaco,Marka,K
+IT,MZN,Metical mozambicano,Metical,M
+IT,NGN,Naira nigeriana,Naira,₦
+IT,ERN,Nakfa eritreo,Nakfa,N
+IT,BTN,Ngultrum del Bhutan,དངུལ་ཀྲམ,N
+IT,PEN,Nuevo sol peruviano,Sol,S
+IT,TRY,Nuova lira turca,Lirası,T
+IT,TWD,Nuovo dollaro taiwanese,新臺幣,$
+IT,RON,Nuovo leu rumeno,Leu,L
+IT,BGN,Nuovo lev bulgaro,лев,л
+IT,ILS,Nuovo siclo israeliano,שקל,₪
+IT,MRO,Ouguiya mauritana,أوقية,U
+IT,TOP,Paʻanga tongano,Pa'anga,T
+IT,MOP,Pataca di Macao,澳門圓,M
+IT,ARS,Peso argentino,Peso,$
+IT,CLP,Peso cileno,Peso,$
+IT,COP,Peso colombiano,Peso,C
+IT,CUP,Peso cubano,Peso,$
+IT,DOP,Peso dominicano,Peso,R
+IT,PHP,Peso filippino,Piso,₱
+IT,MXN,Peso messicano,Peso,$
+IT,UYU,Peso uruguaiano,Peso,$
+IT,BWP,Pula del Botswana,Pula,P
+IT,GTQ,Quetzal guatemalteco,Quetzal,Q
+IT,ZAR,Rand sudafricano,Rand,R
+IT,BRL,Real brasiliano,Real,R
+IT,CNY,Renminbi cinese (Yuan),人民币,¥
+IT,QAR,Rial del Qatar,ريال,ر
+IT,OMR,Rial dell'Oman,ريال,ر
+IT,IRR,Rial iraniano,﷼,﷼
+IT,SAR,Rial saudita,ريال,ر
+IT,YER,Rial yemenita,ريال,ر
+IT,KHR,Riel cambogiano,Riel,r
+IT,MYR,Ringgit malese,ريڠڬيت,R
+IT,BYR,Rublo bielorusso,Рубель,B
+IT,RUB,Rublo russo,Рубль,р
+IT,MVR,Rufiyaa delle Maldive,Rufiyaa,R
+IT,SCR,Rupia delle Seychelles,Roupie,S
+IT,INR,Rupia indiana,Rupee,R
+IT,IDR,Rupia indonesiana,Rupiah,R
+IT,MUR,Rupia mauriziana,Roupie,R
+IT,NPR,Rupia nepalese,Rupee,N
+IT,PKR,Rupia pakistana,Rupee,R
+IT,LKR,Rupia singalese,Rupee,R
+IT,SVC,Salvadoran Colon,Colón,₡
+IT,KES,Scellino keniota,Shilling,K
+IT,SOS,Scellino somalo,Shilin,S
+IT,TZS,Scellino tanzaniano,Shilingi,/
+IT,UGX,Scellino ugandese,Shilling,U
+IT,KGS,Som kirghizo,сом,с
+IT,UZS,Som uzbeco,Сўм,с
+IT,TJS,Somoni tagico,Сомонӣ,С
+IT,GBP,Sterlina britannica,Pound,£
+IT,FKP,Sterlina delle Falkland,Pound,£
+IT,GIP,Sterlina di Gibilterra,Pound,£
+IT,SHP,Sterlina di Sant'Elena,Pound,£
+IT,SDG,Sterlina sudanese,جنيه,£
+IT,BDT,Taka bengalese,টাকা,৳
+IT,WST,Tala samoano,Tālā,W
+IT,KZT,Tenge kazako,Теңгесі,〒
+IT,MNT,Tugrik mongolo,Төгрөг,₮
+IT,VUV,Vatu di Vanuatu,Vatu,V
+IT,KPW,Won nordcoreano,원,₩
+IT,KRW,Won sudcoreano,원,₩
+IT,JPY,Yen giapponese,日本円,¥
+IT,PLN,Złoty polacco,Złoty,z
