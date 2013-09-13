@@ -782,6 +782,7 @@ if(elementoAcor.attr('data-state')){
 	}
 	
 	functions.pintar2Niveles = function(i){
+		
 		var t = '<div class="accordion" id="accordion'+i+'"></div>'
 					+'<div class="accordion-group">'
 						+'<div class="accordion-heading" id="corD'+i+'">'
