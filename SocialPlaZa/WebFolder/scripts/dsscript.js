@@ -693,9 +693,7 @@ appdsObj = function () {
 					functions.pintar3Niveles(i);
 				}
 				
-			$('#nivel1'+i).on('hide', function () {
-			  //codigo...
-			});
+			
 				
 		}
 		
@@ -768,9 +766,19 @@ if(elementoAcor.attr('data-state')){
 	$('#cor'+i+' i').attr('data-state','open');
 	
 	*/
-
-	$('#cor'+i+' i').toggleClass('icon-chevron-right');
+	
+	
+	$('#nivel1'+i).on('hide', function () {
+			$('#cor'+i+' i').toggleClass('icon-chevron-right');
+			$('#cor'+i+' i').toggleClass('icon-chevron-down');
+		
+			
+			});
+	$('#nivel1'+i).on('show', function () {		
+	 $('#cor'+i+' i').toggleClass('icon-chevron-right');
 	$('#cor'+i+' i').toggleClass('icon-chevron-down');
+	
+	});
 	
 	}
 	
