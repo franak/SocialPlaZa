@@ -722,10 +722,13 @@ appdsObj = function () {
 		
 	
     
-		var n ='<div class="accordion-group">'
+		var n ='<div class="accordion-group nav nav-pills">'
+		
 			+'<div class="accordion-heading nivel1" id="cor'+i+'">'
+			
 					+'<a onClick="functions.cambiarFlecha('+i+');" style="text-decoration: none;" name ="'+aNivel1[i]+'"class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#nivel1'+i+'">'
 					+'<i class="icon icon-chevron-right"> </i>'
+				
 					+aNivel1[i]
 					+'</a>'
 			+'</div>'
@@ -742,7 +745,7 @@ appdsObj = function () {
 		    				+'</div>'
 		    				+'<div id="nivel2'+i+'" class="accordion-body collapse">'
 		      		    		+'<div class="accordion-inner" id="nivel3'+i+'">'
-		        					+"<a href='javascript:void(0);' class='proceso' id='"+aNivel3[i]+"' >"+aNivel3[i]+"</a><br>"
+		        					+"<a href='javascript:void(0);' class='proceso' id='"+aNivel3[i]+"' >"+aNivel3[i]+"</a>"
 		      					+'</div>'
 		    				+'</div>'
 		  				+'</div>'
@@ -764,19 +767,7 @@ appdsObj = function () {
 	
 	functions.cambiarFlecha = function(i){
 				
-	/*var elementoAcor = $('.nivel1 i');
-if(elementoAcor.attr('data-state')){
-	if(elementoAcor.attr('data-state') = 'open'){
-	$('.nivel1 i').toggleClass('icon-chevron-down');
-	$('.nivel1 i').addClass('icon-chevron-right');
-	}
-}
-	$('#cor'+i+' i').toggleClass('icon-chevron-right');
-	$('#cor'+i+' i').toggleClass('icon-chevron-down');
-	$('#cor'+i+' i').attr('data-state','open');
-	
-	*/
-	
+
 	
 	$('#nivel1'+i).on('hide', function () {
 			$('#cor'+i+' i').toggleClass('icon-chevron-right');
@@ -811,7 +802,7 @@ if(elementoAcor.attr('data-state')){
 						+'</div>'
 						+'<div id="nivel2'+i+'" class="accordion-body collapse">'
 		  		    		+'<div class="accordion-inner" id="nivel3'+i+'">'
-		    					+"<a href='javascript:void(0);' class='proceso' id='"+aNivel3[i]+"' >"+aNivel3[i]+"</a><br>"
+		    					+"<a href='javascript:void(0);' class='proceso' id='"+aNivel3[i]+"' >"+aNivel3[i]+"</a>"
 		  					+'</div>'
 						+'</div>'
 						+'</div>'
@@ -820,7 +811,6 @@ if(elementoAcor.attr('data-state')){
 				nivel1ID = "nivel2"+i;
 				nivel3ID = "nivel3"+i;
 	}
-	
 	
 	
 	

@@ -5010,10 +5010,10 @@ a.thumbnail:focus {
   border-radius: 4px;
 }
 .accordion {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .accordion-group {
-  margin-bottom: 2px;
+  margin-bottom: 0px;
   border: 1px solid #e5e5e5;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -5032,7 +5032,11 @@ a.thumbnail:focus {
 .accordion-inner {
   padding: 9px 15px;
   border-top: 1px solid #e5e5e5;
+
 }
+
+
+
 .carousel {
   position: relative;
   margin-bottom: 20px;
