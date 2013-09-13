@@ -670,7 +670,7 @@ appdsObj = function () {
 		var menuHTML = '<div class="accordion" id="accordionMenu"></div>';
 		$("#MenuComp_container1").append(menuHTML);
 		
-		
+		//Se empieza a pintar todos los niveles
 		for(var i=0;i<aNivel1.length; i++){
 			
 				if(aNivel1[i] == aNivel1[i-1]){
@@ -678,7 +678,7 @@ appdsObj = function () {
 					if(aNivel2[i] == aNivel2[i-1]){
 						
 						//En este caso se pinta el 3¼ nivel;
-						$("#"+nivel3ID).append("<hr>"+aNivel3[i]+"<br>");
+						$("#"+nivel3ID).append("<hr><a href='javascript:void(0);' class='proceso' id='"+aNivel3[i]+"' >"+aNivel3[i]+"</a><br>");
 						
 					}else{
 						
@@ -694,6 +694,11 @@ appdsObj = function () {
 				
 		}
 		
+		//Se averigua que elemento del 3¼nivel se ha pulsado;
+		$(".proceso").click(function(){
+			UI.alert("Llendo a "+this.id+"...");
+		});
+		
 	
 	}
 
@@ -703,7 +708,7 @@ appdsObj = function () {
     
 		var n ='<div class="accordion-group">'
 			+'<div class="accordion-heading nivel1" id="cor'+i+'">'
-					+'<a onClick="functions.cambiarFlecha('+i+');" name ="'+aNivel1[i]+'"class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#nivel1'+i+'">'
+					+'<a onClick="functions.cambiarFlecha('+i+');" style="text-decoration: none;" name ="'+aNivel1[i]+'"class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#nivel1'+i+'">'
 					+'<i class="icon icon-chevron-right"> </i>'
 					+aNivel1[i]
 					+'</a>'
@@ -714,14 +719,14 @@ appdsObj = function () {
 						+'<div class="accordion" id="accordion'+i+'"></div>'
 						+'<div class="accordion-group">'
 		    				+'<div class="accordion-heading" id="corD'+i+'">'
-		      					+'<a class="accordion-toggle" onClick="functions.cambiarFlechaD('+i+');" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
+		      					+'<a style="text-decoration: none;" class="accordion-toggle" onClick="functions.cambiarFlechaD('+i+');" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
 		        				+'<i class="icon icon-chevron-right"> </i>'
 		        				+aNivel2[i]
 		      					+'</a>'
 		    				+'</div>'
 		    				+'<div id="nivel2'+i+'" class="accordion-body collapse">'
 		      		    		+'<div class="accordion-inner" id="nivel3'+i+'">'
-		        					+aNivel3[i]+"<br>"
+		        					+"<a href='javascript:void(0);' class='proceso' id='"+aNivel3[i]+"' >"+aNivel3[i]+"</a><br>"
 		      					+'</div>'
 		    				+'</div>'
 		  				+'</div>'
@@ -772,14 +777,14 @@ if(elementoAcor.attr('data-state')){
 		var t = '<div class="accordion" id="accordion'+i+'"></div>'
 					+'<div class="accordion-group">'
 						+'<div class="accordion-heading" id="corD'+i+'">'
-		  					+'<a class="accordion-toggle"  onClick="functions.cambiarFlechaD('+i+');" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
+		  					+'<a style="text-decoration: none;" class="accordion-toggle"  onClick="functions.cambiarFlechaD('+i+');" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
 		    				+'<i class="icon icon-chevron-right"> </i>'
 		    				+aNivel2[i]
 		  					+'</a>'
 						+'</div>'
 						+'<div id="nivel2'+i+'" class="accordion-body collapse">'
 		  		    		+'<div class="accordion-inner" id="nivel3'+i+'">'
-		    					+aNivel3[i]+"<br>"
+		    					+"<a href='javascript:void(0);' class='proceso' id='"+aNivel3[i]+"' >"+aNivel3[i]+"</a><br>"
 		  					+'</div>'
 						+'</div>'
 						+'</div>'
