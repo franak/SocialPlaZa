@@ -14,7 +14,7 @@ function constructor (id) {
 		$$('mlateralComp').loadComponent('/components/commons/menulateral.waComponent');
 		$('#mlateralComp').hide();
 	// @region namespaceDeclaration// @startlock
-	var imageButton1 = {};	// @buttonImage
+	var clickMenu = {};	// @richText
 	var sNomUsu = {};	// @richText
 	var richText14 = {};	// @richText
 	var foto_usuario = {};	// @image
@@ -57,12 +57,13 @@ btmodales.initModal('Usuarios',$comp);
 
 	// eventHandlers// @lock
 
-	imageButton1.click = function imageButton1_click (event)// @startlock
+	clickMenu.click = function clickMenu_click (event)// @startlock
 	{// @endlock
-				
-
 		UI.openCloseMenuAcord();
-
+		bClickMenu = getHtmlObj('clickMenu');
+		
+		bClickMenu.toggleClass('icon-white');
+		
 	};// @lock
 
 	sNomUsu.click = function sNomUsu_click (event)// @startlock
@@ -201,7 +202,7 @@ contenedorBar.html(herramientas);*/
 
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_imageButton1", "click", imageButton1.click, "WAF");
+	WAF.addListener(this.id + "_clickMenu", "click", clickMenu.click, "WAF");
 	WAF.addListener(this.id + "_sNomUsu", "click", sNomUsu.click, "WAF");
 	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
