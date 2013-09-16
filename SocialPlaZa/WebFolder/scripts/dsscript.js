@@ -728,7 +728,6 @@ appdsObj = function () {
 			
 					+'<a onClick="functions.cambiarFlecha('+i+');" style="text-decoration: none;" name ="'+aNivel1[i]+'"class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#nivel1'+i+'">'
 					+'<i class="icon icon-chevron-right"> </i>'
-				
 					+aNivel1[i]
 					+'</a>'
 			+'</div>'
@@ -770,14 +769,24 @@ appdsObj = function () {
 
 	
 	$('#nivel1'+i).on('hide', function () {
-			$('#cor'+i+' i').toggleClass('icon-chevron-right');
-			$('#cor'+i+' i').toggleClass('icon-chevron-down');
-		
+			$('#cor'+i+' i').addClass('icon-chevron-right');
+			$('#cor'+i+' i').removeClass('icon-chevron-down icon-white');
+			$('#cor'+i+' a').css('background-color','#F8F8F8');
+			$('#cor'+i + ' a').css('color','#000000 ');
 			
+		//	#fcf2f2 Rosita
+		//	#f0f7fd Azulito
+		//  #e5e5e5	Gris Medio
+		//  #F8F8F8	Gris Claro
+		//	#707070	Gris Oscuro
+		
 			});
 	$('#nivel1'+i).on('show', function () {		
-	 $('#cor'+i+' i').toggleClass('icon-chevron-right');
-	$('#cor'+i+' i').toggleClass('icon-chevron-down');
+	 $('#cor'+i+' i').removeClass('icon-chevron-right');
+	$('#cor'+i+' i').addClass('icon-chevron-down icon-white');
+	$('#cor'+i + ' a').css('background-color','#707070');
+	$('#cor'+i + ' a').css('color','#FFFFFF');
+	
 	
 	});
 	
@@ -785,8 +794,27 @@ appdsObj = function () {
 	
 	functions.cambiarFlechaD = function(i){
 	
-	$('#corD'+i+' i').toggleClass('icon-chevron-right');
-	$('#corD'+i+' i').toggleClass('icon-chevron-down');
+		$('#nivel2'+i).on('hide', function () {
+			$('#corD'+i+' i').addClass('icon-chevron-right');
+			$('#corD'+i+' i').removeClass('icon-chevron-down');
+			$('#corD'+i+' a').css('background-color','#F8F8F8');
+			
+		//	#fcf2f2 Rosita
+		//	#f0f7fd Azulito
+		//  #e5e5e5	Gris Medio
+		//  #F8F8F8	Gris Claro
+		//	#707070	Gris Oscuro
+});
+
+	$('#nivel2'+i).on('show', function () {		
+	$('#corD'+i+' i').removeClass('icon-chevron-right');
+	$('#corD'+i+' i').addClass('icon-chevron-down');
+	$('#corD'+i + ' a').css('background-color','#fcf2f2');
+	
+});
+	
+/*	$('#corD'+i+' i').toggleClass('icon-chevron-right');
+	$('#corD'+i+' i').toggleClass('icon-chevron-down');*/
 	
 	}
 	
@@ -796,7 +824,7 @@ appdsObj = function () {
 					+'<div class="accordion-group">'
 						+'<div class="accordion-heading" id="corD'+i+'">'
 		  					+'<a style="text-decoration: none;" class="accordion-toggle"  onClick="functions.cambiarFlechaD('+i+');" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
-		    				+'<i class="icon icon-chevron-right"> </i>'
+		    				+'<i class="icon icon-list">  </i>'
 		    				+aNivel2[i]
 		  					+'</a>'
 						+'</div>'
