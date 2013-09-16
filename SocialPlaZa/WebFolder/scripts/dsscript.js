@@ -735,7 +735,7 @@ appdsObj = function () {
 					+'<div id="nivelb1'+i+'" class="accordion-inner">'
 					
 						+'<div class="accordion" id="accordion'+i+'"></div>'
-						+'<div class="accordion-group">'
+						+'<div class="accordion-group id="nivel2">'
 		    				+'<div class="accordion-heading" id="corD'+i+'">'
 		      					+'<a style="text-decoration: none;" class="accordion-toggle" onClick="functions.cambiarFlechaD('+i+');" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
 		        				+'<i class="icon icon-chevron-right"> </i>'
