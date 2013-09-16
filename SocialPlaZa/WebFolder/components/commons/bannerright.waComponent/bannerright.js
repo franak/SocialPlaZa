@@ -14,7 +14,9 @@ function constructor (id) {
 	
 	//Recogo todos los registros correspondiente a la primera casilla
 	ds.Publicidad.devolverPublicidad1({onSuccess: function(e) {
-		
+
+	
+
 		if(e.result != false){
 			console.log(e.result);
 			$comp.sources.publicidad.setEntityCollection(e.result);
@@ -23,6 +25,8 @@ function constructor (id) {
 			duration = $comp.sources.publicidad.Duracion;
 			duration = duration*1000;
 			
+
+		
 			var i = 0;
 			
 			//Bucle infinito variando la el tiempo segun el atributo Duracion;
@@ -33,6 +37,11 @@ function constructor (id) {
 				duration = duration*1000;
 				if(i == $comp.sources.publicidad.length-1){
 					i = -1;
+					
+		
+
+		
+		
 				}
 			 
 			    setTimeout(tick, duration);
@@ -45,6 +54,8 @@ function constructor (id) {
 	}});
 	
 	ds.Publicidad.devolverPublicidad2({onSuccess: function(e) {
+		
+		
 		
 		if(e.result != false){
 			$comp.sources.publicidad1.setEntityCollection(e.result);
@@ -73,6 +84,8 @@ function constructor (id) {
 	}});
 	
 	ds.Publicidad.devolverPublicidad3({onSuccess: function(e) {
+		
+
 		
 		if(e.result != false){
 			$comp.sources.publicidad2.setEntityCollection(e.result);
