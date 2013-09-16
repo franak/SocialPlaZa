@@ -30,7 +30,6 @@ function constructor (id) {
 				duration = $comp.sources.publicidad.Duracion;
 				duration = duration*1000;
 					if(i == $comp.sources.publicidad.length-1){
-						console.log("e.e");
 						i = -1;
 					}
 				
@@ -61,7 +60,7 @@ function constructor (id) {
 				duration = $comp.sources.publicidad1.Duracion;
 				duration = duration*1000;
 					if(i == $comp.sources.publicidad1.length-1){
-						console.log("e.e");
+
 						i = -1;
 					}
 				
@@ -91,7 +90,6 @@ function constructor (id) {
 				duration = $comp.sources.publicidad2.Duracion;
 				duration = duration*1000;
 					if(i == $comp.sources.publicidad2.length-1){
-						console.log("e.e");
 						i = -1;
 					}
 				
