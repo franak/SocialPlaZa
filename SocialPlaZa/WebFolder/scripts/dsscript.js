@@ -703,13 +703,20 @@ appdsObj = function () {
 		
 		//Se averigua que elemento del 3¼nivel se ha pulsado;
 		$(".proceso").click(function(){
+
+			//$("#headComp_clickMenu").click();
+			UI.gifCargando();
+			UI.openCloseMenuAcord();
 			
 			if(this.id == "Anuncios"){
-				$("#headComp_imageButton1").click();
 				$$("MainComp").removeComponent();
 				$$("socialComponent").removeComponent();
 				$$("rightComp").removeComponent();
 				$$("adminComp").loadComponent("/components/Administracion/Publicidad.waComponent");
+			
+		}else if (this.id == "Ventas TPV"){
+				UI.alert("Llendo a "+this.id+"...");
+		
 			}else{
 				UI.alert("Llendo a "+this.id+"...");
 			}
@@ -824,7 +831,7 @@ appdsObj = function () {
 					+'<div class="accordion-group">'
 						+'<div class="accordion-heading" id="corD'+i+'">'
 		  					+'<a style="text-decoration: none;" class="accordion-toggle"  onClick="functions.cambiarFlechaD('+i+');" data-toggle="collapse" data-parent="#accordion'+i+'" href="#nivel2'+i+'">'
-		    				+'<i class="icon icon-list">  </i>'
+		    				+'<i class="icon icon-chevron-right"> </i>'
 		    				+aNivel2[i]
 		  					+'</a>'
 						+'</div>'
