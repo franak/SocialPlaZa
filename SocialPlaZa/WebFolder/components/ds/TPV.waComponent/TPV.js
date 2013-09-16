@@ -1248,7 +1248,6 @@ TPV.orientacionHorizontal = function (){
 }
 
 
-
 }// @startlock
 return constructor;
 })();// @endlock

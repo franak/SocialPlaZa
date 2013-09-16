@@ -17,6 +17,32 @@ function constructor (id) {
     appds.montarArrayAccesos();
     appds.pintarMenu();
     
+/*    $(".proceso").click(function(){
+    	
+		
+			
+		switch(this.id){
+				case "Entornos":break;
+				case "Anuncios"://$("#headComp_imageButton1").click();
+								$("MainComp").removeComponent();
+								$("socialComponent").removeComponent();
+								$("rightComp").removeComponent();
+								$("adminComp").loadComponent("/components/Administracion/Publicidad.waComponent");
+								break;
+				case "Empresas":break;
+				case "Usuarios":break;
+				case "Familias":break;
+				case "Articulos":break;
+				
+				case "Ventas TPV":break;
+				case "Cajas TPV":break;
+				case "Listas":break;
+				case "Informes":break;
+				case "Utilidades":break;
+				case "Articulos":break;
+			}
+		});*/
+    
 
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock
