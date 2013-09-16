@@ -705,7 +705,8 @@ appdsObj = function () {
 		$(".proceso").click(function(){
 
 			//$("#headComp_clickMenu").click();
-			
+		
+		//Para que el el menœ principal se cierre al elegir cualquier elemento:	
 			UI.openCloseMenuAcord();
 			
 			

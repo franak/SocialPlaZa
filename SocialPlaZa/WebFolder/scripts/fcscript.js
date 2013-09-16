@@ -240,7 +240,7 @@ fcBrainObj = function() {
 
     functions.CargarUI = function() {
 
-      UI.loadingMsg();
+     UI.loadingMsg();
 
         self.location.hash = 'tpv';
 
@@ -271,6 +271,8 @@ fcBrainObj = function() {
     };
 
     functions.openWelcome = function() {
+    	
+    	 
         var parametros = ds.Metodos.getParam(window.location.href);
         
         if (parametros.origin =='demo#tpv') {
