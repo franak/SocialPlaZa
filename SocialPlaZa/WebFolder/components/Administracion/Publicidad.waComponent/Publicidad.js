@@ -29,16 +29,23 @@ $(':input').bind('blur',function() {
 
  
 	// @region namespaceDeclaration// @startlock
+	var dataGrid1 = {};	// @dataGrid
 	var button6 = {};	// @button
 	var button5 = {};	// @button
 	var button9 = {};	// @button
 	var button8 = {};	// @button
 	var button7 = {};	// @button
-	var dataGrid1 = {};	// @dataGrid
 	var button1 = {};	// @button
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
+	{// @endlock
+		$("body").append($("#"+id+"_dialog1"));
+		$("#"+id+"_dialog1").css("top","20px");
+		$$(id+"_dialog1").displayDialog();
+	};// @lock
 
 	button6.click = function button6_click (event)// @startlock
 	{// @endlock
@@ -81,25 +88,18 @@ $(':input').bind('blur',function() {
 		
 	};// @lock
 
-	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
-	{// @endlock
-		$("body").append($("#"+id+"_dialog1"));
-		$("#"+id+"_dialog1").css("top","20px");
-		$$(id+"_dialog1").displayDialog();
-	};// @lock
-
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
 		sources.publicidad.save();
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_button6", "click", button6.click, "WAF");
 	WAF.addListener(this.id + "_button5", "click", button5.click, "WAF");
 	WAF.addListener(this.id + "_button9", "click", button9.click, "WAF");
 	WAF.addListener(this.id + "_button8", "click", button8.click, "WAF");
 	WAF.addListener(this.id + "_button7", "click", button7.click, "WAF");
-	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	// @endregion// @endlock
 

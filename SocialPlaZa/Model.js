@@ -1,6 +1,82 @@
 
 guidedModel =// @startlock
 {
+	Publicidad :
+	{
+		methods :
+		{// @endlock
+			devolverPublicidad3:function()
+			{// @lock
+				var collecionPublicidad = this.createEntityCollection();
+				
+				var registro = this.find("Orden = 3");
+				
+				if(registro != null){
+					collecionPublicidad.add(registro);
+					
+					var i = 6;
+				
+					registro = this.find("Orden =:1",i);
+					while(registro != null){
+						collecionPublicidad.add(registro);
+						i += 3;
+						registro = this.find("Orden =:1",i);
+					}
+					return collecionPublicidad;
+					
+				}else{
+					return false;
+				}
+			},// @lock
+			devolverPublicidad2:function()
+			{// @lock
+				var collecionPublicidad = this.createEntityCollection();
+				
+				var registro = this.find("Orden = 2");
+				
+				if(registro != null){
+					collecionPublicidad.add(registro);
+					
+					var i = 5;
+					
+					registro = this.find("Orden =:1",i);
+					while(registro != null){
+						collecionPublicidad.add(registro);
+						i += 3;
+						registro = this.find("Orden =:1",i);
+					}
+					return collecionPublicidad;
+					
+				}else{
+					return false;
+				}
+			},// @lock
+			devolverPublicidad1:function()
+			{// @lock
+				var collecionPublicidad = this.createEntityCollection();
+				
+				var registro = this.find("Orden = 1");
+				
+				if(registro != null){
+					collecionPublicidad.add(registro);
+					
+					var i = 4;
+					
+					registro = this.find("Orden =:1",i);
+					while(registro != null){
+						collecionPublicidad.add(registro);
+						i += 3;
+						registro = this.find("Orden =:1",i);
+					}
+					return collecionPublicidad;
+					
+				}else{
+					return false
+				}
+				
+			}// @startlock
+		}
+	},
 	PaisesISO :
 	{
 		methods :

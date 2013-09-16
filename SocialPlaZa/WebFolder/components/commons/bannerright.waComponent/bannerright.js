@@ -11,6 +11,100 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		
+	ds.Publicidad.devolverPublicidad1({onSuccess: function(e) {
+		
+		if(e.result != false){
+			console.log(e.result);
+			$comp.sources.publicidad.setEntityCollection(e.result);
+			$comp.sources.publicidad.select(0);
+			var duration = $comp.sources.publicidad.Duracion;
+			duration = duration*1000;
+			
+	
+			var i = 0;
+				
+			setInterval(function(){
+				i++;
+				$comp.sources.publicidad.select(i);
+				duration = $comp.sources.publicidad.Duracion;
+				duration = duration*1000;
+					if(i == $comp.sources.publicidad.length-1){
+						console.log("e.e");
+						i = -1;
+					}
+				
+				}
+				
+			,duration);
+				
+
+		}else{
+			console.log("No hay publicidad");
+		}
+	  
+	}});
+	
+	ds.Publicidad.devolverPublicidad2({onSuccess: function(e) {
+		
+		if(e.result != false){
+			$comp.sources.publicidad1.setEntityCollection(e.result);
+			$comp.sources.publicidad1.select(0);
+			var duration = $comp.sources.publicidad1.Duracion;
+			duration = duration*1000;
+			
+			var i = 0;
+				
+			setInterval(function(){
+				i++;
+				$comp.sources.publicidad1.select(i);
+				duration = $comp.sources.publicidad1.Duracion;
+				duration = duration*1000;
+					if(i == $comp.sources.publicidad1.length-1){
+						console.log("e.e");
+						i = -1;
+					}
+				
+				}
+				
+			,duration);
+			
+		}else{
+			console.log("No hay publicidad 2");
+		}
+	  
+	}});
+	
+	ds.Publicidad.devolverPublicidad3({onSuccess: function(e) {
+		
+		if(e.result != false){
+			$comp.sources.publicidad2.setEntityCollection(e.result);
+			$comp.sources.publicidad2.select(0);
+			var duration = $comp.sources.publicidad2.Duracion;
+			duration = duration*1000;
+			
+			var i = 0;
+				
+			setInterval(function(){
+				i++;
+				$comp.sources.publicidad2.select(i);
+				duration = $comp.sources.publicidad2.Duracion;
+				duration = duration*1000;
+					if(i == $comp.sources.publicidad2.length-1){
+						console.log("e.e");
+						i = -1;
+					}
+				
+				}
+				
+			,duration);
+			
+			
+		}else{
+			console.log("No hay publicidad 3");
+		}
+	  
+	}});
 
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock
