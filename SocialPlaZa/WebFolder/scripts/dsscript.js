@@ -705,8 +705,9 @@ appdsObj = function () {
 		$(".proceso").click(function(){
 
 			//$("#headComp_clickMenu").click();
-			UI.gifCargando();
+			
 			UI.openCloseMenuAcord();
+			
 			
 			if(this.id == "Anuncios"){
 				$$("MainComp").removeComponent();

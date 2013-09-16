@@ -60,9 +60,8 @@ btmodales.initModal('Usuarios',$comp);
 	clickMenu.click = function clickMenu_click (event)// @startlock
 	{// @endlock
 		UI.openCloseMenuAcord();
-		bClickMenu = getHtmlObj('clickMenu');
-		
-		bClickMenu.toggleClass('icon-white');
+	/*	bClickMenu = getHtmlObj('clickMenu');
+		bClickMenu.toggleClass('icon-white');*/
 		
 	};// @lock
 
