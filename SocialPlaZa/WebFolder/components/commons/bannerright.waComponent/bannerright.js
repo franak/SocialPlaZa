@@ -18,33 +18,34 @@ function constructor (id) {
 			
 		ds.Publicidad.devolverPublicidad1({onSuccess: function(e) {
 		
-		if(e.result != false){
-			
-			$comp.sources.publicidad.setEntityCollection(e.result);
-			$comp.sources.publicidad.select(0);
-			var duration = $comp.sources.publicidad.Duracion;
-			duration = duration*1000;
-			
-			var i = 0;
-			
-			setTimeout(function tick() {
-			    i++;
-				$comp.sources.publicidad.select(i);
-				duration = $comp.sources.publicidad.Duracion;
+			if(e.result != false){
+				
+				$comp.sources.publicidad.setEntityCollection(e.result);
+				$comp.sources.publicidad.select(0);
+				var duration = $comp.sources.publicidad.Duracion;
 				duration = duration*1000;
-				if(i == $comp.sources.publicidad.length-1){
-					i = -1;
-					
-				}
-			 
-			    setTimeout(tick, duration);
-			}, duration);
-			
-		}else{
-			console.log("No hay publicidad 1");
-		}
-	  
-	}});
+				
+				var i = 0;
+				
+				setTimeout(function tick() {
+				    i++;
+					$comp.sources.publicidad.select(i);
+					duration = $comp.sources.publicidad.Duracion;
+					duration = duration*1000;
+					if(i == $comp.sources.publicidad.length-1){
+						
+						i = -1;
+						
+					}
+				 
+				    setTimeout(tick, duration);
+				}, duration);
+				
+			}else{
+				console.log("No hay publicidad 1");
+			}
+		  
+		}});
 						
 		
 	  

@@ -498,6 +498,10 @@ appdsObj = function () {
 			}
 			$comp.sources.docComercial.select(tamanio-1);
 			$comp.sources.docComercial.serverRefresh();
+			flag = false;
+			for(var i = 0; i < 11; i++){
+				arrSource[i] = false;
+			}
 			setTimeout(function(){
 				//-- Se elimina el preLoader de carga (overlay) --\\
 				$('#overlay').remove();
@@ -712,13 +716,12 @@ appdsObj = function () {
 			
 			if(this.id == "Anuncios"){
 				$$("MainComp").loadComponent("/components/Administracion/Publicidad.waComponent");
-				$$("socialComponent").removeComponent();
-				/*
-				$("rightComp").removeComponent();
-				$("adminComp").loadComponent("/components/Administracion/Publicidad.waComponent");*/
+				//$$("socialComponent").removeComponent();
+				
 			
 		}else if (this.id == "Ventas TPV"){
-				UI.alert("Llendo a "+this.id+"...");
+				
+				fcBrain.welcome();
 		
 			}else{
 				UI.alert("Llendo a "+this.id+"...");

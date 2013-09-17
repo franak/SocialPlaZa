@@ -295,6 +295,7 @@ fcBrainObj = function() {
             }
             else {
                 functions.CargarUI();
+                //$$("socialComponent").loadComponent("/components/commons/rsscomponent.waComponent")
                 $('#' + components.header + '_conectText').text('DESCONECTAR');
             }
         }
