@@ -13,19 +13,20 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 	
 	//Recogo todos los registros correspondiente a la primera casilla
-	ds.Publicidad.devolverPublicidad1({onSuccess: function(e) {
-
+	
+		
+			
+		ds.Publicidad.devolverPublicidad1({onSuccess: function(e) {
+		
 		if(e.result != false){
-		
+			
 			$comp.sources.publicidad.setEntityCollection(e.result);
-			//seleccionamos el primer elemento;
 			$comp.sources.publicidad.select(0);
-			duration = $comp.sources.publicidad.Duracion;
+			var duration = $comp.sources.publicidad.Duracion;
 			duration = duration*1000;
-		
+			
 			var i = 0;
 			
-			//Bucle infinito variando la el tiempo segun el atributo Duracion;
 			setTimeout(function tick() {
 			    i++;
 				$comp.sources.publicidad.select(i);
@@ -33,17 +34,21 @@ function constructor (id) {
 				duration = duration*1000;
 				if(i == $comp.sources.publicidad.length-1){
 					i = -1;
-		
+					
 				}
 			 
 			    setTimeout(tick, duration);
 			}, duration);
-						
+			
 		}else{
-			console.log("No hay publicidad");
+			console.log("No hay publicidad 1");
 		}
 	  
 	}});
+						
+		
+	  
+	
 	
 	ds.Publicidad.devolverPublicidad2({onSuccess: function(e) {
 		
@@ -63,6 +68,7 @@ function constructor (id) {
 				duration = duration*1000;
 				if(i == $comp.sources.publicidad1.length-1){
 					i = -1;
+					
 				}
 			 
 			    setTimeout(tick, duration);
@@ -92,6 +98,7 @@ function constructor (id) {
 				duration = duration*1000;
 				if(i == $comp.sources.publicidad2.length-1){
 					i = -1;
+					
 				}
 			 
 			    setTimeout(tick, duration);

@@ -81,7 +81,7 @@ $(':input').bind('blur',function() {
 
 	button5.click = function button5_click (event)// @startlock
 	{// @endlock
-		alert($("#select-orden").val());
+
 		sources.publicidad.Bloque = $("#select-orden").val();
 		sources.publicidad.save({
 			onSuccess:function(){
