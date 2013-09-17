@@ -15,17 +15,13 @@ function constructor (id) {
 	//Recogo todos los registros correspondiente a la primera casilla
 	ds.Publicidad.devolverPublicidad1({onSuccess: function(e) {
 
-	
-
 		if(e.result != false){
-			console.log(e.result);
+		
 			$comp.sources.publicidad.setEntityCollection(e.result);
 			//seleccionamos el primer elemento;
 			$comp.sources.publicidad.select(0);
 			duration = $comp.sources.publicidad.Duracion;
 			duration = duration*1000;
-			
-
 		
 			var i = 0;
 			
@@ -37,10 +33,6 @@ function constructor (id) {
 				duration = duration*1000;
 				if(i == $comp.sources.publicidad.length-1){
 					i = -1;
-					
-		
-
-		
 		
 				}
 			 
@@ -55,9 +47,8 @@ function constructor (id) {
 	
 	ds.Publicidad.devolverPublicidad2({onSuccess: function(e) {
 		
-		
-		
 		if(e.result != false){
+			
 			$comp.sources.publicidad1.setEntityCollection(e.result);
 			$comp.sources.publicidad1.select(0);
 			var duration = $comp.sources.publicidad1.Duracion;
@@ -67,10 +58,10 @@ function constructor (id) {
 			
 			setTimeout(function tick() {
 			    i++;
-				$comp.sources.publicidad.select(i);
-				duration = $comp.sources.publicidad.Duracion;
+				$comp.sources.publicidad1.select(i);
+				duration = $comp.sources.publicidad1.Duracion;
 				duration = duration*1000;
-				if(i == $comp.sources.publicidad.length-1){
+				if(i == $comp.sources.publicidad1.length-1){
 					i = -1;
 				}
 			 
@@ -84,10 +75,9 @@ function constructor (id) {
 	}});
 	
 	ds.Publicidad.devolverPublicidad3({onSuccess: function(e) {
-		
-
-		
+			
 		if(e.result != false){
+			console.log(e.result);
 			$comp.sources.publicidad2.setEntityCollection(e.result);
 			$comp.sources.publicidad2.select(0);
 			var duration = $comp.sources.publicidad2.Duracion;
@@ -97,10 +87,10 @@ function constructor (id) {
 		
 			setTimeout(function tick() {
 			    i++;
-				$comp.sources.publicidad.select(i);
-				duration = $comp.sources.publicidad.Duracion;
+				$comp.sources.publicidad2.select(i);
+				duration = $comp.sources.publicidad2.Duracion;
 				duration = duration*1000;
-				if(i == $comp.sources.publicidad.length-1){
+				if(i == $comp.sources.publicidad2.length-1){
 					i = -1;
 				}
 			 
