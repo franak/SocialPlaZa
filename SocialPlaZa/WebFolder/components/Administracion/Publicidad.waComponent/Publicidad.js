@@ -12,6 +12,28 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
+		
+
+	var selectElement = document.createElement('select');
+	selectElement.setAttribute('id','select-orden');
+	selectElement.setAttribute('tabindex','3');
+    $('#'+id+'_container2').append(selectElement);
+    $('#select-orden').css('position','absolute');
+    $('#select-orden').css('top','118px');
+    $('#select-orden').css('left','95px');
+    $('#select-orden').css('height','35px');
+    $('#select-orden').css('width','130px');
+    
+    var optionHTML;	
+	for (var i = 1; i < 4; i++){
+	 	
+        	optionHTML += '<option value="'+i+'">'+i+'ºBloque</option>';
+        	
+	}
+	$('#select-orden').append(optionHTML);
+	
+		
+		
 var currentscroll = 0;
 
 $(':input').bind('focus',function() {
@@ -59,6 +81,8 @@ $(':input').bind('blur',function() {
 
 	button5.click = function button5_click (event)// @startlock
 	{// @endlock
+		alert($("#select-orden").val());
+		sources.publicidad.Bloque = $("#select-orden").val();
 		sources.publicidad.save({
 			onSuccess:function(){
 				sources.publicidad.all();

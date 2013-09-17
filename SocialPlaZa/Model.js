@@ -8,70 +8,34 @@ guidedModel =// @startlock
 			devolverPublicidad3:function()
 			{// @lock
 				
-				var collecionPublicidad = this.createEntityCollection();
-				
-				var coll = this.query("ID > 0 order by Orden asc");
-				
-				var collArray = coll.toArray();
-				
-				if(collArray.length != 0){
-					
-					for(var i=2;i<collArray.length;i+=3){
-						collecionPublicidad.add(coll[i]);
-					}
+				var collecionPublicidad = this.query("Bloque = 3");
+				if(collecionPublicidad != null){
 					return collecionPublicidad;
-					
-					
 				}else{
-					return false;
+					return false
 				}
+				
 				
 			},// @lock
 			devolverPublicidad2:function()
 			{// @lock
 				
-				
-				var collecionPublicidad = this.createEntityCollection();
-				
-				var coll = this.query("ID > 0 order by Orden asc");
-				
-				var collArray = coll.toArray();
-				
-				if(collArray.length != 0){
-					
-					for(var i=1;i<collArray.length;i+=3){
-						collecionPublicidad.add(coll[i]);
-					}
+				var collecionPublicidad = this.query("Bloque = 2");
+				if(collecionPublicidad != null){
 					return collecionPublicidad;
-					
-					
 				}else{
-					return false;
+					return false
 				}
-				
 
 			},// @lock
 			devolverPublicidad1:function()
 			{// @lock
-				var collecionPublicidad = this.createEntityCollection();
-				
-				var coll = this.query("ID > 0 order by Orden asc");
-				
-				var collArray = coll.toArray();
-				
-				if(collArray.length != 0){
-					
-					for(var i=0;i<collArray.length;i+=3){
-						collecionPublicidad.add(coll[i]);
-					}
+				var collecionPublicidad = this.query("Bloque = 1");
+				if(collecionPublicidad != null){
 					return collecionPublicidad;
-					
-					
 				}else{
-					return false;
+					return false
 				}
-				
-				
 				
 			}// @startlock
 		}

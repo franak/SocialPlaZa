@@ -1171,7 +1171,7 @@ TPV.pintarFamiliasDialog = function (){
 	for (var i = 0; i < familias.length; i++){
 	 	familias.getElement(i, { 
 	 		onSuccess: function(event) {
-	 			 alert("e.e.e");
+
         		var entity = event.element;
         		optionHTML += '<option value="'+entity.Nombre+'">'+entity.Nombre+'</option>';
         		
