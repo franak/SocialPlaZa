@@ -7,72 +7,71 @@ guidedModel =// @startlock
 		{// @endlock
 			devolverPublicidad3:function()
 			{// @lock
+				
 				var collecionPublicidad = this.createEntityCollection();
 				
-				var registro = this.find("Orden = 3");
+				var coll = this.query("ID > 0 order by Orden asc");
 				
-				if(registro != null){
-					collecionPublicidad.add(registro);
+				var collArray = coll.toArray();
+				
+				if(collArray.length != 0){
 					
-					var i = 6;
-				
-					registro = this.find("Orden =:1",i);
-					while(registro != null){
-						collecionPublicidad.add(registro);
-						i += 3;
-						registro = this.find("Orden =:1",i);
+					for(var i=2;i<collArray.length;i+=3){
+						collecionPublicidad.add(coll[i]);
 					}
 					return collecionPublicidad;
+					
 					
 				}else{
 					return false;
 				}
+				
 			},// @lock
 			devolverPublicidad2:function()
 			{// @lock
+				
+				
 				var collecionPublicidad = this.createEntityCollection();
 				
-				var registro = this.find("Orden = 2");
+				var coll = this.query("ID > 0 order by Orden asc");
 				
-				if(registro != null){
-					collecionPublicidad.add(registro);
+				var collArray = coll.toArray();
+				
+				if(collArray.length != 0){
 					
-					var i = 5;
-					
-					registro = this.find("Orden =:1",i);
-					while(registro != null){
-						collecionPublicidad.add(registro);
-						i += 3;
-						registro = this.find("Orden =:1",i);
+					for(var i=1;i<collArray.length;i+=3){
+						collecionPublicidad.add(coll[i]);
 					}
 					return collecionPublicidad;
+					
 					
 				}else{
 					return false;
 				}
+				
+
 			},// @lock
 			devolverPublicidad1:function()
 			{// @lock
 				var collecionPublicidad = this.createEntityCollection();
 				
-				var registro = this.find("Orden = 1");
+				var coll = this.query("ID > 0 order by Orden asc");
 				
-				if(registro != null){
-					collecionPublicidad.add(registro);
+				var collArray = coll.toArray();
+				
+				if(collArray.length != 0){
 					
-					var i = 4;
-					
-					registro = this.find("Orden =:1",i);
-					while(registro != null){
-						collecionPublicidad.add(registro);
-						i += 3;
-						registro = this.find("Orden =:1",i);
+					for(var i=0;i<collArray.length;i+=3){
+						collecionPublicidad.add(coll[i]);
 					}
 					return collecionPublicidad;
 					
+					
 				}else{
-					return false
+					return false;
 				}
+				
+				
 				
 			}// @startlock
 		}
