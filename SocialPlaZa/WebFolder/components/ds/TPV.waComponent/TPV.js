@@ -238,6 +238,7 @@ function readDeviceOrientation() {
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
 		alert(window.innerWidth + " x " + window.innerHeight);
+		//$("BODY").css("font-size","14px")
 		
 	};// @lock
 

@@ -711,10 +711,11 @@ appdsObj = function () {
 			
 			
 			if(this.id == "Anuncios"){
-				$$("MainComp").removeComponent();
+				$$("MainComp").loadComponent("/components/Administracion/Publicidad.waComponent");
 				$$("socialComponent").removeComponent();
-				$$("rightComp").removeComponent();
-				$$("adminComp").loadComponent("/components/Administracion/Publicidad.waComponent");
+				/*
+				$("rightComp").removeComponent();
+				$("adminComp").loadComponent("/components/Administracion/Publicidad.waComponent");*/
 			
 		}else if (this.id == "Ventas TPV"){
 				UI.alert("Llendo a "+this.id+"...");
