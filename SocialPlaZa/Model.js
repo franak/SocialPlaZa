@@ -3,6 +3,14 @@ guidedModel =// @startlock
 {
 	Publicidad :
 	{
+		entityMethods :
+		{// @endlock
+			asignarBloque:function(bloque)
+			{// @lock
+				this.Bloque = bloque;
+				this.save();
+			}// @startlock
+		},
 		methods :
 		{// @endlock
 			devolverPublicidad3:function()
