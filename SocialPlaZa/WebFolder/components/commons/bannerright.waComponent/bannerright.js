@@ -68,7 +68,7 @@ function constructor (id) {
 			setTimeout(function tick() {
 			    i++;
 			    if(i == 0){
-			    	$comp.sources.publicidad.query("Bloque = 2");
+			    	$comp.sources.publicidad1.query("Bloque = 2");
 			    }
 				$comp.sources.publicidad1.select(i);
 				duration = $comp.sources.publicidad1.Duracion;
@@ -101,7 +101,7 @@ function constructor (id) {
 			setTimeout(function tick() {
 			    i++;
 			    if(i == 0){
-			    	$comp.sources.publicidad.query("Bloque = 3");
+			    	$comp.sources.publicidad2.query("Bloque = 3");
 			    }
 				$comp.sources.publicidad2.select(i);
 				duration = $comp.sources.publicidad2.Duracion;
