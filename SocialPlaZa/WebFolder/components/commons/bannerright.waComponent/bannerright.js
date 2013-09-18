@@ -21,6 +21,7 @@ function constructor (id) {
 			if(e.result != false){
 				
 				$comp.sources.publicidad.setEntityCollection(e.result);
+				var tamanio = $comp.sources.publicidad.length;
 				$comp.sources.publicidad.select(0);
 				var duration = $comp.sources.publicidad.Duracion;
 				duration = duration*1000;
@@ -28,19 +29,28 @@ function constructor (id) {
 				var i = 0;
 				
 				setTimeout(function tick() {
-				    i++;
+					
+					if(tamanio != 1){
+						i++;
+					}else if(tamanio == 1){
+						i = 0;
+					}
+					
 				    if(i == 0){
 				    	$comp.sources.publicidad.query("Bloque = 1");
+				    	$comp.sources.publicidad.select(i);
+						duration = $comp.sources.publicidad.Duracion;
+						duration = duration*1000;
+				    }else{
+				    	$comp.sources.publicidad.select(i);
+						duration = $comp.sources.publicidad.Duracion;
+						duration = duration*1000;
+						if(i == $comp.sources.publicidad.length-1){
+							i = -1;
+						}
 				    }
-					$comp.sources.publicidad.select(i);
-					duration = $comp.sources.publicidad.Duracion;
-					duration = duration*1000;
-					if(i == $comp.sources.publicidad.length-1){
-						
-						i = -1;
-						
-					}
-				 
+					
+					tamanio = $comp.sources.publicidad.length;
 				    setTimeout(tick, duration);
 				}, duration);
 				
@@ -57,8 +67,9 @@ function constructor (id) {
 	ds.Publicidad.devolverPublicidad2({onSuccess: function(e) {
 		
 		if(e.result != false){
-			
+				
 			$comp.sources.publicidad1.setEntityCollection(e.result);
+			var tamanio = $comp.sources.publicidad1.length;
 			$comp.sources.publicidad1.select(0);
 			var duration = $comp.sources.publicidad1.Duracion;
 			duration = duration*1000;
@@ -66,23 +77,33 @@ function constructor (id) {
 			var i = 0;
 			
 			setTimeout(function tick() {
-			    i++;
+				
+				if(tamanio != 1){
+					i++;
+				}else if(tamanio == 1){
+					i = 0;
+				}
+				
 			    if(i == 0){
 			    	$comp.sources.publicidad1.query("Bloque = 2");
+			    	$comp.sources.publicidad1.select(i);
+					duration = $comp.sources.publicidad1.Duracion;
+					duration = duration*1000;
+			    }else{
+			    	$comp.sources.publicidad1.select(i);
+					duration = $comp.sources.publicidad1.Duracion;
+					duration = duration*1000;
+					if(i == $comp.sources.publicidad1.length-1){
+						i = -1;
+					}
 			    }
-				$comp.sources.publicidad1.select(i);
-				duration = $comp.sources.publicidad1.Duracion;
-				duration = duration*1000;
-				if(i == $comp.sources.publicidad1.length-1){
-					i = -1;
-					
-				}
-			 
+				
+				tamanio = $comp.sources.publicidad1.length;
 			    setTimeout(tick, duration);
 			}, duration);
 			
 		}else{
-			console.log("No hay publicidad 2");
+			console.log("No hay publicidad 1");
 		}
 	  
 	}});
@@ -90,32 +111,43 @@ function constructor (id) {
 	ds.Publicidad.devolverPublicidad3({onSuccess: function(e) {
 			
 		if(e.result != false){
-			console.log(e.result);
+				
 			$comp.sources.publicidad2.setEntityCollection(e.result);
+			var tamanio = $comp.sources.publicidad2.length;
 			$comp.sources.publicidad2.select(0);
 			var duration = $comp.sources.publicidad2.Duracion;
 			duration = duration*1000;
-				
+			
 			var i = 0;
-		
+			
 			setTimeout(function tick() {
-			    i++;
+				
+				if(tamanio != 1){
+					i++;
+				}else if(tamanio == 1){
+					i = 0;
+				}
+				
 			    if(i == 0){
 			    	$comp.sources.publicidad2.query("Bloque = 3");
+			    	$comp.sources.publicidad2.select(i);
+					duration = $comp.sources.publicidad2.Duracion;
+					duration = duration*1000;
+			    }else{
+			    	$comp.sources.publicidad2.select(i);
+					duration = $comp.sources.publicidad2.Duracion;
+					duration = duration*1000;
+					if(i == $comp.sources.publicidad2.length-1){
+						i = -1;
+					}
 			    }
-				$comp.sources.publicidad2.select(i);
-				duration = $comp.sources.publicidad2.Duracion;
-				duration = duration*1000;
-				if(i == $comp.sources.publicidad2.length-1){
-					i = -1;
-					
-				}
-			 
+				
+				tamanio = $comp.sources.publicidad2.length;
 			    setTimeout(tick, duration);
 			}, duration);
 			
 		}else{
-			console.log("No hay publicidad 3");
+			console.log("No hay publicidad 1");
 		}
 	  
 	}});

@@ -52,6 +52,7 @@ $(':input').bind('blur',function() {
 
  
 	// @region namespaceDeclaration// @startlock
+	var button9 = {};	// @button
 	var dataGrid1 = {};	// @dataGrid
 	var button6 = {};	// @button
 	var button5 = {};	// @button
@@ -61,6 +62,11 @@ $(':input').bind('blur',function() {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	button9.click = function button9_click (event)// @startlock
+	{// @endlock
+		$comp.sources.publicidad.serverRefresh();
+	};// @lock
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
@@ -124,6 +130,7 @@ $(':input').bind('blur',function() {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button9", "click", button9.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_button6", "click", button6.click, "WAF");
 	WAF.addListener(this.id + "_button5", "click", button5.click, "WAF");
