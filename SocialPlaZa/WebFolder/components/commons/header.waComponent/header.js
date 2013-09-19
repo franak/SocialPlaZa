@@ -17,7 +17,6 @@ function constructor (id) {
 	var button1 = {};	// @button
 	var button2 = {};	// @button
 	var clickMenu = {};	// @richText
-	var sNomUsu = {};	// @richText
 	var foto_usuario = {};	// @image
 	var login2 = {};	// @login
 	var image2 = {};	// @image
@@ -122,11 +121,6 @@ btmodales.initModal('Usuarios',$comp);
 		
 	};// @lock
 
-	sNomUsu.click = function sNomUsu_click (event)// @startlock
-	{// @endlock
-		appds.openDialogUsuario($comp);
-	};// @lock
-
 	foto_usuario.click = function foto_usuario_click (event)// @startlock
 	{// @endlock
 		//$('#myModal').modal('show');
@@ -172,8 +166,9 @@ $('#mDonde').click(function() {
 // Codigo sin no es un enlace
 });
  	
+ 	
  //Botón con menú
- var bToolbar = getHtmlObj('richText7');
+ var bToolbar = getHtmlObj('sNomUsu');
  $(bToolbar).toolbar({
 	content: '#toolbar-options-emp', 
 	position: 'bottom',
@@ -227,7 +222,6 @@ contenedorBar.html(herramientas);*/
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_clickMenu", "click", clickMenu.click, "WAF");
-	WAF.addListener(this.id + "_sNomUsu", "click", sNomUsu.click, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
 	WAF.addListener(this.id + "_login2", "login", login2.login, "WAF");
 	WAF.addListener(this.id + "_image2", "click", image2.click, "WAF");
