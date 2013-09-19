@@ -13,6 +13,7 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		
 	// @region namespaceDeclaration// @startlock
+	var button1 = {};	// @button
 	var checkbox3 = {};	// @checkbox
 	var authorize_button = {};	// @richText
 	var inputUsuario = {};	// @textField
@@ -23,6 +24,11 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	button1.click = function button1_click (event)// @startlock
+	{// @endlock
+		$$("altaComp").removeComponent();
+	};// @lock
 
 	checkbox3.change = function checkbox3_change (event)// @startlock
 	{// @endlock
@@ -117,6 +123,7 @@ $(':input').bind('blur',function() {
     }
 });
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_checkbox3", "change", checkbox3.change, "WAF");
 	WAF.addListener(this.id + "_authorize_button", "click", authorize_button.click, "WAF");
 	WAF.addListener(this.id + "_inputUsuario", "focus", inputUsuario.focus, "WAF");

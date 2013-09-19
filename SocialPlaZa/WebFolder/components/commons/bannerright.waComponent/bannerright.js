@@ -24,23 +24,35 @@ function constructor (id) {
 				var tamanio = $comp.sources.publicidad.length;
 				$comp.sources.publicidad.select(0);
 				var duration = $comp.sources.publicidad.Duracion;
-				duration = duration*1000;
-				
 				var i = 0;
+				if(tamanio == 0){
+					duration = 5000;
+					
+				}else{
+					duration = duration*1000;
+					
+				}
 				
+
 				setTimeout(function tick() {
 					
-					if(tamanio != 1){
+					if($comp.sources.publicidad.length > 1){
 						i++;
-					}else if(tamanio == 1){
+					}else if($comp.sources.publicidad.length <= 1 ){
 						i = 0;
 					}
 					
 				    if(i == 0){
+				    	
 				    	$comp.sources.publicidad.query("Bloque = 1");
+				    	if($comp.sources.publicidad.length == 0){
+				    		duration = 5000;
+			    		}else{
+			    			duration = $comp.sources.publicidad.Duracion;
+							duration = duration*1000;
+			    		}
 				    	$comp.sources.publicidad.select(i);
-						duration = $comp.sources.publicidad.Duracion;
-						duration = duration*1000;
+						
 				    }else{
 				    	$comp.sources.publicidad.select(i);
 						duration = $comp.sources.publicidad.Duracion;
@@ -54,8 +66,6 @@ function constructor (id) {
 				    setTimeout(tick, duration);
 				}, duration);
 				
-			}else{
-				console.log("No hay publicidad 1");
 			}
 		  
 		}});
@@ -72,23 +82,35 @@ function constructor (id) {
 			var tamanio = $comp.sources.publicidad1.length;
 			$comp.sources.publicidad1.select(0);
 			var duration = $comp.sources.publicidad1.Duracion;
-			duration = duration*1000;
-			
 			var i = 0;
+			if(tamanio == 0){
+				duration = 5000;
+				
+			}else{
+				duration = duration*1000;
+				
+			}
 			
+
 			setTimeout(function tick() {
 				
-				if(tamanio != 1){
+				if($comp.sources.publicidad1.length > 1){
 					i++;
-				}else if(tamanio == 1){
+				}else if($comp.sources.publicidad1.length <= 1 ){
 					i = 0;
 				}
 				
 			    if(i == 0){
+			    	
 			    	$comp.sources.publicidad1.query("Bloque = 2");
+			    	if($comp.sources.publicidad1.length == 0){
+			    		duration = 5000;
+		    		}else{
+		    			duration = $comp.sources.publicidad1.Duracion;
+						duration = duration*1000;
+		    		}
 			    	$comp.sources.publicidad1.select(i);
-					duration = $comp.sources.publicidad1.Duracion;
-					duration = duration*1000;
+					
 			    }else{
 			    	$comp.sources.publicidad1.select(i);
 					duration = $comp.sources.publicidad1.Duracion;
@@ -102,8 +124,6 @@ function constructor (id) {
 			    setTimeout(tick, duration);
 			}, duration);
 			
-		}else{
-			console.log("No hay publicidad 1");
 		}
 	  
 	}});
@@ -116,23 +136,35 @@ function constructor (id) {
 			var tamanio = $comp.sources.publicidad2.length;
 			$comp.sources.publicidad2.select(0);
 			var duration = $comp.sources.publicidad2.Duracion;
-			duration = duration*1000;
-			
 			var i = 0;
+			if(tamanio == 0){
+				duration = 5000;
+				
+			}else{
+				duration = duration*1000;
+				
+			}
 			
+
 			setTimeout(function tick() {
 				
-				if(tamanio != 1){
+				if($comp.sources.publicidad2.length > 1){
 					i++;
-				}else if(tamanio == 1){
+				}else if($comp.sources.publicidad2.length <= 1 ){
 					i = 0;
 				}
 				
 			    if(i == 0){
+			    	
 			    	$comp.sources.publicidad2.query("Bloque = 3");
+			    	if($comp.sources.publicidad2.length == 0){
+			    		duration = 5000;
+		    		}else{
+		    			duration = $comp.sources.publicidad2.Duracion;
+						duration = duration*1000;
+		    		}
 			    	$comp.sources.publicidad2.select(i);
-					duration = $comp.sources.publicidad2.Duracion;
-					duration = duration*1000;
+					
 			    }else{
 			    	$comp.sources.publicidad2.select(i);
 					duration = $comp.sources.publicidad2.Duracion;
@@ -146,8 +178,6 @@ function constructor (id) {
 			    setTimeout(tick, duration);
 			}, duration);
 			
-		}else{
-			console.log("No hay publicidad 1");
 		}
 	  
 	}});

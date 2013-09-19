@@ -14,20 +14,19 @@ function constructor (id) {
 		$$('mlateralComp').loadComponent('/components/commons/menulateral.waComponent');
 		$('#mlateralComp').hide();
 	// @region namespaceDeclaration// @startlock
+	var button1 = {};	// @button
+	var button2 = {};	// @button
 	var clickMenu = {};	// @richText
 	var sNomUsu = {};	// @richText
-	var richText14 = {};	// @richText
 	var foto_usuario = {};	// @image
-	var openMenu = {};	// @richText
-	var richText3 = {};	// @richText
-	var richText4 = {};	// @richText
-	var conectText = {};	// @richText
 	var login2 = {};	// @login
 	var image2 = {};	// @image
 	// @endregion// @endlock
  var botonera1 = getHtmlObj('botonera1');
  var botonera2 = getHtmlObj('botonera2');
  var botonera2b = getHtmlId('botonera2');
+ 
+ $$(id+"_openMenu").setValue("c");
  
  
 
@@ -43,19 +42,75 @@ function constructor (id) {
 //INICIALIZACIÓN DE MODALES.
 btmodales.initModal('Usuarios',$comp);
 
+	$$(id+"_textField1").setValue(localStorage.user)
 
 	 var user = WAF.directory.currentUser();
-	if(user){
-		$(getHtmlObj('conectText')).text('DESCONECTAR');
-	}else{
+	 var grupo = ds.Metodos.getGrupo();
+	if(grupo == "Prueba"){
 		$(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'grayscale(100%)');
 		$(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'blur(2px)');
 		$(getHtmlObj('conectText')).text('INICIAR');
-		$$(id+'_botonera1').hide();
+		$$(id+"_button1").show();
+        $$(id+"_textField1").show();
+        $$(id+"_textField2").show();
+        $$(id+"_button2").show();
+        
+        $$(id+"_sNomUsu").hide();
+        $$(id+"_foto_usuario").hide();
+       
+	}else{
+		$$(id+"_button1").hide();
+        $$(id+"_textField1").hide();
+        $$(id+"_textField2").hide();
+        $$(id+"_button2").hide();
+        
+        $$(id+"_sNomUsu").show();
+        $$(id+"_foto_usuario").show();
+        $(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'grayscale(100%)');
+		$(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'blur(0px)');
+        
+    
 	}
 			
 
 	// eventHandlers// @lock
+
+	button1.click = function button1_click (event)// @startlock
+	{// @endlock
+		
+        var acceso = $("#" + id + "_textField1").val();
+        var resultado = ds.Metodos.getUserActivado(acceso);
+
+        if (resultado == true || resultado == "Error") {
+			
+            if (WAF.directory.loginByPassword(acceso, $("#" + id + "_textField2").val())) {
+                //Para ense√±ar el nombre de usuario una vez logueado:
+                WAF.directory.logout();
+                WAF.directory.loginByPassword(acceso, $("#" + id + "_textField2").val());
+                $$(id+"_button1").hide();
+                $$(id+"_textField1").hide();
+                $$(id+"_textField2").hide();
+                $$(id+"_button2").hide();
+                
+                $comp.sources.usuarios.all();
+                $$(id+"_sNomUsu").show();
+                $("#"+id+"_foto_usuario").show();
+                localStorage.user = acceso;
+                proceso.abrirProceso("TPV");
+
+            }else{
+                UI.alert("Datos Incorrectos")
+            }
+            
+        }else{
+            UI.alert("Active su cuenta");
+        }
+	};// @lock
+
+	button2.click = function button2_click (event)// @startlock
+	{// @endlock
+		proceso.abrirProceso("AltaUsuario");
+	};// @lock
 
 	clickMenu.click = function clickMenu_click (event)// @startlock
 	{// @endlock
@@ -70,44 +125,10 @@ btmodales.initModal('Usuarios',$comp);
 		appds.openDialogUsuario($comp);
 	};// @lock
 
-	richText14.click = function richText14_click (event)// @startlock
-	{// @endlock
-		
-		fcBrain.openAltaUsuario();
-		
-	};// @lock
-
 	foto_usuario.click = function foto_usuario_click (event)// @startlock
 	{// @endlock
 		//$('#myModal').modal('show');
 		appds.openDialogUsuario($comp);
-	};// @lock
-
-	openMenu.touchend = function openMenu_touchend (event)// @startlock
-	{// @endlock
-			UI.openCloseMenu();
-	};// @lock
-
-	openMenu.click = function openMenu_click (event)// @startlock
-	{// @endlock
-//$('#mlateralComp').fadeIn();
-			UI.openCloseMenu();
-	};// @lock
-
-	richText3.click = function richText3_click (event)// @startlock
-	{// @endlock
-		$(botonera1).slideToggle();
-		$(botonera2).css('top','24px').slideToggle();
-	};// @lock
-
-	richText4.click = function richText4_click (event)// @startlock
-	{// @endlock
-		fcBrain.openAltaUsuario();
-	};// @lock
-
-	conectText.click = function conectText_click (event)// @startlock
-	{// @endlock
-		fcBrain.desconectar(id);
 	};// @lock
 
 	login2.login = function login2_login (event)// @startlock
@@ -201,15 +222,11 @@ contenedorBar.html(herramientas);*/
 
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
+	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_clickMenu", "click", clickMenu.click, "WAF");
 	WAF.addListener(this.id + "_sNomUsu", "click", sNomUsu.click, "WAF");
-	WAF.addListener(this.id + "_richText14", "click", richText14.click, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
-	WAF.addListener(this.id + "_openMenu", "touchend", openMenu.touchend, "WAF");
-	WAF.addListener(this.id + "_openMenu", "click", openMenu.click, "WAF");
-	WAF.addListener(this.id + "_richText3", "click", richText3.click, "WAF");
-	WAF.addListener(this.id + "_richText4", "click", richText4.click, "WAF");
-	WAF.addListener(this.id + "_conectText", "click", conectText.click, "WAF");
 	WAF.addListener(this.id + "_login2", "login", login2.login, "WAF");
 	WAF.addListener(this.id + "_image2", "click", image2.click, "WAF");
 	// @endregion// @endlock

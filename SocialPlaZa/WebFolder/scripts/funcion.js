@@ -97,9 +97,7 @@ function registrarse(id){
 							UI.alert("GRACIAS POR REGISTRARSE\r\nCompruebe su correo electronico. Recibira un mensaje con instrucciones para completar el proceso de alta.","Enviado",function(r){
 								if(r == true){
 									$('#'+id+'_richText2').html('Enviado');
-									//self.location.search = 'origin=registro';
-									  fcBrain.openLoginForm();
-            						  $('#' + id + '_conectText').text('INICIAR');
+									$$("altaComp").removeComponent()
 
 								}
 							});

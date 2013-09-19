@@ -196,7 +196,7 @@ appdsObj = function () {
 			//DS PONGO EL ESTADO DISABLED AL BOTON
 			$$(esteObjeto.id).setState('disabled');
 			
-			var d = $comp.sources.articulos.Descripcion;
+			var d = sources.articulos.Descripcion;
 			var art = ds.Articulos.devolverArticulo(d);
 			
 			var articuloCodigo = art.Codigo.value;
@@ -279,8 +279,8 @@ appdsObj = function () {
 				$comp.sources.lineasCollection.PrecioUnitario = art.Precio.value;
 				$comp.sources.lineasCollection.Cantidad = 1;
 				$comp.sources.lineasCollection.Documento.set($comp.sources.docComercial);
-				$comp.sources.lineasCollection.Almacen.set($comp.sources.almacenes);
-				$comp.sources.lineasCollection.cajasTPV.set($comp.sources.cajasTPV);
+				$comp.sources.lineasCollection.Almacen.set(sources.almacenes);
+				$comp.sources.lineasCollection.cajasTPV.set(sources.cajasTPV);
 				//DS si ha habido algun borrado previamente se le asigna automaticamente su posicion antigua
 				if(vPosRestada != null){
 					
@@ -329,8 +329,8 @@ appdsObj = function () {
 		$comp.sources.lineasCollection.PrecioUnitario = art.Precio.value;
 		$comp.sources.lineasCollection.Cantidad = 1;
 		$comp.sources.lineasCollection.Documento.set($comp.sources.docComercial);
-		$comp.sources.lineasCollection.Almacen.set($comp.sources.almacenes);
-		$comp.sources.lineasCollection.cajasTPV.set($comp.sources.cajasTPV);
+		$comp.sources.lineasCollection.Almacen.set(sources.almacenes);
+		$comp.sources.lineasCollection.cajasTPV.set(sources.cajasTPV);
 		
 		//DS si ha habido algun borrado previamente se le asigna automaticamente su posicion antigua
 		if(vPosRestada != null){
@@ -520,7 +520,7 @@ appdsObj = function () {
 				   }
 							
 				}
-			},500);
+			},1000);
 			
 		}
 	 
@@ -532,14 +532,14 @@ appdsObj = function () {
 		
 	// CARGA DE CajasMovimientos
 		ds.Metodos.consultar("CajasMovimientos", {onSuccess: function(e) {
-		  $comp.sources.cajasMovimientos.setEntityCollection(e.result);
+		  sources.cajasMovimientos.setEntityCollection(e.result);
 		  arrSource[0] = true;
 		  sourceReady($comp)
 		}});
 		
 	//CARGA DE Articulos
 		ds.Metodos.consultar("Articulos", {onSuccess: function(e) {
-		  $comp.sources.articulos.setEntityCollection(e.result);
+		  sources.articulos.setEntityCollection(e.result);
 		  arrSource[1] = true;
 		  sourceReady($comp)
 		}});
@@ -569,7 +569,7 @@ appdsObj = function () {
 		
 	// CARGA DE MedioPago
 		ds.Metodos.consultar("MedioPago", {onSuccess: function(e) {
-		  $comp.sources.medioPago.setEntityCollection(e.result);
+		  sources.medioPago.setEntityCollection(e.result);
 		  arrSource[5] = true;
 		  sourceReady($comp)
 		}});
@@ -584,14 +584,14 @@ appdsObj = function () {
 		
 	// CARGA DE Almacenes
 		ds.Metodos.consultar("Almacenes", {onSuccess: function(e) {
-		  $comp.sources.almacenes.setEntityCollection(e.result);
+		  sources.almacenes.setEntityCollection(e.result);
 		  arrSource[7] = true;
 		  sourceReady($comp)
 		}});
 		
 	// CARGA DE Usuarios
 		ds.Metodos.consultar("Usuarios", {onSuccess: function(e) {
-		  $comp.sources.usuarios.setEntityCollection(e.result);
+		  sources.usuarios.setEntityCollection(e.result);
 		  arrSource[8] = true;
 		  sourceReady($comp)
 		}});
@@ -599,16 +599,16 @@ appdsObj = function () {
 		
 	// CARGA DE CajasTPV
 		ds.Metodos.consultar("CajasTPV", {onSuccess: function(e) {
-		  $comp.sources.cajasTPV.setEntityCollection(e.result);
+		  sources.cajasTPV.setEntityCollection(e.result);
 		  arrSource[9] = true;
-		  sourceReady();
+		  sourceReady($comp);
 		}});
 		
 	// CARGA DE Lineas
 		ds.Metodos.consultar("Lineas", {onSuccess: function(e) {
 		  sources.lineas.setEntityCollection(e.result);
 		  arrSource[10] = true;
-		  sourceReady($comp)
+		  sourceReady($comp);
 		}});
 			
 	}
@@ -715,13 +715,10 @@ appdsObj = function () {
 			
 			
 			if(this.id == "Anuncios"){
-				$$("MainComp").loadComponent("/components/Administracion/Publicidad.waComponent");
-				//$$("socialComponent").removeComponent();
-				
-			
-		}else if (this.id == "Ventas TPV"){
-				
-				fcBrain.welcome();
+				proceso.abrirProceso("Anuncios");
+			}else if (this.id == "Ventas TPV"){
+				proceso.abrirProceso("TPV2");
+				//fcBrain.welcome();
 		
 			}else{
 				UI.alert("Llendo a "+this.id+"...");

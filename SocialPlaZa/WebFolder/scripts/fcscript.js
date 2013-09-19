@@ -166,14 +166,14 @@ fcBrainObj = function() {
         $comp.sources.docComercial.Fecha = new Date();
         $comp.sources.docComercial.Cobrado = false;
         $comp.sources.docComercial.Cambio = 0;
-        $comp.sources.docComercial.CajaTpv.set($comp.sources.cajasTPV);
+        $comp.sources.docComercial.CajaTpv.set(sources.cajasTPV);
         if(abonado == true){
            $comp.sources.docComercial.Referencia = docReferencia;
         }
         $comp.sources.docComercial.save({
             onSuccess: function(event) {
                 $comp.sources.docComercial.serverRefresh();
-                var almacen = $comp.sources.almacenes.ID;
+                var almacen = sources.almacenes.ID;
                 if(abonado == true){
                 	abonar($comp,docCobrado,almacen);
                 }
@@ -283,17 +283,14 @@ fcBrainObj = function() {
             
            $$(components.main).loadComponent(components.defaults.AltaUsuario.compPath);
 
-       }
-        
-        else {
+       }else {
             
             var user = WAF.directory.currentUser();
             if (!user) {
                 //WAF.directory.loginByPassword('demo', '123');
                 $('#' + components.header + '_conectText').text('DESCONECTAR');
                 $$(components.banner).loadComponent('/components/commons/bannerlog.waComponent');
-            }
-            else {
+            }else{
                 functions.CargarUI();
                 //$$("socialComponent").loadComponent("/components/commons/rsscomponent.waComponent")
                 $('#' + components.header + '_conectText').text('DESCONECTAR');
@@ -427,7 +424,7 @@ alert (datagridotro);
 }	*/
 
     functions.sumarLineas = function(id, docID) {
-        var docID = $$(id).sources.docComercial.ID;
+        
         if (docID) {
             vSuma = ds.Lineas.sumarLineas(docID);
             sources.vSuma.sync(); //a las variables globales se las puede llamar sin indicar su ubicaci—n en el componente.

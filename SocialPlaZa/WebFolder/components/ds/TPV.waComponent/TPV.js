@@ -46,9 +46,16 @@ vComp = $comp;
 
 //-- FUNCION QUE CARGA TODOS LOS RECURSOS DEL COMPONENTE (Tablas)--\\
 $(this.id).ready(function(){
-	
-	appds.cargarDataTPV(vComp);
-	
+	if(data.userData.myParametro != "e"){
+		appds.cargarDataTPV(vComp);
+	}else{
+		TPV.pintarFamilias();
+		TPV.pintarFamiliasDialog();
+		ds.Metodos.consultar("DocComercial", {onSuccess: function(e) {
+		  $comp.sources.docComercial.setEntityCollection(e.result);
+		}});
+		
+	}
 });
 
 //++ Carga de Modales ++\\
@@ -250,7 +257,7 @@ function readDeviceOrientation() {
 
 				ds.Articulos.borrarArticulosDemos({
 					onSuccess:function(){
-						$comp.sources.articulos.all();
+						sources.articulos.all();
 					},
 					onError:function(){
 						UI.alert("No se ha podido borrar los articulos demos","ERROR");
@@ -267,7 +274,7 @@ function readDeviceOrientation() {
 	btnAll.click = function btnAll_click (event)// @startlock
 	{// @endlock
 		UI.gifCargando();
-		$comp.sources.articulos.all();
+		sources.articulos.all();
 		$('.solapa').removeClass('btn-maniadmin-4');
 		botonTodos = getHtmlId('btnAll');
 		$$(botonTodos).setState('disabled');
@@ -442,16 +449,16 @@ function readDeviceOrientation() {
 			var codigo = $$($comp.id+"_textField5").getValue();
 			var precio = $$($comp.id+"_textField6").getValue();
 			var descripcion = $$($comp.id+"_textField7").getValue();
-			$comp.sources.articulos.addNewElement();
-			$comp.sources.articulos.Codigo = codigo;
-			$comp.sources.articulos.Precio = precio;
-			$comp.sources.articulos.Descripcion = descripcion;
-			$comp.sources.articulos.Familia.set(familia);
-			$comp.sources.articulos.save({
+			sources.articulos.addNewElement();
+			sources.articulos.Codigo = codigo;
+			sources.articulos.Precio = precio;
+			sources.articulos.Descripcion = descripcion;
+			sources.articulos.Familia.set(familia);
+			sources.articulos.save({
 				onSuccess:function(){
-					$comp.sources.articulos.serverRefresh();
+					sources.articulos.serverRefresh();
 					if(WAF.directory.currentUser().fullName == "TG"){
-						ds.PreArticulos.creaPreArticulo(codigo,precio,descripcion,$comp.sources.familias2.Nombre);
+						ds.PreArticulos.creaPreArticulo(codigo,precio,descripcion,sources.familias2.Nombre);
 					}
 				},
 				onError:function(){
@@ -464,12 +471,12 @@ function readDeviceOrientation() {
 			$(window).scrollTop(0);
 			$$(id+"_dialog3").closeDialog();
 		}else{
-			$comp.sources.articulos.removeCurrent({
+			sources.articulos.removeCurrent({
 				onError:function(){
 					UI.alert("No se ha podido eliminar el articulo","ERROR");
 				}
 			});
-			$comp.sources.articulos.serverRefresh({
+			sources.articulos.serverRefresh({
 				onSuccess:function (event){
 					$$(id+"_richText4").hide();
 					TPV.mantenerFoco();
@@ -512,16 +519,16 @@ function readDeviceOrientation() {
 			
 			$('#'+id+'_richText16').slideUp(100);
 		
-			$comp.sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val();
-			$comp.sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
-			$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
-			$comp.sources.lineasCollection.save({
+			sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val();
+			sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
+			sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
+			sources.lineasCollection.save({
 				onError:function(){
 					UI.alert("No se ha podido modificar la linea","ERROR");
 				}
 			});
 			
-			pos = $comp.sources.lineasCollection.Posicion;
+			pos = sources.lineasCollection.Posicion;
 			$comp.sources.docComercial.serverRefresh();
 			TPV.mantenerFoco();
 			$(window).scrollTop(0);
@@ -563,15 +570,15 @@ function readDeviceOrientation() {
 					var precio = $$($comp.id+"_textField6").getValue();
 					var descripcion = $$($comp.id+"_textField7").getValue();
 					var familia = ds.Familias.getFamilia($("#select-familias2").val());
-					$comp.sources.articulos.Codigo = codigo;
-					$comp.sources.articulos.Precio = precio;
-					$comp.sources.articulos.Descripcion = descripcion;
-					$comp.sources.articulos.Familia.set(familia);
-					$comp.sources.articulos.save({
+					sources.articulos.Codigo = codigo;
+					sources.articulos.Precio = precio;
+					sources.articulos.Descripcion = descripcion;
+					sources.articulos.Familia.set(familia);
+					sources.articulos.save({
 						onSuccess:function(event){
-							$comp.sources.articulos.serverRefresh();
+							sources.articulos.serverRefresh();
 							if(qString != null){
-								$comp.sources.articulos.query("Familia.Nombre =:1",qString);
+								sources.articulos.query("Familia.Nombre =:1",qString);
 							}
 							$$($comp.id+"_richText14").setState("default");
 							TPV.mantenerFoco();
@@ -684,15 +691,15 @@ TPV.mantenerFoco = function(){
 TPV.eliminaLinea = function(){
 	var cobrado = $comp.sources.docComercial.Cobrado;
 	if(cobrado != true){
-		pos = $comp.sources.lineasCollection.Posicion - 1;
-		vPosRestada = $comp.sources.lineasCollection.Posicion;
-		var linea = $comp.sources.lineasCollection.ID;
+		pos = sources.lineasCollection.Posicion - 1;
+		vPosRestada = sources.lineasCollection.Posicion;
+		var linea = sources.lineasCollection.ID;
 		
 		if(linea == null){
 			UI.alert("No hay Líneas")
 		}else{
 	
-		UI.confirm('¿Desea borrar <b>'+$comp.sources.lineasCollection.Descripcion+'</b> del ticket?', 'Confirmacion', function(r) {
+		UI.confirm('¿Desea borrar <b>'+sources.lineasCollection.Descripcion+'</b> del ticket?', 'Confirmacion', function(r) {
 			
 			if(r == true){
 
@@ -732,7 +739,7 @@ TPV.articulos_btn = function (esteObjeto){
 		
 		TPV.recargarFamiliasDialog();
 		result = ds.Metodos.consultar("Familias");
-		$comp.sources.familias2.setEntityCollection(result);
+		sources.familias2.setEntityCollection(result);
 		vTime = 0;
 		var dialogo = getHtmlId("dialog3");//Obtengo el dialogo widget
 		$$(dialogo).setState("modificar");//El dialogo pasa a estado modificar
@@ -958,8 +965,8 @@ TPV.listarDocComercial = function(){
 	$comp.sources.docComercial.all({
 		onSuccess:function(){
 			var resultado = $comp.sources.docComercial;
-			var lineas = $comp.sources.lineasCollection;
-			var caja = $comp.sources.cajasTPV.Codigo;
+			var lineas = sources.lineasCollection;
+			var caja = sources.cajasTPV.Codigo;
 				
 			var html="";
 			var html = "<table class='table table-hover ' id='tabla_tickets'>";
@@ -1012,38 +1019,38 @@ TPV.dispensar = function(){
 		for (var i =0; i < aMediosPagos.length; i++){
 			
 			if(aMediosPagos[i] != "" && aMediosPagos[i] != 0){
-				$comp.sources.cajasMovimientos.newEntity();
-				$comp.sources.cajasMovimientos.entregado = aMediosPagos[i];
-				$comp.sources.cajasMovimientos.fecha = new Date();
-				$comp.sources.cajasMovimientos.Documento.set($comp.sources.docComercial);
-				$comp.sources.cajasMovimientos.Caja.set($comp.sources.cajasTPV);
+				sources.cajasMovimientos.newEntity();
+				sources.cajasMovimientos.entregado = aMediosPagos[i];
+				sources.cajasMovimientos.fecha = new Date();
+				sources.cajasMovimientos.Documento.set($comp.sources.docComercial);
+				sources.cajasMovimientos.Caja.set(sources.cajasTPV);
 				switch(i){
 					case 0: var m = ds.MedioPago.asignarMedioPago("Efectivo");
-							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							sources.cajasMovimientos.MedioPago.set(m);
 							var cambio = aMediosPagos[i] - diferenciaCambio;
 							
 							/*console.log("Cambio: "+cambio);*/
 							diferenciaCambio = 0;
 							if(cambio > 0){
-								$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i] - cambio;
+								sources.cajasMovimientos.importeVenta = aMediosPagos[i] - cambio;
 								$comp.sources.docComercial.Cambio = cambio;
 								localStorage.cambio = formato_numero(cambio,2,".",",")+"€";
 								//alert("Cambio: "+formato_numero(cambio,2,",",".")+"€");
 						 		UI.alert(localStorage.cambio,'Devolución');
 
 							}else{
-								$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i];
+								sources.cajasMovimientos.importeVenta = aMediosPagos[i];
 								localStorage.cambio= 0;
 							}
 							break;
 					case 1: var m = ds.MedioPago.asignarMedioPago("Tarjeta"); 
-							$comp.sources.cajasMovimientos.importeVenta = aMediosPagos[i];
-							$comp.sources.cajasMovimientos.MedioPago.set(m);
+							sources.cajasMovimientos.importeVenta = aMediosPagos[i];
+							sources.cajasMovimientos.MedioPago.set(m);
 							break;
 				}
-				$comp.sources.cajasMovimientos.save({
+				sources.cajasMovimientos.save({
 					onSuccess: function(){
-						$comp.sources.cajasMovimientos.serverRefresh();	
+						sources.cajasMovimientos.serverRefresh();	
 					},
 					onError:function(){
 						UI.alert("No se ha podido dispensar el ticket","ERROR");
@@ -1087,7 +1094,7 @@ TPV.ticketPendientes = function (){
 
 TPV.nuevoArticulo = function () {
 	result = ds.Metodos.consultar("Familias");
-	$comp.sources.familias2.setEntityCollection(result);
+	sources.familias2.setEntityCollection(result);
 	
 	TPV.recargarFamiliasDialog();
 	
@@ -1130,7 +1137,7 @@ TPV.pintarFamilias = function (){
 	$('#select-familias').change(function(){
 		$('#playholder').remove();
 		var nombre = $(this).val();
-		$comp.sources.articulos.query("Familia.Nombre =:1",nombre);
+		sources.articulos.query("Familia.Nombre =:1",nombre);
 		qString = nombre;
 	});
 }
@@ -1165,7 +1172,7 @@ TPV.pintarFamiliasDialog = function (){
     $('#select-familias2').css('position','absolute');
     $('#select-familias2').css('top','150px');
     $('#select-familias2').css('left','200px');
-    var familias = $comp.sources.familias2;
+    var familias = sources.familias2;
     var optionHTML;
    
 	for (var i = 0; i < familias.length; i++){
@@ -1184,9 +1191,9 @@ TPV.pintarFamiliasDialog = function (){
 
 TPV.recargarFamiliasDialog = function (){
 	
-	$comp.sources.familias2.allEntities({
+	sources.familias2.allEntities({
 		onSuccess:function(){
-			var familias = $comp.sources.familias2;
+			var familias = sources.familias2;
 		    var optionHTML;
 		    $('#select-familias2').empty();
 			for (var i = 0; i < familias.length; i++){
@@ -1200,7 +1207,7 @@ TPV.recargarFamiliasDialog = function (){
 			 
 			}
 			$('#select-familias2').append(optionHTML);
-			var vFamilia = ds.Articulos.getFamilia($comp.sources.articulos.Codigo);
+			var vFamilia = ds.Articulos.getFamilia(sources.articulos.Codigo);
 			$("#select-familias2 option[value="+ vFamilia +"]").attr("selected","selected");
 		}
 	});

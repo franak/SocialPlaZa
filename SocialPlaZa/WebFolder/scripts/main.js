@@ -122,10 +122,16 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			sessionStorage.setItem("demo","true");
 		}
 		
+		proceso.abrirProceso("menu");
+		proceso.abrirProceso("cabezera");
+		proceso.abrirProceso("bannerAnuncios");
+		proceso.abrirProceso("social");
+		proceso.abrirProceso("TPV");
 		
-		fcBrain.welcome();
 		
-		fcBrain.welcomeHead();
+		//fcBrain.welcome();
+		
+		//fcBrain.welcomeHead();
 		
 		
 		

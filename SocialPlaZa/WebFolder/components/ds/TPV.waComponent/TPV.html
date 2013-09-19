@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html><section data-group="[['icon2'],['icon3'],['icon7'],['icon8'],['dialog2','container8','container9'],['dialog3','container3','container11','container14'],['dialog1','container6','container7'],['icon13'],['imageButton9','icon9'],['imageButton14','icon15'],['btnAll','icon14'],['textField1','richText7','richText8','richText10','richText13','imageButton8','imageButton2','imageButton3','imageButton7','richText11','richText2','richText5','richText17','tTPVAlmacen','tTPVCaja','textField3','bOpciones','dataGrid1','richText3']]" class="default">
     <meta name="generator" content="Wakanda GUIDesigner"/>
     <meta name="WAF.catalog" content="CajasMovimientos,Articulos,DocComercial,Lineas,MedioPago,Familias,Almacenes,Usuarios,CajasTPV"/>
-    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="CajasMovimientos" data-scope="local" data-lib="WAF" data-id="{id}cajasMovimientos" data-dataType="string" data-autoLoad="false" content="cajasMovimientos"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="CajasMovimientos" data-scope="global" data-lib="WAF" data-id="cajasMovimientos" data-dataType="string" data-autoLoad="false" content="cajasMovimientos"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Articulos" data-scope="global" data-lib="WAF" data-id="articulos1" data-dataType="string" data-autoLoad="false" content="articulos1"/>
-    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Articulos" data-scope="local" data-lib="WAF" data-initialQueryString="Familia.Tpv == true" data-id="{id}articulos" data-dataType="string" data-autoLoad="false" content="articulos"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Articulos" data-scope="global" data-lib="WAF" data-id="articulos" data-dataType="string" data-autoLoad="false" content="articulos"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="DocComercial" data-scope="local" data-lib="WAF" data-id="{id}docComercial" data-dataType="string" data-autoLoad="false" content="docComercial"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="{id}docComercial.lineasCollection" data-scope="local" data-lib="WAF" data-id="{id}lineasCollection" data-dataType="string" data-autoLoad="true" content="lineasCollection"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="scalar" data-source="vComp" data-scope="global" data-lib="WAF" data-id="vComp" data-dataType="string" data-autoLoad="true" content="vComp"/>
@@ -12,18 +12,53 @@
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="scalar" data-source="vTime2" data-scope="global" data-lib="WAF" data-id="vTime2" data-dataType="string" data-autoLoad="true" content="vTime2"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="scalar" data-source="vTime" data-scope="global" data-lib="WAF" data-id="vTime" data-dataType="string" data-autoLoad="true" content="vTime"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="scalar" data-source="diferenciaCambio" data-scope="global" data-lib="WAF" data-id="diferenciaCambio" data-dataType="number" data-autoLoad="true" content="diferenciaCambio"/>
-    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="MedioPago" data-scope="local" data-lib="WAF" data-id="{id}medioPago" data-dataType="string" data-autoLoad="false" content="medioPago"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="MedioPago" data-scope="global" data-lib="WAF" data-id="medioPago" data-dataType="string" data-autoLoad="false" content="medioPago"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="scalar" data-source="pos" data-scope="global" data-lib="WAF" data-id="pos" data-dataType="number" data-autoLoad="true" content="pos"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="scalar" data-source="vVisa" data-scope="global" data-lib="WAF" data-id="vVisa" data-dataType="number" data-autoLoad="true" content="vVisa"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="scalar" data-source="vEfectivo" data-scope="global" data-lib="WAF" data-id="vEfectivo" data-dataType="number" data-autoLoad="true" content="vEfectivo"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="scalar" data-source="qString" data-scope="global" data-lib="WAF" data-id="qString" data-dataType="string" data-autoLoad="true" content="qString"/>
-    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Familias" data-scope="local" data-lib="WAF" data-id="{id}familias2" data-dataType="string" data-autoLoad="false" content="familias2"/>
-    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Familias" data-scope="global" data-lib="WAF" data-initialQueryString="Tpv == true" data-id="familias" data-dataType="string" data-autoLoad="false" content="familias"/>
-    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Almacenes" data-scope="local" data-lib="WAF" data-id="{id}almacenes" data-dataType="string" data-autoLoad="false" content="almacenes"/>
-    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Usuarios" data-scope="local" data-lib="WAF" data-id="{id}usuarios" data-dataType="string" data-autoLoad="false" content="usuarios"/>
-    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="CajasTPV" data-scope="local" data-lib="WAF" data-id="{id}cajasTPV" data-dataType="string" data-autoLoad="true" content="cajasTPV"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Familias" data-scope="global" data-lib="WAF" data-id="familias2" data-dataType="string" data-autoLoad="false" content="familias2"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Familias" data-scope="global" data-lib="WAF" data-id="familias" data-dataType="string" data-autoLoad="false" content="familias"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Almacenes" data-scope="global" data-lib="WAF" data-id="almacenes" data-dataType="string" data-autoLoad="false" content="almacenes"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Usuarios" data-scope="global" data-lib="WAF" data-id="usuarios" data-dataType="string" data-autoLoad="false" content="usuarios"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="CajasTPV" data-scope="global" data-lib="WAF" data-id="cajasTPV" data-dataType="string" data-autoLoad="false" content="cajasTPV"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="scalar" data-source="vPosRestada" data-scope="global" data-lib="WAF" data-id="vPosRestada" data-dataType="number" data-autoLoad="true" content="vPosRestada"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Lineas" data-scope="global" data-lib="WAF" data-id="lineas" data-dataType="string" data-autoLoad="false" content="lineas"/>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -109,8 +144,8 @@
     <div id="{id}containerArticulos" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-hideonload="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" class="waf-widget waf-container default    waf-container-level-0 waf-level-0">
  		<div id="{id}matrix_articulos" data-type="container" data-resizable="false" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container default   waf-container-level-1 waf-level-1">
 	 	 	<div id="{id}matrix3" data-type="matrix" data-scrolling="vertical" data-scrollbar="true" data-resizable="false" data-margin="0" data-lib="WAF" data-hideonload="false" data-fit="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-matrix matrix_articulos">	<div id="{id}container5" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container product">
-					<div id="{id}richText29" data-type="richText" data-target="_blank" data-plainText="false" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="{id}articulos.DescripcionBreve" data-autoWidth="false" class="waf-widget waf-richText "></div>
-			<div id="{id}image1" data-type="image" data-target="_blank" data-lib="WAF" data-label-position="left" data-label="" data-fit="4" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="{id}articulos.Icono" class="waf-widget waf-image bot"></div>
+					<div id="{id}richText29" data-type="richText" data-target="_blank" data-plainText="false" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="articulos.DescripcionBreve" data-autoWidth="false" class="waf-widget waf-richText "></div>
+			<div id="{id}image1" data-type="image" data-target="_blank" data-lib="WAF" data-label-position="left" data-label="" data-fit="4" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="articulos.Icono" class="waf-widget waf-image bot"></div>
  	 	 	 	</div>
 	</div>
  	 		<div id="{id}richText24" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-hideonload="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText default">Productos</div>
@@ -136,8 +171,8 @@
  	 		<div id="{id}richText2" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-format="###,###,###.00" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="vSuma" data-autoWidth="false" class="waf-widget waf-richText default"></div>
  	 		<div id="{id}richText5" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="{id}docComercial.Fecha" data-autoWidth="false" class="waf-widget waf-richText default"></div>
  	 		<div id="{id}richText17" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-hideonload="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText default">Cambio:</div>
- 	 		<div id="{id}tTPVAlmacen" data-type="richText" data-target="_blank" data-plainText="false" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="{id}almacenes.Descripcion" data-autoWidth="false" class="waf-widget waf-richText default"></div>
- 	 		<div id="{id}tTPVCaja" data-type="richText" data-target="_blank" data-plainText="false" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="{id}cajasTPV.Descripcion" data-autoWidth="false" class="waf-widget waf-richText default"></div>
+ 	 		<div id="{id}tTPVAlmacen" data-type="richText" data-target="_blank" data-plainText="false" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="almacenes.Descripcion" data-autoWidth="false" class="waf-widget waf-richText default"></div>
+ 	 		<div id="{id}tTPVCaja" data-type="richText" data-target="_blank" data-plainText="false" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="cajasTPV.Descripcion" data-autoWidth="false" class="waf-widget waf-richText default"></div>
  	 		<input type="text" tabindex="2" id="{id}textField3" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="{id}docComercial.Denom" class="waf-widget waf-textField "/>
  	 			<div id="{id}bOpciones" data-type="buttonImage" data-target="_blank" data-linked-tag="{id}icon13" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-buttonImage ">
  		<span id="{id}icon13" data-type="icon" data-linked-tag="{id}bOpciones" data-lib="WAF" data-label-position="right" data-label="" data-image-state4="/images/icons/glyphicons_023_cogwheels.png" data-image-state3="/images/icons/glyphicons_023_cogwheels.png" data-image-state2="/images/icons/glyphicons_023_cogwheels.png" data-image-state1="/images/icons/glyphicons_023_cogwheels.png" data-icon-type="images" data-context="['protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize','protected','allowResize']" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-icon default"><img src="/images/icons/glyphicons_023_cogwheels.png" class="waf-icon-state1"/><img src="/images/icons/glyphicons_023_cogwheels.png" class="waf-icon-state2"/><img src="/images/icons/glyphicons_023_cogwheels.png" class="waf-icon-state3"/><img src="/images/icons/glyphicons_023_cogwheels.png" class="waf-icon-state4"/></span>
