@@ -96,6 +96,7 @@ btmodales.initModal('Usuarios',$comp);
                 $$(id+"_sNomUsu").show();
                 $("#"+id+"_foto_usuario").show();
                 localStorage.user = acceso;
+                proceso.abrirProceso("menu");
                 proceso.abrirProceso("TPV");
 
             }else{
