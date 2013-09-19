@@ -160,7 +160,7 @@ fcBrainObj = function() {
 		
         // DS CREO EL DOCUMENTO
         var n = ds.DocComercial.getNumero();
-        $comp.sources.docComercial.addNewElement();
+        $comp.sources.docComercial.newEntity();
         $comp.sources.docComercial.Numero = n;
         $comp.sources.docComercial.Tipo = tipo;
         $comp.sources.docComercial.Fecha = new Date();
@@ -170,18 +170,32 @@ fcBrainObj = function() {
         if(abonado == true){
            $comp.sources.docComercial.Referencia = docReferencia;
         }
+        
         $comp.sources.docComercial.save({
+        	onSuccess:function(){
+        		$comp.sources.docComercial.addEntity($comp.sources.docComercial.getCurrentElement());
+				$comp.sources.docComercial.select($comp.sources.docComercial.length-1);
+				var almacen = sources.almacenes.ID;
+		        if(abonado == true){
+		        	abonar($comp,docCobrado,almacen);
+		        }
+        	}
+        });
+        
+        	
+        
+       /* $comp.sources.docComercial.save({
             onSuccess: function(event) {
-                $comp.sources.docComercial.serverRefresh();
                 var almacen = sources.almacenes.ID;
                 if(abonado == true){
                 	abonar($comp,docCobrado,almacen);
                 }
+               
             },
             onError:function(){
             	UI.alert("No se ha podido crear el ticket Nuevo","ERROR");	
             }
-        });
+        });*/
     }
     
     function abonar($comp,docCobrado,almacen){

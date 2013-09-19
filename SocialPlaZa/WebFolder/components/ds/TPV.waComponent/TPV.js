@@ -46,15 +46,12 @@ vComp = $comp;
 
 //-- FUNCION QUE CARGA TODOS LOS RECURSOS DEL COMPONENTE (Tablas)--\\
 $(this.id).ready(function(){
-	if(data.userData.myParametro != "e"){
+	if(!vtpv){
 		appds.cargarDataTPV(vComp);
 	}else{
+		$comp.sources.docComercial.allEntities();
 		TPV.pintarFamilias();
 		TPV.pintarFamiliasDialog();
-		ds.Metodos.consultar("DocComercial", {onSuccess: function(e) {
-		  $comp.sources.docComercial.setEntityCollection(e.result);
-		}});
-		
 	}
 });
 
