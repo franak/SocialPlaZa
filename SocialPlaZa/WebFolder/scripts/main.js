@@ -122,11 +122,22 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			sessionStorage.setItem("demo","true");
 		}
 		
-		proceso.abrirProceso("menu");
-		proceso.abrirProceso("cabezera");
-		proceso.abrirProceso("bannerAnuncios");
-		proceso.abrirProceso("social");
-		proceso.abrirProceso("TPV");
+		if(ds.Metodos.getGrupo() == "Prueba"){
+			
+			proceso.abrirProceso("cabezera");
+			proceso.abrirProceso("bannerAnuncios");
+			proceso.abrirProceso("social");
+			proceso.abrirProceso("TPV");
+			
+		}else{
+			
+			proceso.abrirProceso("menu");
+			proceso.abrirProceso("cabezera");
+			proceso.abrirProceso("bannerAnuncios");
+			proceso.abrirProceso("social");
+			proceso.abrirProceso("TPV");
+		}
+		
 		
 		
 		//fcBrain.welcome();
