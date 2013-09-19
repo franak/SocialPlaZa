@@ -12,7 +12,7 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
-	
+	var crear = false;
 
 	var selectElement = document.createElement('select');
 	selectElement.setAttribute('id','select-orden');
@@ -91,15 +91,27 @@ $(':input').bind('blur',function() {
 	{// @endlock
 	
 		//$comp.sources.publicidad.Bloque = $("#select-orden").val();
+		if(crear == true){
+			$comp.sources.publicidad.save({
+				onSuccess:function(){
+					crear = false;
+					$comp.sources.publicidad.addEntity($comp.sources.publicidad.getCurrentElement());
+					$comp.sources.publicidad.asignarBloque($("#select-orden").val());
+					$comp.sources.publicidad.all();
+					$$(id+"_dialog1").closeDialog();
+				}
+			});
+		}else{
+			$comp.sources.publicidad.save({
+				onSuccess:function(){
+					$comp.sources.publicidad.asignarBloque($("#select-orden").val());
+					$comp.sources.publicidad.all();
+					$$(id+"_dialog1").closeDialog();
+				}
+			});
+		}
 		
 		
-		$comp.sources.publicidad.save({
-			onSuccess:function(){
-				$comp.sources.publicidad.asignarBloque($("#select-orden").val());
-				$comp.sources.publicidad.all();
-				$$(id+"_dialog1").closeDialog();
-			}
-		});
 			
 	};// @lock
 
@@ -115,7 +127,7 @@ $(':input').bind('blur',function() {
 
 	button7.click = function button7_click (event)// @startlock
 	{// @endlock
-
+		crear = true;
 		$comp.sources.publicidad.newEntity();
 		$("#"+id+"_textField9").focus();
 		$("body").append($("#"+id+"_dialog1"));
