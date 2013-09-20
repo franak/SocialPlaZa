@@ -78,14 +78,18 @@ btmodales.initModal('Usuarios',$comp);
 	{// @endlock
 		
         var acceso = $("#" + id + "_textField1").val();
+        var uDemo = sources.usuarios.NombreAcceso;
+		var uPass = sources.usuarios.Password;
+		WAF.directory.logout();
         var resultado = ds.Metodos.getUserActivado(acceso);
 
         if (resultado == true || resultado == "Error") {
 			
             if (WAF.directory.loginByPassword(acceso, $("#" + id + "_textField2").val())) {
                 //Para ense√±ar el nombre de usuario una vez logueado:
-                WAF.directory.logout();
-                WAF.directory.loginByPassword(acceso, $("#" + id + "_textField2").val());
+                $$("MainComp").removeComponent();
+                //WAF.directory.logout();
+                //WAF.directory.loginByPassword(acceso, $("#" + id + "_textField2").val());
                 $$(id+"_button1").hide();
                 $$(id+"_textField1").hide();
                 $$(id+"_textField2").hide();
@@ -95,15 +99,17 @@ btmodales.initModal('Usuarios',$comp);
                 $$(id+"_sNomUsu").show();
                 $("#"+id+"_foto_usuario").show();
                 localStorage.user = acceso;
-                $$("MainComp").removeComponent();
+                
                 proceso.abrirProceso("menu");
                 proceso.abrirProceso("TPV");
 
             }else{
+            	WAF.directory.loginByPassword(uDemo,uPass);
                 UI.alert("Datos Incorrectos")
             }
             
         }else{
+        	WAF.directory.loginByPassword(uDemo,uPass);
             UI.alert("Active su cuenta");
         }
 	};// @lock

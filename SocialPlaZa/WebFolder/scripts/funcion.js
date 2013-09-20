@@ -87,6 +87,9 @@ function registrarse(id){
 		    var nombre= acceso.split('@');
 
 			if (ds.Metodos.consultarUserID(acceso)==false){
+				var uDemo = sources.usuarios.NombreAcceso;
+				var uPass = sources.usuarios.Password;
+				WAF.directory.logout();
 				var resultado = ds.Metodos.insertaUsuarioNuevo(acceso,pass,nombre[0]);
 				if (resultado != "error") {
 				$('#'+id+'_richText2').html('conectando...');
@@ -98,7 +101,7 @@ function registrarse(id){
 								if(r == true){
 									$('#'+id+'_richText2').html('Enviado');
 									$$("altaComp").removeComponent()
-
+									WAF.directory.loginByPassword(uDemo,uPass);
 								}
 							});
 						
