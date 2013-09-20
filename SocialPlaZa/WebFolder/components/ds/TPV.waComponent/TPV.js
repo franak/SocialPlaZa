@@ -60,6 +60,11 @@ $(this.id).ready(function(){
 		$comp.sources.docComercial.allEntities();
 		TPV.pintarFamilias();
 		TPV.pintarFamiliasDialog();
+		$("#"+id+"_bOpciones").toolbar({
+			content: '#MenuTPV', 
+			position: 'bottom',
+			hideOnClick: true
+		});
 	}
 });
 
@@ -99,14 +104,6 @@ function enfocar (){
 // Llamada a la creacion de un menu dinamico de prueba;
 // Se crea un array con todos los elementos del menu que se quiera mostrar;
 // La barra En diagonal "/" indica un espacio entre dos elementos;
-/*var arElementos = ["Nuevo Ticket","Borrar Ticket","Dispensar Ticket","Imprimir Duplicado","Ticket Pendientes","Elimina Linea","Modifica Linea","Ver Caja","Nuevo Articulo"];
-Menu.abrirMenuSencillo(arElementos,"MenuTPV",$comp);
-*/
-$("#"+id+"_bOpciones").toolbar({
-	content: '#MenuTPV', 
-	position: 'bottom',
-	hideOnClick: true
-});
 
 
 //Activación del botón para imprimir		
