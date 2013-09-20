@@ -24,7 +24,9 @@ function constructor (id) {
 */
 //++++++++++++++++++++++++++++++++++\\	
 
-
+	$( ".foto_producto" ).delegate( "img", "click", function() {
+	 	 $(this).addClass('animated pulse');
+		});
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\\ 
 //++ Operaciones y cargas necesarias para el funcionamiento del TPV ++\\
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\\ 
@@ -228,14 +230,20 @@ function readDeviceOrientation() {
 
 	image1.mouseup = function image1_mouseup (event)// @startlock
 	{// @endlock
+		
+
 		TPV.articulos_btn(this);
 		TPV.mantenerFoco();
+		
+
 	};// @lock
 
 	image1.mousedown = function image1_mousedown (event)// @startlock
 	{// @endlock
 		vTime = 0;
 		vTime = new Date();
+		
+
 	};// @lock
 
 	infoText.click = function infoText_click (event)// @startlock

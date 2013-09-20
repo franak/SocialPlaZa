@@ -1,4 +1,4 @@
-/*Desde aqu’ para hacer la barra superior fija*/
+Desde aqu’ para hacer la barra superior fija
 
 
 body > * {
@@ -216,3 +216,28 @@ float: left;
    background-color: #f0f7fd;
   
 }
+
+/*Foto Usuario*/
+.foto_producto {
+   -webkit-transition: all .3s ease-out; 
+   -moz-transition: all .3s ease-out; 
+   -o-transition: all .3s ease-out; 
+   transition: all .3s ease-out;
+ }
+ .foto_producto img:hover{
+ 	
+
+	}
+.foto_producto img:active{
+ 		 margin-top:4px;
+
+	-moz-transform: scale(2);
+   -webkit-transform: scale(2);
+   -o-transform: scale(2);
+   transform: scale(2);
+   -ms-transform: scale(2);
+filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',
+   M11=2, M12=-0, M21=0, M22=2);
+ 	 
+}
+
