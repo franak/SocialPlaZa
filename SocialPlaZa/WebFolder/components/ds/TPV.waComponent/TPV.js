@@ -189,17 +189,11 @@ function readDeviceOrientation() {
 	
 	// @region namespaceDeclaration// @startlock
 	var image1 = {};	// @image
-	var button1 = {};	// @button
 	var infoText = {};	// @richText
 	var btnAll = {};	// @buttonImage
 	var richText30 = {};	// @richText
 	var bOpciones = {};	// @buttonImage
-	var imageButton7 = {};	// @buttonImage
-	var imageButton3 = {};	// @buttonImage
-	var imageButton2 = {};	// @buttonImage
-	var imageButton8 = {};	// @buttonImage
 	var textField4 = {};	// @textField
-	var textField3 = {};	// @textField
 	var docComercialEvent = {};	// @dataSource
 	var btnArticulo = {};	// @richText
 	var imageButton14 = {};	// @buttonImage
@@ -242,13 +236,6 @@ function readDeviceOrientation() {
 	{// @endlock
 		vTime = 0;
 		vTime = new Date();
-	};// @lock
-
-	button1.click = function button1_click (event)// @startlock
-	{// @endlock
-		alert(window.innerWidth + " x " + window.innerHeight);
-		//$("BODY").css("font-size","14px")
-		
 	};// @lock
 
 	infoText.click = function infoText_click (event)// @startlock
@@ -295,26 +282,6 @@ function readDeviceOrientation() {
 		TPV.mantenerFoco();
 	};// @lock
 
-	imageButton7.click = function imageButton7_click (event)// @startlock
-	{// @endlock
-		TPV.mantenerFoco();
-	};// @lock
-
-	imageButton3.click = function imageButton3_click (event)// @startlock
-	{// @endlock
-		TPV.mantenerFoco();
-	};// @lock
-
-	imageButton2.click = function imageButton2_click (event)// @startlock
-	{// @endlock
-		TPV.mantenerFoco();
-	};// @lock
-
-	imageButton8.click = function imageButton8_click (event)// @startlock
-	{// @endlock
-		//TPV.mantenerFoco();
-	};// @lock
-
 	textField4.blur = function textField4_blur (event)// @startlock
 	{// @endlock
 		
@@ -342,18 +309,6 @@ function readDeviceOrientation() {
 		
 		$$(id+"_textField4").setValue("");	
 	
-	};// @lock
-
-	textField3.blur = function textField3_blur (event)// @startlock
-	{// @endlock
-		$comp.sources.docComercial.getCurrentElement();
-		$comp.sources.docComercial.Denom = $("#"+id+"_textField3").val();
-		$comp.sources.docComercial.save({
-			onSuccess: function (){
-				$comp.sources.docComercial.serverRefresh();
-				$(window).scrollTop(0);
-			}
-		});
 	};// @lock
 
 	docComercialEvent.onCurrentElementChange = function docComercialEvent_onCurrentElementChange (event)// @startlock
@@ -635,18 +590,12 @@ function readDeviceOrientation() {
 	WAF.addListener(this.id + "_image1", "mouseup", image1.mouseup, "WAF");
 	WAF.addListener(this.id + "_image1", "mousedown", image1.mousedown, "WAF");
 	WAF.addListener(this.id + "_lineasCollection", "onCollectionChange", lineasCollectionEvent.onCollectionChange, "WAF");
-	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_infoText", "click", infoText.click, "WAF");
-	WAF.addListener(this.id + "_textField3", "blur", textField3.blur, "WAF");
 	WAF.addListener(this.id + "_textField4", "blur", textField4.blur, "WAF");
 	WAF.addListener(this.id + "_btnAll", "click", btnAll.click, "WAF");
 	WAF.addListener(this.id + "_richText30", "click", richText30.click, "WAF");
 	WAF.addListener(this.id + "_textField4", "focus", textField4.focus, "WAF");
 	WAF.addListener(this.id + "_bOpciones", "click", bOpciones.click, "WAF");
-	WAF.addListener(this.id + "_imageButton7", "click", imageButton7.click, "WAF");
-	WAF.addListener(this.id + "_imageButton3", "click", imageButton3.click, "WAF");
-	WAF.addListener(this.id + "_imageButton2", "click", imageButton2.click, "WAF");
-	WAF.addListener(this.id + "_imageButton8", "click", imageButton8.click, "WAF");
 	WAF.addListener(this.id + "_docComercial", "onCurrentElementChange", docComercialEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "mousedown", btnArticulo.mousedown, "WAF");
 	WAF.addListener(this.id + "_btnArticulo", "mouseup", btnArticulo.mouseup, "WAF");
@@ -1219,7 +1168,7 @@ TPV.orientacionVertical = function (){
 
 	$("#headComp").css("left","2px");
 	$("#MainComp").css("left","2px");
-	$("#socialComponent").css("left","363px");
+	$("#socialComponent").css("left","2px");
 
 
 
@@ -1242,7 +1191,7 @@ TPV.orientacionHorizontal = function (){
 	
 	$("#headComp").css("left","0px");
 	$("#MainComp").css("left","0px");
-	$("#socialComponent").css("left","361px");
+	$("#socialComponent").css("left","0px");
 	
 //++ Movimiento de la Publicidad ++\\
 	$("#rightComp").css("width","256px");
