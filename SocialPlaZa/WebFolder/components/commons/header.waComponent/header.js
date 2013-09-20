@@ -46,9 +46,9 @@ btmodales.initModal('Usuarios',$comp);
 	 var user = WAF.directory.currentUser();
 	 var grupo = ds.Metodos.getGrupo();
 	if(grupo == "Prueba"){
-		$(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'grayscale(100%)');
+		/*$(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'grayscale(100%)');
 		$(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'blur(2px)');
-		$(getHtmlObj('conectText')).text('INICIAR');
+		$(getHtmlObj('conectText')).text('INICIAR');*/
 		$$(id+"_button1").show();
         $$(id+"_textField1").show();
         $$(id+"_textField2").show();
@@ -159,7 +159,8 @@ $('body').append(menuBoton2);
 
 //Comportamiento de los botones de la toolbar:
 $('#mPerfil').click(function() {
-	
+	$('#headComp_sNomUsu').click();
+	UI.gifCargando();
 	appds.openDialogUsuario();
 	
 });
@@ -167,8 +168,14 @@ $('#mPerfil').click(function() {
 $('#mDesconectar').click(function() {
 	alert('Gracias por participar');
 	proceso.abrirProceso('Login');
-	
 	$('#headComp_sNomUsu').click();
+	$$(id+"_button1").show();
+    $$(id+"_textField1").show();
+    $$(id+"_textField2").show();
+    $$(id+"_button2").show();
+    
+    $$(id+"_sNomUsu").hide();
+    $$(id+"_foto_usuario").hide();
 	
 // Codigo sin no es un enlace
 });

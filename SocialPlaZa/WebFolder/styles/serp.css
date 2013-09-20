@@ -1,9 +1,5 @@
 /*Desde aqu’ para hacer la barra superior fija*/
-body {
-min-width:768px;
-/*No hay scroll*/
-/*overflow:hidden;*/
-}
+
 
 body > * {
     -webkit-transform: translateZ(0px);

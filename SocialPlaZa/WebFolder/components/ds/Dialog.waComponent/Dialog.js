@@ -525,7 +525,7 @@ function cargarDataPicker(){
 		$("#"+id+"_dialog2").css("top",200);
 		$(window).scrollTop(0);
 		$$(id+"_dialog2").hide();
-		objComponent.sources.usuarios.serverRefresh();
+		sources.usuarios.serverRefresh();
 		appds.closeDialogEmpresa();		
 	};// @lock
 
