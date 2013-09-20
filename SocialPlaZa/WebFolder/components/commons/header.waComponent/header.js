@@ -88,8 +88,6 @@ btmodales.initModal('Usuarios',$comp);
             if (WAF.directory.loginByPassword(acceso, $("#" + id + "_textField2").val())) {
                 //Para ense√±ar el nombre de usuario una vez logueado:
                 $$("MainComp").removeComponent();
-                //WAF.directory.logout();
-                //WAF.directory.loginByPassword(acceso, $("#" + id + "_textField2").val());
                 $$(id+"_button1").hide();
                 $$(id+"_textField1").hide();
                 $$(id+"_textField2").hide();

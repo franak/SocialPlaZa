@@ -202,7 +202,7 @@ function constructor (id) {
     
     //Desplaza el contenedor hacia la direcci√≥n definida
     //@direction = [left,right]
-    function sliderScroll(direction){
+   /* function sliderScroll(direction){
 
        //Calcula la posici√≥n actual del contenedor
        position = $('#rightComp_slider').scrollLeft();
@@ -238,9 +238,6 @@ function constructor (id) {
    }
 
 
-   /*
-    * C√≥digo
-    */
 
     //Asigna el ancho total de los slides al contenedor
     //La anchura total se obtiene multiplicando la medida de un slide por el n√∫mero de slides)
@@ -266,7 +263,7 @@ function constructor (id) {
 
     //Inicia el temporizador
     initTimer();
-
+*/
 
 
 	// eventHandlers// @lock
