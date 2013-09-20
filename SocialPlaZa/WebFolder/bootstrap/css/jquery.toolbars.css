@@ -10,7 +10,7 @@
 /*	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0cbcb', endColorstr='white',GradientType=0 );*/
 /*	border-radius: 5px;*/
 	box-shadow: 0px 0px 10px #000;
-position: absolute;				
+/*position: absolute;				*/
 clear: both;
 white-space: nowrap;
   float: left;
@@ -18,7 +18,7 @@ white-space: nowrap;
   padding: 5px 0;
   margin: 2px 0 0;
   list-style: none;
-
+  float:right;
 }
 
 .tool-container.tool-top, .tool-container.tool-bottom {
@@ -29,6 +29,7 @@ white-space: nowrap;
 /* 	font-weight:14px;*/
 	font-family:droid sans;
 	line-height:14px;
+	
 }
 
 .tool-items {

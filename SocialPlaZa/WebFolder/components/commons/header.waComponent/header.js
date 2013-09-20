@@ -149,26 +149,30 @@ UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para 
 		
 	 //Menú para el botón Toolbar
 	 
- //EMPRESA
+ //Usuario
  
  var menuBoton2 = ' <ul id="toolbar-options-emp" role="menu" aria-labelledby="dLabel" style="display:none">'
-+'<li><a class="tool" href="#" id="mEmpresa" > Empresa</a></li>'
-+'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="mDonde">Dónde estamos</a></li>'
-+'<li><a class="tool" href="#" id="mClientes"> Nuestros Clientes</a></li>'
++'<li><a class="tool" href="#" id="mPerfil" ><i class="icon icon-user"></i>  Ver Perfil</a></li>'
++'<li><a class="tool dropdown-toggle" data-toggle="dropdown" href="#" id="mDesconectar"><i class="icon icon-off"></i>  Desconectar</a></li>'
 +'</ul>';
 $('body').append(menuBoton2);
 
 //Comportamiento de los botones de la toolbar:
-$('#mEmpresa').click(function() {
-	appds.openDialogEmpresa();
+$('#mPerfil').click(function() {
+	
+	appds.openDialogUsuario();
+	
 });
 
-$('#mDonde').click(function() {
+$('#mDesconectar').click(function() {
+	alert('Gracias por participar');
+	proceso.abrirProceso('Login');
+	
+	$('#headComp_sNomUsu').click();
+	
 // Codigo sin no es un enlace
 });
- 	$('#mClientes').click(function() {
-// Codigo sin no es un enlace
-});
+ 	
  	
  	
  //Botón con menú
