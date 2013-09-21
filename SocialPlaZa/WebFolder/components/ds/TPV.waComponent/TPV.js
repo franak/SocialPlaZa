@@ -12,6 +12,7 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
+	
 //+++ ESQUEMA DEL CODIGO TPV.js +++\\
 /*
 
@@ -24,9 +25,7 @@ function constructor (id) {
 */
 //++++++++++++++++++++++++++++++++++\\	
 
-	$( ".foto_producto" ).delegate( "img", "click", function() {
-	 	 $(this).addClass('animated pulse');
-		});
+	
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\\ 
 //++ Operaciones y cargas necesarias para el funcionamiento del TPV ++\\
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\\ 
