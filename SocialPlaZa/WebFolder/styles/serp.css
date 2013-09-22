@@ -1,8 +1,9 @@
-Desde aqu’ para hacer la barra superior fija
+/*Desde aqu’ para hacer la barra superior fija*/
 
 
 body > * {
     -webkit-transform: translateZ(0px);
+   
 }
 
 

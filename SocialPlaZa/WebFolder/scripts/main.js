@@ -10,6 +10,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 // eventHandlers// @lock
 
+
+
+
+
+
+
 	
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
@@ -17,6 +23,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	//++++++++++++++++++++++++++++++++++\\
 	//++ Empieze de carga del sistema ++\\
 	//++++++++++++++++++++++++++++++++++\\
+	
 	
 	
 	/*
@@ -144,7 +151,18 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		
 		//fcBrain.welcomeHead();
 		
-		
+		//Fondo
+		//<li><span>Image 01</span><div><h3>re·lax·a·tion</h3></div></li>'
+	var slide =  '<ul class="cb-slideshow">'
+	+'         <li><span>Image 01</span></li>'
+   +'         <li><span>Image 02</span></li>'
+     +'       <li><span>Image 03</span></li> '
+       +'     <li><span>Image 04</span></li>'
+         +'   <li><span>Image 05</span></li>'
+           +' <li><span>Image 06</span></li>'
+    +'    </ul>	';
+    
+    $('#waf-body').append(slide);
 		
 		
 
