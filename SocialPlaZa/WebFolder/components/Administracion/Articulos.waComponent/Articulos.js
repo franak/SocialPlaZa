@@ -18,7 +18,7 @@ function constructor (id) {
 		onSuccess:function(){
 			var selectElement = document.createElement('select');
 			selectElement.setAttribute('id','select-familias3');
-			selectElement.setAttribute('tabindex','13');
+			selectElement.setAttribute('tabindex','6');
 		    $('#'+id+'_container1').append(selectElement);
 		    $('#select-familias3').css('position','absolute');
 		    $('#select-familias3').css('top','193px');
