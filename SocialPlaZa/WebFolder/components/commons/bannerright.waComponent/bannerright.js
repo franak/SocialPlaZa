@@ -14,6 +14,127 @@ function constructor (id) {
 	
 	//Recogo todos los registros correspondiente a la primera casilla
 	
+		ds.Publicidad.devolverPublicidad5({onSuccess: function(e) {
+		
+			if(e.result != false){
+				
+				$comp.sources.publicidad3.setEntityCollection(e.result);
+				var tamanio = $comp.sources.publicidad3.length;
+				console.log(tamanio);
+				$comp.sources.publicidad3.select(0);
+				var duration = $comp.sources.publicidad3.Duracion;
+				console.log($comp.sources.publicidad3.Imagen);
+				var i = 0;
+				if(tamanio == 0){
+					$$(id+"_image4").hide();
+					$("body").css("background","#aaffaa");
+					
+					duration = 5000;
+					
+				}else{
+					var imagenString = $comp.sources.publicidad3.Imagen.__deferred.uri.toString();
+					console.log(imagenString);
+					$$(id+"_image4").show();
+					$("BODY").css('background-image', 'url(' + encodeURIComponent(imagenString) + ')');
+					duration = duration*1000;
+					
+				}
+				var esperar = false;
+				
+
+				setTimeout(function tick() {
+					
+					if(!esperar){
+						console.log("fuera");
+						if($comp.sources.publicidad3.length > 1){
+							i++;
+						}else if($comp.sources.publicidad3.length <= 1 ){
+							i = 0;
+						}
+						
+					    if(i == 0){
+					    	
+					    	$comp.sources.publicidad3.query("Bloque = 5");
+					    	if($comp.sources.publicidad3.length == 0){
+					    		console.log("no hay ninguno");
+					    		
+					    		duration = 5000;
+				    		}else{
+				    			
+				    			duration = $comp.sources.publicidad3.Duracion;
+								duration = duration*1000;
+				    		}
+					    	
+					    	if(i == $comp.sources.publicidad3.length-1){
+								i = -1;
+								$$(id+"_image4").hide();
+								$("body").css("background","#aaffaa");
+								esperar = true;
+							}
+							
+					    }else{
+					    	$comp.sources.publicidad3.select(i);
+							duration = $comp.sources.publicidad3.Duracion;
+							duration = duration*1000;
+							if(i == $comp.sources.publicidad3.length-1){
+								i = -1;
+								$$(id+"_image4").hide();
+								$("body").css("background","#aaffaa");
+								esperar = true;
+							}
+					    }
+						
+						tamanio = $comp.sources.publicidad3.length;
+						
+					}else{
+						console.log("dentro");
+						if($comp.sources.publicidad3.length > 1){
+							i++;
+						}else if($comp.sources.publicidad3.length <= 1 ){
+							i = 0;
+						}
+						
+					    if(i == 0){
+					    	
+					    	$comp.sources.publicidad3.query("Bloque = 5");
+					    	if($comp.sources.publicidad3.length == 0){
+					    		console.log("no hay ninguno");
+					    		duration = 5000;
+				    		}else{
+				    			duration = $comp.sources.publicidad3.Duracion;
+								duration = duration*1000;
+				    		}
+					    	
+					    	if(i == $comp.sources.publicidad3.length-1){
+								i = -1;
+								$$(id+"_image4").show();
+								$("body").css("background","red");
+								esperar = false;
+							}
+							
+					    }else{
+					    	$comp.sources.publicidad3.select(i);
+							duration = $comp.sources.publicidad3.Duracion;
+							duration = duration*1000;
+							if(i == $comp.sources.publicidad3.length-1){
+								i = -1;
+								$$(id+"_image4").show();
+								$("body").css("background","red");
+								esperar = false;
+							}
+					    }
+						
+						tamanio = $comp.sources.publicidad3.length;
+					}
+					
+					
+				    setTimeout(tick, duration);
+				}, duration);
+				
+			}
+		  
+		}});
+	
 		
 			
 		ds.Publicidad.devolverPublicidad1({onSuccess: function(e) {

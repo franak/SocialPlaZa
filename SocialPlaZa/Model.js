@@ -13,6 +13,15 @@ guidedModel =// @startlock
 		},
 		methods :
 		{// @endlock
+			devolverPublicidad5:function()
+			{// @lock
+				var collecionPublicidad = this.query("Bloque = 5");
+				if(collecionPublicidad != null){
+					return collecionPublicidad;
+				}else{
+					return false
+				}
+			},// @lock
 			devolverPublicidad3:function()
 			{// @lock
 				

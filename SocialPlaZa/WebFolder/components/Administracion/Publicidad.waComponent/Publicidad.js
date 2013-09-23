@@ -31,6 +31,7 @@ function constructor (id) {
         	optionHTML += '<option value="'+i+'">'+i+'ºBloque</option>';
         	
 	}
+	optionHTML += '<option value="5">5ºBloque</option>';
 	$('#select-orden').append(optionHTML);
 	
 		
