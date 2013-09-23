@@ -720,6 +720,10 @@ appdsObj = function () {
 				proceso.abrirProceso("TPV2");
 				//fcBrain.welcome();
 		
+			}else if (this.id == "Articulos"){
+				proceso.abrirProceso("Articulos");
+				//fcBrain.welcome();
+		
 			}else{
 				UI.alert("Llendo a "+this.id+"...");
 			}

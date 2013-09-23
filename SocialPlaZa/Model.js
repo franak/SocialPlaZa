@@ -193,13 +193,16 @@ guidedModel =// @startlock
 	{
 		methods :
 		{// @endlock
-			creaPreArticulo:function(codigo,precio,descripcion,familiaNombre)
+			creaPreArticulo:function(artID)
 			{// @lock
-				var familia = ds.PreFamilias.find("Nombre =:1",familiaNombre);
+				var articulo = ds.Articulos.find("ID =:1",artID);
+				var familia = ds.PreFamilias.find("Nombre =:1",articulo.Familia.Nombre);
 				var new_preArticulo = new ds.PreArticulos();
-				new_preArticulo.Codigo = codigo;
-				new_preArticulo.Precio = precio;
-				new_preArticulo.Descripcion = descripcion;
+				new_preArticulo.Codigo = articulo.Codigo;
+				new_preArticulo.Precio = articulo.Precio;
+				new_preArticulo.Descripcion = articulo.Descripcion;
+				new_preArticulo.DescripcionBreve = articulo.DescripcionBreve;
+				new_preArticulo.Icono = articulo.Icono;
 				new_preArticulo.Familia = familia;
 				new_preArticulo.save();
 			}// @startlock
@@ -302,6 +305,15 @@ guidedModel =// @startlock
 	},
 	Articulos :
 	{
+		entityMethods :
+		{// @endlock
+			asignarFamilia:function(familiaNombre)
+			{// @lock
+				var familia = ds.Familias.find("Nombre =:1",familiaNombre);
+				this.Familia = familia;
+				this.save();
+			}// @startlock
+		},
 		PrecioIVA :
 		{
 			onSet:function(value)

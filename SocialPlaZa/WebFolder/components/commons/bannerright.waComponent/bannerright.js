@@ -14,38 +14,34 @@ function constructor (id) {
 	
 	//Recogo todos los registros correspondiente a la primera casilla
 	
+var entrar = true;
+
+publicidad = {};
+
+publicidad.mostrarBloque5 = function(){
+	
+	
 		ds.Publicidad.devolverPublicidad5({onSuccess: function(e) {
 		
 			if(e.result != false){
 				
 				$comp.sources.publicidad3.setEntityCollection(e.result);
 				var tamanio = $comp.sources.publicidad3.length;
-				console.log(tamanio);
 				$comp.sources.publicidad3.select(0);
 				var duration = $comp.sources.publicidad3.Duracion;
 				console.log($comp.sources.publicidad3.Imagen);
 				var i = 0;
-				if(tamanio == 0){
-					$$(id+"_image4").hide();
-					$("body").css("background","#aaffaa");
-					
-					duration = 5000;
-					
-				}else{
-					var imagenString = $comp.sources.publicidad3.Imagen.__deferred.uri.toString();
-					console.log(imagenString);
-					$$(id+"_image4").show();
-					$("BODY").css('background-image', 'url(' + encodeURIComponent(imagenString) + ')');
-					duration = duration*1000;
-					
-				}
-				var esperar = false;
+				var imagenString = $comp.sources.publicidad3.Trama.__deferred.uri;
+				console.log("http://127.0.0.1:8081"+imagenString);
+				$$(id+"_image4").show();
+				$("body").css('background-image', 'url("http://127.0.0.1:8081'+imagenString+'")');
+				duration = duration*1000;
+			
 				
-
 				setTimeout(function tick() {
-					
-					if(!esperar){
-						console.log("fuera");
+					console.log(entrar);
+					if(!entrar){
+						
 						if($comp.sources.publicidad3.length > 1){
 							i++;
 						}else if($comp.sources.publicidad3.length <= 1 ){
@@ -55,9 +51,10 @@ function constructor (id) {
 					    if(i == 0){
 					    	
 					    	$comp.sources.publicidad3.query("Bloque = 5");
+					    	var imagenString = $comp.sources.publicidad3.Trama.__deferred.uri;
+					    	$("body").css('background-image', 'url("http://127.0.0.1:8081'+imagenString+'")');
 					    	if($comp.sources.publicidad3.length == 0){
 					    		console.log("no hay ninguno");
-					    		
 					    		duration = 5000;
 				    		}else{
 				    			
@@ -67,76 +64,31 @@ function constructor (id) {
 					    	
 					    	if(i == $comp.sources.publicidad3.length-1){
 								i = -1;
-								$$(id+"_image4").hide();
-								$("body").css("background","#aaffaa");
-								esperar = true;
 							}
 							
 					    }else{
 					    	$comp.sources.publicidad3.select(i);
 							duration = $comp.sources.publicidad3.Duracion;
 							duration = duration*1000;
+							var imagenString = $comp.sources.publicidad3.Trama.__deferred.uri;
+							$("body").css('background-image', 'url("http://127.0.0.1:8081'+imagenString+'")');
 							if(i == $comp.sources.publicidad3.length-1){
 								i = -1;
-								$$(id+"_image4").hide();
-								$("body").css("background","#aaffaa");
-								esperar = true;
 							}
 					    }
-						
+					    
+					 }
+
 						tamanio = $comp.sources.publicidad3.length;
-						
-					}else{
-						console.log("dentro");
-						if($comp.sources.publicidad3.length > 1){
-							i++;
-						}else if($comp.sources.publicidad3.length <= 1 ){
-							i = 0;
-						}
-						
-					    if(i == 0){
-					    	
-					    	$comp.sources.publicidad3.query("Bloque = 5");
-					    	if($comp.sources.publicidad3.length == 0){
-					    		console.log("no hay ninguno");
-					    		duration = 5000;
-				    		}else{
-				    			duration = $comp.sources.publicidad3.Duracion;
-								duration = duration*1000;
-				    		}
-					    	
-					    	if(i == $comp.sources.publicidad3.length-1){
-								i = -1;
-								$$(id+"_image4").show();
-								$("body").css("background","red");
-								esperar = false;
-							}
-							
-					    }else{
-					    	$comp.sources.publicidad3.select(i);
-							duration = $comp.sources.publicidad3.Duracion;
-							duration = duration*1000;
-							if(i == $comp.sources.publicidad3.length-1){
-								i = -1;
-								$$(id+"_image4").show();
-								$("body").css("background","red");
-								esperar = false;
-							}
-					    }
-						
-						tamanio = $comp.sources.publicidad3.length;
-					}
-					
-					
 				    setTimeout(tick, duration);
 				}, duration);
 				
 			}
 		  
 		}});
-	
+}
 		
-			
+
 		ds.Publicidad.devolverPublicidad1({onSuccess: function(e) {
 		
 			if(e.result != false){
@@ -190,6 +142,8 @@ function constructor (id) {
 			}
 		  
 		}});
+		
+
 						
 		
 	  
@@ -302,8 +256,11 @@ function constructor (id) {
 		}
 	  
 	}});
+	
+
 
 	// @region namespaceDeclaration// @startlock
+	var button1 = {};	// @button
 	// @endregion// @endlock
 
    /*
@@ -388,8 +345,22 @@ function constructor (id) {
 
 
 	// eventHandlers// @lock
+	
+
+	button1.click = function button1_click (event)// @startlock
+	{// @endlock
+		if(entrar){
+			entrar = false;
+			publicidad.mostrarBloque5();
+		}else{
+			entrar = true;
+			$$(id+"_image4").hide();
+			$("body").css('background', "#ffffff");
+		}
+	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	// @endregion// @endlock
 
 	};// @lock

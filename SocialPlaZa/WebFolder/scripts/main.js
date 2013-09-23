@@ -162,7 +162,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
            +' <li><span>Image 06</span></li>'
     +'    </ul>	';
     
-    $('#waf-body').append(slide);
+  //  $('#waf-body').append(slide);
 		
 		
 
