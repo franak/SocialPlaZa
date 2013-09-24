@@ -44,77 +44,11 @@ function constructor (id) {
 		}
 	});
 	
-	var empresa;
 	
-	$comp.sources.usuarios.allEntities({
-		onSuccess:function(){
-			var selectElement = document.createElement('select');
-			selectElement.setAttribute('id','select-usuarios');
-		    $('#'+id).append(selectElement);
-		    $('#select-usuarios').css('position','absolute');
-		    $('#select-usuarios').css('top','403px');
-		    $('#select-usuarios').css('left','350px');
-		    $('#select-usuarios').css('height','35px');
-    		$('#select-usuarios').css('width','200px');
-		    var usuarios = $comp.sources.usuarios;
-		    var optionHTML;
-		   
-			for (var i = 0; i < usuarios.length; i++){
-			 	usuarios.getElement(i, { 
-			 		onSuccess: function(event) {
-
-		        		var entity = event.element;
-		        		optionHTML += '<option value="'+entity.NombreAcceso+'">'+entity.NombreAcceso+'</option>';
-		        		
-		       		}
-			   });
-			 
-			}
-			optionHTML += '<option value="todos">Todos los Articulos</option>';
-			$('#select-usuarios').append(optionHTML);
-			$('#select-usuarios').change(function(){
-				
-				var nombre = $(this).val();
-				
-				if(nombre == "todos"){
-					$comp.sources.articulos.all();
-				}else{
-					ds.Articulos.filtrarArticulos(nombre,{
-						onSuccess:function(e){
-							empresa = e.result;
-							$comp.sources.articulos.query("Empresa.ID =:1",empresa);
-							
-						}
-					});
-				}
-				
-			});
-		}
-	});
 	
-	function recargarFamilias(){
-		$('#select-familias3').empty();
-		var usuario = $('#select-usuarios').val();
-		
-		ds.Familias.filtrarFamilias(usuario,{
-			onSuccess:function(e){
-				$comp.sources.familias.setEntityCollection(e.result);
-				var familias = $comp.sources.familias;
-				var optionHTML;
-				for (var i = 0; i < familias.length; i++){
-				 	familias.getElement(i, { 
-				 		onSuccess: function(event) {
-			        		var entity = event.element;
-			        		optionHTML += '<option value="'+entity.ID+'">'+entity.Nombre+'</option>';
-			        		
-			       		}
-				   });
-				 
-				}
-				$('#select-familias3').append(optionHTML);
-			}
-		});
-	}
+	
+	
+	
 	
 	// @region namespaceDeclaration// @startlock
 	var button3 = {};	// @button
@@ -135,10 +69,12 @@ function constructor (id) {
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
+		//recargarFamilias();
 		var vFamilia = ds.Articulos.getFamilia($comp.sources.articulos.Codigo);
 		$("#select-familias3 option[value="+ vFamilia +"]").attr("selected","selected");
-		$("body").append($("#"+id+"_dialog1"));
-		$("#"+id+"_dialog1").css("top","20px");
+		
+		$("#"+id+"_dialog1").css("top","0px");
+		//$("body").append($("#"+id+"_dialog1"));
 		$$(id+"_dialog1").displayDialog();
 	};// @lock
 
@@ -164,9 +100,9 @@ function constructor (id) {
 					var idArticulo = $comp.sources.articulos.ID;
 					$comp.sources.articulos.all({
 						onSuccess:function(){
-							if(WAF.directory.currentUser().fullName == "TG"){
+							/*if(WAF.directory.currentUser().fullName == "TG"){
 								ds.PreArticulos.creaPreArticulo(idArticulo);
-							}
+							}*/
 						}
 					});
 
@@ -192,10 +128,11 @@ function constructor (id) {
 	button2.click = function button2_click (event)// @startlock
 	{// @endlock
 		var vFamilia = ds.Articulos.getFamilia($comp.sources.articulos.Codigo);
-		recargarFamilias();
+		
 		$("#select-familias3 option[value="+ vFamilia +"]").attr("selected","selected");
-		$("body").append($("#"+id+"_dialog1"));
-		$("#"+id+"_dialog1").css("top","20px");
+		$("#"+id+"_dialog1").css("top","0px");
+		//$("body").append($("#"+id+"_dialog1"));
+		
 		$$(id+"_dialog1").displayDialog();
 	};// @lock
 
@@ -204,8 +141,10 @@ function constructor (id) {
 		crear = true;
 		$comp.sources.articulos.newEntity();
 		$("#"+id+"_textField1").focus();
-		$("body").append($("#"+id+"_dialog1"));
-		$("#"+id+"_dialog1").css("top","20px");
+		$("#"+id+"_dialog1").css("top","0px");
+		$("#"+id+"_dialog1").css("left","0px");
+		//$("body").append($("#"+id+"_dialog1"));
+		
 		
 		$$(id+"_dialog1").displayDialog();
 	};// @lock

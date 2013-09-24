@@ -214,26 +214,13 @@ guidedModel =// @startlock
 		{// @endlock
 			filtrarFamilias:function(usuario)
 			{// @lock
-				var entornoID = ds.Usuarios.find("NombreAcceso =:1",usuario).Entorno.ID;
-				var entorno = ds.Entornos.find("ID =:1",entornoID);
-				var entidad = ds.Entidades.query("Entorno.ID =:1 order by ID desc",entorno.ID);
-				var empresa = ds.Empresas.find("Entidad.ID =:1",entidad[0].ID);
-				var collArticulos = ds.Articulos.query("Empresa.ID =:1",empresa.ID);
 				
-				var collfamilias = ds.Familias.createEntityCollection(); 
-				var aFamilias = new Array();
-				
-				for(var i=0;i<collArticulos.length;i++){
-					var a = aFamilias.indexOf(collArticulos[i].Nombre);
-					if(a != -1){
-						aFamilias[aFamilias.length] = collArticulos[i].Nombre;
-						collfamilias.add(collArticulos[i]);
-					}
-				}
-				
-				return collfamilias;
-				
-				
+				var pass = ds.Usuarios.find("NombreAcceso =:1",usuario).Password;
+				logout();
+				loginByPassword(usuario,pass);
+				var collfamilias = ds.Familias.all();
+				logout();
+				loginByPassword("TG","123");
 				return collfamilias;
 			},// @lock
 			getFamilia:function(vFamilia)
