@@ -27,6 +27,12 @@ function constructor (id) {
  
  $$(id+"_openMenu").setValue("c");
  
+ $(":input").keypress(function(e){
+ 	if(e.keyCode==13){
+ 		$("#"+id+"_button1").click();
+ 	}
+ });
+ 
  
 
 //SERVICIO PARA AVERIGUAR LA IP PÚBLICA 
@@ -93,13 +99,14 @@ btmodales.initModal('Usuarios',$comp);
                 $$(id+"_textField2").hide();
                 $$(id+"_button2").hide();
                 
+                
+                proceso.abrirProceso("menu");
+                proceso.abrirProceso("TPV");
                 $comp.sources.usuarios.all();
                 $$(id+"_sNomUsu").show();
                 $("#"+id+"_foto_usuario").show();
                 localStorage.user = acceso;
                 
-                proceso.abrirProceso("menu");
-                proceso.abrirProceso("TPV");
 
             }else{
             	WAF.directory.loginByPassword(uDemo,uPass);

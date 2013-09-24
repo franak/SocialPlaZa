@@ -41,11 +41,11 @@ function constructor (id) {
 	
 	$('#'+id+'_usernameInput').focus();
 	
-	$(":input").bind('keypress', function(e) {
+	/*$(":input").bind('keypress', function(e) {
 	if(e.keyCode==13){
 		fcBrain.login(id);
 		}
-	});	
+	});	*/
 	
 	richText10.touchend = function richText10_touchend (event)// @startlock
 	{// @endlock
