@@ -11,6 +11,9 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		
+	vCompHeader = $comp;
+	sources.vCompHeader.sync();
 		$$('mlateralComp').loadComponent('/components/commons/menulateral.waComponent');
 		$('#mlateralComp').hide();
 	// @region namespaceDeclaration// @startlock
@@ -75,7 +78,7 @@ btmodales.initModal('Usuarios',$comp);
         
     
 	}
-			
+	
 
 	// eventHandlers// @lock
 

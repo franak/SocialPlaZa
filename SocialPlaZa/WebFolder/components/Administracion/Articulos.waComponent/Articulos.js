@@ -22,9 +22,9 @@ function constructor (id) {
 		    $('#'+id+'_container1').append(selectElement);
 		    $('#select-familias3').css('position','absolute');
 		    $('#select-familias3').css('top','193px');
-		    $('#select-familias3').css('left','314px');
+		    $('#select-familias3').css('left','401px');
 		    $('#select-familias3').css('height','35px');
-    		$('#select-familias3').css('width','130px');
+    		$('#select-familias3').css('width','200px');
 		    var familias = $comp.sources.familias;
 		    var optionHTML;
 		   
@@ -90,25 +90,58 @@ function constructor (id) {
 	button8.click = function button8_click (event)// @startlock
 	{// @endlock
 		
+		var relleno = false;
+		
+		if($("#"+id+"_textField1").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField2").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField3").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField4").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField5").val() != ""){
+			relleno = true;
+		}
+		
+		
+		
+		
+		
+		
 		if(crear == true){
-			$comp.sources.articulos.save({
-				onSuccess:function(){
+			
+			if(relleno == true){
+				
+				$comp.sources.articulos.save({
+					onSuccess:function(){
 
-					crear = false;
-					$comp.sources.articulos.addEntity($comp.sources.articulos.getCurrentElement());
-					$comp.sources.articulos.asignarFamilia($("#select-familias3").val());
-					var idArticulo = $comp.sources.articulos.ID;
-					$comp.sources.articulos.all({
-						onSuccess:function(){
-							/*if(WAF.directory.currentUser().fullName == "TG"){
-								ds.PreArticulos.creaPreArticulo(idArticulo);
-							}*/
-						}
-					});
+						crear = false;
+						$comp.sources.articulos.addEntity($comp.sources.articulos.getCurrentElement());
+						$comp.sources.articulos.asignarFamilia($("#select-familias3").val());
+						var idArticulo = $comp.sources.articulos.ID;
+						$comp.sources.articulos.all({
+							onSuccess:function(){
+								/*if(WAF.directory.currentUser().fullName == "TG"){
+									ds.PreArticulos.creaPreArticulo(idArticulo);
+								}*/
+							}
+						});
 
-					$$(id+"_dialog1").closeDialog();
-				}
-			});
+						$$(id+"_dialog1").closeDialog();
+					}
+				});
+				
+			}else{
+				
+				alert("Error al guardar, revisa los campos");
+				
+			}
+			
 		}else{
 			$comp.sources.articulos.save({
 				onSuccess:function(){

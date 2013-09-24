@@ -36,7 +36,9 @@ function constructor (id) {
 		}else{
 			$comp.sources.usuarios.all({
 				onSuccess:function(){
-					$("#"+id+"_dialog2").css("top",20);
+					$("#"+id+"_dialog2").css("margin","0px auto");
+					$("#"+id+"_dialog2").css("top","60px");
+					//$("#"+id+"_dialog2").css("left","0px");
 					$$(id+"_dialog2").show();
 				}
 			});
@@ -525,7 +527,7 @@ function cargarDataPicker(){
 		$("#"+id+"_dialog2").css("top",200);
 		$(window).scrollTop(0);
 		$$(id+"_dialog2").hide();
-		sources.usuarios.serverRefresh();
+		vCompHeader.sources.usuarios.serverRefresh();
 		appds.closeDialogEmpresa();		
 	};// @lock
 
