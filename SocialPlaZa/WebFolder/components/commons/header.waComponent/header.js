@@ -73,6 +73,7 @@ btmodales.initModal('Usuarios',$comp);
         $$(id+"_button2").hide();
         
         $$(id+"_sNomUsu").show();
+        $$(id+"_sNomUsu").addChild('<i class="icon icon-user"></i>');
         $$(id+"_foto_usuario").show();
         $(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'grayscale(100%)');
 		$(getHtmlObj('foto_usuario')).css( '-webkit-filter', 'blur(0px)');
@@ -122,6 +123,7 @@ $('#Conectar').click(function() {
             if (WAF.directory.loginByPassword(acceso, $("#input-contra").val())) {
                 //Para ense√±ar el nombre de usuario una vez logueado:
                	$('#Conectar').text('conectando...');
+               	$('#headComp_textAcceso').fadeOut();
                $('#loginDiv').remove();
         
                 $$("MainComp").removeComponent();
