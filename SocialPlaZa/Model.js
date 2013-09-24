@@ -212,6 +212,30 @@ guidedModel =// @startlock
 	{
 		methods :
 		{// @endlock
+			filtrarFamilias:function(usuario)
+			{// @lock
+				var entornoID = ds.Usuarios.find("NombreAcceso =:1",usuario).Entorno.ID;
+				var entorno = ds.Entornos.find("ID =:1",entornoID);
+				var entidad = ds.Entidades.query("Entorno.ID =:1 order by ID desc",entorno.ID);
+				var empresa = ds.Empresas.find("Entidad.ID =:1",entidad[0].ID);
+				var collArticulos = ds.Articulos.query("Empresa.ID =:1",empresa.ID);
+				
+				var collfamilias = ds.Familias.createEntityCollection(); 
+				var aFamilias = new Array();
+				
+				for(var i=0;i<collArticulos.length;i++){
+					var a = aFamilias.indexOf(collArticulos[i].Nombre);
+					if(a != -1){
+						aFamilias[aFamilias.length] = collArticulos[i].Nombre;
+						collfamilias.add(collArticulos[i]);
+					}
+				}
+				
+				return collfamilias;
+				
+				
+				return collfamilias;
+			},// @lock
 			getFamilia:function(vFamilia)
 			{// @lock
 				var familia = ds.Familias.find("Nombre =:1",vFamilia);
@@ -307,9 +331,9 @@ guidedModel =// @startlock
 	{
 		entityMethods :
 		{// @endlock
-			asignarFamilia:function(familiaNombre)
+			asignarFamilia:function(familiaID)
 			{// @lock
-				var familia = ds.Familias.find("Nombre =:1",familiaNombre);
+				var familia = ds.Familias.find("ID =:1",familiaID);
 				this.Familia = familia;
 				this.save();
 			}// @startlock
@@ -318,15 +342,37 @@ guidedModel =// @startlock
 		{
 			onSet:function(value)
 			{// @endlock
-				return this.Precio + this.Iva;
+				var valorIVA = this.Iva / 100;
+				valorIVA = valorIVA * this.Precio;
+				var precioIVA = this.Precio + valorIVA;
+				return precioIVA.toFixed(2);
 			},// @startlock
 			onGet:function()
 			{// @endlock
-				return this.Precio + this.Iva;
+				var valorIVA = this.Iva / 100;
+				valorIVA = valorIVA * this.Precio;
+				var precioIVA = this.Precio + valorIVA;
+				return precioIVA.toFixed(2);
 			}// @startlock
 		},
 		methods :
 		{// @endlock
+			filtrarArticulos:function(usuario)
+			{// @lock
+				
+				var entornoID = ds.Usuarios.find("NombreAcceso =:1",usuario).Entorno.ID;
+				var entorno = ds.Entornos.find("ID =:1",entornoID);
+				var entidad = ds.Entidades.query("Entorno.ID =:1 order by ID desc",entorno.ID);
+				var empresa = ds.Empresas.find("Entidad.ID =:1",entidad[0].ID);
+				
+				
+				
+				return empresa.ID;
+				
+				
+				
+				
+			},// @lock
 			borrarArticulosDemos:function()
 			{// @lock
 				var collPreArticulos = ds.PreArticulos.all();
