@@ -7,7 +7,9 @@ exports.insertaUsuarioNuevo = function insertaUsuarioNuevo (vNombreAcceso, vPass
 			entorno.save();
 			var tipoAcceso = 2;
 			var var1 = generateUUID();
-			var myFoto = loadImage ("/Users/dsantiago/Documents/SocialPlaZa/SocialPlaZa/WebFolder/images/onebit_18.png");
+			var currentFolder = ds.getModelFolder().path;
+	
+			var myFoto = loadImage (currentFolder+"WebFolder/images/onebit_18.png");
 			//++++++++++++++++++++++++++++++++++
 			//NUEVO USUARIO
 			//++++++++++++++++++++++++++++++++++
@@ -95,10 +97,11 @@ exports.insertaUsuarioNuevo = function insertaUsuarioNuevo (vNombreAcceso, vPass
 			doc.save();
 			
 			
-			
-			require("importacionModule").pegarArticulos(new_empresa);
-			
 			logout();
+			loginByPassword(vNombreAcceso,vPass);
+			require("importacionModule").pegarArticulos(new_empresa);
+			logout();
+			
 			return resultado;	
 		}
 };
