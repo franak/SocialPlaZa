@@ -86,12 +86,12 @@ btmodales.initModal('Usuarios',$comp);
 
 	textAcceso.click = function textAcceso_click (event)// @startlock
 	{// @endlock
-		$('#headComp_textAcceso').css('disabled');
+		$('#headComp_textAcceso').fadeOut('fast');
 			var loginForm = '<div id="loginDiv" class="well">'+
 		'<form class="form-horizontal">'+
  ' <fieldset>'+
   '  <legend>Datos de Acceso</legend>'+
-    '<input type="text" class="input-large" placeholder="email" id="input-email" style="height:30px">'+
+    '<input type="text" class="input-large" placeholder="email" id="input-email" style="height:30px" autofocus>'+
     '<input type="password" placeholder="Contraseña" id="input-contra"  style="height:30px">'+
     '<span class="help-block"></span>'+
     ' <a class="btn" id="soyNuevo">Soy nuevo y quiero darme de alta</a>'+
