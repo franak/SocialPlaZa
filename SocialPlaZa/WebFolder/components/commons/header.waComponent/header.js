@@ -24,9 +24,15 @@ function constructor (id) {
 	var button2 = {};	// @button
 	var login2 = {};	// @login
 	// @endregion// @endlock
- var botonera1 = getHtmlObj('botonera1');
- var botonera2 = getHtmlObj('botonera2');
- var botonera2b = getHtmlId('botonera2');
+
+var user = WAF.directory.currentUser();
+var grupo = ds.Metodos.getGrupo();
+var textAcceso = getHtmlObj('textAcceso');
+
+if(grupo !== "Prueba"){
+		
+		$(textAcceso).hide();
+	}
  
  $$(id+"_openMenu").setValue("c");
  
@@ -42,9 +48,7 @@ function constructor (id) {
 /* $.getJSON("http://jsonip.com", function(data){ip=data.ip; 
  UI.alert(ip);
 });*/
-
-
-
+ 	
 
 
 //INICIALIZACIÓN DE MODALES.
@@ -80,6 +84,7 @@ btmodales.initModal('Usuarios',$comp);
         
     
 	}
+	
 	
 
 	// eventHandlers// @lock
@@ -240,7 +245,7 @@ $('#loginDiv').remove();
 		document.location = newLocation;
 	};// @lock
 		
-	 //Menú para el botón Toolbar
+//Menú para el botón Toolbar
 	 
  //Usuario
  
@@ -253,7 +258,7 @@ $('body').append(menuBoton2);
 //Comportamiento de los botones de la toolbar:
 $('#mPerfil').click(function() {
 	$('#headComp_sNomUsu').click();
-	UI.gifCargando();
+UI.gifCargando($comp);
 	appds.openDialogUsuario();
 	
 });
@@ -262,7 +267,7 @@ $('#mDesconectar').click(function() {
 	alert('Gracias por participar');
 	proceso.abrirProceso('Login');
 	$('#headComp_sNomUsu').click();
-	               	$('#headComp_textAcceso').show();
+	$('#headComp_textAcceso').show();
 
 
 	$$(id+"_button1").show();
