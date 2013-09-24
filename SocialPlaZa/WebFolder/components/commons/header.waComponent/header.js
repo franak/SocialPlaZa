@@ -14,6 +14,7 @@ function constructor (id) {
 		$$('mlateralComp').loadComponent('/components/commons/menulateral.waComponent');
 		$('#mlateralComp').hide();
 	// @region namespaceDeclaration// @startlock
+	var image3 = {};	// @image
 	var foto_usuario = {};	// @image
 	var button1 = {};	// @button
 	var clickMenu = {};	// @richText
@@ -78,6 +79,32 @@ btmodales.initModal('Usuarios',$comp);
 			
 
 	// eventHandlers// @lock
+
+	image3.click = function image3_click (event)// @startlock
+	{// @endlock
+		 var posicionCartel = 0;
+		var loginForm = '<div id="loginDiv" class="alert alert-block alert-error">'+
+		'<form class="form-inline">'+
+'  <input type="text" class="input-small" placeholder="Email">'+
+ ' <input type="password" class="input-small" placeholder="Password">'+
+  '<label class="checkbox">'+
+   ' <input type="checkbox"> Remember me'+
+  '</label>'+
+  '<button type="submit" class="btn">Sign in</button>'+
+'</form>'+
+'</div>';
+
+		$(loginForm).appendTo('body');
+		$('#loginDiv').css('top',posicionCartel+70+'px').css('right','10%');
+ //  $(cajaError).css('left','70%');
+/*  $(loginForm).removeClass('animated bounceOutUp');
+	$('#errorDiv').addClass('animated bounceInDown');*/
+  posicionCartel = posicionCartel+ 70;
+  
+  
+		
+
+	};// @lock
 
 	foto_usuario.click = function foto_usuario_click (event)// @startlock
 	{// @endlock
@@ -233,6 +260,7 @@ contenedorBar.html(herramientas);*/
 
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_image3", "click", image3.click, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_clickMenu", "click", clickMenu.click, "WAF");
