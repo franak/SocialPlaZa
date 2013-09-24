@@ -14,12 +14,11 @@ function constructor (id) {
 		$$('mlateralComp').loadComponent('/components/commons/menulateral.waComponent');
 		$('#mlateralComp').hide();
 	// @region namespaceDeclaration// @startlock
-	var button1 = {};	// @button
-	var button2 = {};	// @button
-	var clickMenu = {};	// @richText
 	var foto_usuario = {};	// @image
+	var button1 = {};	// @button
+	var clickMenu = {};	// @richText
+	var button2 = {};	// @button
 	var login2 = {};	// @login
-	var image2 = {};	// @image
 	// @endregion// @endlock
  var botonera1 = getHtmlObj('botonera1');
  var botonera2 = getHtmlObj('botonera2');
@@ -80,6 +79,12 @@ btmodales.initModal('Usuarios',$comp);
 
 	// eventHandlers// @lock
 
+	foto_usuario.click = function foto_usuario_click (event)// @startlock
+	{// @endlock
+		//$('#myModal').modal('show');
+		appds.openDialogUsuario($comp);
+	};// @lock
+
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
 		
@@ -120,11 +125,6 @@ btmodales.initModal('Usuarios',$comp);
         }
 	};// @lock
 
-	button2.click = function button2_click (event)// @startlock
-	{// @endlock
-		proceso.abrirProceso("AltaUsuario");
-	};// @lock
-
 	clickMenu.click = function clickMenu_click (event)// @startlock
 	{// @endlock
 		UI.openCloseMenuAcord();
@@ -133,10 +133,9 @@ btmodales.initModal('Usuarios',$comp);
 		
 	};// @lock
 
-	foto_usuario.click = function foto_usuario_click (event)// @startlock
+	button2.click = function button2_click (event)// @startlock
 	{// @endlock
-		//$('#myModal').modal('show');
-		appds.openDialogUsuario($comp);
+		proceso.abrirProceso("AltaUsuario");
 	};// @lock
 
 	login2.login = function login2_login (event)// @startlock
@@ -145,14 +144,6 @@ btmodales.initModal('Usuarios',$comp);
 		var params = paramsString.split("&");
 		var newLocation = params[0].split("=")[1];
 		document.location = newLocation;
-	};// @lock
-
-	image2.click = function image2_click (event)// @startlock
-	{// @endlock
-		
-/*UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para que le imponga la penitencia más adecuada');
-*/
-		
 	};// @lock
 		
 	 //Menú para el botón Toolbar
@@ -242,12 +233,11 @@ contenedorBar.html(herramientas);*/
 
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
-	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
-	WAF.addListener(this.id + "_clickMenu", "click", clickMenu.click, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
+	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
+	WAF.addListener(this.id + "_clickMenu", "click", clickMenu.click, "WAF");
+	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_login2", "login", login2.login, "WAF");
-	WAF.addListener(this.id + "_image2", "click", image2.click, "WAF");
 	// @endregion// @endlock
 
 	};// @lock
