@@ -262,6 +262,9 @@ $('#mDesconectar').click(function() {
 	alert('Gracias por participar');
 	proceso.abrirProceso('Login');
 	$('#headComp_sNomUsu').click();
+	               	$('#headComp_textAcceso').show();
+
+
 	$$(id+"_button1").show();
     $$(id+"_textField1").show();
     $$(id+"_textField2").show();
