@@ -17,7 +17,7 @@ function constructor (id) {
 		$$('mlateralComp').loadComponent('/components/commons/menulateral.waComponent');
 		$('#mlateralComp').hide();
 	// @region namespaceDeclaration// @startlock
-	var image3 = {};	// @image
+	var textAcceso = {};	// @richText
 	var foto_usuario = {};	// @image
 	var button1 = {};	// @button
 	var clickMenu = {};	// @richText
@@ -83,30 +83,92 @@ btmodales.initModal('Usuarios',$comp);
 
 	// eventHandlers// @lock
 
-	image3.click = function image3_click (event)// @startlock
+	textAcceso.click = function textAcceso_click (event)// @startlock
 	{// @endlock
-		 var posicionCartel = 0;
-		var loginForm = '<div id="loginDiv" class="alert alert-block alert-error">'+
-		'<form class="form-inline">'+
-'  <input type="text" class="input-small" placeholder="Email">'+
- ' <input type="password" class="input-small" placeholder="Password">'+
-  '<label class="checkbox">'+
-   ' <input type="checkbox"> Remember me'+
-  '</label>'+
-  '<button type="submit" class="btn">Sign in</button>'+
+		$('#headComp_textAcceso').css('disabled');
+			var loginForm = '<div id="loginDiv" class="well">'+
+		'<form class="form-horizontal">'+
+ ' <fieldset>'+
+  '  <legend>Datos de Acceso</legend>'+
+    '<input type="text" class="input-large" placeholder="email" id="input-email" style="height:30px">'+
+    '<input type="password" placeholder="Contraseña" id="input-contra"  style="height:30px">'+
+    '<span class="help-block"></span>'+
+    ' <a class="btn" id="soyNuevo">Soy nuevo y quiero darme de alta</a>'+
+'  <button type="button" class="btn btn-success pull-right" id="Conectar">Entrar</button>'+
+  '</fieldset>'+
 '</form>'+
 '</div>';
 
-		$(loginForm).appendTo('body');
-		$('#loginDiv').css('top',posicionCartel+70+'px').css('right','10%');
+
+$('#containerPrincipal').append(loginForm);
+
+$('#loginDiv').css('position','absolute').css('right','0px').css('z-index','auto');
+
+$('#loginDiv').animate({
+            top: '60px'
+        }, 200);
+        
+$('#Conectar').click(function() {
+
+		 var acceso = $("#input-email").val();
+        var uDemo = sources.usuarios.NombreAcceso;
+		var uPass = sources.usuarios.Password;
+		WAF.directory.logout();
+        var resultado = ds.Metodos.getUserActivado(acceso);
+
+        if (resultado == true || resultado == "Error") {
+		
+
+            if (WAF.directory.loginByPassword(acceso, $("#input-contra").val())) {
+                //Para ense√±ar el nombre de usuario una vez logueado:
+               	$('#Conectar').text('conectando...');
+               $('#loginDiv').remove();
+        
+                $$("MainComp").removeComponent();
+ 
+                proceso.abrirProceso("menu");
+                proceso.abrirProceso("TPV");
+                $comp.sources.usuarios.all();
+                $$(id+"_sNomUsu").show();
+                $("#"+id+"_foto_usuario").show();
+                localStorage.user = acceso;
+                
+
+            }else{
+            	WAF.directory.loginByPassword(uDemo,uPass);
+                //UI.alert("Datos Incorrectos")
+                UI.mostrarAdvertencia('Nombre de usuario o contraseña incorrectos','Por favor, vuelva a intentarlo');
+            }
+            
+        }else{
+        	WAF.directory.loginByPassword(uDemo,uPass);
+            UI.alert("Active su cuenta");
+        }
+        
+        	
+	
+});
+        
+        
+         $('#soyNuevo').click(function() {
+
+	proceso.abrirProceso("AltaUsuario");
+	
+	$('#loginDiv').animate({
+            top: '-160px'
+        }, 200);
+
+$('#loginDiv').remove();
+
+});
+
+
+//$(loginForm).appendTo('#containerPrincipal');
  //  $(cajaError).css('left','70%');
 /*  $(loginForm).removeClass('animated bounceOutUp');
 	$('#errorDiv').addClass('animated bounceInDown');*/
-  posicionCartel = posicionCartel+ 70;
   
-  
-		
-
+ 
 	};// @lock
 
 	foto_usuario.click = function foto_usuario_click (event)// @startlock
@@ -210,7 +272,6 @@ $('#mDesconectar').click(function() {
 });
  	
  	
- 	
  //Botón con menú
  var bToolbar = getHtmlObj('sNomUsu');
  $(bToolbar).toolbar({
@@ -260,10 +321,8 @@ contenedorBar = getHtmlObj('container2');
 contenedorBar.html(herramientas);*/
 
 
-
-
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_image3", "click", image3.click, "WAF");
+	WAF.addListener(this.id + "_textAcceso", "click", textAcceso.click, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_clickMenu", "click", clickMenu.click, "WAF");
@@ -271,9 +330,12 @@ contenedorBar.html(herramientas);*/
 	WAF.addListener(this.id + "_login2", "login", login2.login, "WAF");
 	// @endregion// @endlock
 
+
 	};// @lock
 
 
 }// @startlock
 return constructor;
 })();// @endlock
+
+
