@@ -110,7 +110,8 @@ btmodales.initModal('Usuarios',$comp);
 
             }else{
             	WAF.directory.loginByPassword(uDemo,uPass);
-                UI.alert("Datos Incorrectos")
+                //UI.alert("Datos Incorrectos")
+                UI.mostrarAdvertencia('Nombre de usuario o contraseña incorrectos','Por favor, vuelva a intentarlo');
             }
             
         }else{
@@ -149,8 +150,8 @@ btmodales.initModal('Usuarios',$comp);
 	image2.click = function image2_click (event)// @startlock
 	{// @endlock
 		
-UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para que le imponga la penitencia más adecuada');
-
+/*UI.mostrarAdvertencia('ha cometido un pecado','Vaya a su cura más cercano para que le imponga la penitencia más adecuada');
+*/
 		
 	};// @lock
 		
