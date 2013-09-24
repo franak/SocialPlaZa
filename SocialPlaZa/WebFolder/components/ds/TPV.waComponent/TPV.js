@@ -58,6 +58,7 @@ $(this.id).ready(function(){
 			hideOnClick: true
 		});
 	}else{
+		sources.articulos.allEntities();
 		$comp.sources.docComercial.allEntities();
 		TPV.pintarFamilias();
 		TPV.pintarFamiliasDialog();
