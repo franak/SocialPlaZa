@@ -137,7 +137,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			proceso.abrirProceso("TPV");
 			
 		}else{
-			
+			console.log("ff")
 			proceso.abrirProceso("menu");
 			proceso.abrirProceso("cabezera");
 			proceso.abrirProceso("bannerAnuncios");

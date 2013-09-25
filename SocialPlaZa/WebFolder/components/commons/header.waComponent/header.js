@@ -124,17 +124,16 @@ $('#Conectar').click(function() {
 
         if (resultado == true || resultado == "Error") {
 		
-
+			$$("MainComp").removeComponent();
             if (WAF.directory.loginByPassword(acceso, $("#input-contra").val())) {
                 //Para ense√±ar el nombre de usuario una vez logueado:
                	$('#Conectar').text('conectando...');
                	$('#headComp_textAcceso').fadeOut();
-               $('#loginDiv').remove();
-        
-                $$("MainComp").removeComponent();
- 
+                $('#loginDiv').remove();
+        		
                 proceso.abrirProceso("menu");
                 proceso.abrirProceso("TPV");
+               
                 $comp.sources.usuarios.all();
                 $$(id+"_sNomUsu").show();
                 $("#"+id+"_foto_usuario").show();
@@ -143,6 +142,7 @@ $('#Conectar').click(function() {
 
             }else{
             	WAF.directory.loginByPassword(uDemo,uPass);
+            	
                 //UI.alert("Datos Incorrectos")
                 UI.mostrarAdvertencia('Nombre de usuario o contraseña incorrectos','Por favor, vuelva a intentarlo');
             }
