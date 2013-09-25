@@ -258,7 +258,6 @@ $('body').append(menuBoton2);
 //Comportamiento de los botones de la toolbar:
 $('#mPerfil').click(function() {
 	$('#headComp_sNomUsu').click();
-UI.gifCargando($comp);
 	UI.gifCargando($comp);
 	appds.openDialogUsuario();
 	
