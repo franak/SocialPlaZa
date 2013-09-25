@@ -259,6 +259,7 @@ $('body').append(menuBoton2);
 $('#mPerfil').click(function() {
 	$('#headComp_sNomUsu').click();
 UI.gifCargando($comp);
+	UI.gifCargando($comp);
 	appds.openDialogUsuario();
 	
 });
