@@ -12,7 +12,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 
 
-
+	
 
 
 
@@ -24,7 +24,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	//++ Empieze de carga del sistema ++\\
 	//++++++++++++++++++++++++++++++++++\\
 	
+	  window.history.forward(); 
+	  
 	
+    
 	
 	/*
 		--- Funcion si existe en el sistema los eventos touch (iPad) ---
@@ -94,7 +97,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			if(ds.Metodos.activarUser(cod)==true){
 				UI.alert("Cuenta Activada");
 				var usuario = ds.Metodos.primerLog(cod);
-				WAF.directory.loginByPassword(usuario.NombreAcceso.getValue(),usuario.Password.getValue());
+				WAF.directory.loginByPassword(usuario.NombreAcceso.getValue(),usuario.Password.getValue(),0);
 			}else if(ds.Metodos.activarUser(cod)==false){
 				UI.alert("La cuenta ya a sido activada");
 			}else{

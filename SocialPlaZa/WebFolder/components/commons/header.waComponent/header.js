@@ -111,7 +111,7 @@ $('#Conectar').click(function() {
         if (resultado == true || resultado == "Error") {
 		
 			$$("MainComp").removeComponent();
-            if (WAF.directory.loginByPassword(acceso, $("#input-contra").val())) {
+            if (WAF.directory.loginByPassword(acceso, $("#input-contra").val(),0)) {
                 //Para ense√±ar el nombre de usuario una vez logueado:
                	$('#Conectar').text('conectando...');
                	$('#headComp_textAcceso').fadeOut();

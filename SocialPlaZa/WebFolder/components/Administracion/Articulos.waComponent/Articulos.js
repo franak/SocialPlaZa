@@ -51,6 +51,7 @@ function constructor (id) {
 	
 	
 	// @region namespaceDeclaration// @startlock
+	var button5 = {};	// @button
 	var button3 = {};	// @button
 	var dataGrid1 = {};	// @dataGrid
 	var button9 = {};	// @button
@@ -61,6 +62,11 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	button5.click = function button5_click (event)// @startlock
+	{// @endlock
+		proceso.abrirProceso("TPV2");
+	};// @lock
 
 	button3.click = function button3_click (event)// @startlock
 	{// @endlock
@@ -155,7 +161,30 @@ function constructor (id) {
 
 	button4.click = function button4_click (event)// @startlock
 	{// @endlock
-		$comp.sources.articulos.save();
+		var relleno = false;
+		
+		if($("#"+id+"_textField1").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField2").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField3").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField4").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField5").val() != ""){
+			relleno = true;
+		}
+		
+		if(relleno == true){
+			$comp.sources.articulos.save();
+		}else{
+			alert("Error, tienes que completar algun campo antes");
+		}
+		
 	};// @lock
 
 	button2.click = function button2_click (event)// @startlock
@@ -183,6 +212,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button5", "click", button5.click, "WAF");
 	WAF.addListener(this.id + "_button3", "click", button3.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_button9", "click", button9.click, "WAF");

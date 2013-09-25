@@ -59,7 +59,7 @@ $(this.id).ready(function(){
 		});
 	}else{
 		sources.articulos.allEntities();
-		$comp.sources.docComercial.allEntities();
+		$comp.sources.docComercial.all();
 		TPV.pintarFamilias();
 		TPV.pintarFamiliasDialog();
 		$("#"+id+"_bOpciones").toolbar({

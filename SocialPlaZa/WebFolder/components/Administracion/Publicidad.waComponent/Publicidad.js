@@ -53,6 +53,8 @@ $(':input').bind('blur',function() {
 
  
 	// @region namespaceDeclaration// @startlock
+	var button2 = {};	// @button
+	var button3 = {};	// @button
 	var button9 = {};	// @button
 	var dataGrid1 = {};	// @dataGrid
 	var button6 = {};	// @button
@@ -63,6 +65,41 @@ $(':input').bind('blur',function() {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	button2.click = function button2_click (event)// @startlock
+	{// @endlock
+		var relleno = false;
+		
+		if($("#"+id+"_textField1").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField2").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField3").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField8").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField9").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField10").val() != ""){
+			relleno = true;
+		}
+		
+		if(relleno == true){
+			$comp.sources.publicidad.save();
+		}else{
+			alert("Error, tienes que completar algun campo antes");
+		}
+	};// @lock
+
+	button3.click = function button3_click (event)// @startlock
+	{// @endlock
+		proceso.abrirProceso("TPV2");
+	};// @lock
 
 	button9.click = function button9_click (event)// @startlock
 	{// @endlock
@@ -90,28 +127,51 @@ $(':input').bind('blur',function() {
 
 	button5.click = function button5_click (event)// @startlock
 	{// @endlock
-	
-		//$comp.sources.publicidad.Bloque = $("#select-orden").val();
-		if(crear == true){
-			$comp.sources.publicidad.save({
-				onSuccess:function(){
-					crear = false;
-					$comp.sources.publicidad.addEntity($comp.sources.publicidad.getCurrentElement());
-					$comp.sources.publicidad.asignarBloque($("#select-orden").val());
-					$comp.sources.publicidad.all();
-					$$(id+"_dialog1").closeDialog();
-				}
-			});
-		}else{
-			$comp.sources.publicidad.save({
-				onSuccess:function(){
-					$comp.sources.publicidad.asignarBloque($("#select-orden").val());
-					$comp.sources.publicidad.all();
-					$$(id+"_dialog1").closeDialog();
-				}
-			});
+		var relleno = false;
+		
+		if($("#"+id+"_textField1").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField2").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField3").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField8").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField9").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField10").val() != ""){
+			relleno = true;
 		}
 		
+		if(relleno == true){
+			
+			if(crear == true){
+				$comp.sources.publicidad.save({
+					onSuccess:function(){
+						crear = false;
+						$comp.sources.publicidad.addEntity($comp.sources.publicidad.getCurrentElement());
+						$comp.sources.publicidad.asignarBloque($("#select-orden").val());
+						$comp.sources.publicidad.all();
+						$$(id+"_dialog1").closeDialog();
+					}
+				});
+			}else{
+				$comp.sources.publicidad.save({
+					onSuccess:function(){
+						$comp.sources.publicidad.asignarBloque($("#select-orden").val());
+						$comp.sources.publicidad.all();
+						$$(id+"_dialog1").closeDialog();
+					}
+				});
+			}
+		}else{
+			alert("Error al guardar, revisa los campos");
+		}
 		
 			
 	};// @lock
@@ -140,10 +200,38 @@ $(':input').bind('blur',function() {
 
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
-		$comp.sources.publicidad.save();
+		var relleno = false;
+		
+		if($("#"+id+"_textField1").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField2").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField3").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField8").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField9").val() != ""){
+			relleno = true;
+		}
+		if($("#"+id+"_textField10").val() != ""){
+			relleno = true;
+		}
+		
+		if(relleno == true){
+			$comp.sources.publicidad.save();
+		}else{
+			alert("Error, tienes que completar algun campo antes");
+		}
+		
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
+	WAF.addListener(this.id + "_button3", "click", button3.click, "WAF");
 	WAF.addListener(this.id + "_button9", "click", button9.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_button6", "click", button6.click, "WAF");
