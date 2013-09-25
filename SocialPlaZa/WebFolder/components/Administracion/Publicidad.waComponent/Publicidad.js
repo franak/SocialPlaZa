@@ -19,10 +19,10 @@ function constructor (id) {
 	selectElement.setAttribute('tabindex','3');
     $('#'+id+'_container2').append(selectElement);
     $('#select-orden').css('position','absolute');
-    $('#select-orden').css('top','118px');
-    $('#select-orden').css('left','95px');
+    $('#select-orden').css('top','125px');
+    $('#select-orden').css('left','44px');
     $('#select-orden').css('height','35px');
-    $('#select-orden').css('width','130px');
+    $('#select-orden').css('width','200px');
     $("#select-orden option[value='1']").attr("selected",true);
     
     var optionHTML;	
@@ -73,8 +73,8 @@ $(':input').bind('blur',function() {
 	{// @endlock
 		var valor = $comp.sources.publicidad.Bloque;
 		$("#select-orden option[value="+ valor +"]").attr("selected",true);
-		$("body").append($("#"+id+"_dialog1"));
-		$("#"+id+"_dialog1").css("top","20px");
+		$("#"+id+"_dialog1").css("top","0px");
+		$("#"+id+"_dialog1").css("left","0px");
 		$$(id+"_dialog1").displayDialog();
 	};// @lock
 
@@ -121,8 +121,9 @@ $(':input').bind('blur',function() {
 
 		var valor = $comp.sources.publicidad.Bloque;
 		$("#select-orden option[value="+ valor +"]").attr("selected",true);
-		$("body").append($("#"+id+"_dialog1"));
-		$("#"+id+"_dialog1").css("top","20px");
+		$("#"+id+"_dialog1").css("top","0px");
+		$("#"+id+"_dialog1").css("left","0px");
+		
 		$$(id+"_dialog1").displayDialog();
 	};// @lock
 
@@ -131,8 +132,8 @@ $(':input').bind('blur',function() {
 		crear = true;
 		$comp.sources.publicidad.newEntity();
 		$("#"+id+"_textField9").focus();
-		$("body").append($("#"+id+"_dialog1"));
-		$("#"+id+"_dialog1").css("top","20px");
+		$("#"+id+"_dialog1").css("top","0px");
+		$("#"+id+"_dialog1").css("left","0px");
 		$$(id+"_dialog1").displayDialog();
 		
 	};// @lock

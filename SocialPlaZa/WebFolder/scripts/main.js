@@ -154,7 +154,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		//Fondo
 		//<li><span>Image 01</span><div><h3>re·lax·a·tion</h3></div></li>'
 	var slide =  '<ul class="cb-slideshow">'
-	+'         <li><span>Image 01</span></li>'
+	+'         <li><span>Image 01</span><h3>re·lax·a·tion</h3></li>'
    +'         <li><span>Image 02</span></li>'
      +'       <li><span>Image 03</span></li> '
        +'     <li><span>Image 04</span></li>'
@@ -162,7 +162,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
            +' <li><span>Image 06</span></li>'
     +'    </ul>	';
     
-  //  $('#waf-body').append(slide);
+ // $('#waf-body').append(slide);
 		
 
 

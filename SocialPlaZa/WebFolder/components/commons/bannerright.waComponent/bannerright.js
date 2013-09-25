@@ -33,8 +33,10 @@ publicidad.mostrarBloque5 = function(){
 				var i = 0;
 				var imagenString = $comp.sources.publicidad3.Trama.__deferred.uri;
 				console.log("http://127.0.0.1:8081"+imagenString);
+				$$("rightComp").hide();
 				$$(id+"_image4").show();
 				$("body").css('background-image', 'url("http://127.0.0.1:8081'+imagenString+'")');
+				$$("rightComp").hide();
 				duration = duration*1000;
 			
 				
