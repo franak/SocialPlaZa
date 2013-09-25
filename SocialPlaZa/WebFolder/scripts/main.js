@@ -134,8 +134,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		
 		if(ds.Metodos.getGrupo() == "Prueba"){
 			
-			proceso.abrirProceso("cabezera");
-			proceso.abrirProceso("bannerAnuncios");
+			proceso.abrirProceso("cabezera"); // components/commons/header.waComponent
+			proceso.abrirProceso("bannerAnuncios"); // components/commons/bannerright.waComponent
 			proceso.abrirProceso("social");
 			proceso.abrirProceso("TPV");
 			
@@ -167,7 +167,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
     
  // $('#waf-body').append(slide);
 		
-
 
 
 

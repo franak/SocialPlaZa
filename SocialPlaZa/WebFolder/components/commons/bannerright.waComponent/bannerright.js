@@ -16,6 +16,7 @@ function constructor (id) {
 	
 var entrar = true;
 
+
 publicidad = {};
 
 publicidad.mostrarBloque5 = function(){
@@ -278,11 +279,11 @@ publicidad.mostrarBloque5 = function(){
      * Variables
      */
 
-    var slides, timer;
+  //  var slides, timer;
 
 
     //Crea un objeto con informaci√≥n de los slides
-    slides = $('#rightComp_slider .slidesContainer > .slide');
+   // slides = $('#rightComp_slider .slidesContainer > .slide');
 
 
     /*
@@ -375,6 +376,8 @@ publicidad.mostrarBloque5 = function(){
 	// @endregion// @endlock
 
 	};// @lock
+
+
 
 
 }// @startlock
