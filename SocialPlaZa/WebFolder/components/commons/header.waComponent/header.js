@@ -19,9 +19,7 @@ function constructor (id) {
 	// @region namespaceDeclaration// @startlock
 	var textAcceso = {};	// @richText
 	var foto_usuario = {};	// @image
-	var button1 = {};	// @button
 	var clickMenu = {};	// @richText
-	var button2 = {};	// @button
 	var login2 = {};	// @login
 	// @endregion// @endlock
 
@@ -184,57 +182,12 @@ $('#loginDiv').remove();
 		appds.openDialogUsuario($comp);
 	};// @lock
 
-	button1.click = function button1_click (event)// @startlock
-	{// @endlock
-		
-        var acceso = $("#" + id + "_textField1").val();
-        var uDemo = sources.usuarios.NombreAcceso;
-		var uPass = sources.usuarios.Password;
-		WAF.directory.logout();
-        var resultado = ds.Metodos.getUserActivado(acceso);
-
-        if (resultado == true || resultado == "Error") {
-			
-            if (WAF.directory.loginByPassword(acceso, $("#" + id + "_textField2").val())) {
-                //Para ense√±ar el nombre de usuario una vez logueado:
-                $$("MainComp").removeComponent();
-                $$(id+"_button1").hide();
-                $$(id+"_textField1").hide();
-                $$(id+"_textField2").hide();
-                $$(id+"_button2").hide();
-                
-                
-                proceso.abrirProceso("menu");
-                proceso.abrirProceso("TPV");
-                $comp.sources.usuarios.all();
-                $$(id+"_sNomUsu").show();
-                $("#"+id+"_foto_usuario").show();
-                localStorage.user = acceso;
-                
-
-            }else{
-            	WAF.directory.loginByPassword(uDemo,uPass);
-                //UI.alert("Datos Incorrectos")
-                UI.mostrarAdvertencia('Nombre de usuario o contraseña incorrectos','Por favor, vuelva a intentarlo');
-            }
-            
-        }else{
-        	WAF.directory.loginByPassword(uDemo,uPass);
-            UI.alert("Active su cuenta");
-        }
-	};// @lock
-
 	clickMenu.click = function clickMenu_click (event)// @startlock
 	{// @endlock
 		UI.openCloseMenuAcord();
 	/*	bClickMenu = getHtmlObj('clickMenu');
 		bClickMenu.toggleClass('icon-white');*/
 		
-	};// @lock
-
-	button2.click = function button2_click (event)// @startlock
-	{// @endlock
-		proceso.abrirProceso("AltaUsuario");
 	};// @lock
 
 	login2.login = function login2_login (event)// @startlock
@@ -334,9 +287,7 @@ contenedorBar.html(herramientas);*/
 	// @region eventManager// @startlock
 	WAF.addListener(this.id + "_textAcceso", "click", textAcceso.click, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
-	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_clickMenu", "click", clickMenu.click, "WAF");
-	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_login2", "login", login2.login, "WAF");
 	// @endregion// @endlock
 
