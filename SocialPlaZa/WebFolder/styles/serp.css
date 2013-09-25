@@ -244,3 +244,17 @@ float: left;
 /*}*/
 
 
+.navbar:before{
+    z-index:-1;
+    position:absolute;
+    left:0;
+    top:0;
+    background: url('../images/bg-noise.gif');
+/*    content: url('../images/bg-noise.gif') repeat-x;*/
+    opacity:0.4;
+    -webkit-transition: opacity 1s linear;
+	-o-transition: opacity 1s linear;
+	-moz-transition: opacity 1s linear;
+	transition: opacity 1s linear;
+
+}

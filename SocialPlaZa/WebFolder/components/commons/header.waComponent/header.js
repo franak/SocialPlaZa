@@ -25,6 +25,13 @@ var user = WAF.directory.currentUser();
 var grupo = ds.Metodos.getGrupo();
 var textAcceso = getHtmlObj('textAcceso');
 
+  $.get('http://jsonip.com', function (res) {
+
+       console.log('IP Address is: ' + res.ip);
+  });
+
+
+
 if(grupo !== "Prueba"){
 		
 		$(textAcceso).hide();
