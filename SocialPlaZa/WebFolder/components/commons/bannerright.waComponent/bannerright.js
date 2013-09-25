@@ -32,10 +32,19 @@ publicidad.mostrarBloque5 = function(){
 				console.log($comp.sources.publicidad3.Imagen);
 				var i = 0;
 				var imagenString = $comp.sources.publicidad3.Trama.__deferred.uri;
-				console.log("http://127.0.0.1:8081"+imagenString);
+				
 				$$("rightComp").hide();
 				$$(id+"_image4").show();
-				$("body").css('background-image', 'url("http://127.0.0.1:8081'+imagenString+'")');
+				$("body").css('background-image', 'url("'+imagenString+'")');
+				$("body").css('display',' block');
+				$("body").css('background-repeat',' no-repeat');
+				$("body").css('background-attachment',' initial');
+				$("body").css('background-position-x',' 50%');
+				$("body").css('background-position-y',' -70px');
+				$("body").css('background-origin',' initial');
+				$("body").css('background-clip',' initial');
+				$("body").css('background-color',' initial');
+				
 				$$("rightComp").hide();
 				duration = duration*1000;
 			
@@ -54,7 +63,7 @@ publicidad.mostrarBloque5 = function(){
 					    	
 					    	$comp.sources.publicidad3.query("Bloque = 5");
 					    	var imagenString = $comp.sources.publicidad3.Trama.__deferred.uri;
-					    	$("body").css('background-image', 'url("http://127.0.0.1:8081'+imagenString+'")');
+					    	$("body").css('background-image', 'url("'+imagenString+'")');
 					    	if($comp.sources.publicidad3.length == 0){
 					    		console.log("no hay ninguno");
 					    		duration = 5000;
