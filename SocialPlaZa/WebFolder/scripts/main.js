@@ -24,11 +24,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	//++ Empieze de carga del sistema ++\\
 	//++++++++++++++++++++++++++++++++++\\
 	
-	  window.history.forward(); 
-	  
-	
-    
-	
 	/*
 		--- Funcion si existe en el sistema los eventos touch (iPad) ---
 	*/			
