@@ -102,7 +102,7 @@ $('#loginDiv').animate({
         
 $('#Conectar').click(function() {
 
-		 var acceso = $("#input-email").val();
+		var acceso = $("#input-email").val();
         var uDemo = sources.usuarios.NombreAcceso;
 		var uPass = sources.usuarios.Password;
 		WAF.directory.logout();
@@ -116,7 +116,7 @@ $('#Conectar').click(function() {
                	$('#Conectar').text('conectando...');
                	$('#headComp_textAcceso').fadeOut();
                 $('#loginDiv').remove();
-        		
+        		debugger;
                 proceso.abrirProceso("menu");
                 proceso.abrirProceso("TPV");
                

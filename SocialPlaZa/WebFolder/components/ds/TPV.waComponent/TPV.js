@@ -47,6 +47,7 @@ vComp = $comp;
 
 //-- FUNCION QUE CARGA TODOS LOS RECURSOS DEL COMPONENTE (Tablas)--\\
 $(this.id).ready(function(){
+	
 	if(!vtpv){
 		appds.cargarDataTPV(vComp);
 		var arElementos = ["Nuevo Ticket","Borrar Ticket","Dispensar Ticket","Imprimir Duplicado","Ticket Pendientes","Elimina Linea","Modifica Linea","Ver Caja","Nuevo Articulo"];
