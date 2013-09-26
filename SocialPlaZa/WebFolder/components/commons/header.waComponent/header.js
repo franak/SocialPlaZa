@@ -15,6 +15,7 @@ function constructor (id) {
 	vCompHeader = $comp;
 	sources.vCompHeader.sync();
 	// @region namespaceDeclaration// @startlock
+	var bAcceso = {};	// @button
 	var textAcceso = {};	// @richText
 	var foto_usuario = {};	// @image
 	var clickMenu = {};	// @richText
@@ -23,18 +24,12 @@ function constructor (id) {
 
 var user = WAF.directory.currentUser();
 var grupo = ds.Metodos.getGrupo();
-var textAcceso = getHtmlObj('textAcceso');
-
-  $.get('http://jsonip.com', function (res) {
-
-       console.log('IP Address is: ' + res.ip);
-  });
-
+var bAcceso = getHtmlObj('bAcceso');
 
 
 if(grupo !== "Prueba"){
 		
-		$(textAcceso).hide();
+		$(bAcceso).hide();
 	}
  
  $$(id+"_openMenu").setValue("c");
@@ -74,6 +69,116 @@ if(grupo !== "Prueba"){
 	
 
 	// eventHandlers// @lock
+
+	bAcceso.click = function bAcceso_click (event)// @startlock
+	{// @endlock
+	
+	
+$('#headComp_bAcceso').attr('disabled','disabled');
+
+$('#headComp_textAcceso').fadeOut('fast');
+if(loginForm){
+alert('hola');
+}
+var loginForm = '<div id="loginDiv" class="well" style="display:none;">'+
+		'<form class="form-horizontal">'+
+		'<span class="close pull-right" id="Cerrar">x</span>'+
+ ' <fieldset>'+
+  '  <legend>Datos de Acceso</legend>'+
+    '<input type="text" class="input-large" placeholder="email" id="input-email" style="height:30px" autofocus>'+
+    '<input type="password" placeholder="Contraseña" id="input-contra"  style="height:30px">'+
+    '<span class="help-block"></span>'+
+    ' <a class="btn" id="soyNuevo">Soy nuevo y quiero darme de alta</a>'+
+'  <button type="button" class="btn btn-success pull-right" id="Conectar">Entrar</button>'+
+  '</fieldset>'+
+'</form>'+
+'</div>';
+
+
+$('#containerPrincipal').append(loginForm);
+
+$('#loginDiv').css('position','absolute').css('right','0px').css('z-index','auto');
+
+$('#loginDiv').animate({
+            top: '60px'
+        }, 200);
+        
+$('#Conectar').click(function() {
+
+		var acceso = $("#input-email").val();
+        var uDemo = sources.usuarios.NombreAcceso;
+		var uPass = sources.usuarios.Password;
+		WAF.directory.logout();
+        var resultado = ds.Metodos.getUserActivado(acceso);
+
+        if (resultado == true || resultado == "Error") {
+		
+			
+
+            if (WAF.directory.loginByPassword(acceso, $("#input-contra").val(),0)) {
+            	$$("MainComp").removeComponent();
+            	$('#headComp_bAcceso').remove();
+                //Para ense√±ar el nombre de usuario una vez logueado:
+               	$('#Conectar').text('conectando...');
+               	$('#headComp_textAcceso').fadeOut();
+                $('#loginDiv').remove();
+                proceso.abrirProceso("menu");
+                proceso.abrirProceso("TPV");
+               
+                $comp.sources.usuarios.all();
+                $$(id+"_sNomUsu").show();
+                $("#"+id+"_foto_usuario").show();
+                localStorage.user = acceso;
+                
+
+            }else{
+            	WAF.directory.loginByPassword(uDemo,uPass);
+            	
+                //UI.alert("Datos Incorrectos")
+                UI.mostrarAdvertencia('Nombre de usuario o contraseña incorrectos','Por favor, vuelva a intentarlo');
+            }
+            
+        }else{
+        	WAF.directory.loginByPassword(uDemo,uPass);
+            UI.alert("Active su cuenta");
+        }
+        
+        	
+	
+});
+        
+        
+$('#soyNuevo').click(function() {
+
+	proceso.abrirProceso("AltaUsuario");
+	
+$('#loginDiv').animate({
+            top: '-160px'
+        }, 200);
+
+$('#loginDiv').remove();
+
+});
+
+$('#Cerrar').click(function() {
+
+	$('#loginDiv').animate({
+	            top: '-160px'
+	        }, 200);
+setTimeout(function() {
+     $('#loginDiv').remove();
+}, 500);
+
+	$('#headComp_bAcceso').removeAttr('disabled');
+
+
+});
+
+	$('#loginDiv').show();
+
+
+
+	};// @lock
 
 	textAcceso.click = function textAcceso_click (event)// @startlock
 	{// @endlock
@@ -240,6 +345,7 @@ contenedorBar.html(herramientas);*/
 
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_bAcceso", "click", bAcceso.click, "WAF");
 	WAF.addListener(this.id + "_textAcceso", "click", textAcceso.click, "WAF");
 	WAF.addListener(this.id + "_foto_usuario", "click", foto_usuario.click, "WAF");
 	WAF.addListener(this.id + "_clickMenu", "click", clickMenu.click, "WAF");
