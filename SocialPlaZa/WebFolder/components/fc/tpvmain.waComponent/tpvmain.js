@@ -55,7 +55,7 @@ arguments : [clase] //Mando dos varibles. Parece que es un "array", pero no lo e
 
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
-		var sel = $comp.sources.lineasCollection.getSelection(); // get the current selection
+		var sel = $comp.$comp.sources.lineasCollection.getSelection(); // get the current selection
 		
 		$comp.sources.docComercial.getElement(sel, { onSuccess: function(event) // we get the element of position i  
         {

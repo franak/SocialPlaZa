@@ -406,7 +406,7 @@ var datagridotro = getHtmlId('dataGrid6'); //El ID copmleto del elemento dentro 
 alert (datagridotro);
 */
 
-        var sel = $$(id).sources.lineasCollection.getSelection(); // get the current selection
+        var sel = $$(id).$comp.sources.lineasCollection.getSelection(); // get the current selection
         //var selArray = sel.getSelectedRows ();  // selArray = [ 1 , 4 , 5 ]
         alert('sel = ' + sel);
         var selArray = sel.getSelectedRows();

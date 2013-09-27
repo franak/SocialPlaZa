@@ -485,16 +485,16 @@ function readDeviceOrientation() {
 			
 			$('#'+id+'_richText16').slideUp(100);
 		
-			sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val();
-			sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
-			sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
-			sources.lineasCollection.save({
+			$comp.sources.lineasCollection.Descripcion = $("#"+id+"_textField12").val();
+			$comp.sources.lineasCollection.PrecioUnitario = $("#"+id+"_textField9").val();
+			$comp.sources.lineasCollection.Cantidad = $("#"+id+"_textField14").val();
+			$comp.sources.lineasCollection.save({
 				onError:function(){
 					UI.alert("No se ha podido modificar la linea","ERROR");
 				}
 			});
 			
-			pos = sources.lineasCollection.Posicion;
+			pos = $comp.sources.lineasCollection.Posicion;
 			$comp.sources.docComercial.serverRefresh();
 			TPV.mantenerFoco();
 			$(window).scrollTop(0);
@@ -651,15 +651,15 @@ TPV.mantenerFoco = function(){
 TPV.eliminaLinea = function(){
 	var cobrado = $comp.sources.docComercial.Cobrado;
 	if(cobrado != true){
-		pos = sources.lineasCollection.Posicion - 1;
-		vPosRestada = sources.lineasCollection.Posicion;
-		var linea = sources.lineasCollection.ID;
+		pos = $comp.sources.lineasCollection.Posicion - 1;
+		vPosRestada = $comp.sources.lineasCollection.Posicion;
+		var linea = $comp.sources.lineasCollection.ID;
 		
 		if(linea == null){
 			UI.alert("No hay Líneas")
 		}else{
 	
-		UI.confirm('¿Desea borrar <b>'+sources.lineasCollection.Descripcion+'</b> del ticket?', 'Confirmacion', function(r) {
+		UI.confirm('¿Desea borrar <b>'+$comp.sources.lineasCollection.Descripcion+'</b> del ticket?', 'Confirmacion', function(r) {
 			
 			if(r == true){
 
@@ -925,7 +925,7 @@ TPV.listarDocComercial = function(){
 	$comp.sources.docComercial.all({
 		onSuccess:function(){
 			var resultado = $comp.sources.docComercial;
-			var lineas = sources.lineasCollection;
+			var lineas = $comp.sources.lineasCollection;
 			var caja = sources.cajasTPV.Codigo;
 				
 			var html="";
