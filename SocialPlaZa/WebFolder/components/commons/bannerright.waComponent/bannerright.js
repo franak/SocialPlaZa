@@ -155,6 +155,8 @@ publicidad.mostrarBloque123 = function(){
 				var carga = $comp.sources.publicidad.Carga;
 				if(accion == 1){
 					$$(id+"_image1").setURL(carga);
+				}else if(accion == 2){
+					$$(id+"_image1").setURL("javascript:void(0)");
 				}
 				var duration = $comp.sources.publicidad.Duracion;
 				var i = 0;
@@ -189,6 +191,8 @@ publicidad.mostrarBloque123 = function(){
 						var carga = $comp.sources.publicidad.Carga;
 						if(accion == 1){
 							$$(id+"_image1").setURL(carga);
+						}else if(accion == 2){
+							$$(id+"_image1").setURL("javascript:void(0)");
 						}
 				    
 						
@@ -198,6 +202,8 @@ publicidad.mostrarBloque123 = function(){
 						var carga = $comp.sources.publicidad.Carga;
 						if(accion == 1){
 							$$(id+"_image1").setURL(carga);
+						}else if(accion == 2){
+							$$(id+"_image1").setURL("javascript:void(0)");
 						}
 						duration = $comp.sources.publicidad.Duracion;
 						duration = duration*1000;
@@ -231,6 +237,8 @@ publicidad.mostrarBloque123 = function(){
 			var carga = $comp.sources.publicidad1.Carga;
 			if(accion == 1){
 				$$(id+"_image2").setURL(carga);
+			}else if(accion == 2){
+				$$(id+"_image2").setURL("javascript:void(0)");
 			}
 			var duration = $comp.sources.publicidad1.Duracion;
 			var i = 0;
@@ -265,6 +273,8 @@ publicidad.mostrarBloque123 = function(){
 					var carga = $comp.sources.publicidad1.Carga;
 					if(accion == 1){
 						$$(id+"_image2").setURL(carga);
+					}else if(accion == 2){
+						$$(id+"_image2").setURL("javascript:void(0)");
 					}
 					
 			    }else{
@@ -273,6 +283,8 @@ publicidad.mostrarBloque123 = function(){
 					var carga = $comp.sources.publicidad1.Carga;
 					if(accion == 1){
 						$$(id+"_image2").setURL(carga);
+					}else if(accion == 2){
+						$$(id+"_image2").setURL("javascript:void(0)");
 					}
 					duration = $comp.sources.publicidad1.Duracion;
 					duration = duration*1000;
@@ -300,6 +312,8 @@ publicidad.mostrarBloque123 = function(){
 			var carga = $comp.sources.publicidad2.Carga;
 			if(accion == 1){
 				$$(id+"_image3").setURL(carga);
+			}else if(accion == 2){
+				$$(id+"_image3").setURL("javascript:void(0)");
 			}
 			var duration = $comp.sources.publicidad2.Duracion;
 			var i = 0;
@@ -334,6 +348,8 @@ publicidad.mostrarBloque123 = function(){
 					var carga = $comp.sources.publicidad2.Carga;
 					if(accion == 1){
 						$$(id+"_image3").setURL(carga);
+					}else if(accion == 2){
+						$$(id+"_image3").setURL("javascript:void(0)");
 					}
 					
 			    }else{
@@ -342,6 +358,8 @@ publicidad.mostrarBloque123 = function(){
 					var carga = $comp.sources.publicidad2.Carga;
 					if(accion == 1){
 						$$(id+"_image3").setURL(carga);
+					}else if(accion == 2){
+						$$(id+"_image3").setURL("javascript:void(0)");
 					}
 					duration = $comp.sources.publicidad2.Duracion;
 					duration = duration*1000;
@@ -363,6 +381,9 @@ publicidad.mostrarBloque123 = function(){
 
 
 	// @region namespaceDeclaration// @startlock
+	var image3 = {};	// @image
+	var image2 = {};	// @image
+	var image1 = {};	// @image
 	var button1 = {};	// @button
 	var image4 = {};	// @image
 	// @endregion// @endlock
@@ -450,6 +471,78 @@ publicidad.mostrarBloque123 = function(){
 
 	// eventHandlers// @lock
 
+	image3.click = function image3_click (event)// @startlock
+	{// @endlock
+		var accion = $comp.sources.publicidad2.Accion;
+		var carga = $comp.sources.publicidad2.Carga;
+		if(accion == 2){
+		
+			$$(id+'_video1').show();
+			$$(id+'_video1').loadVideoByUrl([carga]);
+			$$(id+'_video1').play();
+			$("BODY").append($("#"+id+'_video1'));
+			$("#"+id+'_video1').css('display','block');
+			$("#"+id+'_video1').css('top',' 60px');
+			$("#"+id+'_video1').css('left',' 10%');
+			$("#"+id+'_video1').css('margin','auto,auto,auto,auto');
+		}else if(accion == 3){
+			
+			$("#"+id+"_container3").append(carga);
+			$("#containerPrincipal").append($("#"+id+"_container3"));
+			$$(id+"_container3").show();
+			$("#"+id+"_container3").css('top',' 60px');
+			$("#"+id+"_container3").css('right','0px');      
+		}
+	};// @lock
+
+	image2.click = function image2_click (event)// @startlock
+	{// @endlock
+		var accion = $comp.sources.publicidad1.Accion;
+		var carga = $comp.sources.publicidad1.Carga;
+		if(accion == 2){
+		
+			$$(id+'_video1').show();
+			$$(id+'_video1').loadVideoByUrl([carga]);
+			$$(id+'_video1').play();
+			$("BODY").append($("#"+id+'_video1'));
+			$("#"+id+'_video1').css('display','block');
+			$("#"+id+'_video1').css('top',' 60px');
+			$("#"+id+'_video1').css('left',' 10%');
+			$("#"+id+'_video1').css('margin','auto,auto,auto,auto');
+		}else if(accion == 3){
+			
+			$("#"+id+"_container3").append(carga);
+			$("#containerPrincipal").append($("#"+id+"_container3"));
+			$$(id+"_container3").show();
+			$("#"+id+"_container3").css('top',' 60px');
+			$("#"+id+"_container3").css('right','0px');      
+		}
+	};// @lock
+
+	image1.click = function image1_click (event)// @startlock
+	{// @endlock
+		var accion = $comp.sources.publicidad.Accion;
+		var carga = $comp.sources.publicidad.Carga;
+		if(accion == 2){
+		
+			$$(id+'_video1').show();
+			$$(id+'_video1').loadVideoByUrl([carga]);
+			$$(id+'_video1').play();
+			$("BODY").append($("#"+id+'_video1'));
+			$("#"+id+'_video1').css('display','block');
+			$("#"+id+'_video1').css('top',' 60px');
+			$("#"+id+'_video1').css('left',' 10%');
+			$("#"+id+'_video1').css('margin','auto,auto,auto,auto');
+		}else if(accion == 3){
+			
+			$("#"+id+"_container3").append(carga);
+			$("#containerPrincipal").append($("#"+id+"_container3"));
+			$$(id+"_container3").show();
+			$("#"+id+"_container3").css('top',' 60px');
+			$("#"+id+"_container3").css('right','0px');      
+		}
+	};// @lock
+
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
 		
@@ -481,6 +574,9 @@ publicidad.mostrarBloque123 = function(){
 	
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_image3", "click", image3.click, "WAF");
+	WAF.addListener(this.id + "_image2", "click", image2.click, "WAF");
+	WAF.addListener(this.id + "_image1", "click", image1.click, "WAF");
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
 	WAF.addListener(this.id + "_image4", "click", image4.click, "WAF");
 	// @endregion// @endlock

@@ -16,7 +16,7 @@ function constructor (id) {
 
 	var selectElement = document.createElement('select');
 	selectElement.setAttribute('id','select-orden');
-	selectElement.setAttribute('tabindex','3');
+	selectElement.setAttribute('tabindex','7');
     $('#'+id+'_container2').append(selectElement);
     $('#select-orden').css('position','absolute');
     $('#select-orden').css('top','170px');
