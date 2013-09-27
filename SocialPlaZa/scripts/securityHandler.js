@@ -49,11 +49,15 @@ excludedFiles = [
 "jquery.vticker.js",
 "jquery.zrssfeed.js",
 "alerts.js",
-"jquery.printpage.js",
 "btmodales.js",
 "herramientas.js",
 "menus.js",
-"procesos.js"
+"procesos.js",
+"main.package.json",
+"TPV.package.json",
+"header.package.json",
+"main.package.json"
+
 ];
 
 var serverIP = application.httpServer.ipAddress;
