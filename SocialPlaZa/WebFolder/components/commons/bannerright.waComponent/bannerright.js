@@ -14,7 +14,7 @@ function constructor (id) {
 	
 	//Recogo todos los registros correspondiente a la primera casilla
 	
-var entrar = true;
+var entrar = false;
 
 
 publicidad = {};
@@ -28,79 +28,122 @@ publicidad.mostrarBloque5 = function(){
 				
 				$comp.sources.publicidad3.setEntityCollection(e.result);
 				var tamanio = $comp.sources.publicidad3.length;
-				$comp.sources.publicidad3.select(0);
-				var duration = $comp.sources.publicidad3.Duracion;
-				console.log($comp.sources.publicidad3.Imagen);
 				var i = 0;
-				var imagenString = $comp.sources.publicidad3.Trama.__deferred.uri;
-				
-				$$("rightComp").hide();
-				$$(id+"_image4").show();
-				$("body").css('background-image', 'url("'+imagenString+'")');
-				$("body").css('display',' block');
-				$("body").css('background-repeat',' no-repeat');
-				$("body").css('background-attachment',' initial');
-				$("body").css('background-position-x',' 50%');
-				$("body").css('background-position-y',' -70px');
-				$("body").css('background-origin',' initial');
-				$("body").css('background-clip',' initial');
-				$("body").css('background-color',' initial');
-				
-				$$("rightComp").hide();
-				duration = duration*1000;
+				if(tamanio == 0){
+					publicidad.mostrarBloque123();
+					duration = 10000;
+				}else{
+					entrar = true;
+					$comp.sources.publicidad3.select(0);
+					var accion = $comp.sources.publicidad3.Accion;
+					var carga = $comp.sources.publicidad3.Carga;
+					if(accion == 1){
+						$$(id+"_image4").setURL(carga);
+					}else if(accion == 2){
+						$$(id+"_image4").setURL("javascript:void(0)");
+					}
+					var duration = $comp.sources.publicidad3.Duracion;	
+					var imagenString = $comp.sources.publicidad3.Trama.__deferred.uri;
+					if($comp.sources.publicidad3.Imagen == null){
+						$$("rightComp").hide();
+					}else{
+						//$$("rightComp").show();
+						$$(id+"_image4").show();
+					}
+					
+					$("body").css('background-image', 'url("'+imagenString+'")');
+					$("body").css('display',' block');
+					$("body").css('background-repeat',' no-repeat');
+					$("body").css('background-attachment',' initial');
+					$("body").css('background-position-x',' 50%');
+					$("body").css('background-position-y',' -70px');
+					$("body").css('background-origin',' initial');
+					$("body").css('background-clip',' initial');
+					$("body").css('background-color',' initial');
+					
+					duration = duration*1000;
 			
+				}
 				
 				setTimeout(function tick() {
-					console.log(entrar);
-					if(!entrar){
+					
+						console.log(i);
+						console.log(entrar);
 						
-						if($comp.sources.publicidad3.length > 1){
+						if($comp.sources.publicidad3.length == 0){
+							
+							$$("rightComp").show();
+							$$(id+"_image4").hide();
+							$("body").css('background', '#ffffff');
+							publicidad.mostrarBloque123();
+							duration = 10000;
+							
+						}else if(entrar == false || tamanio == i+1){
+							
+							$$("rightComp").show();
+							$$(id+"_image4").hide();
+							$("body").css('background', '#ffffff');
+							publicidad.mostrarBloque123();
+							i = -1;
+							duration = 10000;
+							
+						}else{
+							
 							i++;
-						}else if($comp.sources.publicidad3.length <= 1 ){
-							i = 0;
+							entrar = true;
 						}
 						
-					    if(i == 0){
-					    	
-					    	$comp.sources.publicidad3.query("Bloque = 5");
-					    	var imagenString = $comp.sources.publicidad3.Trama.__deferred.uri;
-					    	$("body").css('background-image', 'url("'+imagenString+'")');
-					    	if($comp.sources.publicidad3.length == 0){
-					    		console.log("no hay ninguno");
-					    		duration = 5000;
-				    		}else{
-				    			
-				    			duration = $comp.sources.publicidad3.Duracion;
-								duration = duration*1000;
-				    		}
-					    	
-					    	if(i == $comp.sources.publicidad3.length-1){
-								i = -1;
-							}
-							
-					    }else{
+						console.log("despues:"+i);
+						console.log("despues:"+entrar);
+						
+					    if(entrar == true){
 					    	$comp.sources.publicidad3.select(i);
+					    	var accion = $comp.sources.publicidad3.Accion;
+							var carga = $comp.sources.publicidad3.Carga;
+							if(accion == 1){
+								$$(id+"_image4").setURL(carga);
+							}
 							duration = $comp.sources.publicidad3.Duracion;
 							duration = duration*1000;
 							var imagenString = $comp.sources.publicidad3.Trama.__deferred.uri;
-							$("body").css('background-image', 'url("http://127.0.0.1:8081'+imagenString+'")');
-							if(i == $comp.sources.publicidad3.length-1){
-								i = -1;
+							if($comp.sources.publicidad3.Imagen == null){
+								$$("rightComp").hide();
+							}else{
+								$$("rightComp").show();
+								$$(id+"_image4").show();
 							}
+							
+							$("body").css('background-image', 'url("'+imagenString+'")');
+							$("body").css('display',' block');
+							$("body").css('background-repeat',' no-repeat');
+							$("body").css('background-attachment',' initial');
+							$("body").css('background-position-x',' 50%');
+							$("body").css('background-position-y',' -70px');
+							$("body").css('background-origin',' initial');
+							$("body").css('background-clip',' initial');
+							$("body").css('background-color',' initial');
+							if(i == $comp.sources.publicidad3.length-1 ){
+								i = -1;
+								entrar = false;	
+							}
+							
+					    }else{
+					    	entrar = true;
 					    }
 					    
-					 }
-
-						tamanio = $comp.sources.publicidad3.length;
 				    setTimeout(tick, duration);
 				}, duration);
 				
+			}else{
+				publicidad.mostrarBloque123();
 			}
 		  
 		}});
 }
-		
 
+publicidad.mostrarBloque5();
+		
+publicidad.mostrarBloque123 = function(){
 		ds.Publicidad.devolverPublicidad1({onSuccess: function(e) {
 		
 			if(e.result != false){
@@ -108,6 +151,11 @@ publicidad.mostrarBloque5 = function(){
 				$comp.sources.publicidad.setEntityCollection(e.result);
 				var tamanio = $comp.sources.publicidad.length;
 				$comp.sources.publicidad.select(0);
+				var accion = $comp.sources.publicidad.Accion;
+				var carga = $comp.sources.publicidad.Carga;
+				if(accion == 1){
+					$$(id+"_image1").setURL(carga);
+				}
 				var duration = $comp.sources.publicidad.Duracion;
 				var i = 0;
 				if(tamanio == 0){
@@ -137,9 +185,20 @@ publicidad.mostrarBloque5 = function(){
 							duration = duration*1000;
 			    		}
 				    	$comp.sources.publicidad.select(i);
+				    	var accion = $comp.sources.publicidad.Accion;
+						var carga = $comp.sources.publicidad.Carga;
+						if(accion == 1){
+							$$(id+"_image1").setURL(carga);
+						}
+				    
 						
 				    }else{
 				    	$comp.sources.publicidad.select(i);
+				    	var accion = $comp.sources.publicidad.Accion;
+						var carga = $comp.sources.publicidad.Carga;
+						if(accion == 1){
+							$$(id+"_image1").setURL(carga);
+						}
 						duration = $comp.sources.publicidad.Duracion;
 						duration = duration*1000;
 						if(i == $comp.sources.publicidad.length-1){
@@ -168,6 +227,11 @@ publicidad.mostrarBloque5 = function(){
 			$comp.sources.publicidad1.setEntityCollection(e.result);
 			var tamanio = $comp.sources.publicidad1.length;
 			$comp.sources.publicidad1.select(0);
+			var accion = $comp.sources.publicidad1.Accion;
+			var carga = $comp.sources.publicidad1.Carga;
+			if(accion == 1){
+				$$(id+"_image2").setURL(carga);
+			}
 			var duration = $comp.sources.publicidad1.Duracion;
 			var i = 0;
 			if(tamanio == 0){
@@ -197,9 +261,19 @@ publicidad.mostrarBloque5 = function(){
 						duration = duration*1000;
 		    		}
 			    	$comp.sources.publicidad1.select(i);
+			    	var accion = $comp.sources.publicidad1.Accion;
+					var carga = $comp.sources.publicidad1.Carga;
+					if(accion == 1){
+						$$(id+"_image2").setURL(carga);
+					}
 					
 			    }else{
 			    	$comp.sources.publicidad1.select(i);
+			    	var accion = $comp.sources.publicidad1.Accion;
+					var carga = $comp.sources.publicidad1.Carga;
+					if(accion == 1){
+						$$(id+"_image2").setURL(carga);
+					}
 					duration = $comp.sources.publicidad1.Duracion;
 					duration = duration*1000;
 					if(i == $comp.sources.publicidad1.length-1){
@@ -222,6 +296,11 @@ publicidad.mostrarBloque5 = function(){
 			$comp.sources.publicidad2.setEntityCollection(e.result);
 			var tamanio = $comp.sources.publicidad2.length;
 			$comp.sources.publicidad2.select(0);
+			var accion = $comp.sources.publicidad2.Accion;
+			var carga = $comp.sources.publicidad2.Carga;
+			if(accion == 1){
+				$$(id+"_image3").setURL(carga);
+			}
 			var duration = $comp.sources.publicidad2.Duracion;
 			var i = 0;
 			if(tamanio == 0){
@@ -251,9 +330,19 @@ publicidad.mostrarBloque5 = function(){
 						duration = duration*1000;
 		    		}
 			    	$comp.sources.publicidad2.select(i);
+			    	var accion = $comp.sources.publicidad2.Accion;
+					var carga = $comp.sources.publicidad2.Carga;
+					if(accion == 1){
+						$$(id+"_image3").setURL(carga);
+					}
 					
 			    }else{
 			    	$comp.sources.publicidad2.select(i);
+			    	var accion = $comp.sources.publicidad2.Accion;
+					var carga = $comp.sources.publicidad2.Carga;
+					if(accion == 1){
+						$$(id+"_image3").setURL(carga);
+					}
 					duration = $comp.sources.publicidad2.Duracion;
 					duration = duration*1000;
 					if(i == $comp.sources.publicidad2.length-1){
@@ -269,10 +358,13 @@ publicidad.mostrarBloque5 = function(){
 	  
 	}});
 	
+}
+	
 
 
 	// @region namespaceDeclaration// @startlock
 	var button1 = {};	// @button
+	var image4 = {};	// @image
 	// @endregion// @endlock
 
    /*
@@ -357,22 +449,40 @@ publicidad.mostrarBloque5 = function(){
 
 
 	// eventHandlers// @lock
-	
 
 	button1.click = function button1_click (event)// @startlock
 	{// @endlock
-		if(entrar){
-			entrar = false;
-			publicidad.mostrarBloque5();
-		}else{
-			entrar = true;
-			$$(id+"_image4").hide();
-			$("body").css('background', "#ffffff");
+		
+	};// @lock
+
+	image4.click = function image4_click (event)// @startlock
+	{// @endlock
+		var accion = $comp.sources.publicidad3.Accion;
+		var carga = $comp.sources.publicidad3.Carga;
+		if(accion == 2){
+		
+			$$(id+'_video1').show();
+			$$(id+'_video1').loadVideoByUrl([carga]);
+			$$(id+'_video1').play();
+			$("BODY").append($("#"+id+'_video1'));
+			$("#"+id+'_video1').css('display','block');
+			$("#"+id+'_video1').css('top',' 60px');
+			$("#"+id+'_video1').css('left',' 10%');
+			$("#"+id+'_video1').css('margin','auto,auto,auto,auto');
+		}else if(accion == 3){
+			
+			$("#"+id+"_container3").append(carga);
+			$("#containerPrincipal").append($("#"+id+"_container3"));
+			$$(id+"_container3").show();
+			$("#"+id+"_container3").css('top',' 60px');
+			$("#"+id+"_container3").css('right','0px');      
 		}
 	};// @lock
+	
 
 	// @region eventManager// @startlock
 	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
+	WAF.addListener(this.id + "_image4", "click", image4.click, "WAF");
 	// @endregion// @endlock
 
 	};// @lock

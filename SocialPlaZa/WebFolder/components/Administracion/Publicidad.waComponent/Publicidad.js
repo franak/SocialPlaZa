@@ -19,10 +19,10 @@ function constructor (id) {
 	selectElement.setAttribute('tabindex','3');
     $('#'+id+'_container2').append(selectElement);
     $('#select-orden').css('position','absolute');
-    $('#select-orden').css('top','125px');
-    $('#select-orden').css('left','44px');
+    $('#select-orden').css('top','170px');
+    $('#select-orden').css('left','66px');
     $('#select-orden').css('height','35px');
-    $('#select-orden').css('width','200px');
+    $('#select-orden').css('width','170px');
     $("#select-orden option[value='1']").attr("selected",true);
     
     var optionHTML;	

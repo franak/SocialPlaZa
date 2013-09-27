@@ -632,8 +632,8 @@ appdsObj = function () {
 		  functions.anhadirAccesoMenu("Gestion Comercial","Bases","Familias");
 		  functions.anhadirAccesoMenu("Gestion Comercial","Bases","Articulos");
 		  
-		  functions.anhadirAccesoMenu("T.P.V.","Bases","Familias");
-		  functions.anhadirAccesoMenu("T.P.V.","Bases","Articulos");
+		 //functions.anhadirAccesoMenu("T.P.V.","Bases","Familias");
+		 //functions.anhadirAccesoMenu("T.P.V.","Bases","Articulos");
 		  functions.anhadirAccesoMenu("T.P.V.","Archivos","Ventas TPV");
 		  functions.anhadirAccesoMenu("T.P.V.","Archivos","Cajas TPV");
 		  
